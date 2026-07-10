@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, Factory, Network, ShieldCheck } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
 import MedxImage from "@/components/MedxImage";
@@ -70,16 +70,34 @@ const visionItems = [
   "Research, partnerships, and African expansion",
 ];
 
+const operatingPriorities = [
+  {
+    title: "Reliable access",
+    description: "Structured supply, diagnostics, and device pathways for institutions.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Local capacity",
+    description: "Import substitution, manufacturing readiness, and skilled execution.",
+    icon: Factory,
+  },
+  {
+    title: "System visibility",
+    description: "Data, forecasting, dashboards, and transparent service delivery.",
+    icon: Network,
+  },
+];
+
 export default function Home() {
   return (
     <>
       <HeroSection />
 
       <ScrollReveal>
-        <section className="border-y border-slate-200 bg-white py-12">
+        <section className="section-band py-12">
           <div className="container-medx grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {stats.map((stat) => (
-              <div key={stat.label} className="card-premium p-6">
+              <div key={stat.label} className="metric-tile p-6 pl-8">
                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#10a66e]">
                   {stat.label}
                 </p>
@@ -93,7 +111,7 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="bg-white py-20">
+        <section className="bg-white py-24">
           <div className="container-medx grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             {/* About preview image: /public/images/medx/medx-bahir-dar-healthcare.jpg */}
             <MedxImage
@@ -113,6 +131,22 @@ export default function Home() {
                 supply, medical devices, cancer care, digital systems, research,
                 and local healthcare manufacturing.
               </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {operatingPriorities.map(({ title, description, icon: Icon }) => (
+                  <div
+                    key={title}
+                    className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+                  >
+                    <Icon className="text-[#10a66e]" size={24} />
+                    <p className="mt-4 text-sm font-black text-[#071b33]">
+                      {title}
+                    </p>
+                    <p className="mt-2 text-xs leading-6 text-slate-600">
+                      {description}
+                    </p>
+                  </div>
+                ))}
+              </div>
               <Link href="/about" className="btn-primary mt-7">
                 Learn About MedX
                 <ArrowRight size={17} />
@@ -123,7 +157,7 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="medical-pattern py-20">
+        <section className="section-band py-24">
           <div className="container-medx">
             <SectionHeader
               eyebrow="Services Overview"
@@ -141,7 +175,7 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="bg-white py-20">
+        <section className="bg-white py-24">
           <div className="container-medx grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
               <SectionHeader
@@ -153,7 +187,7 @@ export default function Home() {
                 {challenges.map((item) => (
                   <div
                     key={item}
-                    className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 font-bold text-[#071b33]"
+                    className="executive-card flex gap-3 p-4 font-bold text-[#071b33]"
                   >
                     <CheckCircle2
                       className="mt-0.5 shrink-0 text-[#10a66e]"
@@ -175,7 +209,7 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="bg-[#061a31] py-20 text-white">
+        <section className="corporate-shell py-24 text-white">
           <div className="container-medx grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             {/* Strategic vision image: /public/images/medx/medx-digital-health-dashboard.jpg */}
             <MedxImage
@@ -199,8 +233,9 @@ export default function Home() {
                 {visionItems.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 font-bold text-slate-100"
+                    className="rounded-2xl border border-white/10 bg-white/[0.07] p-5 font-bold text-slate-100"
                   >
+                    <ClipboardCheck className="mb-4 text-emerald-300" size={21} />
                     {item}
                   </div>
                 ))}

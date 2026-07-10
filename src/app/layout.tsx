@@ -4,7 +4,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://medxhealthcare.com"),
+  metadataBase: new URL("https://medx-healthcare-solutions.getnetgc.chatgpt.site"),
   title: {
     default: "MedX Healthcare Solutions",
     template: "%s | MedX Healthcare Solutions",

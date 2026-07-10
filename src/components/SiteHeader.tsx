@@ -27,7 +27,7 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 shadow-[0_10px_30px_rgba(8,27,51,0.04)] backdrop-blur-xl">
       <div className="container-medx">
         <div className="flex min-h-[76px] items-center justify-between gap-6">
           <Link
@@ -35,7 +35,7 @@ export default function SiteHeader() {
             className="flex shrink-0 items-center gap-3"
             onClick={() => setMobileOpen(false)}
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#10a66e] text-sm font-black text-white shadow-[0_8px_20px_rgba(16,166,110,0.25)]">
+            <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#071b33] text-sm font-black text-white shadow-[0_8px_20px_rgba(8,27,51,0.18)] ring-4 ring-emerald-50">
               MX
             </div>
 

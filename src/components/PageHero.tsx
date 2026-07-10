@@ -17,30 +17,53 @@ export default function PageHero({
   image,
 }: PageHeroProps) {
   return (
-    <section className="gradient-hero overflow-hidden text-white">
-      <div className="container-medx grid gap-10 py-20 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:py-24">
+    <section className="corporate-shell relative overflow-hidden text-white">
+      <div className="premium-divider absolute inset-x-0 bottom-0" />
+      <div className="container-medx grid gap-10 py-20 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:py-24">
         <div>
           {eyebrow && (
-            <p className="mb-4 text-sm font-black uppercase tracking-[0.28em] text-emerald-300">
+            <p className="mb-4 inline-flex rounded-full border border-emerald-300/25 bg-emerald-300/[0.08] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">
               {eyebrow}
             </p>
           )}
-          <h1 className="max-w-4xl text-5xl font-black tracking-tight md:text-7xl">
+          <h1 className="max-w-4xl text-5xl font-black leading-[1.03] tracking-normal md:text-7xl">
             {title}
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200 md:text-xl">
             {description}
           </p>
+          <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3">
+            {["Institutional scale", "Public-health focus", "Partner ready"].map(
+              (item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3"
+                >
+                  {item}
+                </div>
+              ),
+            )}
+          </div>
         </div>
 
         {image && (
-          <MedxImage
-            src={image.src}
-            alt={image.alt}
-            priority
-            className="aspect-[16/9] rounded-[2rem] border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
-            sizes="(min-width: 1024px) 52vw, 100vw"
-          />
+          <div className="relative">
+            <MedxImage
+              src={image.src}
+              alt={image.alt}
+              priority
+              className="image-frame aspect-[16/9] rounded-[2rem]"
+              sizes="(min-width: 1024px) 52vw, 100vw"
+            />
+            <div className="absolute bottom-5 left-5 rounded-2xl border border-white/15 bg-[#061a31]/90 px-5 py-4 shadow-2xl backdrop-blur">
+              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#d7a84f]">
+                MedX platform
+              </p>
+              <p className="mt-1 text-sm font-black">
+                Healthcare access • supply • innovation
+              </p>
+            </div>
+          </div>
         )}
       </div>
     </section>
