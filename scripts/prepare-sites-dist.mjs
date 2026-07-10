@@ -28,9 +28,20 @@ await writeFile(
     }
 
     if (!url.pathname.includes(".")) {
-      const fallbackPath = url.pathname === "/" ? "/index.html" : \`\${url.pathname}.html\`;
-      const fallbackUrl = new URL(fallbackPath, url);
-      response = await env.ASSETS.fetch(new Request(fallbackUrl, request));
+      const normalizedPath = url.pathname.replace(/\\/$/, "");
+      const fallbackPaths =
+        url.pathname === "/"
+          ? ["/index.html"]
+          : [\`\${normalizedPath}/index.html\`, \`\${normalizedPath}.html\`];
+
+      for (const fallbackPath of fallbackPaths) {
+        const fallbackUrl = new URL(fallbackPath, url);
+        response = await env.ASSETS.fetch(new Request(fallbackUrl, request));
+
+        if (response.status !== 404) {
+          return response;
+        }
+      }
     }
 
     return response;
