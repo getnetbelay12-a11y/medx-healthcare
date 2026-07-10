@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 
 const baseUrl = "https://medxhealthcare.com";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     "",
