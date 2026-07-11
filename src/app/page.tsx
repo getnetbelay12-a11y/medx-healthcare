@@ -45,8 +45,8 @@ const strategicPreview = [
   "Long-term local capacity and regional healthcare platform direction",
 ];
 
-function repeated<T>(items: T[]) {
-  return [...items, ...items];
+function repeated<T>(items: T[], times = 4) {
+  return Array.from({ length: times }, () => items).flat();
 }
 
 export default function Home() {
@@ -168,20 +168,32 @@ export default function Home() {
             centered
           />
 
-          <div className="partner-logo-stage mt-12">
-            <div className="partner-logo-marquee">
+          <div className="partner-logo-stage mt-12" aria-label="Moving historical institutional logo references">
+            <div className="partner-logo-marquee partner-logo-marquee-primary">
               {repeated(historicalRelationships).map((relationship, index) => (
-                <div
-                  key={`${relationship.id}-${index}`}
-                  className="partner-logo-tile"
-                >
+                <div key={`${relationship.id}-primary-${index}`} className="partner-logo-tile">
                   {relationship.logo && (
                     <Image
                       src={relationship.logo}
                       alt={`${relationship.displayName} historical reference logo`}
-                      width={280}
-                      height={130}
+                      width={300}
+                      height={140}
                       className="h-16 w-auto object-contain md:h-20"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="partner-logo-marquee partner-logo-marquee-secondary" aria-hidden="true">
+              {repeated([...historicalRelationships].reverse()).map((relationship, index) => (
+                <div key={`${relationship.id}-secondary-${index}`} className="partner-logo-tile partner-logo-tile-compact">
+                  {relationship.logo && (
+                    <Image
+                      src={relationship.logo}
+                      alt=""
+                      width={260}
+                      height={120}
+                      className="h-12 w-auto object-contain md:h-16"
                     />
                   )}
                 </div>
@@ -199,39 +211,66 @@ export default function Home() {
 
       <section className="section-band py-20">
         <div className="container-medx">
-          <SectionHeader
-            eyebrow="Historical board"
-            title="Board of Directors referenced in MedX's 2020 investor materials."
-            description="The portraits and names below are historical references from the 2020 deck. They are not presented as the confirmed current MedX board."
-            centered
-          />
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+            <div className="board-motion-copy">
+              <p className="text-[11px] font-black uppercase tracking-[0.38em] text-[#10a66e]">
+                Historical board
+              </p>
+              <h2 className="mt-4 text-4xl font-black leading-[0.95] tracking-tight text-[#071b33] md:text-5xl">
+                Board of Directors referenced in MedX&apos;s 2020 investor materials.
+              </h2>
+              <p className="mt-6 text-base font-medium leading-8 text-slate-600">
+                Historical portraits and names from the 2020 deck are displayed as a
+                continuous executive gallery. They are not presented as the confirmed
+                current MedX board.
+              </p>
+            </div>
 
-          <div className="board-motion-stage mt-12">
-            <div className="board-motion-track">
-              {repeated(historicalBoard).map((member, index) => (
-                <article key={`${member.id}-${index}`} className="board-motion-card">
-                  {member.image && (
-                    <Image
-                      src={member.image}
-                      alt={`${member.name}, historical 2020 board reference`}
-                      width={180}
-                      height={180}
-                      className="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-white shadow-lg"
-                    />
-                  )}
-                  <h3 className="mt-4 text-center text-base font-black text-[#071b33]">
-                    {member.name}
-                  </h3>
-                  {member.credentials && (
-                    <p className="mt-1 text-center text-xs font-bold text-[#10a66e]">
-                      {member.credentials}
+            <div className="board-motion-stage" aria-label="Moving historical board references">
+              <div className="board-motion-track board-motion-track-primary">
+                {repeated(historicalBoard).map((member, index) => (
+                  <article key={`${member.id}-primary-${index}`} className="board-motion-card">
+                    {member.image && (
+                      <Image
+                        src={member.image}
+                        alt={`${member.name}, historical 2020 board reference`}
+                        width={180}
+                        height={180}
+                        className="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-white shadow-lg"
+                      />
+                    )}
+                    <h3 className="mt-4 text-center text-base font-black text-[#071b33]">
+                      {member.name}
+                    </h3>
+                    {member.credentials && (
+                      <p className="mt-1 text-center text-xs font-bold text-[#10a66e]">
+                        {member.credentials}
+                      </p>
+                    )}
+                    <p className="mt-3 text-center text-xs leading-5 text-slate-600">
+                      Historical 2020 reference
                     </p>
-                  )}
-                  <p className="mt-3 text-center text-xs leading-5 text-slate-600">
-                    Historical 2020 reference
-                  </p>
-                </article>
-              ))}
+                  </article>
+                ))}
+              </div>
+              <div className="board-motion-track board-motion-track-secondary" aria-hidden="true">
+                {repeated([...historicalBoard].reverse()).map((member, index) => (
+                  <article key={`${member.id}-secondary-${index}`} className="board-motion-card board-motion-card-compact">
+                    {member.image && (
+                      <Image
+                        src={member.image}
+                        alt=""
+                        width={160}
+                        height={160}
+                        className="mx-auto h-24 w-24 rounded-full object-cover ring-4 ring-white shadow-lg"
+                      />
+                    )}
+                    <h3 className="mt-4 text-center text-sm font-black text-[#071b33]">
+                      {member.name}
+                    </h3>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </div>
