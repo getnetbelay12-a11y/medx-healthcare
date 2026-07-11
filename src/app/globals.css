@@ -303,6 +303,66 @@ body {
   box-shadow: 0 24px 70px rgba(8, 27, 51, 0.12);
 }
 
+.partner-logo-stage,
+.board-motion-stage {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.partner-logo-stage {
+  border-radius: 2rem;
+  border: 1px solid rgba(217, 230, 239, 0.95);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(16, 166, 110, 0.08), transparent 25%),
+    linear-gradient(180deg, #ffffff, #f8fbfc);
+  box-shadow: 0 24px 70px rgba(8, 27, 51, 0.08);
+}
+
+.partner-logo-marquee {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding: 1.25rem;
+  animation: medx-marquee 36s linear infinite;
+}
+
+.partner-logo-stage:hover .partner-logo-marquee,
+.board-motion-stage:hover .board-motion-track {
+  animation-play-state: paused;
+}
+
+.partner-logo-tile {
+  display: grid;
+  min-width: 15.5rem;
+  height: 8.5rem;
+  place-items: center;
+  border-radius: 1.3rem;
+  border: 1px solid rgba(217, 230, 239, 0.9);
+  background: rgba(255, 255, 255, 0.94);
+  padding: 1rem;
+  box-shadow: 0 12px 34px rgba(8, 27, 51, 0.06);
+}
+
+.board-motion-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding-block: 0.5rem;
+  animation: medx-marquee-reverse 42s linear infinite;
+}
+
+.board-motion-card {
+  width: 15rem;
+  flex: 0 0 auto;
+  border: 1px solid rgba(217, 230, 239, 0.95);
+  border-radius: 1.5rem;
+  background: white;
+  padding: 1.25rem;
+  box-shadow: 0 18px 45px rgba(8, 27, 51, 0.08);
+}
+
 @keyframes medx-drift {
   0%,
   100% {
@@ -331,11 +391,31 @@ body {
   }
 }
 
+@keyframes medx-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes medx-marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ai-motion-node,
   .partner-orbit::before,
   .partner-orbit::after,
-  .partner-orbit-chip {
+  .partner-orbit-chip,
+  .partner-logo-marquee,
+  .board-motion-track {
     animation: none;
   }
 

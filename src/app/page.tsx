@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   ArrowRight,
   ClipboardCheck,
@@ -12,6 +13,8 @@ import HeroSection from "@/components/HeroSection";
 import MedxImage from "@/components/MedxImage";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
+import { getHistoricalLeadership } from "@/data/leadership";
+import { getHistoricalRelationships } from "@/data/relationships";
 import { getPublishedServices } from "@/data/services";
 import { stats } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
@@ -25,6 +28,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const currentServices = getPublishedServices("current");
+const historicalRelationships = getHistoricalRelationships().filter(
+  (relationship) => relationship.logo,
+);
+const historicalBoard = getHistoricalLeadership().filter((member) => member.image);
 
 const historicalFoundation = [
   "Created in 2017 according to historical investor materials",
@@ -37,6 +44,10 @@ const strategicPreview = [
   "Medium-term data visibility and supply-chain discipline",
   "Long-term local capacity and regional healthcare platform direction",
 ];
+
+function repeated<T>(items: T[]) {
+  return [...items, ...items];
+}
 
 export default function Home() {
   return (
@@ -143,25 +154,85 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-band py-20">
-        <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="relative overflow-hidden bg-white py-20">
+        <div className="ai-motion-field" aria-hidden="true">
+          <span className="ai-motion-node ai-motion-node-a" />
+          <span className="ai-motion-node ai-motion-node-b" />
+          <span className="ai-motion-node ai-motion-node-c" />
+        </div>
+        <div className="container-medx relative">
           <SectionHeader
-            eyebrow="Relationships"
-            title="Historical foundation and approved relationships are handled with safeguards."
-            description="The site now shows only verified current relationships as current partners. Historical relationship cards stay hidden unless explicitly enabled for controlled review."
+            eyebrow="Historical ecosystem"
+            title="Partners and institutions referenced in MedX's 2020 materials."
+            description="These logos are presented as historical source references from the 2020 MedX materials. They do not imply current endorsement, active partnership, or logo-use approval."
+            centered
           />
-          <div className="executive-card p-8">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
-              Partner-safe publishing
-            </p>
-            <p className="mt-4 leading-8 text-slate-600">
-              Relationship names, public descriptions, and logos are managed in
-              central data with verification and approval flags.
-            </p>
-            <Link href="/partners" className="btn-primary mt-7">
-              View Partners
-              <ArrowRight size={17} />
-            </Link>
+
+          <div className="partner-logo-stage mt-12">
+            <div className="partner-logo-marquee">
+              {repeated(historicalRelationships).map((relationship, index) => (
+                <div
+                  key={`${relationship.id}-${index}`}
+                  className="partner-logo-tile"
+                >
+                  {relationship.logo && (
+                    <Image
+                      src={relationship.logo}
+                      alt={`${relationship.displayName} historical reference logo`}
+                      width={280}
+                      height={130}
+                      className="h-16 w-auto object-contain md:h-20"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-[1.5rem] border border-amber-200 bg-amber-50 p-5 text-center text-sm font-bold leading-7 text-amber-950">
+            Historical slide-derived logo references. Confirm current
+            relationship status and public logo permission before presenting
+            these organizations as current partners.
+          </div>
+        </div>
+      </section>
+
+      <section className="section-band py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Historical board"
+            title="Board of Directors referenced in MedX's 2020 investor materials."
+            description="The portraits and names below are historical references from the 2020 deck. They are not presented as the confirmed current MedX board."
+            centered
+          />
+
+          <div className="board-motion-stage mt-12">
+            <div className="board-motion-track">
+              {repeated(historicalBoard).map((member, index) => (
+                <article key={`${member.id}-${index}`} className="board-motion-card">
+                  {member.image && (
+                    <Image
+                      src={member.image}
+                      alt={`${member.name}, historical 2020 board reference`}
+                      width={180}
+                      height={180}
+                      className="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-white shadow-lg"
+                    />
+                  )}
+                  <h3 className="mt-4 text-center text-base font-black text-[#071b33]">
+                    {member.name}
+                  </h3>
+                  {member.credentials && (
+                    <p className="mt-1 text-center text-xs font-bold text-[#10a66e]">
+                      {member.credentials}
+                    </p>
+                  )}
+                  <p className="mt-3 text-center text-xs leading-5 text-slate-600">
+                    Historical 2020 reference
+                  </p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

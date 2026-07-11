@@ -18,7 +18,6 @@ const serviceLinks = [
 const companyLinks = [
   { label: "About MedX", href: "/about" },
   { label: "Strategy", href: "/strategy" },
-  { label: "Partners", href: "/partners" },
   { label: "Public Health", href: "/public-health" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },

@@ -76,6 +76,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 describe TIRET Corporate as a joint-venture party.",
     publicDescription:
       "Historical investor materials from 2020 reference TIRET Corporate as part of MedX's original joint-venture structure.",
+    logo: "/images/medx/partners/tiret-corporate.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -90,6 +91,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include Black Lion Hospital, Addis Ababa, on a partner-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference Black Lion Hospital in Addis Ababa. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/black-lion-hospital.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -104,6 +106,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include Harvard on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference Harvard in the broader research and institutional ecosystem around the original diagnostic platform. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/harvard-university.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -118,6 +121,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include Albert Einstein College of Medicine on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference Albert Einstein College of Medicine in the broader research and institutional ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/albert-einstein-college-of-medicine.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -132,6 +136,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include the Bill & Melinda Gates Foundation on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference the Bill & Melinda Gates Foundation in the broader global-health ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/bill-and-melinda-gates-foundation.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -146,6 +151,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include WHO/IARC on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference WHO/IARC in the broader public-health and cancer-research ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/who-iarc.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -160,6 +166,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include the National Cancer Institute on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference the National Cancer Institute in the broader cancer-research ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/national-cancer-institute.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -174,6 +181,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include Charite and DKFZ on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference Charite and DKFZ in the broader research and clinical ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/charite-dkfz.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -188,6 +196,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include Duke University on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference Duke University in the broader research and institutional ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/duke-university.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -202,6 +211,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include Hospital de Cancer de Barretos on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference Hospital de Cancer de Barretos in the broader cancer-care and research ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/hospital-de-cancer-de-barretos.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -216,6 +226,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include PATH on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference PATH in the broader global-health implementation ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/path.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
@@ -230,6 +241,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 include the Cancer Institute and Hospital, Chinese Academy of Medical Sciences on an organization-reference slide.",
     publicDescription:
       "Historical investor materials from 2020 reference the Cancer Institute and Hospital, Chinese Academy of Medical Sciences in the broader cancer-research ecosystem. Current relationship status requires confirmation.",
+    logo: "/images/medx/partners/cancer-institute-hospital-chinese-academy.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
     isPublished: false,
