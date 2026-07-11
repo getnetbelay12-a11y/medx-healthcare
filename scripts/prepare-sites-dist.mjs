@@ -48,6 +48,24 @@ function withSecurityHeaders(response) {
   });
 }
 
+async function finalizeAssetResponse(response, url) {
+  const headers = new Headers(response.headers);
+  const contentType = headers.get("content-type") || "";
+
+  if (contentType.includes("text/html")) {
+    const html = await response.text();
+    return withSecurityHeaders(
+      new Response(html.replaceAll("http://localhost:3000", url.origin), {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      }),
+    );
+  }
+
+  return withSecurityHeaders(response);
+}
+
 function escapeHtml(value = "") {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -245,7 +263,7 @@ export default {
     let response = await env.ASSETS.fetch(request);
 
     if (response.status !== 404) {
-      return withSecurityHeaders(response);
+      return finalizeAssetResponse(response, url);
     }
 
     if (!url.pathname.includes(".")) {
@@ -260,12 +278,12 @@ export default {
         response = await env.ASSETS.fetch(new Request(fallbackUrl, request));
 
         if (response.status !== 404) {
-          return withSecurityHeaders(response);
+          return finalizeAssetResponse(response, url);
         }
       }
     }
 
-    return withSecurityHeaders(response);
+    return finalizeAssetResponse(response, url);
   },
 };
 `,
