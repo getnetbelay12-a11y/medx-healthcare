@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
+import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
+import { getPublishedServices } from "@/data/services";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -13,56 +15,17 @@ export const metadata: Metadata = pageMetadata({
   image: medxImages.diagnostics.src,
 });
 
-const serviceSections = [
-  {
-    title: "Pharmaceutical Supply and Distribution",
-    image: medxImages.pharmaceuticalSupply,
-    body: "MedX supports reliable access to essential medicines and healthcare products through structured supply and distribution capabilities.",
-    bullets: ["Essential medicine access", "Institutional supply support", "Inventory and distribution discipline"],
-  },
-  {
-    title: "Medical Devices and Equipment",
-    image: medxImages.medicalDevices,
-    body: "MedX helps facilities access medical devices, equipment, and support materials needed for safe and consistent care delivery.",
-    bullets: ["Device sourcing", "Equipment distribution", "Facility readiness support"],
-  },
-  {
-    title: "Diagnostic Solutions",
-    image: medxImages.diagnostics,
-    body: "MedX strengthens diagnostic capacity through laboratory solutions, in-vitro diagnostic distribution, testing support, and screening workflows for better clinical decisions.",
-    bullets: ["In-vitro diagnostics", "Laboratory systems", "Early detection support"],
-  },
-  {
-    title: "Cervical Cancer Screening",
-    image: medxImages.cervicalScreening,
-    body: "MedX’s historical screening platform centers on practical cervical-screening access, program education, and referral coordination.",
-    bullets: ["Program support", "Screening education", "Referral pathway support"],
-  },
-  {
-    title: "Cancer Care Expansion",
-    image: medxImages.cancerCare,
-    body: "MedX’s long-term roadmap includes future cancer-care infrastructure that can expand prevention, detection, referral, and specialty-care capacity.",
-    bullets: ["Strategic roadmap", "Specialty center planning", "Cancer program partnerships"],
-  },
-  {
-    title: "Healthcare Supply Chain Solutions",
-    image: medxImages.supplyChain,
-    body: "MedX addresses forecasting, procurement, distribution, and data visibility challenges that affect product availability.",
-    bullets: ["Forecasting support", "Logistics visibility", "Stockout reduction"],
-  },
-  {
-    title: "Research and Innovation",
-    image: medxImages.research,
-    body: "MedX can connect research, evidence, and applied innovation to practical healthcare solutions for Ethiopia and regional markets.",
-    bullets: ["In development", "Innovation translation", "Local capacity building"],
-  },
-  {
-    title: "Digital Health Systems",
-    image: medxImages.digitalHealth,
-    body: "MedX’s digital roadmap supports transparency, data accuracy, automation, and better decision-making across healthcare operations.",
-    bullets: ["Strategic roadmap", "Data accuracy", "Operational visibility"],
-  },
-];
+const currentServices = getPublishedServices("current");
+const roadmapServices = getPublishedServices().filter(
+  (service) => service.status !== "current",
+);
+
+const statusLabels = {
+  "in-development": "In development",
+  "strategic-roadmap": "Strategic roadmap",
+  historical: "Historical foundation",
+  current: "Current service",
+} as const;
 
 export default function ServicesPage() {
   return (
@@ -70,46 +33,98 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Our Services"
         title="Our Services"
-        description="Integrated healthcare solutions across pharmaceuticals, diagnostics, medical devices, cancer screening, and digital health systems."
+        description="Current service areas and strategic capabilities for healthcare supply, diagnostics, screening, and system strengthening."
         image={medxImages.diagnostics}
       />
 
       <section className="bg-white py-20">
-        <div className="container-medx grid gap-10">
-          {serviceSections.map((service, index) => (
-            <article
-              key={service.title}
-              className={`card-premium grid gap-8 overflow-hidden p-5 lg:grid-cols-2 lg:items-center ${
-                index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
-              }`}
-            >
-              {/* Service image: /public/images/medx/[filename listed in src/data/images.ts] */}
-              <MedxImage
-                src={service.image.src}
-                alt={service.image.alt}
-                className="aspect-[16/10] rounded-[1.4rem]"
-              />
-              <div className="p-3 md:p-6">
-                <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
-                  Service 0{index + 1}
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Current services"
+            title="Four service areas presented as current operating priorities."
+            description="These are the public-facing MedX service areas unless updated company confirmation changes the service configuration."
+            centered
+          />
+          <div className="mt-12 grid gap-8">
+            {currentServices.map((service, index) => (
+              <article
+                key={service.id}
+                className={`grid gap-8 border-t border-slate-200 pt-10 lg:grid-cols-2 lg:items-center ${
+                  index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
+                }`}
+              >
+                <div>
+                  <MedxImage
+                    src={service.image.src}
+                    alt={service.alt}
+                    className="aspect-[16/10] rounded-[1.5rem] shadow-[0_20px_60px_rgba(8,27,51,0.1)]"
+                  />
+                  {service.image.caption && (
+                    <p className="mt-3 text-xs font-bold text-slate-500">
+                      {service.image.caption}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#10a66e]">
+                    Current service
+                  </p>
+                  <h2 className="mt-3 text-3xl font-black text-[#071b33] md:text-4xl">
+                    {service.title}
+                  </h2>
+                  <p className="mt-5 text-lg leading-8 text-slate-600">
+                    {service.summary}
+                  </p>
+                  <ul className="mt-7 grid gap-3 sm:grid-cols-3">
+                    {service.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-bold text-slate-700"
+                      >
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-band py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Strategic capabilities and roadmap"
+            title="Future-facing capabilities are labeled separately from current services."
+            description="These areas support MedX's longer-term direction and should not be read as fully operating service lines without company confirmation."
+            centered
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {roadmapServices.map((service) => (
+              <article key={service.id} className="executive-card p-7">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#10a66e]">
+                  {statusLabels[service.status]}
                 </p>
-                <h2 className="mt-3 text-3xl font-black text-[#071b33] md:text-4xl">
+                <h3 className="mt-4 text-2xl font-black text-[#071b33]">
                   {service.title}
-                </h2>
-                <p className="mt-5 leading-8 text-slate-600">{service.body}</p>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-3">
-                  {service.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="rounded-2xl bg-slate-50 p-4 text-sm font-bold text-slate-700"
+                </h3>
+                <p className="mt-4 leading-7 text-slate-600">
+                  {service.summary}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {service.features.map((feature) => (
+                    <span
+                      key={feature}
+                      className="rounded-full bg-white px-3 py-2 text-xs font-black text-slate-600 ring-1 ring-slate-200"
                     >
-                      {bullet}
-                    </li>
+                      {feature}
+                    </span>
                   ))}
-                </ul>
-              </div>
-            </article>
-          ))}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

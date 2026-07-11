@@ -17,8 +17,8 @@ const trustSignals = [
 
 const heroMetrics = [
   { label: "Founded", value: "2017" },
-  { label: "Capitalized", value: "16.5M ETB" },
-  { label: "Market", value: "Ethiopia + Africa" },
+  { label: "Historical capital", value: "16.5M ETB" },
+  { label: "Market context", value: "Ethiopia" },
 ];
 
 export default function HeroSection() {
@@ -60,11 +60,11 @@ export default function HeroSection() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/services" className="btn-primary">
-              Explore Our Services
+              Explore Services
               <ArrowRight size={17} />
             </Link>
             <Link href="/contact" className="btn-outline">
-              Partner With MedX
+              Request Supply
               <ArrowRight size={17} />
             </Link>
           </div>

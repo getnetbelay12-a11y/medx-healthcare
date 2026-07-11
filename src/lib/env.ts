@@ -8,6 +8,9 @@ export const publicEnv = {
   companyLocation:
     process.env.NEXT_PUBLIC_COMPANY_LOCATION || "Bahir Dar, Amhara, Ethiopia",
   officeHours: process.env.NEXT_PUBLIC_OFFICE_HOURS || "",
+  showHistoricalBoard: process.env.NEXT_PUBLIC_SHOW_HISTORICAL_BOARD === "true",
+  showHistoricalRelationships:
+    process.env.NEXT_PUBLIC_SHOW_HISTORICAL_RELATIONSHIPS === "true",
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
 };
 

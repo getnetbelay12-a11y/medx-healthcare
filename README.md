@@ -89,6 +89,22 @@ The site references images from `/public/images/medx/`:
 
 Current files are AI-generated conceptual corporate healthcare photography. Do not describe them as verified MedX facilities, personnel, partners, or equipment unless approved by the company.
 
+## Routes
+
+- `/`
+- `/about`
+- `/services`
+- `/public-health`
+- `/strategy`
+- `/partners`
+- `/contact`
+- `/privacy`
+- `/terms`
+- `/accessibility`
+- `/thank-you`
+
+Historical board and historical relationship cards are hidden by default. Use `NEXT_PUBLIC_SHOW_HISTORICAL_BOARD=true` or `NEXT_PUBLIC_SHOW_HISTORICAL_RELATIONSHIPS=true` only for controlled review.
+
 ## Contact Form
 
 The contact form validates on the frontend and server layer. In the current static export/Sites deployment flow, the generated worker handles:

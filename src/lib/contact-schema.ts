@@ -2,10 +2,12 @@ import { z } from "zod";
 
 export const inquiryTypes = [
   "Product and supply request",
+  "Pharmaceutical request",
   "Medical-device request",
   "Diagnostic inquiry",
   "Cervical-screening program",
-  "Facility or public-health program",
+  "Facility support",
+  "Public-health program",
   "Partnership inquiry",
   "Investment inquiry",
   "Supplier registration",

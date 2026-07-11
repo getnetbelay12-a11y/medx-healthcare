@@ -1,6 +1,8 @@
 # Content Confirmation Checklist
 
 - Legal company name.
+- Registration status.
+- Current ownership.
 - Current shareholders.
 - Current board.
 - Executive team.
@@ -13,10 +15,15 @@
 - Certifications.
 - Regulatory approvals.
 - OncoE6 relationship and current commercial rights.
+- Arbor Vita relationship.
+- TIRET relationship.
+- Black Lion Hospital relationship.
 - Government relationships.
 - Hospital relationships.
 - Research relationships.
 - Partner logos.
+- Approved staff photos.
+- Approved facility photos.
 - Current services.
 - Service regions.
 - Approved photographs.
