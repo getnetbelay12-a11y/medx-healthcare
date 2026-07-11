@@ -50,10 +50,10 @@ export default function PublicHealthFocusPage() {
             title="A large and growing health system needs scalable execution."
             description="Rapid population growth, broad administrative coverage, and expanding healthcare needs create demand for stronger product access, diagnostics, screening, and care infrastructure."
           />
-          {/* Healthcare demand image: /public/images/medx/medx-africa-health-map.jpg */}
+          {/* Healthcare demand image: /public/images/medx/medx-bahir-dar-healthcare.jpg */}
           <MedxImage
-            src={medxImages.africaMap.src}
-            alt={medxImages.africaMap.alt}
+            src={medxImages.bahirDar.src}
+            alt={medxImages.bahirDar.alt}
             className="aspect-[16/10] rounded-[2rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
           />
         </div>

@@ -52,10 +52,10 @@ export default function ContactPage() {
                 </div>
               ))}
             </div>
-            {/* Contact partnership image: /public/images/medx/medx-hospital-partnership.jpg */}
+            {/* Contact location image: /public/images/medx/medx-bahir-dar-healthcare.jpg */}
             <MedxImage
-              src={medxImages.hospitalPartnership.src}
-              alt={medxImages.hospitalPartnership.alt}
+              src={medxImages.bahirDar.src}
+              alt={medxImages.bahirDar.alt}
               className="mt-8 aspect-[16/10] rounded-[2rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
             />
           </div>

@@ -4,6 +4,7 @@ import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
+import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Strategy and Vision",
@@ -40,6 +41,13 @@ const revenue = [
   "Regional expansion",
 ];
 
+const directionMilestones = [
+  "Stabilize institutional supply and diagnostic access",
+  "Build local manufacturing and import-substitution capacity",
+  "Scale digital health visibility and operating discipline",
+  "Expand partnerships across Ethiopia and African markets",
+];
+
 export default function StrategyPage() {
   return (
     <>
@@ -57,12 +65,30 @@ export default function StrategyPage() {
             title="A long-term platform for urgent and future healthcare needs."
             description="MedX’s strategy is designed to address immediate supply and diagnostic gaps while building future capacity in cancer care, local production, digital systems, research, and regional growth."
           />
-          {/* Digital transformation image: /public/images/medx/medx-digital-health-dashboard.jpg */}
-          <MedxImage
-            src={medxImages.digitalHealth.src}
-            alt={medxImages.digitalHealth.alt}
-            className="aspect-[16/10] rounded-[2rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
-          />
+          <div className="executive-card p-7 md:p-9">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
+              Strategic roadmap
+            </p>
+            <div className="mt-7 grid gap-4">
+              {directionMilestones.map((item, index) => (
+                <div
+                  key={item}
+                  className="grid gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:grid-cols-[auto_1fr]"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#071b33] text-sm font-black text-white">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <p className="text-lg font-black text-[#071b33]">{item}</p>
+                    <p className="mt-2 flex items-center gap-2 text-sm font-bold text-slate-600">
+                      <CheckCircle2 className="text-[#10a66e]" size={17} />
+                      Built for phased execution, investment readiness, and public-health impact.
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
