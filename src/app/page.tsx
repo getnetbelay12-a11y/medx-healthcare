@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, ClipboardCheck, Factory, Network, ShieldCheck } from "lucide-react";
+import AIFutureSection from "@/components/AIFutureSection";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
 import MedxImage from "@/components/MedxImage";
@@ -243,6 +244,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <AIFutureSection />
       </ScrollReveal>
 
       <CTASection

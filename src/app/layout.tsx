@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | MedX Healthcare Solutions",
   },
   description:
-    "Integrated healthcare solutions for diagnostics, pharmaceuticals, medical devices, cancer screening, and digital health across Ethiopia and Africa.",
+    "Integrated healthcare solutions for diagnostics, pharmaceuticals, medical devices, cancer screening, digital health, and AI-enabled healthcare operations across Ethiopia and Africa.",
   keywords: [
     "MedX Healthcare Solutions",
     "Ethiopia healthcare",
@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     "medical devices",
     "cervical cancer screening",
     "digital health",
+    "AI healthcare",
+    "healthcare forecasting",
     "Bahir Dar",
   ],
   icons: {
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MedX Healthcare Solutions",
     description:
-      "Integrated healthcare solutions for diagnostics, pharmaceuticals, medical devices, cancer screening, and digital health across Ethiopia and Africa.",
+      "Integrated healthcare solutions for diagnostics, pharmaceuticals, medical devices, cancer screening, digital health, and AI-enabled healthcare operations across Ethiopia and Africa.",
     type: "website",
     images: ["/images/medx/medx-hero-healthcare-africa.jpg"],
   },

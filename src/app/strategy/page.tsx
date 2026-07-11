@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AIFutureSection from "@/components/AIFutureSection";
 import CTASection from "@/components/CTASection";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
@@ -139,6 +140,8 @@ export default function StrategyPage() {
           </div>
         </div>
       </section>
+
+      <AIFutureSection />
 
       <section className="medical-pattern py-20">
         <div className="container-medx grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
