@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
@@ -7,7 +8,6 @@ import { medxImages } from "@/data/images";
 import {
   getCurrentPublishedRelationships,
   getHistoricalRelationships,
-  shouldShowHistoricalRelationships,
 } from "@/data/relationships";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -30,9 +30,7 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const currentRelationships = getCurrentPublishedRelationships();
-const historicalRelationships = shouldShowHistoricalRelationships()
-  ? getHistoricalRelationships()
-  : [];
+const historicalRelationships = getHistoricalRelationships();
 
 const categories = [
   { title: "Technology", icon: Microscope },
@@ -134,7 +132,12 @@ export default function PartnersPage() {
       </section>
 
       {historicalRelationships.length > 0 && (
-        <section className="bg-white py-20">
+        <section className="relative overflow-hidden bg-white py-20">
+          <div className="ai-motion-field" aria-hidden="true">
+            <span className="ai-motion-node ai-motion-node-a" />
+            <span className="ai-motion-node ai-motion-node-b" />
+            <span className="ai-motion-node ai-motion-node-c" />
+          </div>
           <div className="container-medx">
             <SectionHeader
               eyebrow="Historical relationship context"
@@ -142,9 +145,47 @@ export default function PartnersPage() {
               description="These references are historical and do not imply current endorsement, active partnership, current approval, or logo-use permission."
               centered
             />
-            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+
+            <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[2rem] border border-slate-200 bg-[#071b33] p-7 text-white shadow-[0_28px_90px_rgba(8,27,51,0.18)]">
+              <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-300">
+                    AI-assisted ecosystem view
+                  </p>
+                  <h3 className="mt-4 text-3xl font-black">
+                    Research, public-health, and institutional references from the historical deck.
+                  </h3>
+                  <p className="mt-4 leading-7 text-slate-300">
+                    This animated map is a visual index of historical
+                    references only. It is not a current partner logo wall and
+                    does not imply endorsement.
+                  </p>
+                </div>
+                <div className="partner-orbit" aria-hidden="true">
+                  {historicalRelationships.slice(0, 10).map((relationship, index) => (
+                    <span
+                      key={relationship.id}
+                      className="partner-orbit-chip"
+                      style={
+                        {
+                          "--orbit-index": index,
+                        } as CSSProperties
+                      }
+                    >
+                      {initials(relationship.displayName)}
+                    </span>
+                  ))}
+                  <span className="partner-orbit-core">MedX</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {historicalRelationships.map((relationship) => (
-                <article key={relationship.id} className="executive-card p-7">
+                <article
+                  key={relationship.id}
+                  className="executive-card partner-motion-card p-7"
+                >
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-sm font-black text-[#071b33]">
                     {initials(relationship.displayName)}
                   </div>

@@ -94,6 +94,146 @@ export const relationships: Relationship[] = [
     isApprovedForPublicUse: false,
     isPublished: false,
   },
+  {
+    id: "harvard-university",
+    organization: "Harvard University",
+    displayName: "Harvard University",
+    relationshipType: "historical-health-institution",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include Harvard on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference Harvard in the broader research and institutional ecosystem around the original diagnostic platform. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "albert-einstein-college-of-medicine",
+    organization: "Albert Einstein College of Medicine",
+    displayName: "Albert Einstein College of Medicine",
+    relationshipType: "historical-health-institution",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include Albert Einstein College of Medicine on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference Albert Einstein College of Medicine in the broader research and institutional ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "bill-and-melinda-gates-foundation",
+    organization: "Bill & Melinda Gates Foundation",
+    displayName: "Bill & Melinda Gates Foundation",
+    relationshipType: "historical-technology-partner",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include the Bill & Melinda Gates Foundation on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference the Bill & Melinda Gates Foundation in the broader global-health ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "who-iarc",
+    organization: "World Health Organization / International Agency for Research on Cancer",
+    displayName: "WHO / IARC",
+    relationshipType: "historical-government-reference",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include WHO/IARC on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference WHO/IARC in the broader public-health and cancer-research ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "national-cancer-institute",
+    organization: "National Cancer Institute",
+    displayName: "National Cancer Institute",
+    relationshipType: "historical-government-reference",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include the National Cancer Institute on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference the National Cancer Institute in the broader cancer-research ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "charite-dkfz",
+    organization: "Charite Universitaetsmedizin Berlin / DKFZ",
+    displayName: "Charite / DKFZ",
+    relationshipType: "historical-health-institution",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include Charite and DKFZ on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference Charite and DKFZ in the broader research and clinical ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "duke-university",
+    organization: "Duke University",
+    displayName: "Duke University",
+    relationshipType: "historical-health-institution",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include Duke University on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference Duke University in the broader research and institutional ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "hospital-de-cancer-de-barretos",
+    organization: "Hospital de Cancer de Barretos",
+    displayName: "Hospital de Cancer de Barretos",
+    relationshipType: "historical-health-institution",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include Hospital de Cancer de Barretos on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference Hospital de Cancer de Barretos in the broader cancer-care and research ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "path",
+    organization: "PATH",
+    displayName: "PATH",
+    relationshipType: "historical-technology-partner",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include PATH on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference PATH in the broader global-health implementation ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
+  {
+    id: "cancer-institute-hospital-chinese-academy",
+    organization: "Cancer Institute and Hospital, Chinese Academy of Medical Sciences",
+    displayName: "Cancer Institute and Hospital, Chinese Academy of Medical Sciences",
+    relationshipType: "historical-health-institution",
+    sourceYear: 2020,
+    sourceDescription:
+      "Historical investor materials from 2020 include the Cancer Institute and Hospital, Chinese Academy of Medical Sciences on an organization-reference slide.",
+    publicDescription:
+      "Historical investor materials from 2020 reference the Cancer Institute and Hospital, Chinese Academy of Medical Sciences in the broader cancer-research ecosystem. Current relationship status requires confirmation.",
+    isVerifiedCurrent: false,
+    isApprovedForPublicUse: false,
+    isPublished: false,
+  },
 ];
 
 export function getCurrentPublishedRelationships() {
