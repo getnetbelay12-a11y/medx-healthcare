@@ -51,8 +51,12 @@ function withSecurityHeaders(response) {
 async function finalizeAssetResponse(response, url) {
   const headers = new Headers(response.headers);
   const contentType = headers.get("content-type") || "";
+  const likelyHtml =
+    !url.pathname.includes(".") ||
+    url.pathname.endsWith("/") ||
+    url.pathname.endsWith(".html");
 
-  if (contentType.includes("text/html")) {
+  if (contentType.includes("text/html") || likelyHtml) {
     const html = await response.text();
     return withSecurityHeaders(
       new Response(html.replaceAll("http://localhost:3000", url.origin), {
