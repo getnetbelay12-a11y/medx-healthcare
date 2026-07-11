@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight,
   CheckCircle2,
@@ -17,6 +18,7 @@ import SectionHeader from "@/components/SectionHeader";
 import ServiceCard from "@/components/ServiceCard";
 import { medxImages } from "@/data/images";
 import { stats } from "@/data/site";
+import { pageMetadata } from "@/lib/seo";
 import {
   Activity,
   FlaskConical,
@@ -25,6 +27,14 @@ import {
   Pill,
   Stethoscope,
 } from "lucide-react";
+
+export const metadata: Metadata = pageMetadata({
+  title: "MedX Healthcare Solutions",
+  description:
+    "MedX supports healthcare access through pharmaceutical supply, medical devices, diagnostics, cervical-screening support, and strategic health-system capacity.",
+  path: "/",
+  image: medxImages.hero.src,
+});
 
 const homepageServices = [
   {
@@ -101,17 +111,17 @@ const diagnosticFoundation = [
   {
     label: "Facility foundation",
     value: "~6,000 sq ft",
-    detail: "Newly furnished diagnostic manufacturing facility in Bahir Dar.",
+    detail: "Facility scale referenced in 2020 investor materials.",
   },
   {
     label: "Cervical screening",
-    value: "OncoE6",
-    detail: "Platform roots in cervical cancer screening technology.",
+    value: "Program roots",
+    detail: "Historical focus on cervical-screening access.",
   },
   {
-    label: "Health system pathway",
-    value: "400 centers",
-    detail: "Secondary and tertiary center opportunity referenced in investor materials.",
+    label: "Market context",
+    value: "Ethiopia",
+    detail: "National opportunity requiring current field confirmation.",
   },
 ];
 
@@ -192,8 +202,8 @@ export default function Home() {
             <div>
               <SectionHeader
                 eyebrow="About MedX"
-                title="A healthcare corporation built from Bahir Dar for national impact."
-                description="Founded in March 2017, MedX Healthcare Solutions is a joint venture between Amhara Regional State and Arbor Vita Corporation, established with 16.5 million ETB in initial capital."
+                title="A healthcare corporation built from Bahir Dar for national relevance."
+                description="Created in 2017, MedX has historical roots in a joint venture involving Arbor Vita Corporation and an Ethiopian endowment organization, with 16.5 million ETB referenced in investor materials."
               />
               <p className="mt-6 leading-8 text-slate-600">
                 MedX was created to address cervical cancer screening gaps and

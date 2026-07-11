@@ -3,7 +3,11 @@ import CTASection from "@/components/CTASection";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
+import { company } from "@/data/company";
 import { medxImages } from "@/data/images";
+import { leadershipProfiles } from "@/data/leadership";
+import { relationships } from "@/data/relationships";
+import { pageMetadata } from "@/lib/seo";
 import {
   Building2,
   Handshake,
@@ -15,11 +19,13 @@ import {
   Warehouse,
 } from "lucide-react";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About MedX",
   description:
-    "Learn about MedX Healthcare Solutions, a Bahir Dar-based healthcare corporation founded to address diagnostics, pharmaceuticals, medical devices, cancer screening, and public health gaps in Ethiopia.",
-};
+    "Learn about MedX Healthcare Solutions, its Bahir Dar operating context, historical origin, mission, governance, and public-health focus.",
+  path: "/about",
+  image: medxImages.bahirDar.src,
+});
 
 const values = [
   { title: "Public Health Impact", icon: Target },
@@ -70,8 +76,9 @@ export default function AboutPage() {
           />
           <div className="space-y-5 text-lg leading-8 text-slate-600">
             <p>
-              The company was established with initial capital of 16.5 million
-              ETB and is based in Bahir Dar, Ethiopia.
+              The company was established with historical initial capital of{" "}
+              {company.historicalInitialCapital} and historical materials place
+              its operations in {company.location}.
             </p>
             <p>
               MedX was originally formed to address cervical cancer screening
@@ -143,10 +150,7 @@ export default function AboutPage() {
               Strengthen healthcare access through integrated execution.
             </h2>
             <p className="mt-5 leading-8 text-slate-600">
-              MedX’s mission is to expand reliable access to diagnostics,
-              pharmaceuticals, medical devices, cancer screening, cancer care,
-              and public health solutions through innovation, partnerships, and
-              local capacity building.
+              {company.mission}
             </p>
           </div>
           <div className="card-premium p-8 md:p-10">
@@ -157,9 +161,7 @@ export default function AboutPage() {
               A trusted healthcare solutions corporation for Ethiopia and Africa.
             </h2>
             <p className="mt-5 leading-8 text-slate-600">
-              MedX aims to become a dependable platform for healthcare products,
-              diagnostics, digital systems, research, manufacturing, and cancer
-              care expansion across Ethiopia and African markets.
+              {company.vision}
             </p>
           </div>
         </div>
@@ -181,6 +183,71 @@ export default function AboutPage() {
                 <h3 className="text-xl font-black text-[#071b33]">{title}</h3>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Leadership and Governance"
+            title="Historical governance references kept separate from current company confirmations."
+            description="The following names are referenced in 2020 investor materials. They are not presented as the confirmed current board or executive team."
+            centered
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {leadershipProfiles
+              .filter((profile) => profile.isPublished)
+              .map((profile) => (
+                <article key={profile.name} className="card-premium p-6">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071b33] text-lg font-black text-white">
+                    {profile.name
+                      .replace(/^Dr\.\s+/, "")
+                      .split(" ")
+                      .slice(0, 2)
+                      .map((part) => part[0])
+                      .join("")}
+                  </div>
+                  <h3 className="mt-5 text-lg font-black text-[#071b33]">
+                    {profile.name}
+                  </h3>
+                  {profile.credentials && (
+                    <p className="mt-1 text-sm font-bold text-[#10a66e]">
+                      {profile.credentials}
+                    </p>
+                  )}
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    {profile.historicalRole}. Source year: {profile.sourceYear}.
+                  </p>
+                </article>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-band py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Relationship Context"
+            title="Public relationship references are historical unless verified current."
+            centered
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {relationships
+              .filter((relationship) => relationship.isPublic)
+              .map((relationship) => (
+                <article key={relationship.organization} className="executive-card p-7">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#10a66e]">
+                    {relationship.relationshipType} · {relationship.sourceYear}
+                  </p>
+                  <h3 className="mt-4 text-2xl font-black text-[#071b33]">
+                    {relationship.organization}
+                  </h3>
+                  <p className="mt-3 leading-7 text-slate-600">
+                    {relationship.publicDescription}
+                  </p>
+                </article>
+              ))}
           </div>
         </div>
       </section>

@@ -4,12 +4,15 @@ import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Public Health Focus",
   description:
-    "MedX addresses healthcare access, medicine supply, diagnostics, cervical cancer screening, and cancer-care challenges in Ethiopia.",
-};
+    "MedX focuses on healthcare access, medicine availability, diagnostic capacity, screening access, supply-chain strengthening, and local capacity.",
+  path: "/public-health",
+  image: medxImages.africaMap.src,
+});
 
 const shortages = [
   "Inaccurate forecasting",
@@ -33,22 +36,11 @@ const response = [
   "Digital health systems",
 ];
 
-const cervicalFacts = [
-  {
-    label: "Women screened",
-    value: "<1%",
-    detail: "Presentation materials cite very limited screening coverage in Ethiopia.",
-  },
-  {
-    label: "Annual deaths",
-    value: "~5,000",
-    detail: "Investor materials cite almost 5,000 cervical-cancer deaths annually in Ethiopia.",
-  },
-  {
-    label: "National pathway",
-    value: "400 centers",
-    detail: "MOH use of OncoE6 in secondary and tertiary centers was referenced in the deck.",
-  },
+const cervicalPriorities = [
+  "Screening access",
+  "Early detection pathways",
+  "Referral readiness",
+  "Future cancer-care capacity",
 ];
 
 export default function PublicHealthFocusPage() {
@@ -130,17 +122,13 @@ export default function PublicHealthFocusPage() {
               title="Screening access and early detection need expansion."
               description="Cervical cancer remains a major public health concern. MedX can support preventive screening, diagnostic pathways, referral readiness, and future cancer care infrastructure without fear-based messaging."
             />
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {cervicalFacts.map((fact) => (
-                <div key={fact.label} className="metric-tile p-5 pl-7">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#10a66e]">
-                    {fact.label}
-                  </p>
-                  <p className="mt-3 text-2xl font-black text-[#071b33]">
-                    {fact.value}
-                  </p>
-                  <p className="mt-3 text-xs leading-6 text-slate-600">
-                    {fact.detail}
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {cervicalPriorities.map((item) => (
+                <div key={item} className="metric-tile p-5 pl-7">
+                  <p className="text-sm font-black text-[#071b33]">{item}</p>
+                  <p className="mt-2 text-xs leading-6 text-slate-600">
+                    Program area requiring current field data, partner
+                    confirmation, and implementation planning.
                   </p>
                 </div>
               ))}

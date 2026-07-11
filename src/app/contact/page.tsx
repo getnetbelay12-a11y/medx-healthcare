@@ -4,19 +4,41 @@ import ContactForm from "@/components/ContactForm";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
 import { medxImages } from "@/data/images";
+import { isValidPublicEmail, normalizePhoneHref, publicEnv } from "@/lib/env";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact MedX",
   description:
-    "Contact MedX Healthcare Solutions for partnerships, pharmaceutical supply, medical devices, diagnostics, investment, and healthcare collaboration.",
-};
+    "Contact MedX Healthcare Solutions for partnerships, product supply requests, diagnostics, public-health programs, and investment inquiries.",
+  path: "/contact",
+  image: medxImages.hospitalPartnership.src,
+});
 
 const contactDetails = [
-  { label: "Location", value: "Bahir Dar, Ethiopia", icon: MapPin },
-  { label: "Email", value: "info@medxhealthcare.com", icon: Mail },
-  { label: "Phone", value: "+251 XXX XXX XXX", icon: Phone },
-  { label: "Office Hours", value: "Monday-Friday", icon: Clock },
-];
+  publicEnv.companyLocation
+    ? { label: "Location", value: publicEnv.companyLocation, icon: MapPin }
+    : null,
+  isValidPublicEmail(publicEnv.companyEmail)
+    ? {
+        label: "Email",
+        value: publicEnv.companyEmail,
+        icon: Mail,
+        href: `mailto:${publicEnv.companyEmail}`,
+      }
+    : null,
+  publicEnv.companyPhone
+    ? {
+        label: "Phone",
+        value: publicEnv.companyPhone,
+        icon: Phone,
+        href: normalizePhoneHref(publicEnv.companyPhone),
+      }
+    : null,
+  publicEnv.officeHours
+    ? { label: "Office Hours", value: publicEnv.officeHours, icon: Clock }
+    : null,
+].filter(Boolean);
 
 export default function ContactPage() {
   return (
@@ -40,17 +62,34 @@ export default function ContactPage() {
               collaboration.
             </p>
             <div className="mt-8 space-y-5">
-              {contactDetails.map(({ label, value, icon: Icon }) => (
+              {contactDetails.map((detail) => {
+                const { label, value, icon: Icon } = detail!;
+                const content = (
+                  <>
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <p className="font-black text-[#071b33]">{label}</p>
+                      <p className="mt-1 text-slate-600">{value}</p>
+                    </div>
+                  </>
+                );
+
+                return detail && "href" in detail && detail.href ? (
+                  <a
+                    key={label}
+                    href={detail.href}
+                    className="card-premium flex gap-4 p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
+                  >
+                    {content}
+                  </a>
+                ) : (
                 <div key={label} className="card-premium flex gap-4 p-5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
-                    <Icon size={20} />
-                  </div>
-                  <div>
-                    <p className="font-black text-[#071b33]">{label}</p>
-                    <p className="mt-1 text-slate-600">{value}</p>
-                  </div>
+                  {content}
                 </div>
-              ))}
+                );
+              })}
             </div>
             {/* Contact location image: /public/images/medx/medx-bahir-dar-healthcare.jpg */}
             <MedxImage

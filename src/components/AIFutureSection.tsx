@@ -48,17 +48,17 @@ export default function AIFutureSection() {
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
             <p className="inline-flex rounded-full border border-emerald-300/25 bg-emerald-300/[0.08] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">
-              AI-enabled future
+              Digital and AI readiness
             </p>
             <h2 className="mt-5 max-w-3xl text-4xl font-black leading-[1.07] tracking-normal md:text-5xl">
-              Practical AI for forecasting, diagnostics, screening, and smarter healthcare operations.
+              Responsible analytics for forecasting, screening, and smarter healthcare operations.
             </h2>
           </div>
 
           <p className="max-w-3xl text-lg leading-8 text-slate-300">
-            MedX can use artificial intelligence as an operating layer for better
-            decisions, not as a marketing gimmick. The priority is reliable data,
-            human oversight, public-health value, and measurable service quality.
+            MedX can prepare for practical AI by first building reliable data,
+            clear human oversight, public-health value, and measurable service
+            quality across supply, diagnostics, and screening workflows.
           </p>
         </div>
 
@@ -88,9 +88,10 @@ export default function AIFutureSection() {
               Responsible AI governance
             </h3>
             <p className="mt-4 leading-7 text-slate-600">
-              AI should strengthen operational discipline and public trust. MedX
-              should deploy it through clear controls, auditable outputs, and
-              accountable clinical and executive review.
+              Advanced analytics must strengthen operational discipline and
+              public trust. Any future AI-assisted workflow should be governed
+              through clear controls, auditable outputs, and accountable clinical
+              and executive review.
             </p>
             <div className="mt-6 space-y-3">
               {governance.map((item) => (

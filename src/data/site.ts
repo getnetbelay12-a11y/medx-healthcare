@@ -15,7 +15,7 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Public Health", href: "/public-health-focus" },
+  { label: "Public Health", href: "/public-health" },
   { label: "Strategy", href: "/strategy" },
   { label: "Contact", href: "/contact" },
 ];
@@ -25,7 +25,7 @@ export const stats = [
   { label: "Initial Capital", value: "16.5M ETB" },
   { label: "Regional Focus", value: "Amhara & Ethiopia" },
   { label: "Long-Term Plan", value: "15 Years" },
-  { label: "Population Served", value: "120M+" },
+  { label: "Market Context", value: "Ethiopia" },
 ];
 
 export const services = [
@@ -50,7 +50,7 @@ export const services = [
   {
     title: "Cervical Cancer Screening",
     description:
-      "Screening-focused solutions including the OncoE6 cervical cancer test technology.",
+      "Cervical-screening program support, education, and referral pathway coordination.",
     icon: HeartPulse,
   },
   {
@@ -62,7 +62,7 @@ export const services = [
   {
     title: "Digital Health",
     description:
-      "Data-driven platforms, dashboards, and automation for smarter healthcare decisions.",
+      "Data-driven platforms, dashboards, and automation for stronger healthcare operations.",
     icon: LineChart,
   },
 ];

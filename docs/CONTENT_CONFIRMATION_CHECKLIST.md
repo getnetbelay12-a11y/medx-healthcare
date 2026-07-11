@@ -1,0 +1,24 @@
+# Content Confirmation Checklist
+
+- Legal company name.
+- Current shareholders.
+- Current board.
+- Executive team.
+- Real headquarters address.
+- Public phone.
+- Official email.
+- Privacy contact.
+- Facility status.
+- Manufacturing status.
+- Certifications.
+- Regulatory approvals.
+- OncoE6 relationship and current commercial rights.
+- Government relationships.
+- Hospital relationships.
+- Research relationships.
+- Partner logos.
+- Current services.
+- Service regions.
+- Approved photographs.
+- Approved public-health statistics.
+- Approved claims for manufacturing, distribution, diagnostics, screening, and cancer-care roadmap.

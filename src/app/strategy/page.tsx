@@ -5,13 +5,16 @@ import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
+import { pageMetadata } from "@/lib/seo";
 import { CheckCircle2 } from "lucide-react";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Strategy and Vision",
   description:
-    "MedX's 15-year strategy for integrated, self-reliant, innovation-driven healthcare solutions across Ethiopia and Africa.",
-};
+    "MedX strategy across near-term supply, diagnostics, and screening support; medium-term digital and supply-chain capacity; and long-term local manufacturing and regional expansion.",
+  path: "/strategy",
+  image: medxImages.digitalHealth.src,
+});
 
 const model = [
   "Pharmaceutical manufacturing",
@@ -54,7 +57,7 @@ const arborVitaSignals = [
   "Silicon Valley diagnostics partner",
   "Proteomic diagnostics experience",
   "Footprint referenced in 35+ countries",
-  "ISO-approved manufacturing capability",
+  "Manufacturing capability referenced in historical materials",
   "Patent-protected diagnostic technology",
   "Grant and investment-backed development history",
 ];
@@ -147,8 +150,8 @@ export default function StrategyPage() {
         <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SectionHeader
             eyebrow="Technology Partnership Foundation"
-            title="A diagnostics platform linked to Arbor Vita’s global experience."
-            description="The investor presentation positions Arbor Vita Corporation as MedX’s U.S. diagnostics technology partner, bringing proteomic diagnostics experience, intellectual property, and global implementation exposure."
+            title="A historical diagnostics platform linked to Arbor Vita’s global experience."
+            description="The 2020 investor presentation positions Arbor Vita Corporation as MedX’s U.S. diagnostics technology partner, bringing proteomic diagnostics experience, intellectual property, and global implementation exposure at that time."
           />
           <div className="grid gap-3 sm:grid-cols-2">
             {arborVitaSignals.map((item) => (
@@ -168,7 +171,7 @@ export default function StrategyPage() {
           <SectionHeader
             eyebrow="Evidence and Partnership References"
             title="Diagnostics strategy backed by clinical evidence and institutional collaboration."
-            description="The investor presentation references published OncoE6-related studies and partner engagement, including Black Lion Hospital in Addis Ababa."
+            description="The 2020 investor presentation references published OncoE6-related studies. Current product, regulatory, and partner status should be confirmed before external use."
             centered
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -247,7 +250,7 @@ export default function StrategyPage() {
             <SectionHeader
               eyebrow="Strategic Partnerships"
               title="No serious healthcare platform scales alone."
-              description="MedX’s partnership model should align public priorities, facility needs, research capacity, investment, and technology."
+              description="MedX’s partnership model can align public priorities, facility needs, research capacity, investment, and technology."
             />
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {partnerships.map((item) => (

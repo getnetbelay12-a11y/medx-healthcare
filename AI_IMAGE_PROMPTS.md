@@ -1,6 +1,6 @@
 # MedX AI Image Prompts
 
-Use these prompts to generate final website photography for `/public/images/medx/`. Keep images realistic, polished, bright, trustworthy, and suitable for a serious healthcare corporation. Avoid fake text, logos, distorted hands, unrealistic medical scenes, blood, fear-based imagery, and invasive procedure close-ups.
+Use these prompts to generate final website photography for `/public/images/medx/`. Keep images realistic, polished, bright, trustworthy, and suitable for a serious healthcare corporation. Avoid invented readable text, logos, distorted hands, unrealistic medical scenes, blood, fear-based imagery, and invasive procedure close-ups.
 
 ## 1. Homepage Hero Image
 
@@ -8,7 +8,7 @@ Use these prompts to generate final website photography for `/public/images/medx
 
 **Prompt:** Create a premium realistic corporate healthcare image for an African healthcare company. Show a modern medical team in a bright healthcare facility, including doctors, laboratory professionals, and healthcare administrators reviewing diagnostic results and medical supply data on a digital screen. The environment should feel modern, clean, trustworthy, and advanced. Include subtle Ethiopian and African context through people, architecture, and warm natural lighting. Use professional healthcare website hero composition, cinematic lighting, high resolution, realistic photography, and clean blue and green healthcare color accents. Leave negative space for website text overlay.
 
-**Negative prompt:** Distorted faces, fake text, logos, blood, surgery, fear-based imagery, blurry image, cartoon style, unrealistic hands, overcrowded scene, messy background, readable labels.
+**Negative prompt:** Distorted faces, invented readable text, logos, blood, surgery, fear-based imagery, blurry image, cartoon style, unrealistic hands, overcrowded scene, messy background, readable labels.
 
 **Recommended aspect ratio:** 16:9
 
@@ -64,7 +64,7 @@ Use these prompts to generate final website photography for `/public/images/medx
 
 **Prompt:** Create a respectful professional healthcare education image about cervical cancer screening in Ethiopia. Show female healthcare workers explaining preventive screening to women in a clean community health center. The image should feel supportive, dignified, hopeful, and educational. Use soft natural lighting, modern healthcare setting, blue and green accents, and realistic photography.
 
-**Negative prompt:** Medical procedure close-up, fear, blood, sadness, fake text, distorted faces, unrealistic hands, logos, invasive examination scene.
+**Negative prompt:** Medical procedure close-up, fear, blood, sadness, invented readable text, distorted faces, unrealistic hands, logos, invasive examination scene.
 
 **Recommended aspect ratio:** 16:9
 
@@ -92,7 +92,7 @@ Use these prompts to generate final website photography for `/public/images/medx
 
 **Prompt:** Create a realistic professional image of healthcare leaders and data analysts reviewing a digital health dashboard showing supply chain, diagnostics, hospital inventory, and public health metrics. The screen should show abstract charts and data visuals without readable text. Use a modern office or healthcare command center environment, blue and green glow, clean corporate style, African healthcare context, and high resolution.
 
-**Negative prompt:** Readable fake text, messy dashboard, distorted screens, unrealistic charts, cartoon style, blurry image, logos.
+**Negative prompt:** Invented readable text, messy dashboard, distorted screens, unrealistic charts, cartoon style, blurry image, logos.
 
 **Recommended aspect ratio:** 16:9
 

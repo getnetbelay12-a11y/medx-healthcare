@@ -1,6 +1,6 @@
 # MedX Healthcare Solutions Website
 
-Professional corporate website for MedX Healthcare Solutions, a Bahir Dar-based healthcare corporation focused on diagnostics, pharmaceutical supply, medical devices, cervical cancer screening, cancer care expansion, supply chain solutions, digital health, research, innovation, and local healthcare manufacturing.
+Professional corporate website for MedX Healthcare Solutions, a Bahir Dar-based healthcare company with historical roots in diagnostics, in-vitro diagnostic distribution, and cervical-screening access. The public copy distinguishes current service areas from strategic roadmap items and historical investor-material references.
 
 ## Tech Stack
 
@@ -9,13 +9,18 @@ Professional corporate website for MedX Healthcare Solutions, a Bahir Dar-based 
 - Tailwind CSS
 - React
 - Lucide React icons
-- Next.js Image optimization
+- Next.js Image component
+- React Hook Form
+- Zod
+- Vitest
 
 ## Project Structure
 
 - `src/app/` - App Router pages and metadata
 - `src/components/` - Reusable UI components
 - `src/data/` - Shared site content and image paths
+- `src/lib/` - SEO, environment, contact validation, and contact helpers
+- `docs/` - Production audit, deployment notes, and confirmation checklist
 - `public/images/medx/` - MedX website image assets
 - `AI_IMAGE_PROMPTS.md` - Premium AI image-generation prompts for final image production
 
@@ -39,19 +44,30 @@ Open `http://localhost:3000`.
 npm run build
 ```
 
-## Lint
+The current build exports static assets to `dist/` and then prepares the Sites worker bundle for `/api/health` and `/api/contact`.
+
+## Verify
 
 ```bash
 npm run lint
+npm run typecheck
+npm run test:run
+npm run build
+```
+
+Or run all checks:
+
+```bash
+npm run verify
 ```
 
 ## Deploy to Vercel
 
 1. Push this project to a Git repository.
 2. In Vercel, create a new project and select the repository.
-3. Use the default Next.js framework settings.
+3. Configure the environment variables from `.env.example`.
 4. Build command: `npm run build`
-5. Output directory: `.next`
+5. Output directory: `dist`
 6. Deploy.
 
 ## Image Assets
@@ -71,8 +87,13 @@ The site references images from `/public/images/medx/`:
 - `medx-africa-health-map.jpg`
 - `medx-hospital-partnership.jpg`
 
-Current files are clean generated fallback assets so the website does not ship with broken image paths. Replace them with final AI-generated corporate healthcare photography before public launch.
+Current files are AI-generated conceptual corporate healthcare photography. Do not describe them as verified MedX facilities, personnel, partners, or equipment unless approved by the company.
 
 ## Contact Form
 
-The contact form performs frontend validation and shows a success message after submission. It does not send email yet. Connect a backend API route, CRM, or form service before production use.
+The contact form validates on the frontend and server layer. In the current static export/Sites deployment flow, the generated worker handles:
+
+- `GET /api/health`
+- `POST /api/contact`
+
+Email delivery requires `CONTACT_TO_EMAIL`, `RESEND_API_KEY`, and `RESEND_FROM_EMAIL`. If those values are missing, the endpoint fails safely and does not pretend the inquiry was sent. Optional Turnstile and Supabase variables are listed in `.env.example`.

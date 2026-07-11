@@ -3,12 +3,15 @@ import CTASection from "@/components/CTASection";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
 import { medxImages } from "@/data/images";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Our Services",
   description:
-    "Integrated healthcare services across pharmaceuticals, diagnostics, medical devices, cancer screening, supply chain solutions, research, and digital health systems.",
-};
+    "MedX service areas across pharmaceutical supply, medical devices, diagnostics, cervical-screening support, and strategic health-system capabilities.",
+  path: "/services",
+  image: medxImages.diagnostics.src,
+});
 
 const serviceSections = [
   {
@@ -32,14 +35,14 @@ const serviceSections = [
   {
     title: "Cervical Cancer Screening",
     image: medxImages.cervicalScreening,
-    body: "MedX’s original screening platform centers on practical cervical-cancer detection access, including OncoE6 cervical test positioning for low-infrastructure settings.",
-    bullets: ["OncoE6 platform", "Screening implementation", "Referral pathway support"],
+    body: "MedX’s historical screening platform centers on practical cervical-screening access, program education, and referral coordination.",
+    bullets: ["Program support", "Screening education", "Referral pathway support"],
   },
   {
     title: "Cancer Care Expansion",
     image: medxImages.cancerCare,
-    body: "MedX’s long-term plan includes future cancer care infrastructure that expands prevention, detection, referral, and specialty treatment capacity.",
-    bullets: ["Care pathway development", "Specialty center planning", "Cancer program partnerships"],
+    body: "MedX’s long-term roadmap includes future cancer-care infrastructure that can expand prevention, detection, referral, and specialty-care capacity.",
+    bullets: ["Strategic roadmap", "Specialty center planning", "Cancer program partnerships"],
   },
   {
     title: "Healthcare Supply Chain Solutions",
@@ -50,14 +53,14 @@ const serviceSections = [
   {
     title: "Research and Innovation",
     image: medxImages.research,
-    body: "MedX connects research, evidence, and applied innovation to practical healthcare solutions for Ethiopia and regional markets.",
-    bullets: ["Applied research", "Innovation translation", "Local capacity building"],
+    body: "MedX can connect research, evidence, and applied innovation to practical healthcare solutions for Ethiopia and regional markets.",
+    bullets: ["In development", "Innovation translation", "Local capacity building"],
   },
   {
     title: "Digital Health Systems",
     image: medxImages.digitalHealth,
-    body: "MedX uses digital systems to improve transparency, data accuracy, automation, and decision-making across healthcare operations.",
-    bullets: ["Operational dashboards", "Data accuracy", "Real-time decisions"],
+    body: "MedX’s digital roadmap supports transparency, data accuracy, automation, and better decision-making across healthcare operations.",
+    bullets: ["Strategic roadmap", "Data accuracy", "Operational visibility"],
   },
 ];
 

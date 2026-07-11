@@ -3,9 +3,10 @@ import {
   Building2,
   Mail,
   MapPin,
-  Phone,
   ShieldCheck,
 } from "lucide-react";
+import { company } from "@/data/company";
+import { isValidPublicEmail, publicEnv } from "@/lib/env";
 
 const serviceLinks = [
   { label: "Pharmaceutical supply", href: "/services" },
@@ -17,8 +18,11 @@ const serviceLinks = [
 const companyLinks = [
   { label: "About MedX", href: "/about" },
   { label: "Strategy", href: "/strategy" },
-  { label: "Public Health", href: "/public-health-focus" },
+  { label: "Public Health", href: "/public-health" },
   { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Accessibility", href: "/accessibility" },
 ];
 
 export default function Footer() {
@@ -43,7 +47,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-6 max-w-md text-sm leading-7 text-slate-300">
-              MedX supports healthcare facilities and public-health programs
+              {company.shortName} supports healthcare facilities and public-health programs
               with pharmaceuticals, medical devices, diagnostics,
               cervical-cancer screening, and healthcare delivery systems.
             </p>
@@ -107,7 +111,7 @@ export default function Footer() {
 
                 <div>
                   <p className="text-sm font-black text-white">
-                    Bahir Dar, Ethiopia
+                    {publicEnv.companyLocation}
                   </p>
                   <p className="mt-1 text-xs leading-5 text-slate-400">
                     Serving healthcare organizations in Amhara and beyond
@@ -115,34 +119,25 @@ export default function Footer() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <Mail className="shrink-0 text-emerald-300" size={18} />
+              {isValidPublicEmail(publicEnv.companyEmail) && (
+                <div className="flex items-center gap-3">
+                  <Mail className="shrink-0 text-emerald-300" size={18} />
 
-                <Link
-                  href="/contact"
-                  className="text-sm font-bold text-slate-300 transition hover:text-white"
-                >
-                  Send an inquiry
-                </Link>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Phone className="shrink-0 text-emerald-300" size={18} />
-
-                <Link
-                  href="/contact"
-                  className="text-sm font-bold text-slate-300 transition hover:text-white"
-                >
-                  Request a callback
-                </Link>
-              </div>
+                  <a
+                    href={`mailto:${publicEnv.companyEmail}`}
+                    className="text-sm font-bold text-slate-300 transition hover:text-white"
+                  >
+                    {publicEnv.companyEmail}
+                  </a>
+                </div>
+              )}
             </div>
 
             <Link
               href="/contact"
               className="mt-7 inline-flex items-center justify-center rounded-full bg-[#10a66e] px-5 py-3 text-xs font-black text-white transition hover:bg-[#0c9361]"
             >
-              Contact MedX
+              Supplier inquiry
             </Link>
           </div>
         </div>
@@ -158,6 +153,24 @@ export default function Footer() {
               className="text-xs font-bold text-slate-400 transition hover:text-white"
             >
               Supplier inquiries
+            </Link>
+            <Link
+              href="/privacy"
+              className="text-xs font-bold text-slate-400 transition hover:text-white"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-xs font-bold text-slate-400 transition hover:text-white"
+            >
+              Terms
+            </Link>
+            <Link
+              href="/accessibility"
+              className="text-xs font-bold text-slate-400 transition hover:text-white"
+            >
+              Accessibility
             </Link>
           </div>
         </div>

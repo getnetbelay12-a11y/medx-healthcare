@@ -64,7 +64,7 @@ export default function StrategyPreview() {
                         Growth through disciplined execution
                       </p>
                       <p className="mt-1 text-sm leading-6 text-slate-300">
-                        Long-term growth will be supported by approved plans, partnerships, regulatory readiness, investment, and measurable progress.
+                        Long-term growth will be supported by confirmed plans, partnerships, regulatory readiness, investment, and measurable progress.
                       </p>
                     </div>
                   </div>

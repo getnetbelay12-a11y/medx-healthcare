@@ -9,7 +9,7 @@ const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Public Health", href: "/public-health-focus" },
+  { label: "Public Health", href: "/public-health" },
   { label: "Strategy", href: "/strategy" },
   { label: "Contact", href: "/contact" },
 ];
@@ -98,13 +98,14 @@ export default function SiteHeader() {
             className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#071b33] lg:hidden"
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         {mobileOpen && (
-          <div className="border-t border-slate-100 pb-5 pt-4 lg:hidden">
+          <div id="mobile-navigation" className="border-t border-slate-100 pb-5 pt-4 lg:hidden">
             <nav className="grid gap-1">
               {navigation.map((item) => {
                 const active = isActive(item.href);

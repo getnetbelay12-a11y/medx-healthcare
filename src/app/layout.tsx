@@ -2,15 +2,18 @@ import SiteHeader from "@/components/SiteHeader";
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { medxImages } from "@/data/images";
+import { siteUrl } from "@/lib/env";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://medx-healthcare-solutions.getnetgc.chatgpt.site"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "MedX Healthcare Solutions",
     template: "%s | MedX Healthcare Solutions",
   },
   description:
-    "Integrated healthcare solutions for diagnostics, pharmaceuticals, medical devices, cancer screening, digital health, and AI-enabled healthcare operations across Ethiopia and Africa.",
+    "Healthcare solutions for pharmaceutical supply, medical devices, diagnostics, cervical-screening support, and strategic health-system capacity in Ethiopia.",
   keywords: [
     "MedX Healthcare Solutions",
     "Ethiopia healthcare",
@@ -19,19 +22,38 @@ export const metadata: Metadata = {
     "medical devices",
     "cervical cancer screening",
     "digital health",
-    "AI healthcare",
     "healthcare forecasting",
     "Bahir Dar",
   ],
   icons: {
     icon: "/favicon.ico",
   },
+  manifest: "/manifest.webmanifest",
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     title: "MedX Healthcare Solutions",
     description:
-      "Integrated healthcare solutions for diagnostics, pharmaceuticals, medical devices, cancer screening, digital health, and AI-enabled healthcare operations across Ethiopia and Africa.",
+      "Healthcare solutions for supply, diagnostics, medical devices, cervical-screening support, and health-system capacity in Ethiopia.",
     type: "website",
-    images: ["/images/medx/medx-hero-healthcare-africa.jpg"],
+    url: siteUrl,
+    siteName: "MedX Healthcare Solutions",
+    images: [
+      {
+        url: medxImages.hero.src,
+        width: 1200,
+        height: 630,
+        alt: medxImages.hero.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MedX Healthcare Solutions",
+    description:
+      "Healthcare solutions for supply, diagnostics, medical devices, cervical-screening support, and health-system capacity in Ethiopia.",
+    images: [medxImages.hero.src],
   },
 };
 
@@ -43,6 +65,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd()),
+          }}
+        />
         <SiteHeader />
         <main>{children}</main>
         <Footer />
