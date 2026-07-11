@@ -26,14 +26,14 @@ const serviceSections = [
   {
     title: "Diagnostic Solutions",
     image: medxImages.diagnostics,
-    body: "MedX strengthens diagnostic capacity through laboratory solutions, testing support, and screening workflows for better clinical decisions.",
-    bullets: ["Laboratory systems", "Diagnostic supplies", "Early detection support"],
+    body: "MedX strengthens diagnostic capacity through laboratory solutions, in-vitro diagnostic distribution, testing support, and screening workflows for better clinical decisions.",
+    bullets: ["In-vitro diagnostics", "Laboratory systems", "Early detection support"],
   },
   {
     title: "Cervical Cancer Screening",
     image: medxImages.cervicalScreening,
-    body: "MedX supports respectful, scalable cervical cancer screening education and implementation linked to future care pathways.",
-    bullets: ["Screening education", "Program implementation", "Referral pathway support"],
+    body: "MedX’s original screening platform centers on practical cervical-cancer detection access, including OncoE6 cervical test positioning for low-infrastructure settings.",
+    bullets: ["OncoE6 platform", "Screening implementation", "Referral pathway support"],
   },
   {
     title: "Cancer Care Expansion",

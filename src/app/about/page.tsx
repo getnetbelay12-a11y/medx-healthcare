@@ -5,8 +5,10 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
 import {
+  Building2,
   Handshake,
   Lightbulb,
+  Microscope,
   Scale,
   ShieldCheck,
   Target,
@@ -26,6 +28,27 @@ const values = [
   { title: "Local Capacity", icon: Warehouse },
   { title: "Partnership", icon: Handshake },
   { title: "Accountability", icon: Scale },
+];
+
+const platformFacts = [
+  {
+    title: "Bahir Dar operating base",
+    description:
+      "Presentation materials identify MedX’s diagnostic manufacturing activity in a newly established and fully furnished facility in Bahir Dar.",
+    icon: Building2,
+  },
+  {
+    title: "Diagnostics origin",
+    description:
+      "The platform was built around manufacturing medical devices and distributing in-vitro diagnostic technologies.",
+    icon: Microscope,
+  },
+  {
+    title: "Global technology partner",
+    description:
+      "Arbor Vita Corporation brought proteomic diagnostics expertise, patent-protected technology, and international diagnostic experience.",
+    icon: Handshake,
+  },
 ];
 
 export default function AboutPage() {
@@ -60,6 +83,28 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="section-band py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Diagnostic Platform Origin"
+            title="MedX began with a manufacturing and screening mandate."
+            description="Investor materials describe MedX as a diagnostic company focused on medical-device manufacturing, in-vitro diagnostic distribution, and cervical-cancer screening access."
+            centered
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {platformFacts.map(({ title, description, icon: Icon }) => (
+              <div key={title} className="executive-card p-7">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                  <Icon size={26} />
+                </div>
+                <h3 className="text-xl font-black text-[#071b33]">{title}</h3>
+                <p className="mt-3 leading-7 text-slate-600">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="medical-pattern py-20">
         <div className="container-medx grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="card-premium p-8 md:p-10">
@@ -74,7 +119,9 @@ export default function AboutPage() {
               Manufacturing Industry, with support from the Amhara Regional
               Health Bureau and Amhara Public Health Institute. Administration
               was later transferred to Nigat Corporate, which became the
-              majority shareholder in April 2019.
+              majority shareholder in April 2019. Earlier investor materials
+              also identify TIRET Corporate as the Ethiopian endowment partner
+              alongside Arbor Vita Corporation.
             </p>
           </div>
           {/* About governance image: /public/images/medx/medx-hospital-partnership.jpg */}

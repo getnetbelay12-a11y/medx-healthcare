@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ClipboardCheck, Factory, Network, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  ClipboardCheck,
+  Factory,
+  Microscope,
+  Network,
+  ShieldCheck,
+} from "lucide-react";
 import AIFutureSection from "@/components/AIFutureSection";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
@@ -89,6 +97,24 @@ const operatingPriorities = [
   },
 ];
 
+const diagnosticFoundation = [
+  {
+    label: "Facility foundation",
+    value: "~6,000 sq ft",
+    detail: "Newly furnished diagnostic manufacturing facility in Bahir Dar.",
+  },
+  {
+    label: "Cervical screening",
+    value: "OncoE6",
+    detail: "Platform roots in cervical cancer screening technology.",
+  },
+  {
+    label: "Health system pathway",
+    value: "400 centers",
+    detail: "Secondary and tertiary center opportunity referenced in investor materials.",
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -107,6 +133,49 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className="bg-white py-24">
+          <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <SectionHeader
+                eyebrow="Diagnostic Manufacturing Foundation"
+                title="Built on a cervical-cancer screening platform with local manufacturing ambition."
+                description="MedX’s investor materials position the company as a Bahir Dar diagnostic manufacturer and distributor created to support cervical-cancer screening and broader African diagnostic needs."
+              />
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {diagnosticFoundation.map((item) => (
+                  <div key={item.label} className="metric-tile p-6 pl-8">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#10a66e]">
+                      {item.label}
+                    </p>
+                    <p className="mt-3 text-2xl font-black text-[#071b33]">
+                      {item.value}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="executive-card p-8 md:p-10">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                <Microscope size={27} />
+              </div>
+              <h3 className="mt-6 text-3xl font-black text-[#071b33]">
+                From screening access to integrated diagnostics.
+              </h3>
+              <p className="mt-5 leading-8 text-slate-600">
+                The original MedX platform focused on manufacturing and
+                distributing in-vitro diagnostic devices, including cervical
+                cancer screening technology, with a longer-term path toward a
+                broader diagnostics portfolio for Ethiopia and Africa.
+              </p>
+            </div>
           </div>
         </section>
       </ScrollReveal>

@@ -31,6 +31,7 @@ const partnerships = [
   "International stakeholders",
   "Investors",
   "Technology partners",
+  "Diagnostic technology companies",
 ];
 
 const revenue = [
@@ -47,6 +48,38 @@ const directionMilestones = [
   "Build local manufacturing and import-substitution capacity",
   "Scale digital health visibility and operating discipline",
   "Expand partnerships across Ethiopia and African markets",
+];
+
+const arborVitaSignals = [
+  "Silicon Valley diagnostics partner",
+  "Proteomic diagnostics experience",
+  "Footprint referenced in 35+ countries",
+  "ISO-approved manufacturing capability",
+  "Patent-protected diagnostic technology",
+  "Grant and investment-backed development history",
+];
+
+const evidenceReferences = [
+  {
+    title: "Feasibility of E6 oncoprotein testing",
+    detail:
+      "Clinical-specimen study referenced for cervical precancer and cancer detection using OncoE6 technology.",
+  },
+  {
+    title: "Lower-cost molecular screening",
+    detail:
+      "Evaluation work comparing novel HPV-related screening approaches in rural health settings.",
+  },
+  {
+    title: "Long-term risk prediction",
+    detail:
+      "Prospective cohort evidence referenced for E6 oncoprotein risk stratification over long-term follow-up.",
+  },
+  {
+    title: "HPV 16/18 E6 performance",
+    detail:
+      "Evidence referenced for detecting HPV16/18-related high-grade lesions in limited-screening contexts.",
+  },
 ];
 
 export default function StrategyPage() {
@@ -111,6 +144,52 @@ export default function StrategyPage() {
       </section>
 
       <section className="bg-white py-20">
+        <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <SectionHeader
+            eyebrow="Technology Partnership Foundation"
+            title="A diagnostics platform linked to Arbor Vita’s global experience."
+            description="The investor presentation positions Arbor Vita Corporation as MedX’s U.S. diagnostics technology partner, bringing proteomic diagnostics experience, intellectual property, and global implementation exposure."
+          />
+          <div className="grid gap-3 sm:grid-cols-2">
+            {arborVitaSignals.map((item) => (
+              <div
+                key={item}
+                className="executive-card p-5 text-sm font-black text-[#071b33]"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-band py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Evidence and Partnership References"
+            title="Diagnostics strategy backed by clinical evidence and institutional collaboration."
+            description="The investor presentation references published OncoE6-related studies and partner engagement, including Black Lion Hospital in Addis Ababa."
+            centered
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {evidenceReferences.map((item) => (
+              <div key={item.title} className="executive-card p-6">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#10a66e]">
+                  Evidence
+                </p>
+                <h3 className="mt-4 text-lg font-black text-[#071b33]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
         <div className="container-medx grid gap-6 lg:grid-cols-2">
           <div className="card-premium p-8 md:p-10">
             <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
@@ -122,7 +201,10 @@ export default function StrategyPage() {
             <p className="mt-5 leading-8 text-slate-600">
               MedX aims to reduce dependency on imported health products by
               developing local production and improving availability in critical
-              healthcare categories.
+              healthcare categories. Early investor materials referenced a
+              commitment to manufacture 10 million cervical screening tests over
+              five years, demonstrating the scale of the original diagnostics
+              ambition.
             </p>
           </div>
           <div className="card-premium p-8 md:p-10">
