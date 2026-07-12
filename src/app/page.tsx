@@ -144,7 +144,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-16 md:py-20">
+      <section className="relative overflow-hidden bg-white py-12 md:py-14">
         <div className="ai-motion-field" aria-hidden="true">
           <span className="ai-motion-node ai-motion-node-a" />
           <span className="ai-motion-node ai-motion-node-b" />
@@ -153,8 +153,8 @@ export default function Home() {
         <div className="container-medx relative">
           <SectionHeader
             eyebrow="Historical ecosystem"
-            title="Partners and institutions referenced in MedX's 2020 materials."
-            description="Historical source references from the 2020 MedX materials are shown for context and should not be read as current endorsement or active partnership without confirmation."
+            title="Historical partner ecosystem"
+            description="Institutions referenced in MedX's 2020 materials, shown as historical context rather than confirmed current endorsement."
             centered
           />
 
@@ -162,14 +162,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-band py-16 md:py-20">
+      <section className="section-band py-14 md:py-18">
         <div className="container-medx">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div className="board-motion-copy">
               <p className="text-[11px] font-black uppercase tracking-[0.38em] text-[#10a66e]">
                 Historical board
               </p>
-              <h2 className="mt-4 text-4xl font-black leading-[0.95] tracking-tight text-[#071b33] md:text-5xl">
+              <h2 className="mt-4 text-3xl font-black leading-[1.02] tracking-tight text-[#071b33] sm:text-4xl md:text-5xl">
                 Board of Directors referenced in MedX&apos;s 2020 investor materials.
               </h2>
               <p className="mt-6 text-base font-medium leading-8 text-slate-600">

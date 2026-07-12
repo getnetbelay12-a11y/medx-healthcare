@@ -17,21 +17,26 @@ const relationshipLabels: Record<RelationshipType, string> = {
   "current-supplier": "Current supplier",
 };
 
-function initialsFor(name: string) {
-  return name
-    .replace(/[/&]/g, " ")
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 3)
-    .map((part) => part[0]?.toUpperCase())
-    .join("");
+function canShowRelationshipLogo(relationship: Relationship) {
+  return Boolean(
+    relationship.logo &&
+      relationship.isApprovedForPublicUse &&
+      relationship.isPublished,
+  );
+}
+
+function getDisplayRelationships(relationships: Relationship[]) {
+  const prioritized = [...relationships].sort((first, second) => {
+    return Number(canShowRelationshipLogo(second)) - Number(canShowRelationshipLogo(first));
+  });
+
+  return prioritized.filter((relationship, index, list) => {
+    return list.findIndex((item) => item.displayName === relationship.displayName) === index;
+  });
 }
 
 function PartnerCard({ relationship }: { relationship: Relationship }) {
-  const canShowLogo =
-    relationship.logo &&
-    relationship.isApprovedForPublicUse &&
-    relationship.isPublished;
+  const canShowLogo = canShowRelationshipLogo(relationship);
 
   return (
     <article className="partner-reference-card" data-partner-id={relationship.id}>
@@ -46,7 +51,9 @@ function PartnerCard({ relationship }: { relationship: Relationship }) {
             className="max-h-20 w-auto max-w-full object-contain"
           />
         ) : (
-          initialsFor(relationship.displayName)
+          <span className="partner-reference-wordmark">
+            {relationship.displayName}
+          </span>
         )}
       </div>
       <div>
@@ -65,7 +72,7 @@ function PartnerCard({ relationship }: { relationship: Relationship }) {
 }
 
 export default function HistoricalPartnersCarousel() {
-  const relationships = getPublishedHistoricalRelationships();
+  const relationships = getDisplayRelationships(getPublishedHistoricalRelationships());
 
   if (relationships.length === 0) {
     return null;
@@ -88,9 +95,9 @@ export default function HistoricalPartnersCarousel() {
       </ContinuousCarousel>
 
       <div className="historical-notice">
-        Historical slide-derived organization references. Confirm current
-        relationship status and public logo permission before presenting these
-        organizations as current partners.
+        Historical slide-derived organization references. Confirm current status
+        and public logo permission before presenting any organization as a current
+        partner.
       </div>
     </div>
   );

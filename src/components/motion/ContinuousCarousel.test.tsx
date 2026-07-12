@@ -7,7 +7,10 @@ import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCaro
 import ContinuousCarousel from "@/components/motion/ContinuousCarousel";
 import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
 import { getPublishedHistoricalLeadership } from "@/data/leadership";
-import { getPublishedHistoricalRelationships } from "@/data/relationships";
+import {
+  getPublishedHistoricalRelationships,
+  type Relationship,
+} from "@/data/relationships";
 
 let prefersReducedMotion = false;
 let isIntersecting = true;
@@ -62,6 +65,24 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
 });
+
+function canShowLogo(relationship: Relationship) {
+  return Boolean(
+    relationship.logo &&
+      relationship.isApprovedForPublicUse &&
+      relationship.isPublished,
+  );
+}
+
+function uniqueVisibleRelationshipCount(relationships: Relationship[]) {
+  const prioritized = [...relationships].sort((first, second) => {
+    return Number(canShowLogo(second)) - Number(canShowLogo(first));
+  });
+
+  return prioritized.filter((relationship, index, list) => {
+    return list.findIndex((item) => item.displayName === relationship.displayName) === index;
+  }).length;
+}
 
 describe("ContinuousCarousel", () => {
   it("renders original items once semantically and one hidden clone track", () => {
@@ -187,9 +208,9 @@ describe("Historical carousel content safeguards", () => {
     const published = getPublishedHistoricalRelationships();
     const originalTrack = screen.getByTestId("carousel-original-track");
 
-    expect(originalTrack.children).toHaveLength(published.length);
-    expect(screen.getByText(/Confirm current relationship status/)).toBeTruthy();
-    expect(within(originalTrack).queryByText("Arbor Vita Corporation")).toBeTruthy();
+    expect(originalTrack.children).toHaveLength(uniqueVisibleRelationshipCount(published));
+    expect(screen.getByText(/Confirm current status/)).toBeTruthy();
+    expect(within(originalTrack).queryAllByText("Arbor Vita Corporation").length).toBeGreaterThan(0);
     expect(document.querySelector('[data-partner-id="arbor-vita-technology"]')).toBeNull();
   });
 
