@@ -1,14 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
+import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
-import {
-  getCurrentPublishedRelationships,
-  getHistoricalRelationships,
-} from "@/data/relationships";
 import { pageMetadata } from "@/lib/seo";
 import {
   Building2,
@@ -29,9 +25,6 @@ export const metadata: Metadata = pageMetadata({
   image: medxImages.hospitalPartnership.src,
 });
 
-const currentRelationships = getCurrentPublishedRelationships();
-const historicalRelationships = getHistoricalRelationships();
-
 const categories = [
   { title: "Technology", icon: Microscope },
   { title: "Healthcare institutions", icon: Building2 },
@@ -42,16 +35,6 @@ const categories = [
   { title: "Investors", icon: TrendingUp },
   { title: "Implementation organizations", icon: Handshake },
 ];
-
-function initials(name: string) {
-  return name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
-}
 
 export default function PartnersPage() {
   return (
@@ -76,9 +59,9 @@ export default function PartnersPage() {
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {[
-                "Verified relationship status",
-                "Approved public descriptions",
-                "No unapproved logo use",
+                "Clear relationship scope",
+                "Responsible public descriptions",
+                "Institutional procurement discipline",
                 "Clear regulatory and commercial scope",
               ].map((item) => (
                 <div
@@ -93,118 +76,22 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="section-band py-20">
-        <div className="container-medx">
+      <section className="relative overflow-hidden bg-white py-20">
+        <div className="ai-motion-field" aria-hidden="true">
+          <span className="ai-motion-node ai-motion-node-a" />
+          <span className="ai-motion-node ai-motion-node-b" />
+          <span className="ai-motion-node ai-motion-node-c" />
+        </div>
+        <div className="container-medx relative">
           <SectionHeader
-            eyebrow="Current verified relationships"
-            title="Only approved current relationships are shown as current partners."
+            eyebrow="Historical relationship context"
+            title="Institutions referenced in MedX’s 2020 investor materials."
+            description="These historical references provide context for MedX’s original ecosystem and do not imply current endorsement or active partnership without confirmation."
             centered
           />
-          {currentRelationships.length > 0 ? (
-            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {currentRelationships.map((relationship) => (
-                <article key={relationship.id} className="card-premium p-7">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071b33] text-sm font-black text-white">
-                    {initials(relationship.displayName)}
-                  </div>
-                  <h3 className="mt-5 text-xl font-black text-[#071b33]">
-                    {relationship.displayName}
-                  </h3>
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {relationship.publicDescription}
-                  </p>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div className="mx-auto mt-10 max-w-3xl rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center shadow-[0_18px_50px_rgba(8,27,51,0.06)]">
-              <p className="text-lg font-black text-[#071b33]">
-                Current public partner records are pending confirmation.
-              </p>
-              <p className="mt-3 leading-7 text-slate-600">
-                MedX works within a healthcare and technology ecosystem, but
-                current partner names and logos should appear here only after
-                verification and public-use approval.
-              </p>
-            </div>
-          )}
+          <HistoricalPartnersCarousel />
         </div>
       </section>
-
-      {historicalRelationships.length > 0 && (
-        <section className="relative overflow-hidden bg-white py-20">
-          <div className="ai-motion-field" aria-hidden="true">
-            <span className="ai-motion-node ai-motion-node-a" />
-            <span className="ai-motion-node ai-motion-node-b" />
-            <span className="ai-motion-node ai-motion-node-c" />
-          </div>
-          <div className="container-medx">
-            <SectionHeader
-              eyebrow="Historical relationship context"
-              title="Historical relationships referenced in MedX's 2020 investor materials"
-              description="These references are historical and do not imply current endorsement, active partnership, current approval, or logo-use permission."
-              centered
-            />
-
-            <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[2rem] border border-slate-200 bg-[#071b33] p-7 text-white shadow-[0_28px_90px_rgba(8,27,51,0.18)]">
-              <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-300">
-                    AI-assisted ecosystem view
-                  </p>
-                  <h3 className="mt-4 text-3xl font-black">
-                    Research, public-health, and institutional references from the historical deck.
-                  </h3>
-                  <p className="mt-4 leading-7 text-slate-300">
-                    This animated map is a visual index of historical
-                    references only. It is not a current partner logo wall and
-                    does not imply endorsement.
-                  </p>
-                </div>
-                <div className="partner-orbit" aria-hidden="true">
-                  {historicalRelationships.slice(0, 10).map((relationship, index) => (
-                    <span
-                      key={relationship.id}
-                      className="partner-orbit-chip"
-                      style={
-                        {
-                          "--orbit-index": index,
-                        } as CSSProperties
-                      }
-                    >
-                      {initials(relationship.displayName)}
-                    </span>
-                  ))}
-                  <span className="partner-orbit-core">MedX</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {historicalRelationships.map((relationship) => (
-                <article
-                  key={relationship.id}
-                  className="executive-card partner-motion-card p-7"
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-sm font-black text-[#071b33]">
-                    {initials(relationship.displayName)}
-                  </div>
-                  <p className="mt-5 text-[10px] font-black uppercase tracking-[0.2em] text-[#10a66e]">
-                    {relationship.relationshipType.replaceAll("-", " ")} ·{" "}
-                    {relationship.sourceYear}
-                  </p>
-                  <h3 className="mt-3 text-xl font-black text-[#071b33]">
-                    {relationship.displayName}
-                  </h3>
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {relationship.publicDescription}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       <section className="medical-pattern py-20">
         <div className="container-medx">

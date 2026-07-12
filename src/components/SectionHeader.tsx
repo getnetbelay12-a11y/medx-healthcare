@@ -18,7 +18,7 @@ export default function SectionHeader({
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl font-black tracking-tight text-[#0b1f3a] md:text-5xl">
+      <h2 className="text-3xl font-black leading-tight tracking-tight text-[#0b1f3a] md:text-5xl">
         {title}
       </h2>
       {description && (

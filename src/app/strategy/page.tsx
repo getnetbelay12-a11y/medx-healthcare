@@ -97,11 +97,21 @@ export default function StrategyPage() {
 
       <section className="bg-white py-20">
         <div className="container-medx grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <SectionHeader
-            eyebrow="15-Year Strategic Direction"
-            title="A long-term platform for urgent and future healthcare needs."
-            description="MedX’s strategy is designed to address immediate supply and diagnostic gaps while building future capacity in cancer care, local production, digital systems, research, and regional growth."
-          />
+          <div>
+            <SectionHeader
+              eyebrow="15-Year Strategic Direction"
+              title="A long-term platform for urgent and future healthcare needs."
+              description="MedX’s strategy addresses immediate supply and diagnostic gaps while building future capacity in cancer care, local production, digital systems, research, and regional growth."
+            />
+            <MedxImage
+              src={medxImages.supplyChain.src}
+              alt={medxImages.supplyChain.alt}
+              className="mt-8 aspect-[16/9] rounded-[1.5rem] shadow-[0_20px_55px_rgba(8,27,51,0.1)]"
+            />
+            <p className="mt-3 text-xs font-bold text-slate-500">
+              Conceptual healthcare supply-chain image.
+            </p>
+          </div>
           <div className="executive-card p-7 md:p-9">
             <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
               Strategic roadmap
@@ -171,7 +181,7 @@ export default function StrategyPage() {
           <SectionHeader
             eyebrow="Evidence and Partnership References"
             title="Diagnostics strategy backed by clinical evidence and institutional collaboration."
-            description="The 2020 investor presentation references published OncoE6-related studies. Current product, regulatory, and partner status should be confirmed before external use."
+            description="The 2020 investor presentation references published OncoE6-related studies and institutional collaboration around cervical-screening technology."
             centered
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -249,7 +259,7 @@ export default function StrategyPage() {
           <div>
             <SectionHeader
               eyebrow="Strategic Partnerships"
-              title="No serious healthcare platform scales alone."
+              title="Partnerships built for institutional scale."
               description="MedX’s partnership model can align public priorities, facility needs, research capacity, investment, and technology."
             />
             <div className="mt-8 grid gap-3 sm:grid-cols-2">

@@ -79,7 +79,7 @@ export default function SiteHeader() {
               href="/contact"
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-xs font-black text-[#071b33] transition hover:border-emerald-200 hover:bg-emerald-50"
             >
-              Partner with MedX
+              Partner inquiry
               <ArrowRight size={14} />
             </Link>
 
@@ -88,7 +88,7 @@ export default function SiteHeader() {
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#10a66e] px-5 text-xs font-black text-white shadow-[0_10px_26px_rgba(16,166,110,0.24)] transition hover:-translate-y-0.5 hover:bg-[#0d9562]"
             >
               <PackageCheck size={16} />
-              Request supply
+              Supply request
             </Link>
           </div>
 
@@ -137,7 +137,7 @@ export default function SiteHeader() {
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-slate-200 text-sm font-black text-[#071b33]"
               >
-                Partner with MedX
+                Partner inquiry
                 <ArrowRight size={16} />
               </Link>
 
@@ -147,7 +147,7 @@ export default function SiteHeader() {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#10a66e] text-sm font-black text-white"
               >
                 <PackageCheck size={17} />
-                Request supply
+                Supply request
               </Link>
             </div>
           </div>

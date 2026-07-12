@@ -48,8 +48,8 @@ export default function Footer() {
 
             <p className="mt-6 max-w-md text-sm leading-7 text-slate-300">
               {company.shortName} supports healthcare facilities and public-health programs
-              with pharmaceuticals, medical devices, diagnostics,
-              cervical-cancer screening, and healthcare delivery systems.
+              with pharmaceutical supply, medical devices, diagnostics,
+              cervical-screening program support, and healthcare delivery systems.
             </p>
 
             <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3">

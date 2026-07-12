@@ -39,7 +39,7 @@ export default function HeroSection() {
             Corporate healthcare platform
           </p>
 
-          <h1 className="mt-6 max-w-5xl text-[2.65rem] font-black leading-[1.03] tracking-normal sm:text-6xl xl:text-7xl">
+          <h1 className="mt-6 max-w-5xl text-[2.55rem] font-black leading-[1.03] tracking-normal sm:text-6xl xl:text-7xl">
             Advancing Access to Diagnostics, Pharmaceuticals, and Cancer Care
           </h1>
 
@@ -64,7 +64,7 @@ export default function HeroSection() {
               <ArrowRight size={17} />
             </Link>
             <Link href="/contact" className="btn-outline">
-              Request Supply
+              Partner With MedX
               <ArrowRight size={17} />
             </Link>
           </div>

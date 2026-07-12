@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { CheckCircle2, Clock, Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
@@ -40,6 +40,13 @@ const contactDetails = [
     : null,
 ].filter(Boolean);
 
+const inquiryGuidance = [
+  "Product or service needed",
+  "Facility or program location",
+  "Estimated quantity and urgency",
+  "Preferred response timeline",
+];
+
 export default function ContactPage() {
   return (
     <>
@@ -53,7 +60,7 @@ export default function ContactPage() {
       <section className="bg-white py-20">
         <div className="container-medx grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <h2 className="text-3xl font-black text-[#071b33]">
+            <h2 className="text-3xl font-black leading-tight text-[#071b33]">
               Let’s strengthen healthcare access together.
             </h2>
             <p className="mt-4 leading-8 text-slate-600">
@@ -61,6 +68,21 @@ export default function ContactPage() {
               screening programs, investment discussions, and research
               collaboration.
             </p>
+            <div className="mt-7 rounded-[1.5rem] border border-emerald-100 bg-emerald-50/70 p-5">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0a8d63]">
+                For faster review
+              </p>
+              <div className="mt-4 grid gap-3">
+                {inquiryGuidance.map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-0.5 shrink-0 text-[#10a66e]" size={18} />
+                    <p className="text-sm font-bold leading-6 text-slate-700">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="mt-8 space-y-5">
               {contactDetails.map((detail) => {
                 const { label, value, icon: Icon } = detail!;
@@ -85,9 +107,9 @@ export default function ContactPage() {
                     {content}
                   </a>
                 ) : (
-                <div key={label} className="card-premium flex gap-4 p-5">
-                  {content}
-                </div>
+                  <div key={label} className="card-premium flex gap-4 p-5">
+                    {content}
+                  </div>
                 );
               })}
             </div>
@@ -97,6 +119,9 @@ export default function ContactPage() {
               alt={medxImages.bahirDar.alt}
               className="mt-8 aspect-[16/10] rounded-[2rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
             />
+            <p className="mt-3 text-xs font-bold text-slate-500">
+              Conceptual Bahir Dar healthcare context image.
+            </p>
           </div>
 
           <ContactForm />

@@ -62,10 +62,10 @@ export default function Home() {
       <section className="bg-white py-20">
         <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <SectionHeader
-              eyebrow="Verified company context"
+          <SectionHeader
+              eyebrow="Company context"
               title="A Bahir Dar healthcare platform with diagnostic and screening roots."
-              description="MedX public copy is intentionally conservative: current service areas are separated from roadmap capabilities, and historical investor-material facts are labeled as historical."
+              description="MedX combines healthcare supply, diagnostics, medical-device support, and cervical-screening experience with a broader platform strategy for Ethiopia and regional markets."
             />
             <div className="mt-7 grid gap-3">
               {historicalFoundation.map((item) => (
@@ -96,8 +96,8 @@ export default function Home() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Current services"
-            title="Four current service areas, not a mixed list of future ambitions."
-            description="Strategic roadmap items are handled separately on the Services and Strategy pages."
+            title="Healthcare products and program support for institutions."
+            description="MedX supports practical facility needs across pharmaceutical supply, medical devices, diagnostics, and cervical-screening programs."
             centered
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -139,7 +139,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Cervical-health origin"
             title="A historical flagship focus in cervical-screening access."
-            description="MedX's original platform was connected to cervical-screening access and in-vitro diagnostics. Current product rights, approvals, and program status should be confirmed before publishing specific operating claims."
+            description="MedX's original platform was connected to cervical-screening access and in-vitro diagnostics, creating a strong foundation for public-health program support."
           />
         </div>
       </section>
@@ -154,7 +154,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Historical ecosystem"
             title="Partners and institutions referenced in MedX's 2020 materials."
-            description="Historical source references from the 2020 MedX materials. They do not imply current endorsement, active partnership, or logo-use approval."
+            description="Historical source references from the 2020 MedX materials are shown for context and should not be read as current endorsement or active partnership without confirmation."
             centered
           />
 

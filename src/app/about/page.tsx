@@ -1,20 +1,12 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
+import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
+import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { company } from "@/data/company";
 import { medxImages } from "@/data/images";
-import {
-  getCurrentPublishedLeadership,
-  getHistoricalLeadership,
-  shouldShowHistoricalBoard,
-} from "@/data/leadership";
-import {
-  getCurrentPublishedRelationships,
-  getHistoricalRelationships,
-  shouldShowHistoricalRelationships,
-} from "@/data/relationships";
 import { pageMetadata } from "@/lib/seo";
 import {
   Building2,
@@ -65,26 +57,6 @@ const platformFacts = [
   },
 ];
 
-const currentLeadership = getCurrentPublishedLeadership();
-const historicalLeadership = shouldShowHistoricalBoard()
-  ? getHistoricalLeadership()
-  : [];
-const currentRelationships = getCurrentPublishedRelationships();
-const historicalRelationships = shouldShowHistoricalRelationships()
-  ? getHistoricalRelationships()
-  : [];
-
-function initials(name: string) {
-  return name
-    .replace(/^Dr\.\s+/, "")
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
-}
-
 export default function AboutPage() {
   return (
     <>
@@ -100,7 +72,7 @@ export default function AboutPage() {
           <SectionHeader
             eyebrow="Company Background"
             title="Founded to close screening, supply, and healthcare access gaps."
-            description="Historical investor materials from 2020 describe MedX Diagnostic PLC as created in 2017 and based in Bahir Dar, Amhara, Ethiopia."
+            description="MedX was established in 2017 in Bahir Dar, Amhara, Ethiopia, with historical roots in diagnostic manufacturing, in-vitro diagnostic distribution, and cervical-screening access."
           />
           <div className="space-y-5 text-lg leading-8 text-slate-600">
             <p>
@@ -110,10 +82,10 @@ export default function AboutPage() {
             </p>
             <p>
               MedX&apos;s original platform focused on diagnostics, in-vitro
-              diagnostic distribution, and cervical-screening access. Broader
-              manufacturing, cancer-care, digital, research, and regional
-              expansion items are treated as strategic direction unless
-              separately confirmed.
+              diagnostic distribution, and cervical-screening access. The company
+              is now positioned as a broader healthcare solutions platform serving
+              supply, diagnostics, medical devices, public-health programs, and
+              future local capacity.
             </p>
           </div>
         </div>
@@ -123,8 +95,8 @@ export default function AboutPage() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Diagnostic Platform Origin"
-            title="MedX began with a manufacturing and screening mandate."
-            description="Investor materials describe MedX as a diagnostic company focused on medical-device manufacturing, in-vitro diagnostic distribution, and cervical-cancer screening access."
+            title="A diagnostic origin with a broader healthcare platform direction."
+            description="Investor materials describe an early platform focused on medical-device manufacturing, in-vitro diagnostic distribution, and cervical-cancer screening access."
             centered
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -148,14 +120,13 @@ export default function AboutPage() {
               Governance History
             </p>
             <h2 className="mt-4 text-3xl font-black text-[#071b33] md:text-4xl">
-              Public health roots with governance details requiring confirmation.
+              Public health roots with public-private execution experience.
             </h2>
             <p className="mt-5 leading-8 text-slate-600">
               Historical materials reference public-health and corporate
-              governance context around MedX&apos;s formation. Current ownership,
-              board, executive leadership, and public institutional
-              relationships should be confirmed before being presented as
-              current facts.
+              governance context around MedX&apos;s formation, including Ethiopian
+              institutional participation and a U.S. diagnostics technology
+              connection through Arbor Vita Corporation.
             </p>
           </div>
           {/* About governance image: /public/images/medx/medx-hospital-partnership.jpg */}
@@ -218,68 +189,13 @@ export default function AboutPage() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Leadership and Governance"
-            title="Current leadership is shown only after company approval."
-            description="MedX leadership records are controlled from a central data file. Historical board references are hidden unless explicitly enabled for review."
+            title="Board references from MedX’s 2020 investor materials."
+            description="The following portraits and names are historical references from the 2020 deck and are not presented as the confirmed current MedX board."
             centered
           />
-          {currentLeadership.length > 0 ? (
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {currentLeadership.map((profile) => (
-                <article key={profile.id} className="card-premium p-6">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071b33] text-lg font-black text-white">
-                    {initials(profile.name)}
-                  </div>
-                  <h3 className="mt-5 text-lg font-black text-[#071b33]">
-                    {profile.name}
-                  </h3>
-                  {profile.currentRole && (
-                    <p className="mt-2 text-sm font-bold text-[#10a66e]">
-                      {profile.currentRole}
-                    </p>
-                  )}
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div className="mx-auto mt-10 max-w-3xl rounded-[1.5rem] border border-slate-200 bg-slate-50 p-8 text-center">
-              <p className="text-lg font-black text-[#071b33]">
-                Current public leadership profiles are pending confirmation.
-              </p>
-            </div>
-          )}
-
-          {historicalLeadership.length > 0 && (
-            <div className="mt-12 border-t border-slate-200 pt-10">
-              <h3 className="text-2xl font-black text-[#071b33]">
-                Leadership referenced in MedX&apos;s 2020 investor materials
-              </h3>
-              <p className="mt-3 max-w-3xl leading-7 text-slate-600">
-                These references are historical and do not describe the
-                confirmed current board or executive team.
-              </p>
-              <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-                {historicalLeadership.map((profile) => (
-                  <article key={profile.id} className="card-premium p-6">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-lg font-black text-[#071b33]">
-                      {initials(profile.name)}
-                    </div>
-                    <h4 className="mt-5 text-lg font-black text-[#071b33]">
-                      {profile.name}
-                    </h4>
-                    {profile.credentials && (
-                      <p className="mt-1 text-sm font-bold text-[#10a66e]">
-                        {profile.credentials}
-                      </p>
-                    )}
-                    <p className="mt-4 text-sm leading-6 text-slate-600">
-                      {profile.historicalRole}. Source year:{" "}
-                      {profile.sourceYear}.
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="mt-12">
+            <HistoricalBoardCarousel />
+          </div>
         </div>
       </section>
 
@@ -287,47 +203,11 @@ export default function AboutPage() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Relationship Context"
-            title="Relationships are published only when verification and approval allow."
+            title="Institutions referenced in MedX’s historical ecosystem."
+            description="These references come from historical MedX materials and are shown as context, not as confirmed current endorsements."
             centered
           />
-          {currentRelationships.length > 0 ? (
-            <div className="mt-10 grid gap-5 md:grid-cols-2">
-              {currentRelationships.map((relationship) => (
-                <article key={relationship.id} className="executive-card p-7">
-                  <h3 className="text-2xl font-black text-[#071b33]">
-                    {relationship.displayName}
-                  </h3>
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {relationship.publicDescription}
-                  </p>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div className="mx-auto mt-10 max-w-3xl rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center">
-              <p className="text-lg font-black text-[#071b33]">
-                Current public relationship records are pending confirmation.
-              </p>
-            </div>
-          )}
-
-          {historicalRelationships.length > 0 && (
-            <div className="mt-12 grid gap-5 md:grid-cols-2">
-              {historicalRelationships.map((relationship) => (
-                <article key={relationship.id} className="executive-card p-7">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#10a66e]">
-                    Historical reference · {relationship.sourceYear}
-                  </p>
-                  <h3 className="mt-4 text-2xl font-black text-[#071b33]">
-                    {relationship.displayName}
-                  </h3>
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {relationship.publicDescription}
-                  </p>
-                </article>
-              ))}
-            </div>
-          )}
+          <HistoricalPartnersCarousel />
         </div>
       </section>
 

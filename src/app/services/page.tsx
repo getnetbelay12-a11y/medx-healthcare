@@ -41,8 +41,8 @@ export default function ServicesPage() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Current services"
-            title="Four service areas presented as current operating priorities."
-            description="These are the public-facing MedX service areas unless updated company confirmation changes the service configuration."
+            title="Institutional healthcare support across core supply and diagnostic needs."
+            description="MedX’s current public service areas focus on practical facility requirements: medicines, devices, diagnostic support, and cervical-screening program capacity."
             centered
           />
           <div className="mt-12 grid gap-8">
@@ -67,7 +67,7 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#10a66e]">
-                    Current service
+                    Current capability
                   </p>
                   <h2 className="mt-3 text-3xl font-black text-[#071b33] md:text-4xl">
                     {service.title}
@@ -96,8 +96,8 @@ export default function ServicesPage() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Strategic capabilities and roadmap"
-            title="Future-facing capabilities are labeled separately from current services."
-            description="These areas support MedX's longer-term direction and should not be read as fully operating service lines without company confirmation."
+            title="A roadmap for stronger health-system capacity."
+            description="These capabilities support MedX’s longer-term direction across supply-chain visibility, digital systems, manufacturing readiness, cancer-care planning, and regional growth."
             centered
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

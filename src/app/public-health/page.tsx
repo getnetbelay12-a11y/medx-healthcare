@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
 import { pageMetadata } from "@/lib/seo";
+import { Building2, FlaskConical, Hospital, Pill, Store, Warehouse } from "lucide-react";
 
 export const metadata: Metadata = pageMetadata({
   title: "Public Health Focus",
@@ -43,6 +44,15 @@ const cervicalPriorities = [
   "Future cancer-care capacity",
 ];
 
+const amharaNetwork = [
+  { label: "Hospitals", icon: Hospital },
+  { label: "Health centers", icon: Building2 },
+  { label: "Health posts", icon: Store },
+  { label: "Diagnostic centers", icon: FlaskConical },
+  { label: "Pharmaceutical wholesalers", icon: Warehouse },
+  { label: "Drug shops", icon: Pill },
+];
+
 export default function PublicHealthFocusPage() {
   return (
     <>
@@ -77,6 +87,16 @@ export default function PublicHealthFocusPage() {
             description="The regional health system includes hospitals, health centers, health posts, private clinics, laboratories, diagnostic centers, pharmaceutical wholesalers, and drug shops."
             centered
           />
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {amharaNetwork.map(({ label, icon: Icon }) => (
+              <div key={label} className="executive-card flex items-center gap-4 p-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                  <Icon size={22} />
+                </div>
+                <p className="font-black text-[#071b33]">{label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -141,7 +161,8 @@ export default function PublicHealthFocusPage() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="MedX Response"
-            title="A serious response connects products, services, data, and local capacity."
+            title="Products, services, data, and local capacity working together."
+            description="MedX’s response connects supply reliability with diagnostics, screening, devices, digital visibility, and future manufacturing readiness."
             centered
           />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
