@@ -17,6 +17,7 @@ export type Relationship = {
   sourceDescription: string;
   publicDescription: string;
   logo?: string;
+  alt?: string;
   website?: string;
   isVerifiedCurrent: boolean;
   isApprovedForPublicUse: boolean;
@@ -36,7 +37,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference Arbor Vita Corporation in MedX's original investor context.",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "arbor-vita-technology",
@@ -64,7 +65,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference TIRET Corporate in MedX's original investor context.",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "tiret-joint-venture",
@@ -79,7 +80,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/tiret-corporate.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "black-lion-hospital",
@@ -94,7 +95,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/black-lion-hospital.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "harvard-university",
@@ -109,7 +110,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/harvard-university.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "albert-einstein-college-of-medicine",
@@ -124,7 +125,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/albert-einstein-college-of-medicine.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "bill-and-melinda-gates-foundation",
@@ -139,7 +140,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/bill-and-melinda-gates-foundation.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "who-iarc",
@@ -154,7 +155,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/who-iarc.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "national-cancer-institute",
@@ -169,7 +170,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/national-cancer-institute.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "charite-dkfz",
@@ -184,7 +185,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/charite-dkfz.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "duke-university",
@@ -199,7 +200,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/duke-university.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "hospital-de-cancer-de-barretos",
@@ -214,7 +215,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/hospital-de-cancer-de-barretos.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "path",
@@ -229,7 +230,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/path.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "cancer-institute-hospital-chinese-academy",
@@ -244,7 +245,7 @@ export const relationships: Relationship[] = [
     logo: "/images/medx/partners/cancer-institute-hospital-chinese-academy.png",
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
 ];
 
@@ -263,6 +264,10 @@ export function getHistoricalRelationships() {
       relationship.relationshipType.startsWith("historical-") &&
       relationship.sourceYear,
   );
+}
+
+export function getPublishedHistoricalRelationships() {
+  return getHistoricalRelationships().filter((relationship) => relationship.isPublished);
 }
 
 export function shouldShowHistoricalRelationships() {

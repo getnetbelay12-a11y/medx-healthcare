@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import Image from "next/image";
 import {
   ArrowRight,
   ClipboardCheck,
@@ -10,11 +9,11 @@ import {
 } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
+import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
 import MedxImage from "@/components/MedxImage";
+import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
-import { getHistoricalLeadership } from "@/data/leadership";
-import { getHistoricalRelationships } from "@/data/relationships";
 import { getPublishedServices } from "@/data/services";
 import { stats } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
@@ -28,11 +27,6 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const currentServices = getPublishedServices("current");
-const historicalRelationships = getHistoricalRelationships().filter(
-  (relationship) => relationship.logo,
-);
-const historicalBoard = getHistoricalLeadership().filter((member) => member.image);
-
 const historicalFoundation = [
   "Created in 2017 according to historical investor materials",
   "Original platform focused on diagnostics and cervical-screening access",
@@ -44,10 +38,6 @@ const strategicPreview = [
   "Medium-term data visibility and supply-chain discipline",
   "Long-term local capacity and regional healthcare platform direction",
 ];
-
-function repeated<T>(items: T[], times = 4) {
-  return Array.from({ length: times }, () => items).flat();
-}
 
 export default function Home() {
   return (
@@ -154,7 +144,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-20">
+      <section className="relative overflow-hidden bg-white py-16 md:py-20">
         <div className="ai-motion-field" aria-hidden="true">
           <span className="ai-motion-node ai-motion-node-a" />
           <span className="ai-motion-node ai-motion-node-b" />
@@ -164,52 +154,15 @@ export default function Home() {
           <SectionHeader
             eyebrow="Historical ecosystem"
             title="Partners and institutions referenced in MedX's 2020 materials."
-            description="These logos are presented as historical source references from the 2020 MedX materials. They do not imply current endorsement, active partnership, or logo-use approval."
+            description="Historical source references from the 2020 MedX materials. They do not imply current endorsement, active partnership, or logo-use approval."
             centered
           />
 
-          <div className="partner-logo-stage mt-12" aria-label="Moving historical institutional logo references">
-            <div className="partner-logo-marquee partner-logo-marquee-primary">
-              {repeated(historicalRelationships).map((relationship, index) => (
-                <div key={`${relationship.id}-primary-${index}`} className="partner-logo-tile">
-                  {relationship.logo && (
-                    <Image
-                      src={relationship.logo}
-                      alt={`${relationship.displayName} historical reference logo`}
-                      width={300}
-                      height={140}
-                      className="h-16 w-auto object-contain md:h-20"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="partner-logo-marquee partner-logo-marquee-secondary" aria-hidden="true">
-              {repeated([...historicalRelationships].reverse()).map((relationship, index) => (
-                <div key={`${relationship.id}-secondary-${index}`} className="partner-logo-tile partner-logo-tile-compact">
-                  {relationship.logo && (
-                    <Image
-                      src={relationship.logo}
-                      alt=""
-                      width={260}
-                      height={120}
-                      className="h-12 w-auto object-contain md:h-16"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-8 rounded-[1.5rem] border border-amber-200 bg-amber-50 p-5 text-center text-sm font-bold leading-7 text-amber-950">
-            Historical slide-derived logo references. Confirm current
-            relationship status and public logo permission before presenting
-            these organizations as current partners.
-          </div>
+          <HistoricalPartnersCarousel />
         </div>
       </section>
 
-      <section className="section-band py-20">
+      <section className="section-band py-16 md:py-20">
         <div className="container-medx">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div className="board-motion-copy">
@@ -226,52 +179,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="board-motion-stage" aria-label="Moving historical board references">
-              <div className="board-motion-track board-motion-track-primary">
-                {repeated(historicalBoard).map((member, index) => (
-                  <article key={`${member.id}-primary-${index}`} className="board-motion-card">
-                    {member.image && (
-                      <Image
-                        src={member.image}
-                        alt={`${member.name}, historical 2020 board reference`}
-                        width={180}
-                        height={180}
-                        className="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-white shadow-lg"
-                      />
-                    )}
-                    <h3 className="mt-4 text-center text-base font-black text-[#071b33]">
-                      {member.name}
-                    </h3>
-                    {member.credentials && (
-                      <p className="mt-1 text-center text-xs font-bold text-[#10a66e]">
-                        {member.credentials}
-                      </p>
-                    )}
-                    <p className="mt-3 text-center text-xs leading-5 text-slate-600">
-                      Historical 2020 reference
-                    </p>
-                  </article>
-                ))}
-              </div>
-              <div className="board-motion-track board-motion-track-secondary" aria-hidden="true">
-                {repeated([...historicalBoard].reverse()).map((member, index) => (
-                  <article key={`${member.id}-secondary-${index}`} className="board-motion-card board-motion-card-compact">
-                    {member.image && (
-                      <Image
-                        src={member.image}
-                        alt=""
-                        width={160}
-                        height={160}
-                        className="mx-auto h-24 w-24 rounded-full object-cover ring-4 ring-white shadow-lg"
-                      />
-                    )}
-                    <h3 className="mt-4 text-center text-sm font-black text-[#071b33]">
-                      {member.name}
-                    </h3>
-                  </article>
-                ))}
-              </div>
-            </div>
+            <HistoricalBoardCarousel />
           </div>
         </div>
       </section>

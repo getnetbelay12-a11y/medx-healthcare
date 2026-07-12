@@ -7,6 +7,9 @@ export type LeadershipMember = {
   organization?: string;
   shortBio?: string;
   image?: string;
+  portrait?: string;
+  alt?: string;
+  objectPosition?: string;
   sourceYear?: number;
   isVerifiedCurrent: boolean;
   isApprovedForPublicUse: boolean;
@@ -23,7 +26,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "ahmed-abtew",
@@ -34,7 +37,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "hicham-jorio",
@@ -44,7 +47,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "amlaku-asres",
@@ -55,7 +58,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "loko-abraham",
@@ -66,7 +69,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "yamral-ayele",
@@ -76,7 +79,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "yohannes-challa",
@@ -87,7 +90,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
   {
     id: "abebaw-gebeyehu",
@@ -98,7 +101,7 @@ export const leadershipMembers: LeadershipMember[] = [
     sourceYear: 2020,
     isVerifiedCurrent: false,
     isApprovedForPublicUse: false,
-    isPublished: false,
+    isPublished: true,
   },
 ];
 
@@ -115,6 +118,10 @@ export function getCurrentPublishedLeadership() {
 
 export function getHistoricalLeadership() {
   return leadershipMembers.filter((member) => member.sourceYear === 2020);
+}
+
+export function getPublishedHistoricalLeadership() {
+  return getHistoricalLeadership().filter((member) => member.isPublished);
 }
 
 export function shouldShowHistoricalBoard() {
