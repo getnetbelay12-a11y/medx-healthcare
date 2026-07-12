@@ -193,21 +193,23 @@ describe("Historical carousel content safeguards", () => {
     expect(document.querySelector('[data-partner-id="arbor-vita-technology"]')).toBeNull();
   });
 
-  it("does not render unapproved partner logos", () => {
+  it("renders approved historical partner logos", () => {
     render(<HistoricalPartnersCarousel />);
 
-    expect(screen.queryByAltText(/historical reference logo/i)).toBeNull();
+    const originalTrack = screen.getByTestId("carousel-original-track");
+    expect(originalTrack.querySelectorAll("img").length).toBeGreaterThan(0);
   });
 
-  it("falls back to initials for unapproved board portraits and does not duplicate the heading", () => {
+  it("renders approved board portraits and does not duplicate the heading", () => {
     render(<HistoricalBoardCarousel />);
 
     const published = getPublishedHistoricalLeadership();
     const originalTrack = screen.getByTestId("carousel-original-track");
 
     expect(originalTrack.children).toHaveLength(published.length);
-    expect(screen.queryByAltText(/historical 2020 board reference/i)).toBeNull();
-    expect(screen.getAllByText("PS").length).toBeGreaterThan(0);
+    expect(
+      within(originalTrack).getAllByAltText(/historical 2020 board reference/i).length,
+    ).toBeGreaterThan(0);
   });
 
   it("renders mobile-ready snap structure", () => {

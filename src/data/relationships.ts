@@ -36,7 +36,7 @@ export const relationships: Relationship[] = [
     publicDescription:
       "Historical investor materials from 2020 reference Arbor Vita Corporation in MedX's original investor context.",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -50,7 +50,7 @@ export const relationships: Relationship[] = [
     publicDescription:
       "Historical investor materials from 2020 reference Arbor Vita Corporation as part of MedX's original diagnostics technology platform.",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: false,
   },
   {
@@ -64,7 +64,7 @@ export const relationships: Relationship[] = [
     publicDescription:
       "Historical investor materials from 2020 reference TIRET Corporate in MedX's original investor context.",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -79,7 +79,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference TIRET Corporate as part of MedX's original joint-venture structure.",
     logo: "/images/medx/partners/tiret-corporate.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -94,7 +94,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference Black Lion Hospital in Addis Ababa. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/black-lion-hospital.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -109,7 +109,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference Harvard in the broader research and institutional ecosystem around the original diagnostic platform. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/harvard-university.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -124,7 +124,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference Albert Einstein College of Medicine in the broader research and institutional ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/albert-einstein-college-of-medicine.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -139,7 +139,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference the Bill & Melinda Gates Foundation in the broader global-health ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/bill-and-melinda-gates-foundation.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -154,7 +154,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference WHO/IARC in the broader public-health and cancer-research ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/who-iarc.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -169,7 +169,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference the National Cancer Institute in the broader cancer-research ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/national-cancer-institute.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -184,7 +184,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference Charite and DKFZ in the broader research and clinical ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/charite-dkfz.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -199,7 +199,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference Duke University in the broader research and institutional ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/duke-university.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -214,7 +214,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference Hospital de Cancer de Barretos in the broader cancer-care and research ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/hospital-de-cancer-de-barretos.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -229,7 +229,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference PATH in the broader global-health implementation ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/path.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -244,7 +244,7 @@ export const relationships: Relationship[] = [
       "Historical investor materials from 2020 reference the Cancer Institute and Hospital, Chinese Academy of Medical Sciences in the broader cancer-research ecosystem. Current relationship status requires confirmation.",
     logo: "/images/medx/partners/cancer-institute-hospital-chinese-academy.png",
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
 ];

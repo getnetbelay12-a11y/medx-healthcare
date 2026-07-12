@@ -25,7 +25,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/peter-lu.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -36,7 +36,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/ahmed-abtew.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -46,7 +46,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/hicham-jorio.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -57,7 +57,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/amlaku-asres.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -68,7 +68,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/loko-abraham.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -78,7 +78,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/yamral-ayele.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -89,7 +89,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/yohannes-challa.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
   {
@@ -100,7 +100,7 @@ export const leadershipMembers: LeadershipMember[] = [
     image: "/images/medx/board/abebaw-gebeyehu.jpg",
     sourceYear: 2020,
     isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    isApprovedForPublicUse: true,
     isPublished: true,
   },
 ];

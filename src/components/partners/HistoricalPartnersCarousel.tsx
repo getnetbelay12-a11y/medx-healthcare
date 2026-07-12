@@ -35,15 +35,15 @@ function PartnerCard({ relationship }: { relationship: Relationship }) {
 
   return (
     <article className="partner-reference-card" data-partner-id={relationship.id}>
-      <div className="partner-reference-mark" aria-hidden="true">
+      <div className={canShowLogo ? "partner-reference-logo" : "partner-reference-mark"} aria-hidden="true">
         {canShowLogo ? (
           <Image
             src={relationship.logo || ""}
             alt=""
-            width={180}
-            height={90}
+            width={240}
+            height={120}
             loading="lazy"
-            className="max-h-16 w-auto object-contain"
+            className="max-h-20 w-auto max-w-full object-contain"
           />
         ) : (
           initialsFor(relationship.displayName)
