@@ -72,7 +72,7 @@ export default function HistoricalBoardCarousel() {
       itemGap={18}
       pauseOnHover
       pauseOnFocus
-      showControls
+      showControls={false}
       className="board-reference-carousel"
     >
       {members.map((member) => (

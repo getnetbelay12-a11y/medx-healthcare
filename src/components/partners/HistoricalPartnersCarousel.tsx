@@ -109,7 +109,7 @@ export default function HistoricalPartnersCarousel() {
         itemGap={22}
         pauseOnHover
         pauseOnFocus
-        showControls
+        showControls={false}
       >
         {relationships.map((relationship) => (
           <PartnerCard key={relationship.id} relationship={relationship} />
