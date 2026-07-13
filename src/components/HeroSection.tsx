@@ -4,10 +4,10 @@ import MedxImage from "@/components/MedxImage";
 import { medxImages } from "@/data/images";
 
 const heroFacts = [
-  "Diagnostics access",
-  "Pharmaceutical supply",
-  "Medical devices",
-  "Cervical-health support",
+  { label: "Founded", value: "2017" },
+  { label: "Base", value: "Bahir Dar" },
+  { label: "Original focus", value: "Diagnostics and cervical screening" },
+  { label: "Direction", value: "Healthcare access and local capacity" },
 ];
 
 export default function HeroSection() {
@@ -16,7 +16,7 @@ export default function HeroSection() {
       <div className="container-medx relative grid min-h-[calc(100vh-76px)] items-center gap-10 py-14 md:py-16 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <p className="inline-flex rounded-full border border-emerald-300/25 bg-emerald-300/[0.09] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">
-            Corporate healthcare platform
+            MedX Healthcare Solutions
           </p>
 
           <h1 className="mt-6 max-w-5xl text-[2.55rem] font-black leading-[1.03] tracking-normal sm:text-6xl xl:text-7xl">
@@ -24,9 +24,9 @@ export default function HeroSection() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-            MedX is building an integrated healthcare platform to strengthen
-            diagnostics, pharmaceutical supply, medical devices, cancer
-            screening, and healthcare innovation across Ethiopia and Africa.
+            MedX strengthens access to diagnostics, pharmaceutical supply,
+            medical devices, cervical-health support, and healthcare innovation
+            for institutions and public-health programs.
           </p>
 
           <MedxImage
@@ -47,7 +47,7 @@ export default function HeroSection() {
               <ArrowRight size={17} />
             </Link>
             <Link href="/contact" className="btn-outline">
-              Partner With MedX
+              Request Supply
               <ArrowRight size={17} />
             </Link>
           </div>
@@ -57,9 +57,15 @@ export default function HeroSection() {
             className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-2 lg:grid-cols-4"
           >
             {heroFacts.map((fact) => (
-              <p key={fact} className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3">
-                {fact}
-              </p>
+              <div
+                key={fact.label}
+                className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3"
+              >
+                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">
+                  {fact.label}
+                </p>
+                <p className="mt-1 leading-6 text-white">{fact.value}</p>
+              </div>
             ))}
           </div>
         </div>

@@ -23,18 +23,25 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const currentServices = getPublishedServices("current");
+const serviceActions: Record<string, string> = {
+  "pharmaceutical-supply": "Request pharmaceutical supply",
+  "medical-devices": "Discuss medical-device needs",
+  diagnostics: "Request diagnostic support",
+  "cervical-screening": "Discuss a screening program",
+};
+
 const strategicPreview = [
   {
     label: "Near term",
-    text: "Strengthen product access, diagnostic support, and screening programs.",
+    text: "Supply, devices, diagnostics, and screening support",
   },
   {
     label: "Medium term",
-    text: "Improve data visibility, forecasting, and supply-chain coordination.",
+    text: "Data visibility, supply-chain discipline, and research collaboration",
   },
   {
     label: "Long term",
-    text: "Build local capacity and regional healthcare platform readiness.",
+    text: "Local capacity, manufacturing readiness, and regional expansion",
   },
 ];
 
@@ -43,15 +50,15 @@ export default function Home() {
     <>
       <HeroSection />
 
-      <section className="medical-pattern py-14 md:py-16">
+      <section className="medical-pattern py-12 md:py-14">
         <div className="container-medx">
           <SectionHeader
             eyebrow="Current services"
-            title="Practical healthcare support for institutions."
-            description="Four core service areas help facilities and programs plan product access, equipment readiness, testing support, and screening implementation."
+            title="Current service areas."
+            description="MedX supports institutional requests across four current service lines."
             centered
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {currentServices.map((service) => (
               <article key={service.id} className="card-premium p-6">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
@@ -64,10 +71,10 @@ export default function Home() {
                   {service.summary}
                 </p>
                 <Link
-                  href="/services"
+                  href="/contact"
                   className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b] transition hover:text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
                 >
-                  View service
+                  {serviceActions[service.id]}
                   <ArrowRight size={15} />
                 </Link>
               </article>
@@ -76,7 +83,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-14 md:py-16">
+      <section className="bg-white py-12 md:py-14">
         <div className="container-medx grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <MedxImage
@@ -90,25 +97,28 @@ export default function Home() {
           </div>
           <SectionHeader
             eyebrow="Cervical-health origin"
-            title="A historical flagship focus in cervical-screening access."
-            description="MedX’s early work in screening and diagnostics informs its public-health program support today."
+            title="A focused origin in diagnostics and cervical screening."
+            description="MedX’s original platform was rooted in diagnostics and cervical-screening access, creating a foundation for public-health program support."
           />
         </div>
       </section>
 
-      <section className="section-band py-14 md:py-16">
+      <section className="section-band py-12 md:py-14">
         <div className="container-medx grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
+            <p className="mb-4 inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#0a7c5b]">
+              In development
+            </p>
             <SectionHeader
               eyebrow="Digital operations preview"
-              title="In development: better visibility for healthcare operations."
-              description="MedX is developing dashboard and forecasting workflows to support clearer decisions for supply, diagnostics, and public-health programs."
+              title="Digital workflows for stronger healthcare operations."
+              description="MedX is developing tools for supply visibility, forecasting, reporting, and program coordination."
             />
             <div className="mt-7 flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-5">
               <DatabaseZap className="mt-1 shrink-0 text-[#10a66e]" size={22} />
               <p className="text-sm font-bold leading-7 text-slate-700">
-                In development features will require confirmed data, governance,
-                and implementation readiness before operational use.
+                MedX focuses on reliable healthcare supply, diagnostic readiness,
+                screening support, and disciplined digital operations.
               </p>
             </div>
           </div>
@@ -125,7 +135,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="corporate-shell py-14 text-white md:py-16">
+      <section className="corporate-shell py-12 text-white md:py-14">
         <div className="container-medx grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.28em] text-emerald-300">
@@ -135,8 +145,8 @@ export default function Home() {
               A phased healthcare platform strategy.
             </h2>
             <p className="mt-6 leading-8 text-slate-300">
-              MedX plans growth in practical phases, from current access work to
-              stronger data systems and longer-term regional readiness.
+              MedX follows a phased strategy from immediate healthcare access
+              needs to stronger local capacity.
             </p>
             <Link href="/strategy" className="btn-primary mt-8">
               Review Strategy
@@ -161,8 +171,11 @@ export default function Home() {
       </section>
 
       <CTASection
-        title="Partner with MedX to strengthen healthcare access."
-        buttonLabel="Contact MedX"
+        title="Request products, services, or partnership discussion."
+        description="Choose the path that matches your organization’s need."
+        buttonLabel="Request products or services"
+        secondaryButtonLabel="Discuss a partnership"
+        variant="simple"
       />
     </>
   );

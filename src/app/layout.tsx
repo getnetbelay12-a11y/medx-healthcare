@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     "cervical cancer screening",
     "digital health",
     "healthcare forecasting",
-    "Bahir Dar",
   ],
   icons: {
     icon: "/favicon.ico",

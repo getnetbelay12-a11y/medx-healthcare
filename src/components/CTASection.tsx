@@ -12,13 +12,51 @@ type CTASectionProps = {
   title?: string;
   description?: string;
   buttonLabel?: string;
+  secondaryButtonLabel?: string;
+  variant?: "default" | "simple";
 };
 
 export default function CTASection({
   title = "Tell us what your facility or healthcare program needs.",
   description = "MedX can review your request, confirm availability, assess the service requirement, and recommend the right next step.",
   buttonLabel = "Submit a request",
+  secondaryButtonLabel = "Review services",
+  variant = "default",
 }: CTASectionProps) {
+  if (variant === "simple") {
+    return (
+      <section className="bg-white py-12 md:py-14">
+        <div className="container-medx">
+          <div className="rounded-[1.5rem] bg-[#071b33] p-7 text-white shadow-[0_20px_60px_rgba(8,27,51,0.18)] md:p-10">
+            <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-300">
+                  Work with MedX
+                </p>
+                <h2 className="mt-3 max-w-2xl text-2xl font-black leading-tight md:text-4xl">
+                  {title}
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
+                  {description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
+                <Link href="/contact" className="btn-primary">
+                  {buttonLabel}
+                  <ArrowRight size={17} />
+                </Link>
+                <Link href="/contact" className="btn-outline">
+                  {secondaryButtonLabel}
+                  <ArrowRight size={17} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-white py-24">
       <div className="container-medx">
