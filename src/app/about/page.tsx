@@ -136,6 +136,10 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+          <p className="mt-5 max-w-3xl rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm font-bold leading-7 text-amber-900">
+            Historical capital reference: {company.historicalInitialCapital}.
+            Source: {company.historicalSourceLabel}.
+          </p>
         </div>
       </section>
 

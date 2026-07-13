@@ -11,6 +11,8 @@ describe("about page content contract", () => {
       "Originated in diagnostics and cervical screening",
     ]);
     expect(company.aboutGlance).toHaveLength(4);
+    expect(company.historicalInitialCapital).toBe("16.5 million ETB");
+    expect(company.historicalSourceLabel).toBe("2020 investor presentation");
   });
 
   it("labels historical timeline entries separately from current direction", () => {
