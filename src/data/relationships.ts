@@ -1,284 +1,226 @@
-export type RelationshipType =
-  | "historical-investor"
-  | "historical-joint-venture"
-  | "historical-technology-partner"
-  | "historical-health-institution"
-  | "historical-government-reference"
-  | "historical-research-reference"
-  | "current-partner"
-  | "current-client"
-  | "current-supplier";
+export type RelationshipStatus = "current" | "historical" | "unconfirmed";
 
 export type Relationship = {
   id: string;
   organization: string;
-  displayName: string;
-  relationshipType: RelationshipType;
-  sourceYear?: number;
-  sourceDescription: string;
+  relationshipType: string;
   publicDescription: string;
   logo?: string;
   logoAlt?: string;
-  alt?: string;
   website?: string;
-  isVerifiedCurrent: boolean;
-  isApprovedForPublicUse: boolean;
+  sourceYear?: number;
+  status: RelationshipStatus;
   isPublished: boolean;
+  displayOrder: number;
 };
 
-export const currentRelationships: Relationship[] = [];
+export const relationshipStatusLabels: Record<RelationshipStatus, string> = {
+  current: "Current relationship",
+  historical: "Historical reference",
+  unconfirmed: "Status being updated",
+};
 
-export const historicalRelationships: Relationship[] = [
+export const relationships: Relationship[] = [
   {
-    id: "arbor-vita-investor",
+    id: "arbor-vita-corporation",
     organization: "Arbor Vita Corporation",
-    displayName: "Arbor Vita Corporation",
-    relationshipType: "historical-investor",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 describe Arbor Vita Corporation as an investor in MedX Diagnostic PLC.",
+    relationshipType: "Diagnostics technology and historical investment relationship",
     publicDescription:
-      "Historical investor materials from 2020 reference Arbor Vita Corporation in MedX's original investor context.",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+      "Referenced in MedX’s 2020 investor materials as a diagnostics technology partner and investor.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 10,
   },
   {
-    id: "arbor-vita-technology",
-    organization: "Arbor Vita Corporation",
-    displayName: "Arbor Vita Corporation",
-    relationshipType: "historical-technology-partner",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 describe Arbor Vita Corporation as MedX's diagnostics technology partner.",
-    publicDescription:
-      "Historical investor materials from 2020 reference Arbor Vita Corporation as part of MedX's original diagnostics technology platform.",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
-    isPublished: false,
-  },
-  {
-    id: "tiret-investor",
+    id: "tiret-corporate",
     organization: "TIRET Corporate",
-    displayName: "TIRET Corporate",
-    relationshipType: "historical-investor",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 describe TIRET Corporate as an Ethiopian investor in MedX Diagnostic PLC.",
+    relationshipType: "Historical investor and joint-venture relationship",
     publicDescription:
-      "Historical investor materials from 2020 reference TIRET Corporate in MedX's original investor context.",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
-    isPublished: true,
-  },
-  {
-    id: "tiret-joint-venture",
-    organization: "TIRET Corporate",
-    displayName: "TIRET Corporate",
-    relationshipType: "historical-joint-venture",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 describe TIRET Corporate as a joint-venture party.",
-    publicDescription:
-      "Historical investor materials from 2020 reference TIRET Corporate as part of MedX's original joint-venture structure.",
+      "Referenced in MedX’s 2020 investor materials as an Ethiopian investor and joint-venture participant.",
     logo: "/images/medx/partners/tiret-corporate.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "TIRET Corporate historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 20,
   },
   {
     id: "black-lion-hospital",
     organization: "Black Lion Hospital, Addis Ababa",
-    displayName: "Black Lion Hospital",
-    relationshipType: "historical-health-institution",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include Black Lion Hospital, Addis Ababa, on a partner-reference slide.",
+    relationshipType: "Historical healthcare-institution reference",
     publicDescription:
-      "Historical investor materials from 2020 reference Black Lion Hospital in Addis Ababa in MedX's broader healthcare ecosystem.",
+      "Referenced in MedX’s 2020 investor materials in connection with the company’s healthcare ecosystem.",
     logo: "/images/medx/partners/black-lion-hospital.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "Black Lion Hospital historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 30,
   },
   {
     id: "harvard-university",
     organization: "Harvard University",
-    displayName: "Harvard University",
-    relationshipType: "historical-health-institution",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include Harvard on an organization-reference slide.",
+    relationshipType: "Historical research and institutional reference",
     publicDescription:
-      "Historical investor materials from 2020 reference Harvard in the broader research and institutional ecosystem around the original diagnostic platform.",
+      "Referenced in MedX’s 2020 investor materials within the broader research and institutional ecosystem around the diagnostics platform.",
     logo: "/images/medx/partners/harvard-university.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "Harvard University historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 40,
   },
   {
     id: "albert-einstein-college-of-medicine",
     organization: "Albert Einstein College of Medicine",
-    displayName: "Albert Einstein College of Medicine",
-    relationshipType: "historical-health-institution",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include Albert Einstein College of Medicine on an organization-reference slide.",
+    relationshipType: "Historical research and medical education reference",
     publicDescription:
-      "Historical investor materials from 2020 reference Albert Einstein College of Medicine in the broader research and institutional ecosystem.",
+      "Referenced in MedX’s 2020 investor materials as part of the broader medical research and institutional ecosystem.",
     logo: "/images/medx/partners/albert-einstein-college-of-medicine.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "Albert Einstein College of Medicine historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 50,
   },
   {
     id: "bill-and-melinda-gates-foundation",
     organization: "Bill & Melinda Gates Foundation",
-    displayName: "Bill & Melinda Gates Foundation",
-    relationshipType: "historical-technology-partner",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include the Bill & Melinda Gates Foundation on an organization-reference slide.",
+    relationshipType: "Historical global-health ecosystem reference",
     publicDescription:
-      "Historical investor materials from 2020 reference the Bill & Melinda Gates Foundation in the broader global-health ecosystem.",
+      "Referenced in MedX’s 2020 investor materials within a broader global-health organization context.",
     logo: "/images/medx/partners/bill-and-melinda-gates-foundation.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "Bill and Melinda Gates Foundation historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 60,
   },
   {
     id: "who-iarc",
-    organization: "World Health Organization / International Agency for Research on Cancer",
-    displayName: "WHO / IARC",
-    relationshipType: "historical-government-reference",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include WHO/IARC on an organization-reference slide.",
+    organization: "World Health Organization / IARC",
+    relationshipType: "Historical public-health and cancer-research reference",
     publicDescription:
-      "Historical investor materials from 2020 reference WHO/IARC in the broader public-health and cancer-research ecosystem.",
+      "Referenced in MedX’s 2020 investor materials within a public-health and cancer-research ecosystem context.",
     logo: "/images/medx/partners/who-iarc.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "WHO and IARC historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 70,
   },
   {
     id: "national-cancer-institute",
     organization: "National Cancer Institute",
-    displayName: "National Cancer Institute",
-    relationshipType: "historical-government-reference",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include the National Cancer Institute on an organization-reference slide.",
+    relationshipType: "Historical cancer-research reference",
     publicDescription:
-      "Historical investor materials from 2020 reference the National Cancer Institute in the broader cancer-research ecosystem.",
+      "Referenced in MedX’s 2020 investor materials as part of a broader cancer-research organization context.",
     logo: "/images/medx/partners/national-cancer-institute.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "National Cancer Institute historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 80,
   },
   {
     id: "charite-dkfz",
-    organization: "Charite Universitaetsmedizin Berlin / DKFZ",
-    displayName: "Charite / DKFZ",
-    relationshipType: "historical-health-institution",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include Charite and DKFZ on an organization-reference slide.",
+    organization: "Charite / DKFZ",
+    relationshipType: "Historical clinical and research reference",
     publicDescription:
-      "Historical investor materials from 2020 reference Charite and DKFZ in the broader research and clinical ecosystem.",
+      "Referenced in MedX’s 2020 investor materials within the broader clinical and research ecosystem.",
     logo: "/images/medx/partners/charite-dkfz.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "Charite and DKFZ historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 90,
   },
   {
     id: "duke-university",
     organization: "Duke University",
-    displayName: "Duke University",
-    relationshipType: "historical-health-institution",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include Duke University on an organization-reference slide.",
+    relationshipType: "Historical research and institutional reference",
     publicDescription:
-      "Historical investor materials from 2020 reference Duke University in the broader research and institutional ecosystem.",
+      "Referenced in MedX’s 2020 investor materials within the broader research and institutional ecosystem.",
     logo: "/images/medx/partners/duke-university.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "Duke University historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 100,
   },
   {
     id: "hospital-de-cancer-de-barretos",
     organization: "Hospital de Cancer de Barretos",
-    displayName: "Hospital de Cancer de Barretos",
-    relationshipType: "historical-health-institution",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include Hospital de Cancer de Barretos on an organization-reference slide.",
+    relationshipType: "Historical cancer-care institution reference",
     publicDescription:
-      "Historical investor materials from 2020 reference Hospital de Cancer de Barretos in the broader cancer-care and research ecosystem.",
+      "Referenced in MedX’s 2020 investor materials within the broader cancer-care and research ecosystem.",
     logo: "/images/medx/partners/hospital-de-cancer-de-barretos.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "Hospital de Cancer de Barretos historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 110,
   },
   {
     id: "path",
     organization: "PATH",
-    displayName: "PATH",
-    relationshipType: "historical-technology-partner",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include PATH on an organization-reference slide.",
+    relationshipType: "Historical global-health implementation reference",
     publicDescription:
-      "Historical investor materials from 2020 reference PATH in the broader global-health implementation ecosystem.",
+      "Referenced in MedX’s 2020 investor materials within the broader global-health implementation ecosystem.",
     logo: "/images/medx/partners/path.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt: "PATH historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 120,
   },
   {
     id: "cancer-institute-hospital-chinese-academy",
     organization: "Cancer Institute and Hospital, Chinese Academy of Medical Sciences",
-    displayName: "Cancer Institute and Hospital, Chinese Academy of Medical Sciences",
-    relationshipType: "historical-health-institution",
-    sourceYear: 2020,
-    sourceDescription:
-      "Historical investor materials from 2020 include the Cancer Institute and Hospital, Chinese Academy of Medical Sciences on an organization-reference slide.",
+    relationshipType: "Historical cancer-research institution reference",
     publicDescription:
-      "Historical investor materials from 2020 reference the Cancer Institute and Hospital, Chinese Academy of Medical Sciences in the broader cancer-research ecosystem.",
+      "Referenced in MedX’s 2020 investor materials within the broader cancer-research ecosystem.",
     logo: "/images/medx/partners/cancer-institute-hospital-chinese-academy.png",
-    isVerifiedCurrent: false,
-    isApprovedForPublicUse: false,
+    logoAlt:
+      "Cancer Institute and Hospital, Chinese Academy of Medical Sciences historical logo reference.",
+    sourceYear: 2020,
+    status: "historical",
     isPublished: true,
+    displayOrder: 130,
   },
 ];
 
-export const relationships: Relationship[] = [
-  ...currentRelationships,
-  ...historicalRelationships,
-];
+export const currentRelationships = relationships.filter(
+  (relationship) => relationship.status === "current",
+);
+
+export const historicalRelationships = relationships.filter(
+  (relationship) => relationship.status === "historical",
+);
+
+export function getPublishedRelationships() {
+  return relationships
+    .filter((relationship) => relationship.isPublished)
+    .sort((first, second) => first.displayOrder - second.displayOrder);
+}
 
 export function getCurrentPublishedRelationships() {
-  return relationships.filter(
-    (relationship) =>
-      relationship.isVerifiedCurrent &&
-      relationship.isApprovedForPublicUse &&
-      relationship.isPublished,
+  return getPublishedRelationships().filter(
+    (relationship) => relationship.status === "current",
   );
 }
 
 export function getHistoricalRelationships() {
-  return relationships.filter(
-    (relationship) =>
-      relationship.relationshipType.startsWith("historical-") &&
-      relationship.sourceYear,
-  );
+  return historicalRelationships;
 }
 
 export function getPublishedHistoricalRelationships() {
-  return getHistoricalRelationships().filter((relationship) => relationship.isPublished);
+  return getPublishedRelationships().filter(
+    (relationship) => relationship.status === "historical",
+  );
 }
 
 export function shouldShowHistoricalRelationships() {
-  return process.env.NEXT_PUBLIC_SHOW_HISTORICAL_RELATIONSHIPS === "true";
+  return true;
 }

@@ -170,6 +170,48 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-white py-12 md:py-14">
+        <div className="container-medx grid gap-5 md:grid-cols-2">
+          <Link
+            href="/about#leadership"
+            className="group rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(8,27,51,0.08)]"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
+              Governance
+            </p>
+            <h2 className="mt-3 text-2xl font-black text-[#071b33]">
+              Meet our leadership
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              Review MedX leadership and historical governance references.
+            </p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
+              Open leadership
+              <ArrowRight size={15} className="transition group-hover:translate-x-1" />
+            </span>
+          </Link>
+
+          <Link
+            href="/partners"
+            className="group rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(8,27,51,0.08)]"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
+              Relationships
+            </p>
+            <h2 className="mt-3 text-2xl font-black text-[#071b33]">
+              Explore partners and relationships
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              View current and historical relationship context in one place.
+            </p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
+              Open partners
+              <ArrowRight size={15} className="transition group-hover:translate-x-1" />
+            </span>
+          </Link>
+        </div>
+      </section>
+
       <CTASection
         title="Request products, services, or partnership discussion."
         description="Choose the path that matches your organization’s need."

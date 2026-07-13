@@ -103,7 +103,7 @@ Current files are AI-generated conceptual corporate healthcare photography. Do n
 - `/accessibility`
 - `/thank-you`
 
-Historical board and historical relationship cards are hidden by default. Use `NEXT_PUBLIC_SHOW_HISTORICAL_BOARD=true` or `NEXT_PUBLIC_SHOW_HISTORICAL_RELATIONSHIPS=true` only for controlled review.
+Leadership and relationship records are managed through centralized data files with explicit current, historical, or unconfirmed status labels.
 
 ## Contact Form
 

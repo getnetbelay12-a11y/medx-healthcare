@@ -10,18 +10,23 @@ import {
 } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import HistoricalBoardCarousel, {
-  BoardCard,
-} from "@/components/leadership/HistoricalBoardCarousel";
+import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
+import LeadershipCarousel, {
+  LeadershipCard,
+} from "@/components/leadership/LeadershipCarousel";
 import AutoCarousel from "@/components/motion/AutoCarousel";
 import ContinuousCarousel from "@/components/motion/ContinuousCarousel";
-import HistoricalRelationshipsCarousel, {
-  PartnerCard,
-} from "@/components/partners/HistoricalRelationshipsCarousel";
-import { getPublishedHistoricalLeadership } from "@/data/leadership";
+import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
+import RelationshipsCarousel, {
+  RelationshipCard,
+} from "@/components/partners/RelationshipsCarousel";
+import {
+  getPublishedHistoricalLeadership,
+  getPublishedLeadership,
+} from "@/data/leadership";
 import {
   getPublishedHistoricalRelationships,
-  type Relationship,
+  getPublishedRelationships,
 } from "@/data/relationships";
 
 let prefersReducedMotion = false;
@@ -77,24 +82,6 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
 });
-
-function canShowLogo(relationship: Relationship) {
-  return Boolean(
-    relationship.logo &&
-      relationship.isApprovedForPublicUse &&
-      relationship.isPublished,
-  );
-}
-
-function uniqueVisibleRelationshipCount(relationships: Relationship[]) {
-  const prioritized = [...relationships].sort((first, second) => {
-    return Number(canShowLogo(second)) - Number(canShowLogo(first));
-  });
-
-  return prioritized.filter((relationship, index, list) => {
-    return list.findIndex((item) => item.displayName === relationship.displayName) === index;
-  }).length;
-}
 
 describe("ContinuousCarousel", () => {
   it("renders original items once semantically and one hidden clone track", async () => {
@@ -220,18 +207,20 @@ describe("Historical carousel content safeguards", () => {
     const published = getPublishedHistoricalRelationships();
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
 
-    expect(originalTrack.children).toHaveLength(uniqueVisibleRelationshipCount(published));
-    expect(screen.getByText(/does not confirm a current partnership/)).toBeTruthy();
+    expect(originalTrack.children).toHaveLength(published.length);
+    expect(screen.getByText("Partners and Relationship Context")).toBeTruthy();
     expect(within(originalTrack).queryAllByText("Arbor Vita Corporation").length).toBeGreaterThan(0);
-    expect(document.querySelector('[data-partner-id="arbor-vita-technology"]')).toBeNull();
   });
 
-  it("uses organization-name cards when historical logo approval is absent", () => {
+  it("renders available historical partner logos and initials fallbacks", () => {
     render(<HistoricalRelationshipsCarousel />);
 
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
-    expect(originalTrack.querySelectorAll("img")).toHaveLength(0);
-    expect(within(originalTrack).getAllByText("Black Lion Hospital").length).toBeGreaterThan(0);
+    expect(originalTrack.querySelectorAll("img").length).toBeGreaterThan(0);
+    expect(
+      within(originalTrack).getAllByText("Black Lion Hospital, Addis Ababa").length,
+    ).toBeGreaterThan(0);
+    expect(within(originalTrack).getAllByText("AV")).toBeTruthy();
   });
 
   it("renders approved board portraits and does not duplicate the heading", () => {
@@ -275,17 +264,40 @@ describe("AutoCarousel motion contract", () => {
   it("uses right-to-left motion for board and left-to-right motion for relationships", () => {
     render(
       <>
-        <HistoricalBoardCarousel />
-        <HistoricalRelationshipsCarousel />
+        <LeadershipCarousel />
+        <RelationshipsCarousel />
       </>,
     );
 
-    expect(screen.getByLabelText("Historical board of directors references")).toHaveStyle({
+    expect(screen.getByLabelText("Leadership and governance carousel")).toHaveStyle({
       "--carousel-direction": "medx-board-marquee",
     });
-    expect(screen.getByLabelText("Historical partner and institution references")).toHaveStyle({
+    expect(screen.getByLabelText("Partners and relationship context carousel")).toHaveStyle({
       "--carousel-direction": "medx-relationships-marquee",
     });
+  });
+
+  it("keeps public leadership and relationship carousels automatic without visible controls", () => {
+    render(
+      <>
+        <LeadershipCarousel />
+        <RelationshipsCarousel />
+      </>,
+    );
+
+    expect(
+      screen.queryByLabelText("Pause Leadership and governance carousel"),
+    ).toBeNull();
+    expect(
+      screen.queryByLabelText("Pause Partners and relationship context carousel"),
+    ).toBeNull();
+    expect(screen.getByLabelText("Leadership and governance carousel")).toHaveAttribute(
+      "data-paused",
+      "false",
+    );
+    expect(
+      screen.getByLabelText("Partners and relationship context carousel"),
+    ).toHaveAttribute("data-paused", "false");
   });
 
   it("pauses on hover and focus, and resumes afterward", () => {
@@ -388,18 +400,18 @@ describe("AutoCarousel motion contract", () => {
   });
 
   it("keeps historical records unique in server-rendered semantic HTML", () => {
-    const partnerHtml = renderToStaticMarkup(<HistoricalRelationshipsCarousel />);
-    const boardHtml = renderToStaticMarkup(<HistoricalBoardCarousel />);
+    const partnerHtml = renderToStaticMarkup(<RelationshipsCarousel />);
+    const boardHtml = renderToStaticMarkup(<LeadershipCarousel />);
 
     expect(partnerHtml).not.toContain('data-testid="auto-carousel-clone-track"');
     expect(boardHtml).not.toContain('data-testid="auto-carousel-clone-track"');
 
     const partnerIds = Array.from(
-      partnerHtml.matchAll(/data-partner-id="([^"]+)"/g),
+      partnerHtml.matchAll(/data-relationship-id="([^"]+)"/g),
       (match) => match[1],
     );
     const boardIds = Array.from(
-      boardHtml.matchAll(/data-board-id="([^"]+)"/g),
+      boardHtml.matchAll(/data-leadership-id="([^"]+)"/g),
       (match) => match[1],
     );
 
@@ -422,48 +434,72 @@ describe("AutoCarousel motion contract", () => {
     expect(screen.getByTestId("auto-carousel-original-track").children).toHaveLength(2);
   });
 
-  it("does not render unapproved relationship logos", () => {
+  it("uses initials when a relationship logo is not available", () => {
     render(
-      <PartnerCard
+      <RelationshipCard
         relationship={{
-          id: "unapproved-logo",
-          organization: "Unapproved Logo Organization",
-          displayName: "Unapproved Logo Organization",
-          relationshipType: "historical-health-institution",
+          id: "initials-relationship",
+          organization: "Initials Relationship Organization",
+          relationshipType: "Historical institution reference",
           sourceYear: 2020,
-          sourceDescription: "Test",
           publicDescription: "Test",
-          logo: "/images/medx/partners/path.png",
-          isVerifiedCurrent: false,
-          isApprovedForPublicUse: false,
+          status: "historical",
           isPublished: true,
+          displayOrder: 1,
         }}
       />,
     );
 
-    expect(document.querySelector('[data-partner-id="unapproved-logo"] img')).toBeNull();
-    expect(screen.getAllByText("Unapproved Logo Organization").length).toBeGreaterThan(0);
+    expect(document.querySelector('[data-relationship-id="initials-relationship"] img')).toBeNull();
+    expect(screen.getByText("IR")).toBeTruthy();
   });
 
-  it("uses initials when a historical board portrait is not approved", () => {
+  it("uses initials when a leadership portrait is not available", () => {
     render(
-      <BoardCard
+      <LeadershipCard
         member={{
-          id: "unapproved-portrait",
+          id: "initials-leader",
           name: "Dr. Sample Leader",
           credentials: "M.D.",
-          historicalRole: "Historical test reference",
-          image: "/images/medx/board/peter-lu.jpg",
+          role: "Historical test reference",
           sourceYear: 2020,
-          isVerifiedCurrent: false,
-          isApprovedForPublicUse: false,
+          status: "historical",
           isPublished: true,
+          displayOrder: 1,
         }}
       />,
     );
 
-    expect(document.querySelector('[data-board-id="unapproved-portrait"] img')).toBeNull();
+    expect(document.querySelector('[data-leadership-id="initials-leader"] img')).toBeNull();
     expect(screen.getByText("SL")).toBeTruthy();
     expect(screen.getByText("Historical 2020 reference")).toBeTruthy();
+  });
+
+  it("renders all published directors from centralized data", () => {
+    render(<LeadershipCarousel />);
+
+    const originalTrack = screen.getByTestId("auto-carousel-original-track");
+    expect(originalTrack.children).toHaveLength(getPublishedLeadership().length);
+    expect(screen.getAllByText("Historical 2020 reference").length).toBeGreaterThan(0);
+    expect(screen.getByText("CEO of Arbor Vita Corporation")).toBeTruthy();
+  });
+
+  it("renders all published relationships from centralized data", () => {
+    render(<RelationshipsCarousel />);
+
+    const originalTrack = screen.getByTestId("auto-carousel-original-track");
+    expect(originalTrack.children).toHaveLength(getPublishedRelationships().length);
+    expect(screen.getAllByText("Historical reference").length).toBeGreaterThan(0);
+    expect(screen.getByText("TIRET Corporate")).toBeTruthy();
+  });
+
+  it("filters relationship status without a page reload", () => {
+    render(<RelationshipsCarousel />);
+
+    expect(screen.getByText("Arbor Vita Corporation")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Current" }));
+    expect(screen.queryByText("Arbor Vita Corporation")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Historical" }));
+    expect(screen.getByText("Arbor Vita Corporation")).toBeTruthy();
   });
 });

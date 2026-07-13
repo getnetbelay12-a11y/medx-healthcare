@@ -16,9 +16,8 @@ function initialsFor(name: string) {
 }
 
 export function BoardCard({ member }: { member: LeadershipMember }) {
-  const portrait = member.portrait || member.image;
-  const canShowPortrait =
-    portrait && member.isApprovedForPublicUse && member.isPublished;
+  const portrait = member.portrait;
+  const canShowPortrait = portrait && member.isPublished;
 
   return (
     <article className="board-reference-card" data-board-id={member.id}>
@@ -28,7 +27,6 @@ export function BoardCard({ member }: { member: LeadershipMember }) {
             src={portrait}
             alt={
               member.portraitAlt ||
-              member.alt ||
               `${member.name}, historical 2020 board reference`
             }
             width={150}
@@ -49,13 +47,13 @@ export function BoardCard({ member }: { member: LeadershipMember }) {
           {member.credentials}
         </p>
       )}
-      {member.historicalRole && (
+      {member.role && (
         <p className="mt-4 text-center text-sm leading-6 text-slate-600">
-          {member.historicalRole}
+          {member.role}
         </p>
       )}
       <p className="mt-3 text-center text-sm font-bold text-slate-500">
-        Historical 2020 reference
+        {member.sourceYear ? `Historical ${member.sourceYear} reference` : "Historical reference"}
       </p>
     </article>
   );

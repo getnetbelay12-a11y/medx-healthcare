@@ -10,16 +10,13 @@ import {
   Warehouse,
 } from "lucide-react";
 import CTASection from "@/components/CTASection";
-import CurrentLeadershipSection from "@/components/leadership/CurrentLeadershipSection";
-import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
+import LeadershipCarousel from "@/components/leadership/LeadershipCarousel";
 import MedxImage from "@/components/MedxImage";
-import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
+import RelationshipsCarousel from "@/components/partners/RelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { company } from "@/data/company";
 import { medxImages } from "@/data/images";
-import { getCurrentPublishedRelationships } from "@/data/relationships";
 import { getPublishedServices } from "@/data/services";
-import { publicEnv } from "@/lib/env";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -68,7 +65,6 @@ const values = [
   },
 ];
 
-const currentRelationships = getCurrentPublishedRelationships();
 const currentServiceAreas = getPublishedServices("current").filter(
   (service) => service.isVerified,
 );
@@ -262,78 +258,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CurrentLeadershipSection />
-
-      {publicEnv.showHistoricalBoard && (
-        <section className="bg-white py-14 md:py-16">
-          <div className="container-medx">
-            <details className="group">
-              <summary className="cursor-pointer list-none rounded-2xl border border-slate-200 bg-slate-50 p-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">
-                Historical governance references from MedX&apos;s 2020 investor materials
-              </summary>
-              <div className="mt-8">
-                <p className="mb-5 text-sm font-bold leading-7 text-slate-600">
-                  These records are historical references and do not confirm
-                  current MedX board membership or current titles.
-                </p>
-                <HistoricalBoardCarousel />
-              </div>
-            </details>
-          </div>
-        </section>
-      )}
-
-      <section className="bg-white py-14 md:py-16">
-        <div className="container-medx">
-          <SectionHeader
-            eyebrow="Relationships"
-            title="Current verified relationships"
-            description="Current relationships are published only after organizational confirmation and approval for public use."
-            centered
-          />
-          {currentRelationships.length > 0 ? (
-            <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {currentRelationships.map((relationship) => (
-                <article key={relationship.id} className="border border-slate-200 p-5">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-[#10a66e]">
-                    Verified current relationship
-                  </p>
-                  <h3 className="mt-3 text-lg font-black text-[#071b33]">
-                    {relationship.displayName}
-                  </h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">
-                    {relationship.publicDescription}
-                  </p>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <p className="mx-auto mt-8 max-w-2xl rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center text-sm font-bold leading-7 text-slate-600">
-              Verified current relationships will be published after organizational
-              confirmation.
-            </p>
-          )}
-        </div>
-      </section>
-
-      {publicEnv.showHistoricalRelationships && (
-        <section className="section-band py-14 md:py-16">
-          <div className="container-medx">
-            <details className="group">
-              <summary className="cursor-pointer list-none rounded-2xl border border-slate-200 bg-white p-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">
-                Historical relationships referenced in 2020 materials
-              </summary>
-              <div className="mt-8">
-                <p className="mb-5 text-sm font-bold leading-7 text-slate-600">
-                  These organization references are historical context only and do
-                  not imply current endorsement or active partnership.
-                </p>
-                <HistoricalRelationshipsCarousel />
-              </div>
-            </details>
-          </div>
-        </section>
-      )}
+      <LeadershipCarousel />
+      <RelationshipsCarousel />
 
       <CTASection />
     </>

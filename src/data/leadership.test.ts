@@ -3,16 +3,19 @@ import {
   currentLeadership,
   getCurrentPublishedLeadership,
   getHistoricalLeadership,
+  getPublishedLeadership,
   historicalLeadership,
+  leadershipStatusLabels,
 } from "@/data/leadership";
 
 describe("leadership data", () => {
-  it("does not publish unverified historical board references by default", () => {
+  it("keeps current leadership separate from historical records", () => {
     expect(getCurrentPublishedLeadership()).toEqual([]);
   });
 
-  it("keeps 2020 board references available for controlled review", () => {
+  it("publishes the 2020 board references for the leadership carousel", () => {
     expect(getHistoricalLeadership()).toHaveLength(8);
+    expect(getPublishedLeadership()).toHaveLength(8);
   });
 
   it("separates current leadership from historical references", () => {
@@ -20,5 +23,13 @@ describe("leadership data", () => {
     expect(historicalLeadership.every((member) => member.sourceYear === 2020)).toBe(
       true,
     );
+    expect(historicalLeadership.every((member) => member.status === "historical")).toBe(
+      true,
+    );
+  });
+
+  it("stores director status labels centrally", () => {
+    expect(leadershipStatusLabels.current).toBe("Current");
+    expect(leadershipStatusLabels.historical).toBe("Historical 2020 reference");
   });
 });
