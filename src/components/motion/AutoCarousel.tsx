@@ -59,6 +59,19 @@ function sanitizeClone(node: ReactNode): ReactNode {
     nextProps.tabIndex = -1;
   }
 
+  if (typeof element.type === "string" && element.type === "img") {
+    nextProps.loading = "lazy";
+  }
+
+  if (
+    "src" in props &&
+    ("width" in props || "height" in props || "fill" in props)
+  ) {
+    nextProps.loading = "lazy";
+    nextProps.priority = false;
+    nextProps.fetchPriority = "low";
+  }
+
   if ("children" in props) {
     nextProps.children = Children.map(props.children as ReactNode, sanitizeClone);
   }
@@ -88,13 +101,18 @@ export default function AutoCarousel({
   const [isUserPaused, setIsUserPaused] = useState(false);
   const [isTabHidden, setIsTabHidden] = useState(false);
   const [isTouchPaused, setIsTouchPaused] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    const mountTimer = window.setTimeout(() => setHasMounted(true), 0);
     const updateVisibility = () => setIsTabHidden(document.hidden);
     updateVisibility();
     document.addEventListener("visibilitychange", updateVisibility);
 
-    return () => document.removeEventListener("visibilitychange", updateVisibility);
+    return () => {
+      window.clearTimeout(mountTimer);
+      document.removeEventListener("visibilitychange", updateVisibility);
+    };
   }, []);
 
   const isPaused =
@@ -163,19 +181,21 @@ export default function AutoCarousel({
               </div>
             ))}
           </div>
-          <div
-            className="auto-carousel-track"
-            data-testid="auto-carousel-clone-track"
-            aria-hidden="true"
-            tabIndex={-1}
-            {...({ inert: true } as HTMLAttributes<HTMLDivElement>)}
-          >
-            {clonedItems.map((item, index) => (
-              <div className="auto-carousel-item" key={`clone-${index}`}>
-                {item}
-              </div>
-            ))}
-          </div>
+          {hasMounted && (
+            <div
+              className="auto-carousel-track"
+              data-testid="auto-carousel-clone-track"
+              aria-hidden="true"
+              tabIndex={-1}
+              {...({ inert: true } as HTMLAttributes<HTMLDivElement>)}
+            >
+              {clonedItems.map((item, index) => (
+                <div className="auto-carousel-item" key={`clone-${index}`}>
+                  {item}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

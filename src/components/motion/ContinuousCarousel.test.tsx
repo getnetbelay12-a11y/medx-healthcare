@@ -1,7 +1,14 @@
 /* @vitest-environment jsdom */
 
 import "@testing-library/jest-dom/vitest";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  within,
+} from "@testing-library/react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import HistoricalBoardCarousel, {
   BoardCard,
@@ -90,7 +97,7 @@ function uniqueVisibleRelationshipCount(relationships: Relationship[]) {
 }
 
 describe("ContinuousCarousel", () => {
-  it("renders original items once semantically and one hidden clone track", () => {
+  it("renders original items once semantically and one hidden clone track", async () => {
     render(
       <ContinuousCarousel ariaLabel="Test carousel">
         <article id="item-a">Alpha</article>
@@ -99,7 +106,7 @@ describe("ContinuousCarousel", () => {
     );
 
     const originalTrack = screen.getByTestId("carousel-original-track");
-    const cloneTrack = screen.getByTestId("carousel-clone-track");
+    const cloneTrack = await screen.findByTestId("carousel-clone-track");
 
     expect(within(originalTrack).getAllByText(/Alpha|Beta/)).toHaveLength(2);
     expect(cloneTrack).toHaveAttribute("aria-hidden", "true");
@@ -108,7 +115,7 @@ describe("ContinuousCarousel", () => {
     expect(document.querySelectorAll("#item-b")).toHaveLength(1);
   });
 
-  it("removes clone focus targets", () => {
+  it("removes clone focus targets", async () => {
     render(
       <ContinuousCarousel ariaLabel="Focusable carousel">
         <a href="/services" id="service-link">
@@ -117,7 +124,7 @@ describe("ContinuousCarousel", () => {
       </ContinuousCarousel>,
     );
 
-    const cloneTrack = screen.getByTestId("carousel-clone-track");
+    const cloneTrack = await screen.findByTestId("carousel-clone-track");
     expect(cloneTrack.querySelector("a")).toHaveAttribute("tabindex", "-1");
   });
 
@@ -214,7 +221,7 @@ describe("Historical carousel content safeguards", () => {
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
 
     expect(originalTrack.children).toHaveLength(uniqueVisibleRelationshipCount(published));
-    expect(screen.getByText(/Confirm current status/)).toBeTruthy();
+    expect(screen.getByText(/Current relationship status/)).toBeTruthy();
     expect(within(originalTrack).queryAllByText("Arbor Vita Corporation").length).toBeGreaterThan(0);
     expect(document.querySelector('[data-partner-id="arbor-vita-technology"]')).toBeNull();
   });
@@ -349,7 +356,7 @@ describe("AutoCarousel motion contract", () => {
     expect(screen.getByLabelText("Play Reduced auto carousel")).toBeTruthy();
   });
 
-  it("keeps clone track hidden and non-focusable without duplicate IDs", () => {
+  it("keeps clone track hidden and non-focusable without duplicate IDs", async () => {
     render(
       <AutoCarousel ariaLabel="Clone safety carousel">
         <a href="/services" id="safe-link">
@@ -358,11 +365,45 @@ describe("AutoCarousel motion contract", () => {
       </AutoCarousel>,
     );
 
-    const cloneTrack = screen.getByTestId("auto-carousel-clone-track");
+    const cloneTrack = await screen.findByTestId("auto-carousel-clone-track");
     expect(cloneTrack).toHaveAttribute("aria-hidden", "true");
+    expect(cloneTrack).toHaveAttribute("inert");
     expect(cloneTrack).toHaveAttribute("tabindex", "-1");
     expect(cloneTrack.querySelector("a")).toHaveAttribute("tabindex", "-1");
     expect(document.querySelectorAll("#safe-link")).toHaveLength(1);
+  });
+
+  it("does not render clone tracks into server HTML", () => {
+    const html = renderToStaticMarkup(
+      <AutoCarousel ariaLabel="Server carousel">
+        <article data-partner-id="one">One</article>
+        <article data-partner-id="two">Two</article>
+      </AutoCarousel>,
+    );
+
+    expect(html).toContain('data-testid="auto-carousel-original-track"');
+    expect(html).not.toContain('data-testid="auto-carousel-clone-track"');
+    expect(html.match(/data-partner-id=/g)).toHaveLength(2);
+  });
+
+  it("keeps historical records unique in server-rendered semantic HTML", () => {
+    const partnerHtml = renderToStaticMarkup(<HistoricalRelationshipsCarousel />);
+    const boardHtml = renderToStaticMarkup(<HistoricalBoardCarousel />);
+
+    expect(partnerHtml).not.toContain('data-testid="auto-carousel-clone-track"');
+    expect(boardHtml).not.toContain('data-testid="auto-carousel-clone-track"');
+
+    const partnerIds = Array.from(
+      partnerHtml.matchAll(/data-partner-id="([^"]+)"/g),
+      (match) => match[1],
+    );
+    const boardIds = Array.from(
+      boardHtml.matchAll(/data-board-id="([^"]+)"/g),
+      (match) => match[1],
+    );
+
+    expect(new Set(partnerIds).size).toBe(partnerIds.length);
+    expect(new Set(boardIds).size).toBe(boardIds.length);
   });
 
   it("renders mobile touch fallback state without hiding items", () => {

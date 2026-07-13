@@ -15,12 +15,6 @@ const trustSignals = [
   "Cancer screening platform",
 ];
 
-const heroMetrics = [
-  { label: "Founded", value: "2017" },
-  { label: "Historical capital", value: "16.5M ETB" },
-  { label: "Market context", value: "Ethiopia" },
-];
-
 export default function HeroSection() {
   return (
     <section className="corporate-shell relative overflow-hidden text-white">
@@ -84,21 +78,6 @@ export default function HeroSection() {
             ))}
           </div>
 
-          <div className="mt-8 hidden gap-3 lg:grid lg:grid-cols-3">
-            {heroMetrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="rounded-2xl border border-white/10 bg-white/[0.055] px-5 py-4"
-              >
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
-                  {metric.label}
-                </p>
-                <p className="mt-2 text-lg font-black text-white">
-                  {metric.value}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Homepage hero image: /public/images/medx/medx-hero-healthcare-africa.jpg */}

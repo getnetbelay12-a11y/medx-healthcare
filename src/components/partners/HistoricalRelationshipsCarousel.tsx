@@ -25,16 +25,6 @@ function canShowRelationshipLogo(relationship: Relationship) {
   );
 }
 
-function getDisplayRelationships(relationships: Relationship[]) {
-  const prioritized = [...relationships].sort((first, second) => {
-    return Number(canShowRelationshipLogo(second)) - Number(canShowRelationshipLogo(first));
-  });
-
-  return prioritized.filter((relationship, index, list) => {
-    return list.findIndex((item) => item.displayName === relationship.displayName) === index;
-  });
-}
-
 export function PartnerCard({ relationship }: { relationship: Relationship }) {
   const canShowLogo = canShowRelationshipLogo(relationship);
 
@@ -71,8 +61,33 @@ export function PartnerCard({ relationship }: { relationship: Relationship }) {
   );
 }
 
-export default function HistoricalRelationshipsCarousel() {
-  const relationships = getDisplayRelationships(getPublishedHistoricalRelationships());
+type HistoricalRelationshipsCarouselProps = {
+  limit?: number;
+  compactNotice?: boolean;
+  showControls?: boolean;
+};
+
+export function getDisplayRelationships(relationships: Relationship[], limit?: number) {
+  const prioritized = [...relationships].sort((first, second) => {
+    return Number(canShowRelationshipLogo(second)) - Number(canShowRelationshipLogo(first));
+  });
+
+  const unique = prioritized.filter((relationship, index, list) => {
+    return list.findIndex((item) => item.displayName === relationship.displayName) === index;
+  });
+
+  return typeof limit === "number" ? unique.slice(0, limit) : unique;
+}
+
+export default function HistoricalRelationshipsCarousel({
+  limit,
+  compactNotice = false,
+  showControls = true,
+}: HistoricalRelationshipsCarouselProps = {}) {
+  const relationships = getDisplayRelationships(
+    getPublishedHistoricalRelationships(),
+    limit,
+  );
 
   if (relationships.length === 0) {
     return null;
@@ -87,7 +102,7 @@ export default function HistoricalRelationshipsCarousel() {
         itemGap={22}
         pauseOnHover
         pauseOnFocus
-        showControls
+        showControls={showControls}
       >
         {relationships.map((relationship) => (
           <PartnerCard key={relationship.id} relationship={relationship} />
@@ -95,9 +110,9 @@ export default function HistoricalRelationshipsCarousel() {
       </AutoCarousel>
 
       <div className="historical-notice">
-        Historical slide-derived organization references. Confirm current status
-        and public logo permission before presenting any organization as a current
-        partner.
+        {compactNotice
+          ? "Historical organization references from earlier MedX materials; current relationship status may differ."
+          : "Historical slide-derived organization references. Current relationship status and logo permissions may differ from earlier materials."}
       </div>
     </div>
   );
