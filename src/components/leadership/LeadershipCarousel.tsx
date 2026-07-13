@@ -102,12 +102,12 @@ export default function LeadershipCarousel() {
         <SectionHeader
           eyebrow="Leadership and governance"
           title="Leadership and Governance"
-          description="MedX’s governance history reflects experience in diagnostics, public health, healthcare delivery, investment, and institutional leadership."
+          description="A moving view of governance references from MedX’s investor materials, including diagnostics, public health, healthcare delivery, investment, and institutional leadership experience."
           centered
         />
         <p className="mx-auto mt-5 max-w-3xl text-center text-sm font-bold leading-7 text-slate-600">
-          Roles marked Historical are based on MedX’s 2020 investor materials
-          and may be updated as current organizational information is confirmed.
+          Roles marked Historical are source references from MedX’s 2020
+          investor materials.
         </p>
 
         <div className="mt-9">

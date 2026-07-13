@@ -69,6 +69,13 @@ const currentServiceAreas = getPublishedServices("current").filter(
   (service) => service.isVerified,
 );
 
+const aboutMetrics = [
+  { label: "Founded", value: company.founded },
+  { label: "Base", value: "Bahir Dar" },
+  { label: "Original focus", value: "Diagnostics and screening" },
+  { label: "Current focus", value: "Supply, diagnostics, devices, programs" },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -87,14 +94,17 @@ export default function AboutPage() {
               support, and long-term local capacity building for institutions and
               public-health programs.
             </p>
-            <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3">
-              {company.aboutHighlights.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3"
-                  >
-                    {item}
-                  </div>
+            <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-2">
+              {aboutMetrics.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3"
+                >
+                  <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">
+                    {item.label}
+                  </p>
+                  <p className="mt-1 leading-6 text-white">{item.value}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -114,41 +124,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white py-14 md:py-16">
-        <div className="container-medx">
-          <SectionHeader
-            eyebrow="MedX at a glance"
-            title="A healthcare company with diagnostic roots and practical access priorities."
-            description={company.description}
-          />
-          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {company.aboutGlance.map((item) => (
-              <div key={item.label} className="border-l-4 border-[#10a66e] bg-slate-50 p-5">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#10a66e]">
-                  {item.label}
-                </p>
-                <p className="mt-3 text-base font-black leading-7 text-[#071b33]">
-                  {item.value}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-5 max-w-3xl rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm font-bold leading-7 text-amber-900">
-            Historical capital reference: {company.historicalInitialCapital}.
-            Source: {company.historicalSourceLabel}.
-          </p>
-        </div>
-      </section>
-
       <section id="governance" className="section-band scroll-mt-28 py-14 md:py-16">
         <div className="container-medx grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <SectionHeader
             eyebrow="Origin and evolution"
             title="From diagnostic and screening roots to broader healthcare access work."
-            description="MedX’s public history is presented with clear source context so visitors can distinguish formation history from current operating priorities."
+            description={`${company.description} Historical materials reference initial capital of ${company.historicalInitialCapital}.`}
           />
           <div className="space-y-4">
-            {company.aboutTimeline.map((item) => (
+            {company.aboutTimeline.slice(0, 4).map((item) => (
               <article
                 key={`${item.period}-${item.title}`}
                 className="grid gap-4 border-l border-slate-200 bg-white p-5 shadow-[0_10px_28px_rgba(8,27,51,0.05)] md:grid-cols-[9rem_1fr]"
@@ -186,10 +170,6 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm font-bold leading-7 text-amber-900">
-              Service availability is subject to confirmation based on product,
-              location, regulatory requirements, and implementation capacity.
-            </p>
           </div>
           <MedxImage
             src={medxImages.diagnostics.src}
@@ -239,8 +219,8 @@ export default function AboutPage() {
         <div className="container-medx grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <SectionHeader
             eyebrow="Governance overview"
-            title="Governance information is published through official MedX confirmation."
-            description="MedX’s governance and ownership structure has evolved since its formation. Current legal, shareholder, board, and executive information is published only after organizational confirmation."
+            title="Governance history with source context."
+            description="MedX’s governance and ownership structure has evolved since formation. The references below preserve historical context while current records can be updated in one central data file."
           />
           <details className="group bg-white p-6 shadow-[0_12px_34px_rgba(8,27,51,0.06)]">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">

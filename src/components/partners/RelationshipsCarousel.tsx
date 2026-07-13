@@ -41,6 +41,14 @@ function statusClass(status: RelationshipStatus) {
   return "bg-slate-100 text-[#071b33] ring-slate-200";
 }
 
+function shortDescription(description: string) {
+  return description
+    .replace("Referenced in MedX’s 2020 investor materials as ", "2020 materials reference ")
+    .replace("Referenced in MedX’s 2020 investor materials in connection with ", "2020 materials connect this organization with ")
+    .replace("Referenced in MedX’s 2020 investor materials within ", "2020 materials place this organization within ")
+    .replace("Referenced in MedX’s 2020 investor materials as part of ", "2020 materials include this organization as part of ");
+}
+
 export function RelationshipCard({ relationship }: { relationship: Relationship }) {
   return (
     <article className="relationship-card" data-relationship-id={relationship.id}>
@@ -83,7 +91,7 @@ export function RelationshipCard({ relationship }: { relationship: Relationship 
         {relationship.relationshipType}
       </p>
       <p className="mt-3 text-sm leading-7 text-slate-600">
-        {relationship.publicDescription}
+        {shortDescription(relationship.publicDescription)}
       </p>
     </article>
   );
@@ -106,7 +114,7 @@ export default function RelationshipsCarousel() {
         <SectionHeader
           eyebrow="Relationship context"
           title="Partners and Relationship Context"
-          description="MedX’s healthcare ecosystem includes current relationships and organizations referenced in the company’s historical materials."
+          description="A moving view of organizations connected to MedX’s current relationship records and 2020 investor-material references."
           centered
         />
 
@@ -148,6 +156,12 @@ export default function RelationshipsCarousel() {
             ))}
           </AutoCarousel>
         </div>
+
+        <p className="mx-auto mt-6 max-w-4xl rounded-2xl border border-amber-200/80 bg-amber-50/80 px-5 py-4 text-center text-sm font-bold leading-7 text-amber-950">
+          Relationship status is managed from MedX’s central website data. Items
+          marked 2020 reference are historical source references, not a statement
+          of present endorsement.
+        </p>
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ export type Relationship = {
 
 export const relationshipStatusLabels: Record<RelationshipStatus, string> = {
   current: "Current relationship",
-  historical: "Historical reference",
+  historical: "2020 reference",
   unconfirmed: "Status being updated",
 };
 
@@ -24,7 +24,7 @@ export const relationships: Relationship[] = [
   {
     id: "arbor-vita-corporation",
     organization: "Arbor Vita Corporation",
-    relationshipType: "Diagnostics technology and historical investment relationship",
+    relationshipType: "Diagnostics technology and investor context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials as a diagnostics technology partner and investor.",
     sourceYear: 2020,
@@ -35,7 +35,7 @@ export const relationships: Relationship[] = [
   {
     id: "tiret-corporate",
     organization: "TIRET Corporate",
-    relationshipType: "Historical investor and joint-venture relationship",
+    relationshipType: "Investor and joint-venture context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials as an Ethiopian investor and joint-venture participant.",
     logo: "/images/medx/partners/tiret-corporate.png",
@@ -48,7 +48,7 @@ export const relationships: Relationship[] = [
   {
     id: "black-lion-hospital",
     organization: "Black Lion Hospital, Addis Ababa",
-    relationshipType: "Historical healthcare-institution reference",
+    relationshipType: "Healthcare-institution context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials in connection with the company’s healthcare ecosystem.",
     logo: "/images/medx/partners/black-lion-hospital.png",
@@ -61,7 +61,7 @@ export const relationships: Relationship[] = [
   {
     id: "harvard-university",
     organization: "Harvard University",
-    relationshipType: "Historical research and institutional reference",
+    relationshipType: "Research and institutional context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within the broader research and institutional ecosystem around the diagnostics platform.",
     logo: "/images/medx/partners/harvard-university.png",
@@ -74,7 +74,7 @@ export const relationships: Relationship[] = [
   {
     id: "albert-einstein-college-of-medicine",
     organization: "Albert Einstein College of Medicine",
-    relationshipType: "Historical research and medical education reference",
+    relationshipType: "Research and medical education context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials as part of the broader medical research and institutional ecosystem.",
     logo: "/images/medx/partners/albert-einstein-college-of-medicine.png",
@@ -87,7 +87,7 @@ export const relationships: Relationship[] = [
   {
     id: "bill-and-melinda-gates-foundation",
     organization: "Bill & Melinda Gates Foundation",
-    relationshipType: "Historical global-health ecosystem reference",
+    relationshipType: "Global-health ecosystem context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within a broader global-health organization context.",
     logo: "/images/medx/partners/bill-and-melinda-gates-foundation.png",
@@ -100,7 +100,7 @@ export const relationships: Relationship[] = [
   {
     id: "who-iarc",
     organization: "World Health Organization / IARC",
-    relationshipType: "Historical public-health and cancer-research reference",
+    relationshipType: "Public-health and cancer-research context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within a public-health and cancer-research ecosystem context.",
     logo: "/images/medx/partners/who-iarc.png",
@@ -113,7 +113,7 @@ export const relationships: Relationship[] = [
   {
     id: "national-cancer-institute",
     organization: "National Cancer Institute",
-    relationshipType: "Historical cancer-research reference",
+    relationshipType: "Cancer-research context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials as part of a broader cancer-research organization context.",
     logo: "/images/medx/partners/national-cancer-institute.png",
@@ -126,7 +126,7 @@ export const relationships: Relationship[] = [
   {
     id: "charite-dkfz",
     organization: "Charite / DKFZ",
-    relationshipType: "Historical clinical and research reference",
+    relationshipType: "Clinical and research context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within the broader clinical and research ecosystem.",
     logo: "/images/medx/partners/charite-dkfz.png",
@@ -139,7 +139,7 @@ export const relationships: Relationship[] = [
   {
     id: "duke-university",
     organization: "Duke University",
-    relationshipType: "Historical research and institutional reference",
+    relationshipType: "Research and institutional context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within the broader research and institutional ecosystem.",
     logo: "/images/medx/partners/duke-university.png",
@@ -152,7 +152,7 @@ export const relationships: Relationship[] = [
   {
     id: "hospital-de-cancer-de-barretos",
     organization: "Hospital de Cancer de Barretos",
-    relationshipType: "Historical cancer-care institution reference",
+    relationshipType: "Cancer-care institution context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within the broader cancer-care and research ecosystem.",
     logo: "/images/medx/partners/hospital-de-cancer-de-barretos.png",
@@ -165,7 +165,7 @@ export const relationships: Relationship[] = [
   {
     id: "path",
     organization: "PATH",
-    relationshipType: "Historical global-health implementation reference",
+    relationshipType: "Global-health implementation context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within the broader global-health implementation ecosystem.",
     logo: "/images/medx/partners/path.png",
@@ -178,7 +178,7 @@ export const relationships: Relationship[] = [
   {
     id: "cancer-institute-hospital-chinese-academy",
     organization: "Cancer Institute and Hospital, Chinese Academy of Medical Sciences",
-    relationshipType: "Historical cancer-research institution reference",
+    relationshipType: "Cancer-research institution context",
     publicDescription:
       "Referenced in MedX’s 2020 investor materials within the broader cancer-research ecosystem.",
     logo: "/images/medx/partners/cancer-institute-hospital-chinese-academy.png",

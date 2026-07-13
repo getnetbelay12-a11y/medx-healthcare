@@ -489,7 +489,7 @@ describe("AutoCarousel motion contract", () => {
 
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
     expect(originalTrack.children).toHaveLength(getPublishedRelationships().length);
-    expect(screen.getAllByText("Historical reference").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("2020 reference").length).toBeGreaterThan(0);
     expect(screen.getByText("TIRET Corporate")).toBeTruthy();
   });
 

@@ -20,7 +20,7 @@ import {
 export const metadata: Metadata = pageMetadata({
   title: "Partners",
   description:
-    "Learn about MedX relationship context, historical institutional references, and partnership opportunities.",
+    "Explore MedX relationship context, institutional references, and structured partnership pathways.",
   path: "/partners",
   image: medxImages.hospitalPartnership.src,
 });
@@ -42,7 +42,7 @@ export default function PartnersPage() {
       <PageHero
         eyebrow="Partners"
         title="Partnerships that strengthen healthcare delivery"
-        description="MedX works through technical, institutional, supply, public-health, research, and implementation relationships."
+        description="MedX works with healthcare, supply, technology, research, investment, and implementation stakeholders to strengthen access and operating capacity."
         image={medxImages.hospitalPartnership}
       />
 
@@ -52,7 +52,7 @@ export default function PartnersPage() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Partnership categories"
-            title="Where MedX can evaluate structured collaboration."
+            title="Priority areas for structured collaboration."
             centered
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -78,8 +78,8 @@ export default function PartnersPage() {
         <div className="container-medx grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <SectionHeader
             eyebrow="How partnerships work"
-            title="Structured collaboration with clear scope and accountable follow-through."
-            description="MedX reviews each inquiry by need, geography, product or service category, operating requirements, and the public-health or institutional value it can support."
+            title="Clear scope, practical review, accountable follow-through."
+            description="MedX reviews each inquiry by need, geography, product or service category, operating requirements, and institutional value."
           />
           <div className="grid gap-4 sm:grid-cols-2">
             {[
