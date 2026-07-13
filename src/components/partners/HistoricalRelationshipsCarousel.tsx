@@ -12,6 +12,7 @@ const relationshipLabels: Record<RelationshipType, string> = {
   "historical-technology-partner": "Historical technology reference",
   "historical-health-institution": "Historical institution reference",
   "historical-government-reference": "Historical public-health reference",
+  "historical-research-reference": "Historical research reference",
   "current-partner": "Current partner",
   "current-client": "Current client",
   "current-supplier": "Current supplier",
@@ -111,8 +112,8 @@ export default function HistoricalRelationshipsCarousel({
 
       <div className="historical-notice">
         {compactNotice
-          ? "Historical organization references from earlier MedX materials; current relationship status may differ."
-          : "Historical slide-derived organization references. Current relationship status and logo permissions may differ from earlier materials."}
+          ? "Historical organization references from earlier MedX materials."
+          : "These organizations are referenced in historical MedX materials. Their inclusion does not confirm a current partnership, endorsement, or active commercial relationship."}
       </div>
     </div>
   );

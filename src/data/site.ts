@@ -17,6 +17,7 @@ export const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Public Health", href: "/public-health" },
   { label: "Strategy", href: "/strategy" },
+  { label: "Partners", href: "/partners" },
   { label: "Contact", href: "/contact" },
 ];
 

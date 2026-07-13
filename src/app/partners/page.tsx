@@ -5,6 +5,8 @@ import PageHero from "@/components/PageHero";
 import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
+import { getCurrentPublishedRelationships } from "@/data/relationships";
+import { publicEnv } from "@/lib/env";
 import { pageMetadata } from "@/lib/seo";
 import {
   Building2,
@@ -20,7 +22,7 @@ import {
 export const metadata: Metadata = pageMetadata({
   title: "Partners",
   description:
-    "MedX collaboration model, verified public relationships, historical relationship context, and partnership inquiry options.",
+    "Learn about MedX’s verified current relationships, historical collaboration context, and partnership opportunities.",
   path: "/partners",
   image: medxImages.hospitalPartnership.src,
 });
@@ -37,63 +39,71 @@ const categories = [
 ];
 
 export default function PartnersPage() {
+  const currentRelationships = getCurrentPublishedRelationships();
+
   return (
     <>
       <PageHero
         eyebrow="Partners"
-        title="Partners"
-        description="Collaboration pathways for healthcare institutions, public-health programs, suppliers, diagnostics organizations, investors, and technology partners."
+        title="Partnerships that strengthen healthcare delivery"
+        description="MedX works through technical, institutional, supply, public-health, research, and implementation relationships."
         image={medxImages.hospitalPartnership}
       />
 
-      <section className="bg-white py-20">
-        <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="bg-white py-14 md:py-16">
+        <div className="container-medx">
           <SectionHeader
-            eyebrow="Collaboration model"
-            title="MedX is built for disciplined healthcare collaboration."
-            description="The partnership model focuses on verified needs, clear responsibilities, compliant product availability, reliable supply, and measurable public-health value."
-          />
-          <div className="executive-card p-8 md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
-              Partnership principles
-            </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {[
-                "Clear relationship scope",
-                "Responsible public descriptions",
-                "Institutional procurement discipline",
-                "Clear regulatory and commercial scope",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-black text-[#071b33]"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-white py-20">
-        <div className="ai-motion-field" aria-hidden="true">
-          <span className="ai-motion-node ai-motion-node-a" />
-          <span className="ai-motion-node ai-motion-node-b" />
-          <span className="ai-motion-node ai-motion-node-c" />
-        </div>
-        <div className="container-medx relative">
-          <SectionHeader
-            eyebrow="Historical relationship context"
-            title="Institutions referenced in MedX’s 2020 investor materials."
-            description="These historical references provide context for MedX’s original ecosystem and do not imply current endorsement or active partnership without confirmation."
+            eyebrow="Verified relationships"
+            title="Current verified relationships"
+            description="Verified current relationships are published only after organizational confirmation and approval for public use."
             centered
           />
-          <HistoricalRelationshipsCarousel />
+
+          {currentRelationships.length > 0 ? (
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {currentRelationships.map((relationship) => (
+                <article key={relationship.id} className="card-premium p-6">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-[#10a66e]">
+                    Verified current relationship
+                  </p>
+                  <h2 className="mt-3 text-xl font-black text-[#071b33]">
+                    {relationship.displayName}
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {relationship.publicDescription}
+                  </p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="mx-auto mt-8 max-w-2xl rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center text-sm font-bold leading-7 text-slate-600">
+              Verified current relationships will be published after
+              organizational confirmation.
+            </p>
+          )}
         </div>
       </section>
 
-      <section className="medical-pattern py-20">
+      {publicEnv.showHistoricalRelationships && (
+        <section className="relative overflow-hidden bg-white py-14 md:py-16">
+          <div className="ai-motion-field" aria-hidden="true">
+            <span className="ai-motion-node ai-motion-node-a" />
+            <span className="ai-motion-node ai-motion-node-b" />
+            <span className="ai-motion-node ai-motion-node-c" />
+          </div>
+          <div className="container-medx relative">
+            <SectionHeader
+              eyebrow="Historical relationship context"
+              title="Historical relationships referenced in MedX materials"
+              description="These organizations are referenced in historical MedX materials. Their inclusion does not confirm a current partnership, endorsement, or active commercial relationship."
+              centered
+            />
+            <HistoricalRelationshipsCarousel />
+          </div>
+        </section>
+      )}
+
+      <section className="medical-pattern py-14 md:py-16">
         <div className="container-medx">
           <SectionHeader
             eyebrow="Partnership categories"

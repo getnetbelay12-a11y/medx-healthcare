@@ -26,7 +26,11 @@ export function BoardCard({ member }: { member: LeadershipMember }) {
         {canShowPortrait ? (
           <Image
             src={portrait}
-            alt={member.alt || `${member.name}, historical 2020 board reference`}
+            alt={
+              member.portraitAlt ||
+              member.alt ||
+              `${member.name}, historical 2020 board reference`
+            }
             width={150}
             height={150}
             loading="lazy"

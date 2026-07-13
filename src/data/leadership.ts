@@ -8,6 +8,7 @@ export type LeadershipMember = {
   shortBio?: string;
   image?: string;
   portrait?: string;
+  portraitAlt?: string;
   alt?: string;
   objectPosition?: string;
   sourceYear?: number;
@@ -16,7 +17,9 @@ export type LeadershipMember = {
   isPublished: boolean;
 };
 
-export const leadershipMembers: LeadershipMember[] = [
+export const currentLeadership: LeadershipMember[] = [];
+
+export const historicalLeadership: LeadershipMember[] = [
   {
     id: "peter-lu",
     name: "Dr. Peter S. Lu",
@@ -103,6 +106,11 @@ export const leadershipMembers: LeadershipMember[] = [
     isApprovedForPublicUse: true,
     isPublished: true,
   },
+];
+
+export const leadershipMembers: LeadershipMember[] = [
+  ...currentLeadership,
+  ...historicalLeadership,
 ];
 
 export const leadershipProfiles = leadershipMembers;

@@ -10,6 +10,7 @@ import {
   Warehouse,
 } from "lucide-react";
 import CTASection from "@/components/CTASection";
+import CurrentLeadershipSection from "@/components/leadership/CurrentLeadershipSection";
 import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
 import MedxImage from "@/components/MedxImage";
 import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
@@ -143,12 +144,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-band py-14 md:py-16">
+      <section id="governance" className="section-band scroll-mt-28 py-14 md:py-16">
         <div className="container-medx grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <SectionHeader
             eyebrow="Origin and evolution"
             title="From diagnostic and screening roots to broader healthcare access work."
-            description="This timeline separates historical references from current and long-term direction. Historical items should not be read as current legal or governance status."
+            description="MedX’s public history is presented with clear source context so visitors can distinguish formation history from current operating priorities."
           />
           <div className="space-y-4">
             {company.aboutTimeline.map((item) => (
@@ -177,7 +178,7 @@ export default function AboutPage() {
             <SectionHeader
               eyebrow="What MedX does today"
               title="Focused healthcare support for institutions and public-health programs."
-              description="MedX’s public-facing current service areas are presented narrowly to avoid mixing current work with future roadmap capabilities."
+              description="MedX focuses on practical service areas that support health facilities, public-health programs, and institutional healthcare delivery."
             />
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {currentServiceAreas.map((service) => (
@@ -242,8 +243,8 @@ export default function AboutPage() {
         <div className="container-medx grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <SectionHeader
             eyebrow="Governance overview"
-            title="Governance information should be confirmed through official records."
-            description="MedX’s governance and ownership structure has evolved since its formation. Current legal, shareholder, and board information should be confirmed through official company records."
+            title="Governance information is published through official MedX confirmation."
+            description="MedX’s governance and ownership structure has evolved since its formation. Current legal, shareholder, board, and executive information is published only after organizational confirmation."
           />
           <details className="group bg-white p-6 shadow-[0_12px_34px_rgba(8,27,51,0.06)]">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">
@@ -261,6 +262,8 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <CurrentLeadershipSection />
+
       {publicEnv.showHistoricalBoard && (
         <section className="bg-white py-14 md:py-16">
           <div className="container-medx">
@@ -270,8 +273,8 @@ export default function AboutPage() {
               </summary>
               <div className="mt-8">
                 <p className="mb-5 text-sm font-bold leading-7 text-slate-600">
-                  These portraits and names are historical references only and are
-                  not presented as the confirmed current MedX board.
+                  These records are historical references and do not confirm
+                  current MedX board membership or current titles.
                 </p>
                 <HistoricalBoardCarousel />
               </div>

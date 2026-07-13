@@ -1,12 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navLinks } from "@/data/site";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-100 bg-white">
@@ -26,12 +31,12 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-10 lg:flex">
-          {navLinks.map((link, index) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={`relative text-sm font-black text-[#071b33] transition hover:text-[#10a66e] ${
-                index === 0
+                isActive(link.href)
                   ? "after:absolute after:-bottom-3 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-[#10a66e]"
                   : ""
               }`}

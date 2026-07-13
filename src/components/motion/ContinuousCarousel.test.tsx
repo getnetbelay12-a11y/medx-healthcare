@@ -221,16 +221,17 @@ describe("Historical carousel content safeguards", () => {
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
 
     expect(originalTrack.children).toHaveLength(uniqueVisibleRelationshipCount(published));
-    expect(screen.getByText(/Current relationship status/)).toBeTruthy();
+    expect(screen.getByText(/does not confirm a current partnership/)).toBeTruthy();
     expect(within(originalTrack).queryAllByText("Arbor Vita Corporation").length).toBeGreaterThan(0);
     expect(document.querySelector('[data-partner-id="arbor-vita-technology"]')).toBeNull();
   });
 
-  it("renders approved historical partner logos", () => {
+  it("uses organization-name cards when historical logo approval is absent", () => {
     render(<HistoricalRelationshipsCarousel />);
 
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
-    expect(originalTrack.querySelectorAll("img").length).toBeGreaterThan(0);
+    expect(originalTrack.querySelectorAll("img")).toHaveLength(0);
+    expect(within(originalTrack).getAllByText("Black Lion Hospital").length).toBeGreaterThan(0);
   });
 
   it("renders approved board portraits and does not duplicate the heading", () => {

@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  currentRelationships,
   getCurrentPublishedRelationships,
   getHistoricalRelationships,
+  historicalRelationships,
   relationships,
 } from "@/data/relationships";
 
@@ -26,6 +28,23 @@ describe("relationships data", () => {
           !relationship.isVerifiedCurrent ||
           (relationship.isApprovedForPublicUse && relationship.isPublished),
       ),
+    ).toBe(true);
+  });
+
+  it("separates current relationships from historical references", () => {
+    expect(currentRelationships).toEqual([]);
+    expect(
+      historicalRelationships.every((relationship) =>
+        relationship.relationshipType.startsWith("historical-"),
+      ),
+    ).toBe(true);
+  });
+
+  it("does not approve historical logos for public display by default", () => {
+    expect(
+      historicalRelationships
+        .filter((relationship) => Boolean(relationship.logo))
+        .every((relationship) => relationship.isApprovedForPublicUse === false),
     ).toBe(true);
   });
 });
