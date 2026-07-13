@@ -68,10 +68,11 @@ export default function HistoricalBoardCarousel() {
     <ContinuousCarousel
       ariaLabel="Historical board of directors references"
       direction="right"
-      speed="slow"
+      speed="medium"
       itemGap={18}
-      pauseOnHover
-      pauseOnFocus
+      pauseOnHover={false}
+      pauseOnFocus={false}
+      pauseWhenOffscreen={false}
       showControls={false}
       className="board-reference-carousel"
     >

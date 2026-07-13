@@ -107,8 +107,9 @@ export default function HistoricalPartnersCarousel() {
         direction="left"
         speed="fast"
         itemGap={22}
-        pauseOnHover
-        pauseOnFocus
+        pauseOnHover={false}
+        pauseOnFocus={false}
+        pauseWhenOffscreen={false}
         showControls={false}
       >
         {relationships.map((relationship) => (

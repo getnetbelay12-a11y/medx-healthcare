@@ -9,9 +9,7 @@ import {
 } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
-import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
 import MedxImage from "@/components/MedxImage";
-import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
 import { getPublishedServices } from "@/data/services";
@@ -37,6 +35,27 @@ const strategicPreview = [
   "Near-term supply, diagnostics, and screening support",
   "Medium-term data visibility and supply-chain discipline",
   "Long-term local capacity and regional healthcare platform direction",
+];
+
+const platformPriorities = [
+  {
+    title: "Reliable healthcare supply",
+    description:
+      "Build dependable access to pharmaceuticals, medical devices, and program-ready products for healthcare institutions.",
+    icon: PackageCheck,
+  },
+  {
+    title: "Diagnostic and screening readiness",
+    description:
+      "Strengthen practical diagnostics and cervical-screening support where early access changes public-health outcomes.",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "Digital operating discipline",
+    description:
+      "Use data visibility, forecasting, and transparent workflows to support better supply and service decisions.",
+    icon: DatabaseZap,
+  },
 ];
 
 export default function Home() {
@@ -144,42 +163,51 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-12 md:py-14">
-        <div className="ai-motion-field" aria-hidden="true">
-          <span className="ai-motion-node ai-motion-node-a" />
-          <span className="ai-motion-node ai-motion-node-b" />
-          <span className="ai-motion-node ai-motion-node-c" />
-        </div>
-        <div className="container-medx relative">
-          <SectionHeader
-            eyebrow="Historical ecosystem"
-            title="Historical partner ecosystem"
-            description="Institutions referenced in MedX's 2020 materials, shown as historical context rather than confirmed current endorsement."
-            centered
-          />
-
-          <HistoricalPartnersCarousel />
-        </div>
-      </section>
-
-      <section className="section-band py-14 md:py-18">
-        <div className="container-medx">
-          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-            <div className="board-motion-copy">
-              <p className="text-[11px] font-black uppercase tracking-[0.38em] text-[#10a66e]">
-                Historical board
-              </p>
-              <h2 className="mt-4 text-3xl font-black leading-[1.02] tracking-tight text-[#071b33] sm:text-4xl md:text-5xl">
-                Board of Directors referenced in MedX&apos;s 2020 investor materials.
-              </h2>
-              <p className="mt-6 text-base font-medium leading-8 text-slate-600">
-                Historical portraits and names from the 2020 deck are displayed as a
-                continuous executive gallery. They are not presented as the confirmed
-                current MedX board.
-              </p>
+      <section className="section-band py-16 md:py-20">
+        <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <SectionHeader
+              eyebrow="Platform priorities"
+              title="Execution areas that matter for healthcare access."
+              description="The homepage now focuses on MedX’s practical operating priorities: supply reliability, diagnostics, screening support, and digital discipline."
+            />
+            <div className="mt-8 grid gap-4">
+              {platformPriorities.map(({ title, description, icon: Icon }) => (
+                <article
+                  key={title}
+                  className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(8,27,51,0.06)]"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                    <Icon size={22} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-black text-[#071b33]">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-7 text-slate-600">
+                      {description}
+                    </p>
+                  </div>
+                </article>
+              ))}
             </div>
-
-            <HistoricalBoardCarousel />
+          </div>
+          <div className="rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-[0_24px_70px_rgba(8,27,51,0.1)]">
+            <MedxImage
+              src={medxImages.supplyChain.src}
+              alt={medxImages.supplyChain.alt}
+              className="aspect-[16/11] rounded-[1.35rem]"
+            />
+            <div className="grid gap-3 pt-4 sm:grid-cols-3">
+              {strategicPreview.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl bg-slate-50 p-4 text-xs font-black leading-6 text-slate-700"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

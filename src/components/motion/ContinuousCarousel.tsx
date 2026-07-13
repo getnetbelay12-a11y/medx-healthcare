@@ -24,6 +24,7 @@ export type ContinuousCarouselProps = {
   speed?: "slow" | "medium" | "fast";
   pauseOnHover?: boolean;
   pauseOnFocus?: boolean;
+  pauseWhenOffscreen?: boolean;
   showControls?: boolean;
   ariaLabel: string;
   className?: string;
@@ -78,6 +79,7 @@ export default function ContinuousCarousel({
   speed = "medium",
   pauseOnHover = true,
   pauseOnFocus = true,
+  pauseWhenOffscreen = true,
   showControls = true,
   ariaLabel,
   className = "",
@@ -107,7 +109,7 @@ export default function ContinuousCarousel({
     prefersReducedMotion ||
     isUserPaused ||
     isTabHidden ||
-    !isVisible ||
+    (pauseWhenOffscreen && !isVisible) ||
     (pauseOnHover && isHovered) ||
     (pauseOnFocus && isFocusWithin);
 
