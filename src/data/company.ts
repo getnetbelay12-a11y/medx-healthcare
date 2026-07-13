@@ -9,9 +9,9 @@ export const company = {
   description:
     "MedX Healthcare Solutions is a Bahir Dar-based healthcare company with historical roots in diagnostic manufacturing, in-vitro diagnostic distribution, and cervical-cancer screening access.",
   mission:
-    "Support reliable access to healthcare products, diagnostics, medical devices, cervical-screening programs, and data-informed healthcare operations.",
+    "Improve healthcare access through dependable supply, diagnostics, screening support, and disciplined implementation.",
   vision:
-    "Develop a trusted healthcare solutions platform for Ethiopia and selected African markets through disciplined supply, diagnostics, partnerships, and local capacity building.",
+    "Build a trusted Ethiopian healthcare platform with stronger local capacity and regional relevance.",
   disclaimer:
     "This website provides organizational and service information and does not provide medical advice, diagnosis, or emergency services.",
   verifiedCurrentFacts: [
@@ -39,6 +39,83 @@ export const company = {
     "Manufacturing readiness",
     "Broader cancer-care infrastructure",
     "Regional healthcare platform expansion",
+  ],
+  aboutHighlights: [
+    "Founded in 2017",
+    "Based in Bahir Dar",
+    "Originated in diagnostics and cervical screening",
+  ],
+  aboutGlance: [
+    { label: "Founded", value: "2017" },
+    { label: "Location", value: "Bahir Dar, Amhara, Ethiopia" },
+    { label: "Original focus", value: "Diagnostics and cervical screening" },
+    {
+      label: "Current direction",
+      value:
+        "Healthcare supply, diagnostics, screening support, and implementation discipline",
+    },
+  ],
+  aboutTimeline: [
+    {
+      period: "2017",
+      title: "Company formation and original diagnostics focus",
+      label: "Historical formation reference",
+    },
+    {
+      period: "2017-2020",
+      title: "Cervical-screening and in-vitro diagnostic foundation",
+      label: "Historical platform reference",
+    },
+    {
+      period: "2019",
+      title: "Governance transition referenced in investor materials",
+      label: "Historical governance reference",
+    },
+    {
+      period: "Current direction",
+      title:
+        "Healthcare supply, devices, diagnostics, screening support, public-health programs, and digital operations",
+      label: "Current public direction",
+    },
+    {
+      period: "Long-term direction",
+      title:
+        "Local capacity, manufacturing readiness, cancer-care development, and regional expansion",
+      label: "Future direction subject to execution capacity",
+    },
+  ],
+  aboutValues: [
+    {
+      title: "Public Health Impact",
+      description: "Prioritize solutions that improve access and strengthen care delivery.",
+    },
+    {
+      title: "Innovation",
+      description: "Apply practical technology to real healthcare challenges.",
+    },
+    {
+      title: "Reliability",
+      description: "Deliver with consistency, transparency, and accountability.",
+    },
+    {
+      title: "Local Capacity",
+      description: "Build skills, systems, and long-term Ethiopian capability.",
+    },
+    {
+      title: "Partnership",
+      description: "Work through trusted institutional and technical collaboration.",
+    },
+    {
+      title: "Accountability",
+      description: "Measure progress and take responsibility for outcomes.",
+    },
+  ],
+  historicalGovernanceContext: [
+    "Goshe Meda Pipe and Plastic Manufacturing Industry is referenced in historical administration context.",
+    "Amhara Regional Health Bureau and Amhara Public Health Institute are referenced in historical support context.",
+    "Nigat Corporate is referenced in historical governance transition materials.",
+    "TIRET Corporate is referenced in historical investor and joint-venture materials.",
+    "Arbor Vita Corporation is referenced in historical investor and technology context.",
   ],
 } as const;
 

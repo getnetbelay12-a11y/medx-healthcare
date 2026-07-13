@@ -1,215 +1,332 @@
 import type { Metadata } from "next";
-import CTASection from "@/components/CTASection";
-import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
-import MedxImage from "@/components/MedxImage";
-import PageHero from "@/components/PageHero";
-import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
-import SectionHeader from "@/components/SectionHeader";
-import { company } from "@/data/company";
-import { medxImages } from "@/data/images";
-import { pageMetadata } from "@/lib/seo";
 import {
-  Building2,
+  CheckCircle2,
+  CircleDot,
   Handshake,
   Lightbulb,
-  Microscope,
   Scale,
   ShieldCheck,
   Target,
   Warehouse,
 } from "lucide-react";
+import CTASection from "@/components/CTASection";
+import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
+import MedxImage from "@/components/MedxImage";
+import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
+import SectionHeader from "@/components/SectionHeader";
+import { company } from "@/data/company";
+import { medxImages } from "@/data/images";
+import { getCurrentPublishedRelationships } from "@/data/relationships";
+import { getPublishedServices } from "@/data/services";
+import { publicEnv } from "@/lib/env";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "About MedX",
   description:
-    "Learn about MedX Healthcare Solutions, its Bahir Dar operating context, historical origin, mission, governance, and public-health focus.",
+    "A concise overview of MedX Healthcare Solutions, its Bahir Dar base, diagnostics and screening origin, current healthcare focus, governance context, and relationship status.",
   path: "/about",
-  image: medxImages.bahirDar.src,
+  image: medxImages.hospitalPartnership.src,
 });
 
-const values = [
-  { title: "Public Health Impact", icon: Target },
-  { title: "Innovation", icon: Lightbulb },
-  { title: "Reliability", icon: ShieldCheck },
-  { title: "Local Capacity", icon: Warehouse },
-  { title: "Partnership", icon: Handshake },
-  { title: "Accountability", icon: Scale },
+const missionVision = [
+  {
+    label: "Mission",
+    title: company.mission,
+  },
+  {
+    label: "Vision",
+    title: company.vision,
+  },
 ];
 
-const platformFacts = [
+const values = [
   {
-    title: "Bahir Dar operating base",
-    description:
-      "Presentation materials identify MedX’s diagnostic manufacturing activity in a newly established and fully furnished facility in Bahir Dar.",
-    icon: Building2,
+    ...company.aboutValues[0],
+    icon: Target,
   },
   {
-    title: "Diagnostics origin",
-    description:
-      "The platform was built around manufacturing medical devices and distributing in-vitro diagnostic technologies.",
-    icon: Microscope,
+    ...company.aboutValues[1],
+    icon: Lightbulb,
   },
   {
-    title: "Global technology partner",
-    description:
-      "Arbor Vita Corporation brought proteomic diagnostics expertise, patent-protected technology, and international diagnostic experience.",
+    ...company.aboutValues[2],
+    icon: ShieldCheck,
+  },
+  {
+    ...company.aboutValues[3],
+    icon: Warehouse,
+  },
+  {
+    ...company.aboutValues[4],
     icon: Handshake,
   },
+  {
+    ...company.aboutValues[5],
+    icon: Scale,
+  },
 ];
+
+const currentRelationships = getCurrentPublishedRelationships();
+const currentServiceAreas = getPublishedServices("current").filter(
+  (service) => service.isVerified,
+);
 
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        eyebrow="About MedX"
-        title="About MedX"
-        description="An integrated healthcare corporation founded to address critical public health gaps in Ethiopia."
-        image={medxImages.bahirDar}
-      />
-
-      <section className="bg-white py-20">
-        <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <SectionHeader
-            eyebrow="Company Background"
-            title="Founded to close screening, supply, and healthcare access gaps."
-            description="MedX was established in 2017 in Bahir Dar, Amhara, Ethiopia, with historical roots in diagnostic manufacturing, in-vitro diagnostic distribution, and cervical-screening access."
-          />
-          <div className="space-y-5 text-lg leading-8 text-slate-600">
-            <p>
-              The company was established with historical initial capital of{" "}
-              {company.historicalInitialCapital} and historical materials place
-              its operations in {company.location}.
+      <section className="corporate-shell relative overflow-hidden text-white">
+        <div className="premium-divider absolute inset-x-0 bottom-0" />
+        <div className="container-medx grid gap-10 py-14 md:py-18 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-20">
+          <div>
+            <p className="mb-4 inline-flex rounded-full border border-emerald-300/25 bg-emerald-300/[0.08] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">
+              About MedX
             </p>
-            <p>
-              MedX&apos;s original platform focused on diagnostics, in-vitro
-              diagnostic distribution, and cervical-screening access. The company
-              is now positioned as a broader healthcare solutions platform serving
-              supply, diagnostics, medical devices, public-health programs, and
-              future local capacity.
+            <h1 className="max-w-4xl text-4xl font-black leading-[1.03] tracking-normal sm:text-5xl md:text-6xl">
+              Building stronger healthcare access from Bahir Dar.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-200 md:text-lg">
+              MedX connects healthcare supply, diagnostics, cervical-screening
+              support, and long-term local capacity building for institutions and
+              public-health programs.
+            </p>
+            <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3">
+              {company.aboutHighlights.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3"
+                  >
+                    {item}
+                  </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <MedxImage
+              src={medxImages.hospitalPartnership.src}
+              alt={medxImages.hospitalPartnership.alt}
+              priority
+              className="image-frame aspect-[16/9] rounded-[1.5rem] md:rounded-[2rem]"
+              sizes="(min-width: 1024px) 52vw, 100vw"
+            />
+            <p className="mt-3 text-xs font-bold text-slate-300">
+              Conceptual healthcare operations image
             </p>
           </div>
         </div>
       </section>
 
-      <section className="section-band py-20">
+      <section className="bg-white py-14 md:py-16">
         <div className="container-medx">
           <SectionHeader
-            eyebrow="Diagnostic Platform Origin"
-            title="A diagnostic origin with a broader healthcare platform direction."
-            description="Investor materials describe an early platform focused on medical-device manufacturing, in-vitro diagnostic distribution, and cervical-cancer screening access."
-            centered
+            eyebrow="MedX at a glance"
+            title="A healthcare company with diagnostic roots and practical access priorities."
+            description={company.description}
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {platformFacts.map(({ title, description, icon: Icon }) => (
-              <div key={title} className="executive-card p-7">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
-                  <Icon size={26} />
-                </div>
-                <h3 className="text-xl font-black text-[#071b33]">{title}</h3>
-                <p className="mt-3 leading-7 text-slate-600">{description}</p>
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {company.aboutGlance.map((item) => (
+              <div key={item.label} className="border-l-4 border-[#10a66e] bg-slate-50 p-5">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#10a66e]">
+                  {item.label}
+                </p>
+                <p className="mt-3 text-base font-black leading-7 text-[#071b33]">
+                  {item.value}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="medical-pattern py-20">
-        <div className="container-medx grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="card-premium p-8 md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
-              Governance History
-            </p>
-            <h2 className="mt-4 text-3xl font-black text-[#071b33] md:text-4xl">
-              Public health roots with public-private execution experience.
-            </h2>
-            <p className="mt-5 leading-8 text-slate-600">
-              Historical materials reference public-health and corporate
-              governance context around MedX&apos;s formation, including Ethiopian
-              institutional participation and a U.S. diagnostics technology
-              connection through Arbor Vita Corporation.
+      <section className="section-band py-14 md:py-16">
+        <div className="container-medx grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <SectionHeader
+            eyebrow="Origin and evolution"
+            title="From diagnostic and screening roots to broader healthcare access work."
+            description="This timeline separates historical references from current and long-term direction. Historical items should not be read as current legal or governance status."
+          />
+          <div className="space-y-4">
+            {company.aboutTimeline.map((item) => (
+              <article
+                key={`${item.period}-${item.title}`}
+                className="grid gap-4 border-l border-slate-200 bg-white p-5 shadow-[0_10px_28px_rgba(8,27,51,0.05)] md:grid-cols-[9rem_1fr]"
+              >
+                <div>
+                  <p className="text-sm font-black text-[#071b33]">{item.period}</p>
+                  <p className="mt-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#10a66e]">
+                    {item.label}
+                  </p>
+                </div>
+                <p className="text-base font-bold leading-7 text-slate-700">
+                  {item.title}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-14 md:py-16">
+        <div className="container-medx grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <SectionHeader
+              eyebrow="What MedX does today"
+              title="Focused healthcare support for institutions and public-health programs."
+              description="MedX’s public-facing current service areas are presented narrowly to avoid mixing current work with future roadmap capabilities."
+            />
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {currentServiceAreas.map((service) => (
+                <div key={service.id} className="flex gap-3 rounded-2xl border border-slate-200 p-4">
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#10a66e]" size={20} />
+                  <p className="text-sm font-black leading-6 text-[#071b33]">
+                    {service.title}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm font-bold leading-7 text-amber-900">
+              Service availability is subject to confirmation based on product,
+              location, regulatory requirements, and implementation capacity.
             </p>
           </div>
-          {/* About governance image: /public/images/medx/medx-hospital-partnership.jpg */}
           <MedxImage
-            src={medxImages.hospitalPartnership.src}
-            alt={medxImages.hospitalPartnership.alt}
-            className="aspect-[16/10] rounded-[2rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
+            src={medxImages.diagnostics.src}
+            alt={medxImages.diagnostics.alt}
+            className="aspect-[16/10] rounded-[1.5rem] shadow-[0_18px_44px_rgba(8,27,51,0.1)]"
           />
         </div>
       </section>
 
-      <section className="bg-white py-20">
-        <div className="container-medx grid gap-6 lg:grid-cols-2">
-          <div className="card-premium p-8 md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
-              Mission
-            </p>
-            <h2 className="mt-4 text-3xl font-black text-[#071b33]">
-              Strengthen healthcare access through integrated execution.
-            </h2>
-            <p className="mt-5 leading-8 text-slate-600">
-              {company.mission}
-            </p>
-          </div>
-          <div className="card-premium p-8 md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#10a66e]">
-              Vision
-            </p>
-            <h2 className="mt-4 text-3xl font-black text-[#071b33]">
-              A trusted healthcare solutions corporation for Ethiopia and Africa.
-            </h2>
-            <p className="mt-5 leading-8 text-slate-600">
-              {company.vision}
-            </p>
-          </div>
+      <section className="medical-pattern py-14 md:py-16">
+        <div className="container-medx grid gap-5 lg:grid-cols-2">
+          {missionVision.map((item) => (
+            <article key={item.label} className="bg-white p-7 shadow-[0_12px_34px_rgba(8,27,51,0.06)]">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#10a66e]">
+                {item.label}
+              </p>
+              <h2 className="mt-4 text-2xl font-black leading-tight text-[#071b33] md:text-3xl">
+                {item.title}
+              </h2>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="medical-pattern py-20">
+      <section className="bg-white py-14 md:py-16">
         <div className="container-medx">
           <SectionHeader
-            eyebrow="Values"
-            title="Operating principles for a serious healthcare corporation."
+            eyebrow="Operating values"
+            title="Principles for disciplined healthcare execution."
             centered
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {values.map(({ title, icon: Icon }) => (
-              <div key={title} className="card-premium p-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
-                  <Icon />
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {values.map(({ title, description, icon: Icon }) => (
+              <article key={title} className="border border-slate-200 p-5">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-[#10a66e]">
+                  <Icon size={22} />
                 </div>
-                <h3 className="text-xl font-black text-[#071b33]">{title}</h3>
-              </div>
+                <h3 className="text-lg font-black text-[#071b33]">{title}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{description}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20">
-        <div className="container-medx">
+      <section className="section-band py-14 md:py-16">
+        <div className="container-medx grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <SectionHeader
-            eyebrow="Leadership and Governance"
-            title="Board references from MedX’s 2020 investor materials."
-            description="The following portraits and names are historical references from the 2020 deck and are not presented as the confirmed current MedX board."
-            centered
+            eyebrow="Governance overview"
+            title="Governance information should be confirmed through official records."
+            description="MedX’s governance and ownership structure has evolved since its formation. Current legal, shareholder, and board information should be confirmed through official company records."
           />
-          <div className="mt-12">
-            <HistoricalBoardCarousel />
-          </div>
+          <details className="group bg-white p-6 shadow-[0_12px_34px_rgba(8,27,51,0.06)]">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">
+              View historical governance context
+              <CircleDot className="shrink-0 text-[#10a66e] transition-transform group-open:rotate-90" size={22} />
+            </summary>
+            <div className="mt-5 space-y-3 border-t border-slate-200 pt-5">
+              {company.historicalGovernanceContext.map((item) => (
+                <p key={item} className="text-sm font-bold leading-7 text-slate-600">
+                  {item}
+                </p>
+              ))}
+            </div>
+          </details>
         </div>
       </section>
 
-      <section className="section-band py-20">
+      {publicEnv.showHistoricalBoard && (
+        <section className="bg-white py-14 md:py-16">
+          <div className="container-medx">
+            <details className="group">
+              <summary className="cursor-pointer list-none rounded-2xl border border-slate-200 bg-slate-50 p-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">
+                Historical governance references from MedX&apos;s 2020 investor materials
+              </summary>
+              <div className="mt-8">
+                <p className="mb-5 text-sm font-bold leading-7 text-slate-600">
+                  These portraits and names are historical references only and are
+                  not presented as the confirmed current MedX board.
+                </p>
+                <HistoricalBoardCarousel />
+              </div>
+            </details>
+          </div>
+        </section>
+      )}
+
+      <section className="bg-white py-14 md:py-16">
         <div className="container-medx">
           <SectionHeader
-            eyebrow="Relationship Context"
-            title="Institutions referenced in MedX’s historical ecosystem."
-            description="These references come from historical MedX materials and are shown as context, not as confirmed current endorsements."
+            eyebrow="Relationships"
+            title="Current verified relationships"
+            description="Current relationships are published only after organizational confirmation and approval for public use."
             centered
           />
-          <HistoricalRelationshipsCarousel />
+          {currentRelationships.length > 0 ? (
+            <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {currentRelationships.map((relationship) => (
+                <article key={relationship.id} className="border border-slate-200 p-5">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-[#10a66e]">
+                    Verified current relationship
+                  </p>
+                  <h3 className="mt-3 text-lg font-black text-[#071b33]">
+                    {relationship.displayName}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    {relationship.publicDescription}
+                  </p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="mx-auto mt-8 max-w-2xl rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center text-sm font-bold leading-7 text-slate-600">
+              Verified current relationships will be published after organizational
+              confirmation.
+            </p>
+          )}
         </div>
       </section>
+
+      {publicEnv.showHistoricalRelationships && (
+        <section className="section-band py-14 md:py-16">
+          <div className="container-medx">
+            <details className="group">
+              <summary className="cursor-pointer list-none rounded-2xl border border-slate-200 bg-white p-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">
+                Historical relationships referenced in 2020 materials
+              </summary>
+              <div className="mt-8">
+                <p className="mb-5 text-sm font-bold leading-7 text-slate-600">
+                  These organization references are historical context only and do
+                  not imply current endorsement or active partnership.
+                </p>
+                <HistoricalRelationshipsCarousel />
+              </div>
+            </details>
+          </div>
+        </section>
+      )}
 
       <CTASection />
     </>
