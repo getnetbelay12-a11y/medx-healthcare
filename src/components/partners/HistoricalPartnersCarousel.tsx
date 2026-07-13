@@ -71,8 +71,30 @@ function PartnerCard({ relationship }: { relationship: Relationship }) {
   );
 }
 
+function PartnerLogoTile({ relationship }: { relationship: Relationship }) {
+  const canShowLogo = canShowRelationshipLogo(relationship);
+
+  return (
+    <div className="partner-motion-logo-tile" data-logo-id={relationship.id}>
+      {canShowLogo ? (
+        <Image
+          src={relationship.logo || ""}
+          alt=""
+          width={180}
+          height={90}
+          loading="lazy"
+          className="max-h-14 w-auto max-w-full object-contain"
+        />
+      ) : (
+        <span>{relationship.displayName}</span>
+      )}
+    </div>
+  );
+}
+
 export default function HistoricalPartnersCarousel() {
   const relationships = getDisplayRelationships(getPublishedHistoricalRelationships());
+  const motionRelationships = [...relationships, ...relationships];
 
   if (relationships.length === 0) {
     return null;
@@ -83,8 +105,8 @@ export default function HistoricalPartnersCarousel() {
       <ContinuousCarousel
         ariaLabel="Historical partner and institution references"
         direction="left"
-        speed="slow"
-        itemGap={18}
+        speed="fast"
+        itemGap={22}
         pauseOnHover
         pauseOnFocus
         showControls
@@ -93,6 +115,20 @@ export default function HistoricalPartnersCarousel() {
           <PartnerCard key={relationship.id} relationship={relationship} />
         ))}
       </ContinuousCarousel>
+
+      <div
+        className="partner-logo-motion-rail"
+        aria-label="Moving historical logo reference rail"
+      >
+        <div className="partner-logo-motion-track" aria-hidden="true">
+          {motionRelationships.map((relationship, index) => (
+            <PartnerLogoTile
+              key={`${relationship.id}-${index}`}
+              relationship={relationship}
+            />
+          ))}
+        </div>
+      </div>
 
       <div className="historical-notice">
         Historical slide-derived organization references. Confirm current status
