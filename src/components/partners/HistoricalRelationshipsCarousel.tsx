@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ContinuousCarousel from "@/components/motion/ContinuousCarousel";
+import AutoCarousel from "@/components/motion/AutoCarousel";
 import {
   getPublishedHistoricalRelationships,
   type Relationship,
@@ -35,7 +35,7 @@ function getDisplayRelationships(relationships: Relationship[]) {
   });
 }
 
-function PartnerCard({ relationship }: { relationship: Relationship }) {
+export function PartnerCard({ relationship }: { relationship: Relationship }) {
   const canShowLogo = canShowRelationshipLogo(relationship);
 
   return (
@@ -71,30 +71,8 @@ function PartnerCard({ relationship }: { relationship: Relationship }) {
   );
 }
 
-function PartnerLogoTile({ relationship }: { relationship: Relationship }) {
-  const canShowLogo = canShowRelationshipLogo(relationship);
-
-  return (
-    <div className="partner-motion-logo-tile" data-logo-id={relationship.id}>
-      {canShowLogo ? (
-        <Image
-          src={relationship.logo || ""}
-          alt=""
-          width={180}
-          height={90}
-          loading="lazy"
-          className="max-h-14 w-auto max-w-full object-contain"
-        />
-      ) : (
-        <span>{relationship.displayName}</span>
-      )}
-    </div>
-  );
-}
-
-export default function HistoricalPartnersCarousel() {
+export default function HistoricalRelationshipsCarousel() {
   const relationships = getDisplayRelationships(getPublishedHistoricalRelationships());
-  const motionRelationships = [...relationships, ...relationships];
 
   if (relationships.length === 0) {
     return null;
@@ -102,34 +80,19 @@ export default function HistoricalPartnersCarousel() {
 
   return (
     <div className="historical-partners-panel">
-      <ContinuousCarousel
+      <AutoCarousel
         ariaLabel="Historical partner and institution references"
-        direction="left"
-        speed="fast"
+        direction="right"
+        duration={62}
         itemGap={22}
-        pauseOnHover={false}
-        pauseOnFocus={false}
-        pauseWhenOffscreen={false}
-        showControls={false}
+        pauseOnHover
+        pauseOnFocus
+        showControls
       >
         {relationships.map((relationship) => (
           <PartnerCard key={relationship.id} relationship={relationship} />
         ))}
-      </ContinuousCarousel>
-
-      <div
-        className="partner-logo-motion-rail"
-        aria-label="Moving historical logo reference rail"
-      >
-        <div className="partner-logo-motion-track" aria-hidden="true">
-          {motionRelationships.map((relationship, index) => (
-            <PartnerLogoTile
-              key={`${relationship.id}-${index}`}
-              relationship={relationship}
-            />
-          ))}
-        </div>
-      </div>
+      </AutoCarousel>
 
       <div className="historical-notice">
         Historical slide-derived organization references. Confirm current status

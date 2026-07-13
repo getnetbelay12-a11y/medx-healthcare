@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ContinuousCarousel from "@/components/motion/ContinuousCarousel";
+import AutoCarousel from "@/components/motion/AutoCarousel";
 import {
   getPublishedHistoricalLeadership,
   type LeadershipMember,
@@ -15,7 +15,7 @@ function initialsFor(name: string) {
     .join("");
 }
 
-function BoardCard({ member }: { member: LeadershipMember }) {
+export function BoardCard({ member }: { member: LeadershipMember }) {
   const portrait = member.portrait || member.image;
   const canShowPortrait =
     portrait && member.isApprovedForPublicUse && member.isPublished;
@@ -65,20 +65,19 @@ export default function HistoricalBoardCarousel() {
   }
 
   return (
-    <ContinuousCarousel
+    <AutoCarousel
       ariaLabel="Historical board of directors references"
-      direction="right"
-      speed="medium"
+      direction="left"
+      duration={56}
       itemGap={18}
-      pauseOnHover={false}
-      pauseOnFocus={false}
-      pauseWhenOffscreen={false}
-      showControls={false}
+      pauseOnHover
+      pauseOnFocus
+      showControls
       className="board-reference-carousel"
     >
       {members.map((member) => (
         <BoardCard key={member.id} member={member} />
       ))}
-    </ContinuousCarousel>
+    </AutoCarousel>
   );
 }

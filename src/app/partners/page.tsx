@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
-import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
+import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
 import { pageMetadata } from "@/lib/seo";
@@ -89,7 +89,7 @@ export default function PartnersPage() {
             description="These historical references provide context for MedX’s original ecosystem and do not imply current endorsement or active partnership without confirmation."
             centered
           />
-          <HistoricalPartnersCarousel />
+          <HistoricalRelationshipsCarousel />
         </div>
       </section>
 

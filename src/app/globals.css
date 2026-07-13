@@ -359,6 +359,67 @@ body {
   scroll-snap-align: start;
 }
 
+/* MEDX ACCESSIBLE AUTO CAROUSELS */
+
+.auto-carousel {
+  --carousel-duration: 56s;
+  --carousel-gap: 18px;
+  --carousel-direction: medx-board-marquee;
+  position: relative;
+  overflow: hidden;
+}
+
+.auto-carousel-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 1.45rem;
+  scrollbar-width: none;
+}
+
+.auto-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.auto-carousel-viewport::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(248, 251, 252, 0.9),
+    transparent 5.5%,
+    transparent 94.5%,
+    rgba(248, 251, 252, 0.9)
+  );
+}
+
+.auto-carousel-strip {
+  display: flex;
+  width: max-content;
+  animation: var(--carousel-direction) var(--carousel-duration) linear infinite;
+  animation-play-state: running;
+  will-change: transform;
+}
+
+.auto-carousel[data-paused="true"] .auto-carousel-strip {
+  animation-play-state: paused;
+}
+
+.auto-carousel-track {
+  display: flex;
+  gap: var(--carousel-gap);
+  min-width: max-content;
+  padding-right: var(--carousel-gap);
+}
+
+.auto-carousel-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
 .historical-partners-panel {
   position: relative;
   margin-top: 1.4rem;
@@ -394,7 +455,7 @@ body {
   background: linear-gradient(270deg, rgba(248, 251, 252, 0.98), transparent);
 }
 
-.historical-partners-panel .continuous-carousel-viewport {
+.historical-partners-panel .auto-carousel-viewport {
   border: 1px solid rgba(217, 230, 239, 0.76);
   background:
     radial-gradient(circle at 18% 12%, rgba(16, 166, 110, 0.08), transparent 26%),
@@ -403,8 +464,8 @@ body {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
-.historical-partners-panel .continuous-carousel-item {
-  width: clamp(17.5rem, 20vw, 22.5rem);
+.historical-partners-panel .auto-carousel-item {
+  width: clamp(17.5rem, 18.5vw, 20rem);
 }
 
 .partner-reference-card {
@@ -488,75 +549,7 @@ body {
   line-height: 1.55;
 }
 
-.partner-logo-motion-rail {
-  position: relative;
-  margin-top: 0.9rem;
-  overflow: hidden;
-  border-radius: 1.15rem;
-  border: 1px solid rgba(217, 230, 239, 0.72);
-  background:
-    linear-gradient(90deg, rgba(7, 27, 51, 0.02), rgba(16, 166, 110, 0.06), rgba(7, 27, 51, 0.02)),
-    rgba(255, 255, 255, 0.74);
-  padding: 0.7rem 0;
-}
-
-.partner-logo-motion-rail::before,
-.partner-logo-motion-rail::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-  width: min(10vw, 6rem);
-}
-
-.partner-logo-motion-rail::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.98), transparent);
-}
-
-.partner-logo-motion-rail::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0.98), transparent);
-}
-
-.partner-logo-motion-track {
-  display: flex;
-  width: max-content;
-  gap: 0.9rem;
-  animation: medx-logo-marquee 32s linear infinite;
-  will-change: transform;
-}
-
-.historical-partners-panel:hover .partner-logo-motion-track {
-  animation-play-state: paused;
-}
-
-.partner-motion-logo-tile {
-  display: grid;
-  min-width: 12.5rem;
-  height: 4.4rem;
-  place-items: center;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(217, 230, 239, 0.86);
-  background:
-    radial-gradient(circle at 20% 20%, rgba(16, 166, 110, 0.08), transparent 36%),
-    #ffffff;
-  padding: 0.7rem 1rem;
-  box-shadow: 0 12px 26px rgba(8, 27, 51, 0.055);
-}
-
-.partner-motion-logo-tile span {
-  max-width: 10rem;
-  text-align: center;
-  color: #087a53;
-  font-size: 0.86rem;
-  font-weight: 950;
-  line-height: 1.1;
-}
-
-.board-reference-carousel .continuous-carousel-viewport {
+.board-reference-carousel .auto-carousel-viewport {
   border: 1px solid rgba(217, 230, 239, 0.95);
   background:
     radial-gradient(circle at 85% 18%, rgba(16, 166, 110, 0.1), transparent 28%),
@@ -566,8 +559,8 @@ body {
   box-shadow: 0 18px 42px rgba(8, 27, 51, 0.07);
 }
 
-.board-reference-carousel .continuous-carousel-item {
-  width: clamp(16.5rem, 21vw, 19rem);
+.board-reference-carousel .auto-carousel-item {
+  width: clamp(17.5rem, 21vw, 20rem);
 }
 
 .board-reference-card {
@@ -643,12 +636,35 @@ body {
   }
 }
 
+@keyframes medx-board-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes medx-relationships-marquee {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ai-motion-node {
     transform: none;
   }
 
   .continuous-carousel-strip {
+    animation: none;
+    transform: none;
+  }
+
+  .auto-carousel-strip {
     animation: none;
     transform: none;
   }
@@ -660,6 +676,17 @@ body {
     scrollbar-width: none;
   }
 
+  .auto-carousel-viewport {
+    overflow-x: auto;
+    mask-image: none;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .auto-carousel-viewport::before {
+    display: none;
+  }
+
   .continuous-carousel-viewport::before {
     display: none;
   }
@@ -668,9 +695,8 @@ body {
     display: none;
   }
 
-  .partner-logo-motion-track {
-    animation: none;
-    transform: none;
+  .auto-carousel-track[aria-hidden="true"] {
+    display: none;
   }
 }
 
@@ -701,6 +727,10 @@ body {
     transform: none;
   }
 
+  .auto-carousel-strip {
+    animation: var(--carousel-direction) calc(var(--carousel-duration) * 1.3) linear infinite;
+  }
+
   .continuous-carousel-track[aria-hidden="true"] {
     display: none;
   }
@@ -714,6 +744,27 @@ body {
     width: 82vw;
   }
 
+  .historical-partners-panel .auto-carousel-item,
+  .board-reference-carousel .auto-carousel-item {
+    width: 82vw;
+  }
+
+  .auto-carousel-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .auto-carousel-viewport::before {
+    background: linear-gradient(
+      90deg,
+      rgba(248, 251, 252, 0.56),
+      transparent 3.5%,
+      transparent 96.5%,
+      rgba(248, 251, 252, 0.56)
+    );
+  }
+
   .partner-reference-card {
     min-height: 13rem;
   }
@@ -721,10 +772,6 @@ body {
   .historical-partners-panel {
     padding: 0.75rem;
     border-radius: 1.35rem;
-  }
-
-  .partner-logo-motion-rail {
-    display: none;
   }
 
   .board-reference-card {

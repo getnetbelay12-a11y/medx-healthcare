@@ -3,9 +3,14 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
+import HistoricalBoardCarousel, {
+  BoardCard,
+} from "@/components/leadership/HistoricalBoardCarousel";
+import AutoCarousel from "@/components/motion/AutoCarousel";
 import ContinuousCarousel from "@/components/motion/ContinuousCarousel";
-import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
+import HistoricalRelationshipsCarousel, {
+  PartnerCard,
+} from "@/components/partners/HistoricalRelationshipsCarousel";
 import { getPublishedHistoricalLeadership } from "@/data/leadership";
 import {
   getPublishedHistoricalRelationships,
@@ -203,10 +208,10 @@ describe("ContinuousCarousel", () => {
 
 describe("Historical carousel content safeguards", () => {
   it("renders only published historical relationships and keeps the disclaimer visible", () => {
-    render(<HistoricalPartnersCarousel />);
+    render(<HistoricalRelationshipsCarousel />);
 
     const published = getPublishedHistoricalRelationships();
-    const originalTrack = screen.getByTestId("carousel-original-track");
+    const originalTrack = screen.getByTestId("auto-carousel-original-track");
 
     expect(originalTrack.children).toHaveLength(uniqueVisibleRelationshipCount(published));
     expect(screen.getByText(/Confirm current status/)).toBeTruthy();
@@ -215,9 +220,9 @@ describe("Historical carousel content safeguards", () => {
   });
 
   it("renders approved historical partner logos", () => {
-    render(<HistoricalPartnersCarousel />);
+    render(<HistoricalRelationshipsCarousel />);
 
-    const originalTrack = screen.getByTestId("carousel-original-track");
+    const originalTrack = screen.getByTestId("auto-carousel-original-track");
     expect(originalTrack.querySelectorAll("img").length).toBeGreaterThan(0);
   });
 
@@ -225,7 +230,7 @@ describe("Historical carousel content safeguards", () => {
     render(<HistoricalBoardCarousel />);
 
     const published = getPublishedHistoricalLeadership();
-    const originalTrack = screen.getByTestId("carousel-original-track");
+    const originalTrack = screen.getByTestId("auto-carousel-original-track");
 
     expect(originalTrack.children).toHaveLength(published.length);
     expect(
@@ -242,5 +247,181 @@ describe("Historical carousel content safeguards", () => {
 
     expect(document.querySelector(".continuous-carousel-viewport")).toBeTruthy();
     expect(screen.getByTestId("carousel-original-track")).toBeTruthy();
+  });
+});
+
+describe("AutoCarousel motion contract", () => {
+  it("autoplays by default without requiring a click", () => {
+    render(
+      <AutoCarousel ariaLabel="Autoplay carousel">
+        <article>Alpha</article>
+        <article>Beta</article>
+      </AutoCarousel>,
+    );
+
+    const region = screen.getByLabelText("Autoplay carousel");
+    expect(region).toHaveAttribute("data-paused", "false");
+    expect(region).toHaveStyle({ "--carousel-duration": "56s" });
+  });
+
+  it("uses right-to-left motion for board and left-to-right motion for relationships", () => {
+    render(
+      <>
+        <HistoricalBoardCarousel />
+        <HistoricalRelationshipsCarousel />
+      </>,
+    );
+
+    expect(screen.getByLabelText("Historical board of directors references")).toHaveStyle({
+      "--carousel-direction": "medx-board-marquee",
+    });
+    expect(screen.getByLabelText("Historical partner and institution references")).toHaveStyle({
+      "--carousel-direction": "medx-relationships-marquee",
+    });
+  });
+
+  it("pauses on hover and focus, and resumes afterward", () => {
+    render(
+      <AutoCarousel ariaLabel="Interactive auto carousel">
+        <button type="button">Focusable item</button>
+      </AutoCarousel>,
+    );
+
+    const region = screen.getByLabelText("Interactive auto carousel");
+    const viewport = document.querySelector(".auto-carousel-viewport");
+    expect(viewport).toBeTruthy();
+
+    fireEvent.mouseEnter(viewport as Element);
+    expect(region).toHaveAttribute("data-paused", "true");
+    fireEvent.mouseLeave(viewport as Element);
+    expect(region).toHaveAttribute("data-paused", "false");
+
+    const originalTrack = screen.getByTestId("auto-carousel-original-track");
+    fireEvent.focus(within(originalTrack).getByText("Focusable item"));
+    expect(region).toHaveAttribute("data-paused", "true");
+  });
+
+  it("pause button works independently of autoplay", () => {
+    render(
+      <AutoCarousel ariaLabel="Controlled auto carousel">
+        <article>Alpha</article>
+      </AutoCarousel>,
+    );
+
+    const region = screen.getByLabelText("Controlled auto carousel");
+    fireEvent.click(screen.getByLabelText("Pause Controlled auto carousel"));
+    expect(region).toHaveAttribute("data-paused", "true");
+    fireEvent.click(screen.getByLabelText("Play Controlled auto carousel"));
+    expect(region).toHaveAttribute("data-paused", "false");
+  });
+
+  it("pauses offscreen and when the browser tab is hidden", () => {
+    isIntersecting = false;
+    render(
+      <AutoCarousel ariaLabel="Visibility auto carousel">
+        <article>Alpha</article>
+      </AutoCarousel>,
+    );
+
+    const region = screen.getByLabelText("Visibility auto carousel");
+    expect(region).toHaveAttribute("data-offscreen", "true");
+    expect(region).toHaveAttribute("data-paused", "true");
+
+    Object.defineProperty(document, "hidden", {
+      configurable: true,
+      value: true,
+    });
+    fireEvent(document, new Event("visibilitychange"));
+    expect(region).toHaveAttribute("data-paused", "true");
+  });
+
+  it("disables autoplay for reduced-motion users while keeping controls", () => {
+    prefersReducedMotion = true;
+    render(
+      <AutoCarousel ariaLabel="Reduced auto carousel">
+        <article>Alpha</article>
+      </AutoCarousel>,
+    );
+
+    const region = screen.getByLabelText("Reduced auto carousel");
+    expect(region).toHaveAttribute("data-reduced-motion", "true");
+    expect(region).toHaveAttribute("data-paused", "true");
+    expect(screen.getByLabelText("Play Reduced auto carousel")).toBeTruthy();
+  });
+
+  it("keeps clone track hidden and non-focusable without duplicate IDs", () => {
+    render(
+      <AutoCarousel ariaLabel="Clone safety carousel">
+        <a href="/services" id="safe-link">
+          Services
+        </a>
+      </AutoCarousel>,
+    );
+
+    const cloneTrack = screen.getByTestId("auto-carousel-clone-track");
+    expect(cloneTrack).toHaveAttribute("aria-hidden", "true");
+    expect(cloneTrack).toHaveAttribute("tabindex", "-1");
+    expect(cloneTrack.querySelector("a")).toHaveAttribute("tabindex", "-1");
+    expect(document.querySelectorAll("#safe-link")).toHaveLength(1);
+  });
+
+  it("renders mobile touch fallback state without hiding items", () => {
+    render(
+      <AutoCarousel ariaLabel="Mobile auto carousel">
+        <article>Alpha</article>
+        <article>Beta</article>
+      </AutoCarousel>,
+    );
+
+    const region = screen.getByLabelText("Mobile auto carousel");
+    const viewport = document.querySelector(".auto-carousel-viewport");
+    fireEvent.touchStart(viewport as Element);
+    expect(region).toHaveAttribute("data-touch-paused", "true");
+    expect(screen.getByTestId("auto-carousel-original-track").children).toHaveLength(2);
+  });
+
+  it("does not render unapproved relationship logos", () => {
+    render(
+      <PartnerCard
+        relationship={{
+          id: "unapproved-logo",
+          organization: "Unapproved Logo Organization",
+          displayName: "Unapproved Logo Organization",
+          relationshipType: "historical-health-institution",
+          sourceYear: 2020,
+          sourceDescription: "Test",
+          publicDescription: "Test",
+          logo: "/images/medx/partners/path.png",
+          isVerifiedCurrent: false,
+          isApprovedForPublicUse: false,
+          isPublished: true,
+        }}
+      />,
+    );
+
+    expect(document.querySelector('[data-partner-id="unapproved-logo"] img')).toBeNull();
+    expect(screen.getAllByText("Unapproved Logo Organization").length).toBeGreaterThan(0);
+  });
+
+  it("uses initials when a historical board portrait is not approved", () => {
+    render(
+      <BoardCard
+        member={{
+          id: "unapproved-portrait",
+          name: "Dr. Sample Leader",
+          credentials: "M.D.",
+          historicalRole: "Historical test reference",
+          image: "/images/medx/board/peter-lu.jpg",
+          sourceYear: 2020,
+          isVerifiedCurrent: false,
+          isApprovedForPublicUse: false,
+          isPublished: true,
+        }}
+      />,
+    );
+
+    expect(document.querySelector('[data-board-id="unapproved-portrait"] img')).toBeNull();
+    expect(screen.getByText("SL")).toBeTruthy();
+    expect(screen.getByText("Historical 2020 reference")).toBeTruthy();
   });
 });

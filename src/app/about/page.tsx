@@ -3,7 +3,7 @@ import CTASection from "@/components/CTASection";
 import HistoricalBoardCarousel from "@/components/leadership/HistoricalBoardCarousel";
 import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
-import HistoricalPartnersCarousel from "@/components/partners/HistoricalPartnersCarousel";
+import HistoricalRelationshipsCarousel from "@/components/partners/HistoricalRelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { company } from "@/data/company";
 import { medxImages } from "@/data/images";
@@ -207,7 +207,7 @@ export default function AboutPage() {
             description="These references come from historical MedX materials and are shown as context, not as confirmed current endorsements."
             centered
           />
-          <HistoricalPartnersCarousel />
+          <HistoricalRelationshipsCarousel />
         </div>
       </section>
 
