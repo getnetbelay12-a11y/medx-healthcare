@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {
-  Building2,
   Mail,
   MapPin,
   ShieldCheck,
 } from "lucide-react";
+import BrandMark from "@/components/BrandMark";
 import { company } from "@/data/company";
 import { isValidPublicEmail, publicEnv } from "@/lib/env";
 
@@ -36,9 +36,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.7fr_0.7fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#10a66e] text-white">
-                <Building2 size={24} />
-              </div>
+              <BrandMark size="lg" variant="light" />
 
               <div>
                 <p className="text-xl font-black tracking-tight">MedX</p>

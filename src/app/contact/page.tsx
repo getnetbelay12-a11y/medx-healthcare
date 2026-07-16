@@ -47,6 +47,24 @@ const inquiryGuidance = [
   "Preferred response timeline",
 ];
 
+const responseSteps = [
+  {
+    title: "Request review",
+    detail:
+      "MedX reviews the organization, product or program need, destination, and urgency.",
+  },
+  {
+    title: "Scope clarification",
+    detail:
+      "The team may ask for quantities, facility context, documentation needs, or decision-owner details.",
+  },
+  {
+    title: "Next-step alignment",
+    detail:
+      "MedX confirms whether the request is a supply inquiry, program discussion, relationship pathway, or strategic follow-up.",
+  },
+];
+
 export default function ContactPage() {
   return (
     <>
@@ -128,6 +146,35 @@ export default function ContactPage() {
           </div>
 
           <ContactForm />
+        </div>
+      </section>
+
+      <section className="section-band py-14 md:py-16">
+        <div className="container-medx">
+          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
+                After you submit
+              </p>
+              <h2 className="mt-4 text-3xl font-black leading-tight text-[#071b33] md:text-4xl">
+                Clear requests move faster.
+              </h2>
+              <p className="mt-4 max-w-2xl leading-8 text-slate-600">
+                The form is designed to route serious product, program, and
+                relationship inquiries into a practical review path.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {responseSteps.map((step, index) => (
+                <article key={step.title} className="medx-contact-step">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>

@@ -55,13 +55,13 @@ export default function HeroSection() {
           </p>
 
           <h1 className="mt-6 max-w-5xl text-[2.8rem] font-black leading-[0.96] tracking-normal sm:text-6xl xl:text-[5.7rem]">
-            Find it. Supply it. Scale healthcare access.
+            Healthcare access, diagnostics, and supply systems built for impact.
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-xl">
-            A healthcare platform for diagnostics, pharmaceutical supply,
-            medical devices, cervical-health support, and AI-assisted operating
-            visibility across institutional programs.
+            MedX supports institutions with pharmaceutical supply, medical
+            devices, diagnostics, cervical-health programs, and AI-assisted
+            operating visibility.
           </p>
 
           <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">

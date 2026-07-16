@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, PackageCheck, X } from "lucide-react";
 import { useState } from "react";
+import BrandMark from "@/components/BrandMark";
 
 const navigation = [
   { label: "Home", href: "/" },
@@ -36,9 +37,7 @@ export default function SiteHeader() {
             className="flex shrink-0 items-center gap-3"
             onClick={() => setMobileOpen(false)}
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#071b33] text-sm font-black text-white shadow-[0_8px_20px_rgba(8,27,51,0.18)] ring-4 ring-emerald-50">
-              MX
-            </div>
+            <BrandMark />
 
             <div>
               <p className="text-lg font-black leading-none tracking-tight text-[#071b33]">
