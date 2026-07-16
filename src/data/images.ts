@@ -11,6 +11,14 @@ export const medxImages = {
     src: "/images/medx/medx-ai-supply-frame.png",
     alt: "Conceptual healthcare supply and medical device readiness scene with clinical staff and operations dashboards.",
   },
+  aiScreeningFrame: {
+    src: "/images/medx/medx-ai-screening-frame.png",
+    alt: "Conceptual public health and cervical-screening coordination scene with healthcare professionals and AI readiness dashboards.",
+  },
+  aiRegionalFrame: {
+    src: "/images/medx/medx-ai-regional-frame.png",
+    alt: "Conceptual regional healthcare access and medical logistics command center with supply routes and facility readiness dashboards.",
+  },
   hero: {
     src: "/images/medx/medx-hero-healthcare-africa.jpg",
     alt: "Conceptual image of African healthcare professionals reviewing diagnostics and operations.",

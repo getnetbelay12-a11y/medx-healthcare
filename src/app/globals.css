@@ -2328,6 +2328,31 @@ button:focus-visible {
     justify-content: center;
   }
 
+  .medx-frame-indicator {
+    gap: 0.45rem;
+  }
+
+  .medx-frame-indicator button:not(.medx-frame-toggle) {
+    width: 0.86rem;
+    height: 0.86rem;
+    border-color: rgba(255, 255, 255, 0.28);
+    padding: 0;
+    color: transparent;
+    font-size: 0;
+  }
+
+  .medx-frame-indicator button:not(.medx-frame-toggle) i {
+    inset: 0;
+    width: auto;
+    border-radius: inherit;
+  }
+
+  .medx-frame-toggle {
+    min-height: 2rem;
+    padding: 0.42rem 0.65rem !important;
+    font-size: 0.66rem !important;
+  }
+
   .medx-product-card,
   .medx-benefit-card,
   .medx-tech-card,

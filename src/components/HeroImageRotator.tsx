@@ -18,6 +18,14 @@ const frames = [
     ...medxImages.aiSupplyFrame,
     label: "Supply coordination",
   },
+  {
+    ...medxImages.aiScreeningFrame,
+    label: "Screening follow-up",
+  },
+  {
+    ...medxImages.aiRegionalFrame,
+    label: "Regional access",
+  },
 ];
 
 export default function HeroImageRotator() {
