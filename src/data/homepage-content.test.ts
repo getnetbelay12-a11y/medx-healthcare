@@ -60,15 +60,16 @@ describe("homepage public copy contract", () => {
     expect(combined).not.toContain("are presented as roadmap capabilities");
   });
 
-  it("adds service CTAs and roadmap labels", () => {
+  it("adds service CTAs and AI operating roadmap labels", () => {
     expect(homepageSource).toContain("Request pharmaceutical supply");
     expect(homepageSource).toContain("Discuss medical-device needs");
     expect(homepageSource).toContain("Request diagnostic support");
     expect(homepageSource).toContain("Discuss a screening program");
-    expect(homepageSource).toContain("In development");
-    expect(homepageSource).toContain("Demand risk");
-    expect(homepageSource).toContain("Stock visibility");
-    expect(homepageSource).toContain("Program readiness");
+    expect(homepageSource).toContain("AI-ready roadmap");
+    expect(homepageSource).toContain("Access command cockpit");
+    expect(homepageSource).toContain("Demand pressure");
+    expect(homepageSource).toContain("Medicine supply");
+    expect(homepageSource).toContain("Device access");
   });
 
   it("keeps one compact hero facts row", () => {

@@ -109,10 +109,53 @@ const technologyCards = [
 ];
 
 const aiSignals = [
-  { label: "Demand risk", value: "Forecast" },
-  { label: "Stock visibility", value: "Track" },
-  { label: "Program readiness", value: "Coordinate" },
-  { label: "Leadership reporting", value: "Report" },
+  {
+    label: "Diagnostics",
+    value: "Readiness rising",
+    detail: "Lab consumables, referral flow, and screening follow-up aligned.",
+    level: "78%",
+  },
+  {
+    label: "Medicine supply",
+    value: "Watch list",
+    detail: "Two high-priority categories need earlier sourcing review.",
+    level: "62%",
+  },
+  {
+    label: "Device access",
+    value: "Coordinating",
+    detail: "Facility requirements and product documentation under review.",
+    level: "71%",
+  },
+];
+
+const intelligenceQueue = [
+  {
+    label: "Institutional request",
+    value: "Diagnostic and consumable bundle",
+    status: "Scope",
+  },
+  {
+    label: "Risk signal",
+    value: "Procurement lead time pressure",
+    status: "Review",
+  },
+  {
+    label: "Action owner",
+    value: "Supply and program coordination",
+    status: "Assign",
+  },
+  {
+    label: "Reporting need",
+    value: "Weekly readiness summary",
+    status: "Prepare",
+  },
+];
+
+const intelligenceStats = [
+  { label: "Request intake", value: "Structured" },
+  { label: "Supply signal", value: "Prioritized" },
+  { label: "Follow-up", value: "Tracked" },
 ];
 
 const requestChecklist = [
@@ -340,13 +383,22 @@ export default function Home() {
       </section>
 
       <section className="bg-white py-14 md:py-18">
-        <div className="container-medx grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
+        <div className="container-medx grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
             <SectionHeader
               eyebrow="AI-assisted operations preview"
-              title="Visibility is the difference between effort and execution."
-              description="MedX’s next operating layer should help leaders forecast demand, see supply risk, coordinate programs, and report clearly without waiting for fragmented spreadsheets to catch up."
+              title="A smarter command layer for healthcare access work."
+              description="MedX should not present AI as decoration. The practical opportunity is an operating cockpit that turns requests, supply signals, diagnostic readiness, and program follow-up into visible next actions."
             />
+            <div className="mt-7 grid gap-3">
+              {intelligenceStats.map((item) => (
+                <div key={item.label} className="medx-intel-proof">
+                  <CheckCircle2 size={18} />
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
             <Link href="/strategy" className="btn-primary mt-8">
               Review strategy
               <ArrowRight size={17} />
@@ -360,17 +412,17 @@ export default function Home() {
                   MedX operating intelligence
                 </p>
                 <p className="mt-2 text-2xl font-black text-white">
-                  Access readiness view
+                  Access command cockpit
                 </p>
               </div>
-              <span>In development</span>
+              <span>AI-ready roadmap</span>
             </div>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               {[
-                { icon: Activity, label: "Program demand", value: "Forecast" },
-                { icon: Network, label: "Facility network", value: "Coordinate" },
-                { icon: Globe2, label: "Regional capacity", value: "Expand" },
+                { icon: Activity, label: "Demand pressure", value: "Forecast" },
+                { icon: Network, label: "Facility actions", value: "Coordinate" },
+                { icon: Globe2, label: "Regional scale", value: "Plan" },
               ].map((item) => {
                 const Icon = item.icon;
 
@@ -388,24 +440,51 @@ export default function Home() {
               })}
             </div>
 
-            <div className="mt-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="medx-console-chart" aria-hidden="true">
-                <span style={{ height: "46%" }} />
-                <span style={{ height: "62%" }} />
-                <span style={{ height: "54%" }} />
-                <span style={{ height: "78%" }} />
-                <span style={{ height: "68%" }} />
-                <span style={{ height: "88%" }} />
-                <span style={{ height: "72%" }} />
+            <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
+              <div className="medx-console-queue">
+                <div className="flex items-center justify-between gap-4">
+                  <p className="text-sm font-black text-white">Operating queue</p>
+                  <span>Live model</span>
+                </div>
+                <div className="mt-4 grid gap-3">
+                  {intelligenceQueue.map((item) => (
+                    <div key={item.label} className="medx-queue-row">
+                      <div>
+                        <p>{item.label}</p>
+                        <strong>{item.value}</strong>
+                      </div>
+                      <span>{item.status}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
+
               <div className="grid gap-3">
                 {aiSignals.map((signal) => (
                   <div key={signal.label} className="medx-ai-signal">
-                    <p>{signal.label}</p>
-                    <span>{signal.value}</span>
+                    <div>
+                      <div className="flex items-center justify-between gap-3">
+                        <p>{signal.label}</p>
+                        <span>{signal.value}</span>
+                      </div>
+                      <strong>{signal.detail}</strong>
+                      <div className="medx-signal-bar" aria-hidden="true">
+                        <i style={{ width: signal.level }} />
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="medx-console-chart mt-5" aria-label="Readiness trend visualization">
+              <span style={{ height: "46%" }} />
+              <span style={{ height: "62%" }} />
+              <span style={{ height: "54%" }} />
+              <span style={{ height: "78%" }} />
+              <span style={{ height: "68%" }} />
+              <span style={{ height: "88%" }} />
+              <span style={{ height: "72%" }} />
             </div>
           </div>
         </div>

@@ -1844,6 +1844,36 @@ button:focus-visible {
   box-shadow: 0 28px 80px rgba(8, 27, 51, 0.18);
 }
 
+.medx-intel-proof {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  border-radius: 1rem;
+  border: 1px solid rgba(217, 230, 239, 0.95);
+  background: #ffffff;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 14px 32px rgba(8, 27, 51, 0.055);
+}
+
+.medx-intel-proof svg {
+  color: #10a66e;
+}
+
+.medx-intel-proof span {
+  color: #425466;
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.medx-intel-proof strong {
+  color: #071b33;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
 .medx-console-topline {
   display: flex;
   align-items: flex-start;
@@ -1876,9 +1906,58 @@ button:focus-visible {
   padding: 1rem;
 }
 
+.medx-console-queue {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1rem;
+}
+
+.medx-console-queue > div:first-child > span,
+.medx-queue-row > span {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  border: 1px solid rgba(110, 231, 183, 0.26);
+  background: rgba(16, 166, 110, 0.11);
+  padding: 0.38rem 0.55rem;
+  color: #a7f3d0;
+  font-size: 0.64rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.medx-queue-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.055);
+  padding: 0.8rem;
+}
+
+.medx-queue-row p {
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.medx-queue-row strong {
+  margin-top: 0.25rem;
+  display: block;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 850;
+  line-height: 1.45;
+}
+
 .medx-console-chart {
   display: flex;
-  min-height: 15rem;
+  min-height: 8rem;
   align-items: end;
   gap: 0.7rem;
   border-radius: 1rem;
@@ -1908,15 +1987,11 @@ button:focus-visible {
 }
 
 .medx-ai-signal {
-  display: flex;
-  min-height: 3.35rem;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  min-height: 7rem;
   border-radius: 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.065);
-  padding: 0.8rem 0.9rem;
+  padding: 0.9rem;
 }
 
 .medx-ai-signal p {
@@ -1931,6 +2006,31 @@ button:focus-visible {
   font-weight: 950;
   text-transform: uppercase;
   letter-spacing: 0.14em;
+}
+
+.medx-ai-signal strong {
+  margin-top: 0.55rem;
+  display: block;
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.medx-signal-bar {
+  overflow: hidden;
+  margin-top: 0.85rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.medx-signal-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6ee7b7, #22d3ee);
+  box-shadow: 0 0 20px rgba(110, 231, 183, 0.42);
 }
 
 .medx-context-band {
