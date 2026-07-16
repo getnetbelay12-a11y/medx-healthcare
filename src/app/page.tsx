@@ -1,14 +1,21 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
+  Activity,
   ArrowRight,
-  ClipboardCheck,
   DatabaseZap,
+  Globe2,
+  HeartPulse,
+  Microscope,
+  Network,
   PackageCheck,
+  ShieldCheck,
 } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
+import LeadershipCarousel from "@/components/leadership/LeadershipCarousel";
 import MedxImage from "@/components/MedxImage";
+import RelationshipsCarousel from "@/components/partners/RelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
 import { getPublishedServices } from "@/data/services";
@@ -30,18 +37,44 @@ const serviceActions: Record<string, string> = {
   "cervical-screening": "Discuss a screening program",
 };
 
-const strategicPreview = [
+const benefitTiles = [
   {
-    label: "Near term",
-    text: "Supply, devices, diagnostics, and screening support",
+    number: "01",
+    title: "Diagnostics-first platform",
+    text: "Programs are organized around testing readiness, cervical-health origin, and fast institutional coordination.",
   },
   {
-    label: "Medium term",
-    text: "Data visibility, supply-chain discipline, and research collaboration",
+    number: "02",
+    title: "Supply reliability",
+    text: "Pharmaceuticals, consumables, and medical-device requests are treated as operational systems, not one-off transactions.",
   },
   {
-    label: "Long term",
-    text: "Local capacity, manufacturing readiness, and regional expansion",
+    number: "03",
+    title: "Public-health fit",
+    text: "MedX is built for facilities, institutions, and programs that need practical execution in constrained environments.",
+  },
+  {
+    number: "04",
+    title: "Capacity roadmap",
+    text: "Digital visibility, forecasting, research collaboration, and local capability are part of the long-term platform direction.",
+  },
+];
+
+const technologyCards = [
+  {
+    icon: Microscope,
+    title: "Diagnostics and screening",
+    text: "Support for diagnostic readiness, cervical-health screening programs, and lab-facing service coordination.",
+  },
+  {
+    icon: PackageCheck,
+    title: "Products and supply",
+    text: "Pharmaceutical supply, devices, and health-product sourcing for institutional healthcare needs.",
+  },
+  {
+    icon: DatabaseZap,
+    title: "Digital operations",
+    text: "Workflows for supply visibility, forecasting, reporting, and program coordination as the platform matures.",
   },
 ];
 
@@ -50,21 +83,27 @@ export default function Home() {
     <>
       <HeroSection />
 
-      <section className="medical-pattern py-12 md:py-14">
+      <section className="medx-product-band py-14 md:py-18">
         <div className="container-medx">
           <SectionHeader
-            eyebrow="Current services"
-            title="Current service areas."
-            description="MedX supports institutional requests across four current service lines."
+            eyebrow="Healthcare products and services"
+            title="Practical healthcare solutions, organized for execution."
+            description="MedX focuses on the high-friction points that determine whether healthcare programs actually work: diagnostics, supply, devices, screening support, and operational visibility."
             centered
           />
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {currentServices.map((service) => (
-              <article key={service.id} className="card-premium p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
-                  <PackageCheck size={23} />
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {currentServices.map((service, index) => (
+              <article key={service.id} className="medx-product-card">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-4xl font-black leading-none text-emerald-100">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                    <PackageCheck size={23} />
+                  </div>
                 </div>
-                <h3 className="mt-5 text-xl font-black text-[#071b33]">
+                <h3 className="mt-6 text-xl font-black leading-tight text-[#071b33]">
                   {service.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -83,138 +122,209 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-12 md:py-14">
+      <section className="bg-white py-14 md:py-18">
         <div className="container-medx grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <MedxImage
-              src={medxImages.cervicalScreening.src}
-              alt={medxImages.cervicalScreening.alt}
-              className="aspect-[16/10] rounded-[1.5rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
+              src={medxImages.diagnostics.src}
+              alt={medxImages.diagnostics.alt}
+              className="aspect-[16/10] rounded-[1.35rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
             />
-            <p className="mt-3 text-xs font-bold text-slate-500">
-              Conceptual cervical-health education image.
-            </p>
           </div>
-          <SectionHeader
-            eyebrow="Cervical-health origin"
-            title="A focused origin in diagnostics and cervical screening."
-            description="MedX’s original platform was rooted in diagnostics and cervical-screening access, creating a foundation for public-health program support."
-          />
+
+          <div>
+            <SectionHeader
+              eyebrow="Diagnostic readiness"
+              title="Built for the point where tests, products, and public-health programs meet."
+              description="MedX leads with the operational platform that helps diagnostic and healthcare access programs reach facilities and communities."
+            />
+
+            <div className="mt-7 grid gap-4 sm:grid-cols-2">
+              {benefitTiles.map((item) => (
+                <article key={item.number} className="medx-benefit-card">
+                  <p className="text-3xl font-black text-[#10a66e]">
+                    {item.number}
+                  </p>
+                  <h3 className="mt-3 text-base font-black text-[#071b33]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="section-band py-12 md:py-14">
+      <section className="medx-women-health py-14 text-white md:py-18">
         <div className="container-medx grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="mb-4 inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#0a7c5b]">
-              In development
+            <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-200">
+              No woman left behind
             </p>
             <SectionHeader
-              eyebrow="Digital operations preview"
-              title="Digital workflows for stronger healthcare operations."
-              description="MedX is developing tools for supply visibility, forecasting, reporting, and program coordination."
+              eyebrow="Cervical-health origin"
+              title="A focused origin in cervical screening and cancer-care access."
+              description="MedX’s original platform was rooted in diagnostics and cervical-screening access. That origin still matters because women’s health programs need tools, supply, training coordination, and dependable follow-through."
             />
-            <div className="mt-7 flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-5">
-              <DatabaseZap className="mt-1 shrink-0 text-[#10a66e]" size={22} />
-              <p className="text-sm font-bold leading-7 text-slate-700">
-                MedX focuses on reliable healthcare supply, diagnostic readiness,
-                screening support, and disciplined digital operations.
-              </p>
+
+            <div className="mt-7 grid gap-3 sm:grid-cols-3">
+              {["Screening access", "Program supply", "Care continuity"].map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.07] p-4 text-sm font-black"
+                  >
+                    {item}
+                  </div>
+                ),
+              )}
             </div>
           </div>
           <div>
             <MedxImage
-              src={medxImages.digitalHealth.src}
-              alt={medxImages.digitalHealth.alt}
-              className="aspect-[16/10] rounded-[1.5rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
+              src={medxImages.cervicalScreening.src}
+              alt={medxImages.cervicalScreening.alt}
+              className="image-frame aspect-[16/10] rounded-[1.35rem]"
             />
-            <p className="mt-3 text-xs font-bold text-slate-500">
-              Conceptual digital operations image.
-            </p>
           </div>
         </div>
       </section>
 
-      <section className="corporate-shell py-12 text-white md:py-14">
-        <div className="container-medx grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="section-band py-14 md:py-18">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="What makes MedX useful"
+            title="From products to platform."
+            description="The stronger story is not just what MedX supplies. It is how MedX connects products, diagnostics, relationships, and operating discipline into a system."
+            centered
+          />
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {technologyCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <article key={card.title} className="medx-tech-card">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#071b33] text-emerald-300">
+                    <Icon size={23} />
+                  </div>
+                  <h3 className="mt-6 text-2xl font-black text-[#071b33]">
+                    {card.title}
+                  </h3>
+                  <p className="mt-4 leading-8 text-slate-600">{card.text}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-14 md:py-18">
+        <div className="container-medx grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.28em] text-emerald-300">
-              Strategy preview
-            </p>
-            <h2 className="mt-4 text-3xl font-black tracking-tight md:text-5xl">
-              A phased healthcare platform strategy.
-            </h2>
-            <p className="mt-6 leading-8 text-slate-300">
-              MedX follows a phased strategy from immediate healthcare access
-              needs to stronger local capacity.
-            </p>
+            <SectionHeader
+              eyebrow="Digital operations preview"
+              title="Visibility is the difference between effort and execution."
+              description="MedX is developing workflows for supply visibility, forecasting, reporting, and program coordination so leaders can see what is available, what is needed, and where the system is under pressure."
+            />
             <Link href="/strategy" className="btn-primary mt-8">
-              Review Strategy
+              Review strategy
               <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="grid gap-4">
-            {strategicPreview.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-2xl border border-white/10 bg-white/[0.07] p-5 font-bold text-slate-100"
-              >
-                <ClipboardCheck className="mb-4 text-emerald-300" size={21} />
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-300">
-                  {item.label}
-                </p>
-                <p className="mt-3 leading-7">{item.text}</p>
-              </div>
-            ))}
+
+          <div className="medx-dashboard-panel">
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                { icon: Activity, label: "Program demand", value: "Forecast" },
+                { icon: Network, label: "Facility network", value: "Coordinate" },
+                { icon: Globe2, label: "Regional capacity", value: "Expand" },
+              ].map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div key={item.label} className="medx-dashboard-metric">
+                    <Icon className="text-emerald-300" size={22} />
+                    <p className="mt-4 text-xs font-black uppercase tracking-[0.18em] text-slate-400">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 text-2xl font-black text-white">
+                      {item.value}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+              <div className="h-3 w-3/4 rounded-full bg-emerald-300/80" />
+              <div className="mt-4 h-3 w-11/12 rounded-full bg-white/20" />
+              <div className="mt-4 h-3 w-2/3 rounded-full bg-white/15" />
+              <p className="mt-6 text-sm font-bold leading-7 text-slate-300">
+                Conceptual operating layer for supply, diagnostics, reporting,
+                and program coordination.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-12 md:py-14">
-        <div className="container-medx grid gap-5 md:grid-cols-2">
-          <Link
-            href="/about#leadership"
-            className="group rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(8,27,51,0.08)]"
-          >
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
-              Governance
-            </p>
-            <h2 className="mt-3 text-2xl font-black text-[#071b33]">
-              Meet our leadership
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              Review MedX leadership and historical governance references.
-            </p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
-              Open leadership
-              <ArrowRight size={15} className="transition group-hover:translate-x-1" />
-            </span>
-          </Link>
+      <LeadershipCarousel />
 
-          <Link
-            href="/partners"
-            className="group rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(8,27,51,0.08)]"
-          >
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
-              Relationships
-            </p>
-            <h2 className="mt-3 text-2xl font-black text-[#071b33]">
-              Explore partners and relationships
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              View current and historical relationship context in one place.
-            </p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
-              Open partners
-              <ArrowRight size={15} className="transition group-hover:translate-x-1" />
-            </span>
-          </Link>
+      <RelationshipsCarousel />
+
+      <section className="bg-white py-14 md:py-18">
+        <div className="container-medx">
+          <div className="grid gap-5 md:grid-cols-2">
+            <Link href="/about#leadership" className="medx-link-panel group">
+              <ShieldCheck className="text-[#10a66e]" size={24} />
+              <p className="mt-5 text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
+                Governance
+              </p>
+              <h2 className="mt-3 text-2xl font-black text-[#071b33]">
+                Review leadership and governance
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                Open the full governance context, including historical board
+                references.
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
+                Open leadership
+                <ArrowRight
+                  size={15}
+                  className="transition group-hover:translate-x-1"
+                />
+              </span>
+            </Link>
+
+            <Link href="/partners" className="medx-link-panel group">
+              <HeartPulse className="text-[#10a66e]" size={24} />
+              <p className="mt-5 text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
+                Relationships
+              </p>
+              <h2 className="mt-3 text-2xl font-black text-[#071b33]">
+                Explore partners and relationship context
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                View current and historical relationship context in one place.
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
+                Open partners
+                <ArrowRight
+                  size={15}
+                  className="transition group-hover:translate-x-1"
+                />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
       <CTASection
-        title="Request products, services, or partnership discussion."
-        description="Choose the path that matches your organization’s need."
+        title="Request products, services, or a partnership discussion."
+        description="Choose the path that matches your institution’s need."
         buttonLabel="Request products or services"
         secondaryButtonLabel="Discuss a partnership"
         variant="simple"
