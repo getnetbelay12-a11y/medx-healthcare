@@ -5,7 +5,6 @@ import {
   ArrowRight,
   DatabaseZap,
   Globe2,
-  HeartPulse,
   Microscope,
   Network,
   PackageCheck,
@@ -13,9 +12,7 @@ import {
 } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
-import LeadershipCarousel from "@/components/leadership/LeadershipCarousel";
 import MedxImage from "@/components/MedxImage";
-import RelationshipsCarousel from "@/components/partners/RelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
 import { getPublishedServices } from "@/data/services";
@@ -333,53 +330,46 @@ export default function Home() {
         </div>
       </section>
 
-      <LeadershipCarousel />
-
-      <RelationshipsCarousel />
-
-      <section className="bg-white py-14 md:py-18">
+      <section className="medx-context-band py-14 md:py-18">
         <div className="container-medx">
-          <div className="grid gap-5 md:grid-cols-2">
-            <Link href="/about#leadership" className="medx-link-panel group">
-              <ShieldCheck className="text-[#10a66e]" size={24} />
-              <p className="mt-5 text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
-                Governance
-              </p>
-              <h2 className="mt-3 text-2xl font-black text-[#071b33]">
-                Review leadership and governance
-              </h2>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
-                Open the full governance context, including historical board
-                references.
-              </p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
-                Open leadership
-                <ArrowRight
-                  size={15}
-                  className="transition group-hover:translate-x-1"
-                />
-              </span>
-            </Link>
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <SectionHeader
+              eyebrow="Governance and relationships"
+              title="Detailed context lives where users expect it."
+              description="MedX keeps governance and relationship information organized on dedicated pages, with clear labels for current records and historical references."
+            />
 
-            <Link href="/partners" className="medx-link-panel group">
-              <HeartPulse className="text-[#10a66e]" size={24} />
-              <p className="mt-5 text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
-                Relationships
-              </p>
-              <h2 className="mt-3 text-2xl font-black text-[#071b33]">
-                Explore partners and relationship context
-              </h2>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
-                View current and historical relationship context in one place.
-              </p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b]">
-                Open partners
-                <ArrowRight
-                  size={15}
-                  className="transition group-hover:translate-x-1"
-                />
-              </span>
-            </Link>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Link href="/about#leadership" className="medx-context-card group">
+                <ShieldCheck className="text-[#10a66e]" size={24} />
+                <h3 className="mt-5 text-xl font-black text-[#071b33]">
+                  Leadership and governance
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Review the full governance references and historical board
+                  context.
+                </p>
+                <span>
+                  View leadership
+                  <ArrowRight size={15} />
+                </span>
+              </Link>
+
+              <Link href="/partners" className="medx-context-card group">
+                <Network className="text-[#10a66e]" size={24} />
+                <h3 className="mt-5 text-xl font-black text-[#071b33]">
+                  Partner context
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Explore current records and historical relationship context in
+                  one place.
+                </p>
+                <span>
+                  View partners
+                  <ArrowRight size={15} />
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
