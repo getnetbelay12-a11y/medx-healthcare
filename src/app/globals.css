@@ -3,13 +3,18 @@
 :root {
   --background: #ffffff;
   --foreground: #081b33;
-  --navy: #071b33;
-  --navy-2: #0b2747;
+  --navy: #061a31;
+  --navy-2: #0a2f4f;
+  --ink: #041324;
   --green: #10a66e;
   --green-dark: #078456;
+  --teal: #12a99d;
+  --aqua: #22c8d8;
   --gold: #d7a84f;
-  --soft: #f4f8fa;
-  --border: #d9e6ef;
+  --gold-soft: #f0c66d;
+  --soft: #f5faf8;
+  --soft-warm: #fbf7ef;
+  --border: #d8e7e5;
 }
 
 html {
@@ -31,9 +36,9 @@ body {
 
 .gradient-hero {
   background:
-    radial-gradient(circle at 70% 18%, rgba(0, 190, 210, 0.22), transparent 30%),
-    radial-gradient(circle at 20% 85%, rgba(16, 166, 110, 0.15), transparent 28%),
-    linear-gradient(105deg, #04152a 0%, #071b33 42%, #07334b 100%);
+    radial-gradient(circle at 72% 18%, rgba(34, 200, 216, 0.2), transparent 30%),
+    radial-gradient(circle at 24% 82%, rgba(215, 168, 79, 0.13), transparent 28%),
+    linear-gradient(105deg, var(--ink) 0%, var(--navy) 44%, #073b48 100%);
 }
 
 .btn-primary {
@@ -42,16 +47,16 @@ body {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 999px;
-  background: #10a66e;
+  background: linear-gradient(135deg, #10a66e 0%, #12a99d 100%);
   color: white;
   font-weight: 800;
   padding: 1rem 1.45rem;
   transition: all 0.2s ease;
-  box-shadow: 0 14px 28px rgba(16, 166, 110, 0.25);
+  box-shadow: 0 14px 30px rgba(18, 169, 157, 0.26);
 }
 
 .btn-primary:hover {
-  background: #078456;
+  background: linear-gradient(135deg, #078456 0%, #0f8e86 100%);
   transform: translateY(-1px);
 }
 
@@ -85,38 +90,43 @@ body {
 }
 
 .card-premium {
-  border: 1px solid #d9e6ef;
-  background: white;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 253, 252, 0.96));
   border-radius: 1.5rem;
-  box-shadow: 0 18px 45px rgba(8, 27, 51, 0.08);
+  box-shadow: 0 18px 45px rgba(8, 27, 51, 0.07);
 }
 
 .corporate-shell {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    radial-gradient(circle at 78% 12%, rgba(16, 166, 110, 0.22), transparent 34%),
-    linear-gradient(135deg, #041324 0%, #071b33 48%, #08283f 100%);
+    radial-gradient(circle at 78% 12%, rgba(18, 169, 157, 0.24), transparent 34%),
+    radial-gradient(circle at 12% 88%, rgba(215, 168, 79, 0.12), transparent 28%),
+    linear-gradient(135deg, var(--ink) 0%, var(--navy) 48%, #073846 100%);
   background-size:
     80px 80px,
     80px 80px,
+    auto,
     auto,
     auto;
 }
 
 .section-band {
-  border-block: 1px solid rgba(217, 230, 239, 0.78);
+  border-block: 1px solid rgba(216, 231, 229, 0.82);
   background:
-    linear-gradient(180deg, rgba(247, 251, 252, 0.82), rgba(255, 255, 255, 1)),
-    radial-gradient(circle at 8% 0%, rgba(16, 166, 110, 0.08), transparent 25%);
+    linear-gradient(180deg, rgba(245, 250, 248, 0.88), rgba(255, 255, 255, 1)),
+    radial-gradient(circle at 8% 0%, rgba(18, 169, 157, 0.09), transparent 25%),
+    radial-gradient(circle at 92% 100%, rgba(215, 168, 79, 0.08), transparent 24%);
 }
 
 .executive-card {
-  border: 1px solid rgba(217, 230, 239, 0.9);
+  border: 1px solid rgba(216, 231, 229, 0.92);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 252, 0.92));
+    radial-gradient(circle at 100% 0%, rgba(34, 200, 216, 0.06), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 249, 0.94));
   border-radius: 1.5rem;
-  box-shadow: 0 18px 55px rgba(8, 27, 51, 0.08);
+  box-shadow: 0 18px 55px rgba(8, 27, 51, 0.075);
 }
 
 .premium-divider {
@@ -140,9 +150,9 @@ body {
 .metric-tile {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(217, 230, 239, 0.92);
+  border: 1px solid rgba(216, 231, 229, 0.92);
   background:
-    linear-gradient(180deg, #ffffff 0%, #f8fbfc 100%);
+    linear-gradient(180deg, #ffffff 0%, #f7fbf9 100%);
   border-radius: 1.25rem;
   box-shadow: 0 16px 42px rgba(8, 27, 51, 0.07);
 }
@@ -152,7 +162,7 @@ body {
   position: absolute;
   inset: 0 auto 0 0;
   width: 4px;
-  background: linear-gradient(180deg, #10a66e, #d7a84f);
+  background: linear-gradient(180deg, #12a99d, #d7a84f);
 }
 
 .image-frame {
@@ -164,14 +174,15 @@ body {
 
 .medical-pattern {
   background:
-    radial-gradient(circle at top left, rgba(16, 166, 110, 0.08), transparent 25%),
-    linear-gradient(180deg, #f7fbfc 0%, #ffffff 100%);
+    radial-gradient(circle at top left, rgba(18, 169, 157, 0.09), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(215, 168, 79, 0.08), transparent 24%),
+    linear-gradient(180deg, #f6faf8 0%, #ffffff 100%);
 }
 
 .input-medx {
   width: 100%;
   border-radius: 0.9rem;
-  border: 1px solid #d9e6ef;
+  border: 1px solid var(--border);
   background: white;
   padding: 0.9rem 1rem;
   outline: none;
@@ -1423,11 +1434,13 @@ button:focus-visible {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    radial-gradient(circle at 80% 16%, rgba(16, 166, 110, 0.2), transparent 34%),
-    linear-gradient(135deg, #041324 0%, #071b33 47%, #0a3650 100%);
+    radial-gradient(circle at 80% 16%, rgba(18, 169, 157, 0.22), transparent 34%),
+    radial-gradient(circle at 15% 90%, rgba(215, 168, 79, 0.12), transparent 26%),
+    linear-gradient(135deg, var(--ink) 0%, var(--navy) 47%, #073846 100%);
   background-size:
     86px 86px,
     86px 86px,
+    auto,
     auto,
     auto;
 }
@@ -1541,7 +1554,7 @@ button:focus-visible {
 .medx-live-intel-head,
 .medx-live-intel-card {
   border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(4, 19, 36, 0.58);
+  background: rgba(4, 19, 36, 0.62);
   box-shadow:
     0 22px 60px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -1615,7 +1628,7 @@ button:focus-visible {
   position: absolute;
   right: 1rem;
   top: 1rem;
-  color: #6ee7b7;
+  color: #f0c66d;
   font-size: 0.85rem;
   font-weight: 950;
 }
@@ -1774,8 +1787,9 @@ button:focus-visible {
 
 .medx-product-band {
   background:
-    linear-gradient(180deg, #f7fbfc 0%, #ffffff 100%),
-    radial-gradient(circle at 12% 0%, rgba(16, 166, 110, 0.08), transparent 28%);
+    linear-gradient(180deg, #f6faf8 0%, #ffffff 100%),
+    radial-gradient(circle at 12% 0%, rgba(18, 169, 157, 0.09), transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(215, 168, 79, 0.07), transparent 24%);
 }
 
 .medx-access-stage {
@@ -1787,10 +1801,12 @@ button:focus-visible {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(135deg, #061a31 0%, #0a2e49 56%, #06493f 100%);
+    radial-gradient(circle at 92% 14%, rgba(215, 168, 79, 0.13), transparent 28%),
+    linear-gradient(135deg, var(--navy) 0%, #0a334d 56%, #075048 100%);
   background-size:
     68px 68px,
     68px 68px,
+    auto,
     auto;
   padding: clamp(1.35rem, 4vw, 2.4rem);
   box-shadow: 0 24px 70px rgba(8, 27, 51, 0.14);
@@ -1825,8 +1841,9 @@ button:focus-visible {
 .medx-benefit-card,
 .medx-tech-card,
 .medx-context-card {
-  border: 1px solid rgba(217, 230, 239, 0.95);
-  background: #ffffff;
+  border: 1px solid rgba(216, 231, 229, 0.95);
+  background:
+    linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
   box-shadow: 0 18px 45px rgba(8, 27, 51, 0.075);
   transition:
     transform 180ms ease,
@@ -1852,10 +1869,10 @@ button:focus-visible {
   align-items: center;
   gap: 0.35rem;
   border-radius: 999px;
-  border: 1px solid rgba(16, 166, 110, 0.14);
-  background: #f0fbf6;
+  border: 1px solid rgba(18, 169, 157, 0.16);
+  background: #eefaf7;
   padding: 0.35rem 0.6rem;
-  color: #0a7c5b;
+  color: #087a6f;
   font-size: 0.72rem;
   font-weight: 900;
   line-height: 1.2;
@@ -1899,10 +1916,12 @@ button:focus-visible {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(135deg, #061a31 0%, #07314b 46%, #0b6b62 100%);
+    radial-gradient(circle at 82% 12%, rgba(240, 198, 109, 0.12), transparent 28%),
+    linear-gradient(135deg, var(--navy) 0%, #07314b 46%, #0b6b62 100%);
   background-size:
     74px 74px,
     74px 74px,
+    auto,
     auto;
 }
 
@@ -1929,10 +1948,12 @@ button:focus-visible {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(135deg, #061a31, #092c49 55%, #06463f);
+    radial-gradient(circle at 100% 0%, rgba(240, 198, 109, 0.12), transparent 26%),
+    linear-gradient(135deg, var(--navy), #0a334d 55%, #064f47);
   background-size:
     58px 58px,
     58px 58px,
+    auto,
     auto;
   padding: 1rem;
   box-shadow: 0 28px 80px rgba(8, 27, 51, 0.18);
@@ -2123,8 +2144,8 @@ button:focus-visible {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #6ee7b7, #22d3ee);
-  box-shadow: 0 0 20px rgba(110, 231, 183, 0.42);
+  background: linear-gradient(90deg, #6ee7b7, #22c8d8, #f0c66d);
+  box-shadow: 0 0 20px rgba(34, 200, 216, 0.34);
 }
 
 .medx-context-band {
@@ -2168,10 +2189,12 @@ button:focus-visible {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(135deg, #041324 0%, #071b33 54%, #06493f 100%);
+    radial-gradient(circle at 92% 18%, rgba(240, 198, 109, 0.12), transparent 27%),
+    linear-gradient(135deg, var(--ink) 0%, var(--navy) 54%, #075048 100%);
   background-size:
     70px 70px,
     70px 70px,
+    auto,
     auto;
   padding: clamp(1.35rem, 4vw, 2.4rem);
   box-shadow: 0 24px 70px rgba(8, 27, 51, 0.16);
