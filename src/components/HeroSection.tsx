@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   Microscope,
@@ -8,7 +7,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import { medxImages } from "@/data/images";
+import HeroImageRotator from "@/components/HeroImageRotator";
 
 const heroFacts = [
   { label: "01", value: "Diagnostics and screening access" },
@@ -16,40 +15,10 @@ const heroFacts = [
   { label: "03", value: "Digital visibility and supply discipline" },
 ];
 
-const heroFrames = [
-  {
-    ...medxImages.aiPlatformHero,
-    className: "medx-hero-frame-operations",
-    label: "Operations intelligence",
-  },
-  {
-    ...medxImages.aiDiagnosticsFrame,
-    className: "medx-hero-frame-diagnostics",
-    label: "Diagnostics readiness",
-  },
-  {
-    ...medxImages.aiSupplyFrame,
-    className: "medx-hero-frame-supply",
-    label: "Supply coordination",
-  },
-];
-
 export default function HeroSection() {
   return (
     <section className="medx-lab-hero relative overflow-hidden text-white">
-      <div className="medx-hero-slideshow" aria-hidden="true">
-        {heroFrames.map((frame, index) => (
-          <Image
-            key={frame.src}
-            src={frame.src}
-            alt=""
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            className={`medx-hero-frame ${frame.className} object-cover object-center`}
-          />
-        ))}
-      </div>
+      <HeroImageRotator />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,19,36,0.96)_0%,rgba(4,19,36,0.82)_34%,rgba(4,19,36,0.32)_68%,rgba(4,19,36,0.12)_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,19,36,0.44)_0%,rgba(4,19,36,0.12)_48%,rgba(4,19,36,0.88)_100%)]" />
       <div className="medx-hero-motion" aria-hidden="true">
@@ -101,15 +70,6 @@ export default function HeroSection() {
             <span>AI-assisted forecasting</span>
             <span>Supply risk signals</span>
             <span>Program readiness view</span>
-          </div>
-
-          <div className="medx-frame-indicator mt-4" aria-hidden="true">
-            {heroFrames.map((frame, index) => (
-              <span key={frame.label}>
-                <i style={{ animationDelay: `${index * 2}s` }} />
-                {frame.label}
-              </span>
-            ))}
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

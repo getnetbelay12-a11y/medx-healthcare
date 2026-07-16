@@ -1439,21 +1439,16 @@ button:focus-visible {
 
 .medx-hero-frame {
   opacity: 0;
-  transform: scale(1.035);
-  animation: medx-hero-frame-cycle 6s ease-in-out infinite;
+  transform: scale(1.04) translate3d(12px, 0, 0);
+  transition:
+    opacity 520ms ease,
+    transform 1800ms ease;
   will-change: opacity, transform;
 }
 
-.medx-hero-frame-operations {
-  animation-delay: 0s;
-}
-
-.medx-hero-frame-diagnostics {
-  animation-delay: 2s;
-}
-
-.medx-hero-frame-supply {
-  animation-delay: 4s;
+.medx-hero-frame-active {
+  opacity: 1;
+  transform: scale(1.01) translate3d(0, 0, 0);
 }
 
 .medx-hero-motion {
@@ -1612,6 +1607,14 @@ button:focus-visible {
   gap: 0.55rem;
 }
 
+.medx-frame-indicator-floating {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 3;
+  justify-content: flex-end;
+}
+
 .medx-frame-indicator span {
   position: relative;
   overflow: hidden;
@@ -1633,7 +1636,16 @@ button:focus-visible {
   width: 4px;
   background: #6ee7b7;
   opacity: 0;
-  animation: medx-frame-dot 6s linear infinite;
+  transition: opacity 180ms ease;
+}
+
+.medx-frame-indicator-active {
+  border-color: rgba(110, 231, 183, 0.5) !important;
+  color: #ffffff !important;
+}
+
+.medx-frame-indicator-active i {
+  opacity: 1;
 }
 
 .medx-product-band {
@@ -1978,43 +1990,6 @@ button:focus-visible {
   }
 }
 
-@keyframes medx-hero-frame-cycle {
-  0% {
-    opacity: 1;
-    transform: scale(1.01) translate3d(0, 0, 0);
-  }
-
-  27% {
-    opacity: 1;
-  }
-
-  33.333% {
-    opacity: 0;
-    transform: scale(1.055) translate3d(-10px, -6px, 0);
-  }
-
-  92% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1.01) translate3d(0, 0, 0);
-  }
-}
-
-@keyframes medx-frame-dot {
-  0%,
-  31% {
-    opacity: 1;
-  }
-
-  35%,
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes medx-panel-float {
   0%,
   100% {
@@ -2093,6 +2068,13 @@ button:focus-visible {
     padding-left: 0;
   }
 
+  .medx-frame-indicator-floating {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    justify-content: center;
+  }
+
   .medx-product-card,
   .medx-benefit-card,
   .medx-tech-card,
@@ -2107,15 +2089,11 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .medx-hero-frame {
-    animation: none;
+    transition: none;
   }
 
   .medx-hero-frame:first-child {
     opacity: 1;
-  }
-
-  .medx-frame-indicator i {
-    animation: none;
   }
 
   .medx-motion-panel,
