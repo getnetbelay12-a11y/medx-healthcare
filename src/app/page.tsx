@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import {
   Activity,
   ArrowRight,
+  CheckCircle2,
+  ClipboardList,
   DatabaseZap,
   Globe2,
   Microscope,
@@ -64,6 +66,30 @@ const platformPath = [
   "Track visibility and program readiness",
 ];
 
+const operatingModel = [
+  {
+    icon: ClipboardList,
+    title: "1. Define the request",
+    detail:
+      "Clarify the institution, product or program need, urgency, destination, documentation requirements, and decision owner.",
+    evidence: "Request scope, expected quantities, facility context",
+  },
+  {
+    icon: PackageCheck,
+    title: "2. Coordinate supply and program fit",
+    detail:
+      "Match the need to pharmaceutical supply, devices, diagnostics, screening support, or a combined operating plan.",
+    evidence: "Product category, readiness gaps, partner dependencies",
+  },
+  {
+    icon: Network,
+    title: "3. Track readiness and follow-through",
+    detail:
+      "Keep visibility on availability, handoffs, reporting, and next actions so work does not disappear after the first conversation.",
+    evidence: "Status view, risk notes, follow-up actions",
+  },
+];
+
 const technologyCards = [
   {
     icon: Microscope,
@@ -87,6 +113,14 @@ const aiSignals = [
   { label: "Stock visibility", value: "Track" },
   { label: "Program readiness", value: "Coordinate" },
   { label: "Leadership reporting", value: "Report" },
+];
+
+const requestChecklist = [
+  "Organization, facility, or program name",
+  "Product, device, diagnostic, or screening-support need",
+  "Estimated quantity, destination, and timeline",
+  "Current bottleneck: availability, procurement, training, reporting, or referral",
+  "Decision owner and preferred follow-up path",
 ];
 
 export default function Home() {
@@ -145,6 +179,14 @@ export default function Home() {
                 <p className="mt-3 text-sm leading-7 text-slate-600">
                   {service.summary}
                 </p>
+                <div className="medx-feature-list mt-5">
+                  {service.features.map((feature) => (
+                    <span key={feature}>
+                      <CheckCircle2 size={14} />
+                      {feature}
+                    </span>
+                  ))}
+                </div>
                 <Link
                   href="/contact"
                   className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b] transition hover:text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
@@ -154,6 +196,45 @@ export default function Home() {
                 </Link>
               </article>
             ))}
+          </div>
+
+          <div className="medx-operating-model mt-8">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#10a66e]">
+                Operating detail
+              </p>
+              <h2 className="mt-3 text-3xl font-black leading-tight text-[#071b33] md:text-4xl">
+                What happens after an institution asks for support.
+              </h2>
+              <p className="mt-4 max-w-2xl leading-8 text-slate-600">
+                A professional healthcare request needs a clear operating path
+                from intake to sourcing, coordination, visibility, and
+                follow-through.
+              </p>
+            </div>
+
+            <div className="grid gap-4 lg:grid-cols-3">
+              {operatingModel.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <article key={item.title} className="medx-operating-card">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                      <Icon size={21} />
+                    </div>
+                    <h3 className="mt-5 text-xl font-black text-[#071b33]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.detail}
+                    </p>
+                    <p className="mt-4 rounded-xl bg-slate-50 px-4 py-3 text-xs font-black leading-6 text-slate-600">
+                      {item.evidence}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -369,6 +450,36 @@ export default function Home() {
                   <ArrowRight size={15} />
                 </span>
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-14 md:py-18">
+        <div className="container-medx">
+          <div className="medx-request-brief">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-300">
+                Before contacting MedX
+              </p>
+              <h2 className="mt-4 max-w-3xl text-3xl font-black leading-tight text-white md:text-5xl">
+                A sharper request gets a sharper response.
+              </h2>
+              <p className="mt-5 max-w-2xl leading-8 text-slate-300">
+                MedX can move faster when the request is framed around the
+                facility, product or program need, timeline, and operational
+                constraint. This is especially important for institutional
+                supply, diagnostic readiness, and screening-program support.
+              </p>
+            </div>
+
+            <div className="medx-request-list">
+              {requestChecklist.map((item) => (
+                <div key={item}>
+                  <CheckCircle2 size={18} />
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
