@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Contact MedX Healthcare Solutions for partnerships, product supply requests, diagnostics, public-health programs, and investment inquiries.",
   path: "/contact",
-  image: medxImages.hospitalPartnership.src,
+  image: medxImages.aiDiagnosticsFrame.src,
 });
 
 const contactDetails = [
@@ -52,9 +52,12 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact MedX"
-        title="Contact MedX"
-        description="Connect with MedX for partnerships, supply requests, diagnostics, investment, and healthcare collaboration."
-        image={medxImages.hospitalPartnership}
+        title="Start a clear healthcare request or relationship discussion."
+        description="Connect with MedX for supply requests, diagnostics, devices, screening programs, investment discussion, and healthcare collaboration."
+        highlights={["Product requests", "Program support", "Relationship inquiry"]}
+        image={medxImages.aiDiagnosticsFrame}
+        imageLabel="Request intake"
+        imageCaption="Scope • urgency • follow-up"
       />
 
       <section className="bg-white py-20">

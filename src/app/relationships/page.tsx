@@ -41,9 +41,12 @@ export default function RelationshipsPage() {
     <>
       <PageHero
         eyebrow="Relationships"
-        title="Relationship context, historical references, and collaboration pathways"
+        title="Collaboration pathways for suppliers, institutions, technology, and public health."
         description="MedX keeps relationship information organized with clear context for current records, historical references, and future collaboration opportunities."
+        highlights={["Suppliers", "Institutions", "Technology"]}
         image={medxImages.hospitalPartnership}
+        imageLabel="Relationship context"
+        imageCaption="Institutions • suppliers • implementation"
       />
 
       <RelationshipsCarousel />

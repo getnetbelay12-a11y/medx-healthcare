@@ -4,6 +4,9 @@ type PageHeroProps = {
   eyebrow?: string;
   title: string;
   description: string;
+  highlights?: string[];
+  imageLabel?: string;
+  imageCaption?: string;
   image?: {
     src: string;
     alt: string;
@@ -14,6 +17,9 @@ export default function PageHero({
   eyebrow,
   title,
   description,
+  highlights = ["Institutional scale", "Public-health focus", "Relationship context"],
+  imageLabel = "MedX platform",
+  imageCaption = "Healthcare access • supply • innovation",
   image,
 }: PageHeroProps) {
   return (
@@ -32,18 +38,18 @@ export default function PageHero({
           <p className="mt-6 max-w-3xl text-base leading-8 text-slate-200 md:text-lg">
             {description}
           </p>
-          <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3">
-            {["Institutional scale", "Public-health focus", "Relationship context"].map(
-              (item) => (
+          {highlights.length > 0 && (
+            <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3">
+              {highlights.map((item) => (
                 <div
                   key={item}
                   className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3"
                 >
                   {item}
                 </div>
-              ),
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {image && (
@@ -57,10 +63,10 @@ export default function PageHero({
             />
             <div className="absolute bottom-4 left-4 max-w-[calc(100%-2rem)] rounded-2xl border border-white/15 bg-[#061a31]/90 px-4 py-3 shadow-2xl backdrop-blur md:bottom-5 md:left-5 md:px-5 md:py-4">
               <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#d7a84f]">
-                MedX platform
+                {imageLabel}
               </p>
               <p className="mt-1 text-xs font-black md:text-sm">
-                Healthcare access • supply • innovation
+                {imageCaption}
               </p>
             </div>
           </div>

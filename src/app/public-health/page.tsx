@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "MedX focuses on healthcare access, medicine availability, diagnostic capacity, screening access, supply-chain strengthening, and local capacity.",
   path: "/public-health",
-  image: medxImages.africaMap.src,
+  image: medxImages.aiScreeningFrame.src,
 });
 
 const shortages = [
@@ -58,9 +58,12 @@ export default function PublicHealthFocusPage() {
     <>
       <PageHero
         eyebrow="Public Health Focus"
-        title="Public Health Focus"
-        description="Addressing critical healthcare access, supply chain, diagnostics, and cancer-care challenges in Ethiopia."
-        image={medxImages.africaMap}
+        title="Healthcare access work built around supply, diagnostics, and screening."
+        description="MedX focuses on practical public-health execution: medicine availability, diagnostic capacity, screening access, supply-chain strengthening, and local capability."
+        highlights={["Medicine availability", "Screening access", "Local capacity"]}
+        image={medxImages.aiScreeningFrame}
+        imageLabel="Public-health readiness"
+        imageCaption="Screening • referral • follow-up"
       />
 
       <section className="bg-white py-20">

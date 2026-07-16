@@ -12,7 +12,6 @@ import {
 import CTASection from "@/components/CTASection";
 import LeadershipCarousel from "@/components/leadership/LeadershipCarousel";
 import MedxImage from "@/components/MedxImage";
-import RelationshipsCarousel from "@/components/partners/RelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
 import { company } from "@/data/company";
 import { medxImages } from "@/data/images";
@@ -24,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "A concise overview of MedX Healthcare Solutions, its Bahir Dar base, diagnostics and screening origin, current healthcare focus, governance context, and relationship status.",
   path: "/about",
-  image: medxImages.hospitalPartnership.src,
+  image: medxImages.aiPlatformHero.src,
 });
 
 const missionVision = [
@@ -87,12 +86,12 @@ export default function AboutPage() {
               About MedX
             </p>
             <h1 className="max-w-4xl text-4xl font-black leading-[1.03] tracking-normal sm:text-5xl md:text-6xl">
-              Building stronger healthcare access from Bahir Dar.
+              A healthcare access company built for disciplined execution.
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-slate-200 md:text-lg">
               MedX connects healthcare supply, diagnostics, cervical-screening
-              support, and long-term local capacity building for institutions and
-              public-health programs.
+              support, and local capacity building into one practical operating
+              platform for institutions and public-health programs.
             </p>
             <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-2">
               {aboutMetrics.map((item) => (
@@ -111,14 +110,14 @@ export default function AboutPage() {
 
           <div>
             <MedxImage
-              src={medxImages.hospitalPartnership.src}
-              alt={medxImages.hospitalPartnership.alt}
+              src={medxImages.aiPlatformHero.src}
+              alt={medxImages.aiPlatformHero.alt}
               priority
               className="image-frame aspect-[16/9] rounded-[1.5rem] md:rounded-[2rem]"
               sizes="(min-width: 1024px) 52vw, 100vw"
             />
             <p className="mt-3 text-xs font-bold text-slate-300">
-              Conceptual healthcare operations image
+              Conceptual MedX healthcare operations image
             </p>
           </div>
         </div>
@@ -172,8 +171,8 @@ export default function AboutPage() {
             </div>
           </div>
           <MedxImage
-            src={medxImages.diagnostics.src}
-            alt={medxImages.diagnostics.alt}
+            src={medxImages.aiDiagnosticsFrame.src}
+            alt={medxImages.aiDiagnosticsFrame.alt}
             className="aspect-[16/10] rounded-[1.5rem] shadow-[0_18px_44px_rgba(8,27,51,0.1)]"
           />
         </div>
@@ -239,7 +238,6 @@ export default function AboutPage() {
       </section>
 
       <LeadershipCarousel />
-      <RelationshipsCarousel />
 
       <CTASection />
     </>

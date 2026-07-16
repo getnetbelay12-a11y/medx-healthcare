@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "MedX strategy across near-term supply, diagnostics, and screening support; medium-term digital and supply-chain capacity; and long-term local manufacturing and regional expansion.",
   path: "/strategy",
-  image: medxImages.digitalHealth.src,
+  image: medxImages.aiRegionalFrame.src,
 });
 
 const model = [
@@ -90,9 +90,12 @@ export default function StrategyPage() {
     <>
       <PageHero
         eyebrow="Strategy and Vision"
-        title="Strategy and Vision"
-        description="A 15-year corporate strategy for integrated, self-reliant, and innovation-driven healthcare solutions."
-        image={medxImages.digitalHealth}
+        title="A phased healthcare platform strategy for Ethiopia and regional scale."
+        description="MedX’s strategy connects immediate supply and diagnostic needs with digital visibility, local capacity, manufacturing readiness, and regional healthcare access."
+        highlights={["Near-term execution", "Digital visibility", "Regional scale"]}
+        image={medxImages.aiRegionalFrame}
+        imageLabel="Strategic roadmap"
+        imageCaption="Supply • data • regional access"
       />
 
       <section className="bg-white py-20">
