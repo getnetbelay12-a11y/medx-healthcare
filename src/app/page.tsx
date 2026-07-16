@@ -439,14 +439,14 @@ export default function Home() {
               <Link href="/partners" className="medx-context-card group">
                 <Network className="text-[#10a66e]" size={24} />
                 <h3 className="mt-5 text-xl font-black text-[#071b33]">
-                  Partner context
+                  Relationship context
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
                   Explore current records and historical relationship context in
                   one place.
                 </p>
                 <span>
-                  View partners
+                  View relationships
                   <ArrowRight size={15} />
                 </span>
               </Link>
@@ -486,10 +486,10 @@ export default function Home() {
       </section>
 
       <CTASection
-        title="Request products, services, or a partnership discussion."
+        title="Request products, services, or a relationship discussion."
         description="Choose the path that matches your institution’s need."
         buttonLabel="Request products or services"
-        secondaryButtonLabel="Discuss a partnership"
+        secondaryButtonLabel="Discuss a relationship"
         variant="simple"
       />
     </>

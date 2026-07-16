@@ -19,7 +19,7 @@ const companyLinks = [
   { label: "About MedX", href: "/about" },
   { label: "Leadership and governance", href: "/about#governance" },
   { label: "Strategy", href: "/strategy" },
-  { label: "Partners", href: "/partners" },
+  { label: "Relationships", href: "/partners" },
   { label: "Public Health", href: "/public-health" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
@@ -58,7 +58,7 @@ export default function Footer() {
               <ShieldCheck className="text-emerald-300" size={19} />
 
               <p className="text-xs font-bold text-slate-300">
-                Committed to responsible healthcare partnerships and reliable service delivery.
+                Committed to responsible healthcare relationships and reliable service delivery.
               </p>
             </div>
           </div>

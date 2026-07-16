@@ -208,7 +208,7 @@ describe("Historical carousel content safeguards", () => {
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
 
     expect(originalTrack.children).toHaveLength(published.length);
-    expect(screen.getByText("Partners and Relationship Context")).toBeTruthy();
+    expect(screen.getByText("Relationships and Historical Context")).toBeTruthy();
     expect(within(originalTrack).queryAllByText("Arbor Vita Corporation").length).toBeGreaterThan(0);
   });
 
@@ -272,7 +272,7 @@ describe("AutoCarousel motion contract", () => {
     expect(screen.getByLabelText("Leadership and governance carousel")).toHaveStyle({
       "--carousel-direction": "medx-board-marquee",
     });
-    expect(screen.getByLabelText("Partners and relationship context carousel")).toHaveStyle({
+    expect(screen.getByLabelText("Relationships and historical context carousel")).toHaveStyle({
       "--carousel-direction": "medx-relationships-marquee",
     });
   });
@@ -289,14 +289,14 @@ describe("AutoCarousel motion contract", () => {
       screen.queryByLabelText("Pause Leadership and governance carousel"),
     ).toBeNull();
     expect(
-      screen.queryByLabelText("Pause Partners and relationship context carousel"),
+      screen.queryByLabelText("Pause Relationships and historical context carousel"),
     ).toBeNull();
     expect(screen.getByLabelText("Leadership and governance carousel")).toHaveAttribute(
       "data-paused",
       "false",
     );
     expect(
-      screen.getByLabelText("Partners and relationship context carousel"),
+      screen.getByLabelText("Relationships and historical context carousel"),
     ).toHaveAttribute("data-paused", "false");
   });
 

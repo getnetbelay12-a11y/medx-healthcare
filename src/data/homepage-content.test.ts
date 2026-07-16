@@ -18,22 +18,28 @@ describe("homepage public copy contract", () => {
 
   it("keeps the homepage to the approved section set", () => {
     expect(homepageSource).toContain("<HeroSection />");
-    expect(homepageSource).toContain('eyebrow="Current services"');
+    expect(homepageSource).toContain('eyebrow="Healthcare products and services"');
+    expect(homepageSource).toContain("One access platform. Four execution lanes.");
+    expect(homepageSource).toContain("Operating detail");
     expect(homepageSource).toContain('eyebrow="Cervical-health origin"');
-    expect(homepageSource).toContain('eyebrow="Digital operations preview"');
-    expect(homepageSource).toContain("Strategy preview");
+    expect(homepageSource).toContain('eyebrow="AI-assisted operations preview"');
+    expect(homepageSource).toContain('eyebrow="Governance and relationships"');
+    expect(homepageSource).toContain("Before contacting MedX");
     expect(homepageSource).toContain("<CTASection");
 
     expect(homepageSource).not.toContain("Company context");
     expect(homepageSource).not.toContain("Historical relationship preview");
     expect(homepageSource).not.toContain("HistoricalRelationshipsCarousel");
     expect(homepageSource).not.toContain("Platform priorities");
+    expect(homepageSource).not.toContain("LeadershipCarousel");
+    expect(homepageSource).not.toContain("RelationshipsCarousel");
   });
 
-  it("removes repeated founding and capital statistic blocks from the homepage", () => {
+  it("removes repeated founding and capital statistic blocks from the homepage hero", () => {
     const combined = `${homepageSource}\n${heroSource}`;
     expect(homepageSource).not.toContain("stats.map");
-    expect((combined.match(/2017/g) || [])).toHaveLength(1);
+    expect(combined).not.toContain("Founded");
+    expect(combined).not.toContain("Bahir Dar");
     expect(heroSource).not.toContain("Historical capital");
     expect(combined).not.toContain("16.5M ETB");
     expect(combined).not.toContain("16.5 million ETB");
@@ -60,18 +66,24 @@ describe("homepage public copy contract", () => {
     expect(homepageSource).toContain("Request diagnostic support");
     expect(homepageSource).toContain("Discuss a screening program");
     expect(homepageSource).toContain("In development");
-    expect(homepageSource).toContain("Near term");
-    expect(homepageSource).toContain("Medium term");
-    expect(homepageSource).toContain("Long term");
+    expect(homepageSource).toContain("Demand risk");
+    expect(homepageSource).toContain("Stock visibility");
+    expect(homepageSource).toContain("Program readiness");
   });
 
   it("keeps one compact hero facts row", () => {
     expect(heroSource).toContain('aria-label="At a glance"');
-    expect(heroSource).toContain("Founded");
-    expect(heroSource).toContain("Base");
-    expect(heroSource).toContain("Original focus");
-    expect(heroSource).toContain("Direction");
-    expect(heroSource).toContain("Bahir Dar");
-    expect(heroSource).toContain("Healthcare access and local capacity");
+    expect(heroSource).toContain("Diagnostics and screening access");
+    expect(heroSource).toContain("Pharmaceuticals and medical devices");
+    expect(heroSource).toContain("Digital visibility and supply discipline");
+    expect(heroSource).toContain("AI-assisted visibility");
+  });
+
+  it("uses relationship framing instead of a broad partners tab on the homepage", () => {
+    const combined = `${homepageSource}\n${heroSource}`;
+    expect(homepageSource).toContain("Relationship context");
+    expect(homepageSource).toContain("View relationships");
+    expect(homepageSource).toContain("relationship discussion");
+    expect(combined).not.toContain("Partners and Relationship Context");
   });
 });

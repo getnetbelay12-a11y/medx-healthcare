@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Partners",
+  title: "Relationships",
   description:
-    "Explore MedX relationship context, institutional references, and structured partnership pathways.",
+    "Explore MedX relationship context, institutional references, historical records, and collaboration pathways.",
   path: "/partners",
   image: medxImages.hospitalPartnership.src,
 });
@@ -40,9 +40,9 @@ export default function PartnersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Partners"
-        title="Partnerships that strengthen healthcare delivery"
-        description="MedX works with healthcare, supply, technology, research, investment, and implementation stakeholders to strengthen access and operating capacity."
+        eyebrow="Relationships"
+        title="Relationship context, historical references, and collaboration pathways"
+        description="MedX keeps relationship information organized with clear context for current records, historical references, and future collaboration opportunities."
         image={medxImages.hospitalPartnership}
       />
 
@@ -51,8 +51,8 @@ export default function PartnersPage() {
       <section className="medical-pattern py-14 md:py-16">
         <div className="container-medx">
           <SectionHeader
-            eyebrow="Partnership categories"
-            title="Priority areas for structured collaboration."
+            eyebrow="Relationship categories"
+            title="Priority areas for structured healthcare collaboration."
             centered
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -77,7 +77,7 @@ export default function PartnersPage() {
       <section className="bg-white py-14 md:py-16">
         <div className="container-medx grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <SectionHeader
-            eyebrow="How partnerships work"
+            eyebrow="How collaboration works"
             title="Clear scope, practical review, accountable follow-through."
             description="MedX reviews each inquiry by need, geography, product or service category, operating requirements, and institutional value."
           />
@@ -100,9 +100,9 @@ export default function PartnersPage() {
       </section>
 
       <CTASection
-        title="Discuss a MedX partnership pathway."
+        title="Discuss a MedX relationship or collaboration pathway."
         description="Use the contact form to introduce a supplier, technology, implementation, investment, diagnostics, or public-health collaboration."
-        buttonLabel="Submit partnership inquiry"
+        buttonLabel="Submit relationship inquiry"
       />
     </>
   );

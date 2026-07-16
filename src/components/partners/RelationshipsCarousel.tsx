@@ -113,7 +113,7 @@ export default function RelationshipsCarousel() {
       <div className="container-medx">
         <SectionHeader
           eyebrow="Relationship context"
-          title="Partners and Relationship Context"
+          title="Relationships and Historical Context"
           description="A moving view of organizations connected to MedX’s current relationship records and 2020 investor-material references."
           centered
         />
@@ -141,7 +141,7 @@ export default function RelationshipsCarousel() {
 
         <div className="mt-9">
           <AutoCarousel
-            ariaLabel="Partners and relationship context carousel"
+            ariaLabel="Relationships and historical context carousel"
             direction="right"
             duration={58}
             itemGap={18}

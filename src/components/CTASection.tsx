@@ -165,16 +165,16 @@ export default function CTASection({
                 </div>
 
                 <h3 className="mt-6 text-xl font-black">
-                  Partnership inquiry
+                  Relationship inquiry
                 </h3>
 
                 <p className="mt-3 text-sm leading-7 text-slate-300">
                   Explore supplier, technology, distribution, institutional, or
-                  implementation partnerships with MedX.
+                  implementation collaboration with MedX.
                 </p>
 
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-amber-300">
-                  Explore partnership
+                  Explore collaboration
                   <ArrowRight
                     className="transition group-hover:translate-x-1"
                     size={16}

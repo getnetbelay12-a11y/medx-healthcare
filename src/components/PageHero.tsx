@@ -33,7 +33,7 @@ export default function PageHero({
             {description}
           </p>
           <div className="mt-8 grid gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3">
-            {["Institutional scale", "Public-health focus", "Partner ready"].map(
+            {["Institutional scale", "Public-health focus", "Relationship context"].map(
               (item) => (
                 <div
                   key={item}

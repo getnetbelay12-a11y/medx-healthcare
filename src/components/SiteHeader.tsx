@@ -11,7 +11,7 @@ const navigation = [
   { label: "Services", href: "/services" },
   { label: "Public Health", href: "/public-health" },
   { label: "Strategy", href: "/strategy" },
-  { label: "Partners", href: "/partners" },
+  { label: "Relationships", href: "/partners" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -80,7 +80,7 @@ export default function SiteHeader() {
               href="/contact"
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-xs font-black text-[#071b33] transition hover:border-emerald-200 hover:bg-emerald-50"
             >
-              Partner inquiry
+              Relationship inquiry
               <ArrowRight size={14} />
             </Link>
 
@@ -138,7 +138,7 @@ export default function SiteHeader() {
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-slate-200 text-sm font-black text-[#071b33]"
               >
-                Partner inquiry
+                Relationship inquiry
                 <ArrowRight size={16} />
               </Link>
 
