@@ -1432,9 +1432,85 @@ button:focus-visible {
     auto;
 }
 
+.medx-hero-motion {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.medx-motion-panel {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid rgba(110, 231, 183, 0.22);
+  border-radius: 1.25rem;
+  background-image:
+    linear-gradient(180deg, rgba(4, 19, 36, 0), rgba(4, 19, 36, 0.22)),
+    url("/images/medx/medx-ai-platform-hero.png");
+  background-size: 1800px auto;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  opacity: 0.72;
+  backdrop-filter: blur(10px);
+  animation: medx-panel-float 11s ease-in-out infinite;
+}
+
+.medx-motion-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mix-blend-mode: screen;
+  opacity: 0.42;
+}
+
+.medx-motion-panel-lab {
+  right: 9%;
+  top: 15%;
+  width: clamp(11rem, 18vw, 19rem);
+  aspect-ratio: 4 / 3;
+  background-position: 68% 62%;
+}
+
+.medx-motion-panel-supply {
+  right: 4%;
+  bottom: 22%;
+  width: clamp(10rem, 15vw, 16rem);
+  aspect-ratio: 5 / 4;
+  background-position: 92% 48%;
+  animation-delay: -4s;
+}
+
+.medx-motion-panel-map {
+  right: 29%;
+  top: 26%;
+  width: clamp(9rem, 13vw, 14rem);
+  aspect-ratio: 1 / 1;
+  background-position: 60% 20%;
+  animation-delay: -7s;
+  opacity: 0.58;
+}
+
+.medx-scan-line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  background: linear-gradient(90deg, transparent, rgba(110, 231, 183, 0.18), transparent);
+  transform: translateX(-120%);
+  animation: medx-scan 6.5s ease-in-out infinite;
+  opacity: 0.75;
+}
+
 .medx-hero-proof,
 .medx-hero-rail,
-.medx-hero-signal {
+.medx-hero-signal,
+.medx-ai-ticker {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.075);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -1442,8 +1518,29 @@ button:focus-visible {
 }
 
 .medx-hero-proof {
+  position: relative;
+  overflow: hidden;
   border-radius: 1rem;
   padding: 1rem;
+}
+
+.medx-hero-proof::after {
+  content: "";
+  position: absolute;
+  inset: auto 1rem 0.75rem 1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(110, 231, 183, 0.78), transparent);
+  transform: translateX(-115%);
+  animation: medx-proof-line 4.8s ease-in-out infinite;
+}
+
+.medx-hero-proof:nth-child(2)::after {
+  animation-delay: -1.3s;
+}
+
+.medx-hero-proof:nth-child(3)::after {
+  animation-delay: -2.6s;
 }
 
 .medx-hero-rail {
@@ -1457,6 +1554,31 @@ button:focus-visible {
   gap: 0.55rem;
   border-radius: 1.15rem;
   padding: 1rem;
+}
+
+.medx-ai-ticker {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  border-radius: 999px;
+  padding: 0.65rem 0.9rem;
+  color: #d1fae5;
+  font-size: 0.75rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.medx-ai-ticker svg {
+  color: #6ee7b7;
+}
+
+.medx-ai-ticker span + span {
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  padding-left: 0.65rem;
 }
 
 .medx-product-band {
@@ -1719,6 +1841,48 @@ button:focus-visible {
   }
 }
 
+@keyframes medx-panel-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-10px, -16px, 0) scale(1.035);
+  }
+}
+
+@keyframes medx-scan {
+  0%,
+  18% {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
+
+  34%,
+  62% {
+    opacity: 0.75;
+  }
+
+  82%,
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes medx-proof-line {
+  0%,
+  35% {
+    transform: translateX(-115%);
+  }
+
+  70%,
+  100% {
+    transform: translateX(115%);
+  }
+}
+
 @media (min-width: 768px) {
   .medx-hero-rail {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1730,6 +1894,27 @@ button:focus-visible {
 }
 
 @media (max-width: 767px) {
+  .medx-motion-panel {
+    display: none;
+  }
+
+  .medx-scan-line {
+    width: 100%;
+  }
+
+  .medx-ai-ticker {
+    border-radius: 1rem;
+  }
+
+  .medx-ai-ticker span {
+    width: 100%;
+  }
+
+  .medx-ai-ticker span + span {
+    border-left: 0;
+    padding-left: 0;
+  }
+
   .medx-product-card,
   .medx-benefit-card,
   .medx-tech-card,
@@ -1743,6 +1928,12 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .medx-motion-panel,
+  .medx-scan-line,
+  .medx-hero-proof::after {
+    animation: none;
+  }
+
   .medx-console-chart span {
     animation: none;
   }

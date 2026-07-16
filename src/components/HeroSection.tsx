@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Microscope, Network, PackageCheck, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  Microscope,
+  Network,
+  PackageCheck,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { medxImages } from "@/data/images";
 
 const heroFacts = [
@@ -22,6 +29,12 @@ export default function HeroSection() {
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,19,36,0.96)_0%,rgba(4,19,36,0.82)_34%,rgba(4,19,36,0.32)_68%,rgba(4,19,36,0.12)_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,19,36,0.44)_0%,rgba(4,19,36,0.12)_48%,rgba(4,19,36,0.88)_100%)]" />
+      <div className="medx-hero-motion" aria-hidden="true">
+        <div className="medx-motion-panel medx-motion-panel-lab" />
+        <div className="medx-motion-panel medx-motion-panel-supply" />
+        <div className="medx-motion-panel medx-motion-panel-map" />
+        <div className="medx-scan-line" />
+      </div>
 
       <div className="container-medx relative flex min-h-[calc(92svh-76px)] flex-col justify-center py-14 md:py-16">
         <div className="max-w-4xl">
@@ -58,6 +71,13 @@ export default function HeroSection() {
                 Credibility-first public health posture.
               </p>
             </div>
+          </div>
+
+          <div className="medx-ai-ticker mt-5" aria-label="AI operating signals">
+            <Sparkles size={16} />
+            <span>AI-assisted forecasting</span>
+            <span>Supply risk signals</span>
+            <span>Program readiness view</span>
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
