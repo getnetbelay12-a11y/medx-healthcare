@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/public-health",
     "/strategy",
-    "/partners",
+    "/relationships",
     "/contact",
     "/privacy",
     "/terms",

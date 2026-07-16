@@ -3,16 +3,16 @@ import { absoluteUrl, pageMetadata } from "@/lib/seo";
 
 describe("seo helpers", () => {
   it("creates absolute URLs from configured site URL", () => {
-    expect(absoluteUrl("/partners")).toContain("/partners");
+    expect(absoluteUrl("/relationships")).toContain("/relationships");
   });
 
   it("creates canonical page metadata", () => {
     const metadata = pageMetadata({
-      title: "Partners",
-      description: "MedX partner metadata test.",
-      path: "/partners",
+      title: "Relationships",
+      description: "MedX relationship metadata test.",
+      path: "/relationships",
     });
     expect(metadata.alternates?.canonical).toBeTruthy();
-    expect(metadata.openGraph?.title).toBe("Partners");
+    expect(metadata.openGraph?.title).toBe("Relationships");
   });
 });

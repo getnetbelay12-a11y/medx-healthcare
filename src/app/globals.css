@@ -1526,6 +1526,100 @@ button:focus-visible {
   opacity: 0.75;
 }
 
+.medx-live-intel-stack {
+  pointer-events: none;
+  position: absolute;
+  right: clamp(1.5rem, 5vw, 5.5rem);
+  top: 18%;
+  z-index: 2;
+  display: none;
+  width: min(24vw, 21rem);
+  min-width: 17rem;
+  gap: 0.75rem;
+}
+
+.medx-live-intel-head,
+.medx-live-intel-card {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(4, 19, 36, 0.58);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.medx-live-intel-head {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.7rem 0.9rem;
+  color: #d1fae5;
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  animation: medx-intel-drift 7s ease-in-out infinite;
+}
+
+.medx-live-intel-head svg {
+  color: #6ee7b7;
+}
+
+.medx-live-intel-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 1rem;
+  animation: medx-intel-drift 8s ease-in-out infinite;
+}
+
+.medx-live-intel-card:nth-child(3) {
+  margin-left: 2rem;
+  animation-delay: -2.2s;
+}
+
+.medx-live-intel-card:nth-child(4) {
+  margin-left: 0.75rem;
+  animation-delay: -4.4s;
+}
+
+.medx-live-intel-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #6ee7b7, transparent);
+  transform: translateX(-100%);
+  animation: medx-intel-sweep 4.8s ease-in-out infinite;
+}
+
+.medx-live-intel-card p {
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.medx-live-intel-card strong {
+  margin-top: 0.45rem;
+  display: block;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 950;
+}
+
+.medx-live-intel-card span {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: #6ee7b7;
+  font-size: 0.85rem;
+  font-weight: 950;
+}
+
 .medx-hero-proof,
 .medx-hero-rail,
 .medx-hero-signal,
@@ -2131,6 +2225,29 @@ button:focus-visible {
   }
 }
 
+@keyframes medx-intel-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-8px, -10px, 0);
+  }
+}
+
+@keyframes medx-intel-sweep {
+  0%,
+  35% {
+    transform: translateX(-100%);
+  }
+
+  75%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @keyframes medx-scan {
   0%,
   18% {
@@ -2173,6 +2290,12 @@ button:focus-visible {
 
   .medx-request-brief {
     grid-template-columns: 1fr 0.9fr;
+  }
+}
+
+@media (min-width: 1180px) {
+  .medx-live-intel-stack {
+    display: grid;
   }
 }
 
@@ -2228,6 +2351,9 @@ button:focus-visible {
 
   .medx-motion-panel,
   .medx-scan-line,
+  .medx-live-intel-head,
+  .medx-live-intel-card,
+  .medx-live-intel-card::after,
   .medx-hero-proof::after {
     animation: none;
   }

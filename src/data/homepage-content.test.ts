@@ -23,7 +23,6 @@ describe("homepage public copy contract", () => {
     expect(homepageSource).toContain("Operating detail");
     expect(homepageSource).toContain('eyebrow="Cervical-health origin"');
     expect(homepageSource).toContain('eyebrow="AI-assisted operations preview"');
-    expect(homepageSource).toContain('eyebrow="Governance and relationships"');
     expect(homepageSource).toContain("Before contacting MedX");
     expect(homepageSource).toContain("<CTASection");
 
@@ -33,6 +32,9 @@ describe("homepage public copy contract", () => {
     expect(homepageSource).not.toContain("Platform priorities");
     expect(homepageSource).not.toContain("LeadershipCarousel");
     expect(homepageSource).not.toContain("RelationshipsCarousel");
+    expect(homepageSource).not.toContain('eyebrow="Governance and relationships"');
+    expect(homepageSource).not.toContain('eyebrow="What makes MedX useful"');
+    expect(homepageSource).not.toContain('eyebrow="Diagnostic readiness"');
   });
 
   it("removes repeated founding and capital statistic blocks from the homepage hero", () => {
@@ -78,13 +80,16 @@ describe("homepage public copy contract", () => {
     expect(heroSource).toContain("Pharmaceuticals and medical devices");
     expect(heroSource).toContain("Digital visibility and supply discipline");
     expect(heroSource).toContain("AI-assisted visibility");
+    expect(heroSource).toContain("Live access intelligence");
   });
 
-  it("uses relationship framing instead of a broad partners tab on the homepage", () => {
+  it("keeps relationship detail off the homepage", () => {
     const combined = `${homepageSource}\n${heroSource}`;
-    expect(homepageSource).toContain("Relationship context");
-    expect(homepageSource).toContain("View relationships");
     expect(homepageSource).toContain("relationship discussion");
+    expect(homepageSource).not.toContain("Relationship context");
+    expect(homepageSource).not.toContain("View relationships");
+    expect(homepageSource).not.toContain('href="/partners"');
+    expect(homepageSource).not.toContain('href="/relationships"');
     expect(combined).not.toContain("Partners and Relationship Context");
   });
 });

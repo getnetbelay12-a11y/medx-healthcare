@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  Activity,
   ArrowRight,
   Microscope,
   Network,
@@ -15,6 +16,12 @@ const heroFacts = [
   { label: "03", value: "Digital visibility and supply discipline" },
 ];
 
+const liveSignals = [
+  { label: "Demand", value: "Forecasting", metric: "AI" },
+  { label: "Supply", value: "Risk watch", metric: "62%" },
+  { label: "Program", value: "Readiness", metric: "78%" },
+];
+
 export default function HeroSection() {
   return (
     <section className="medx-lab-hero relative overflow-hidden text-white">
@@ -26,6 +33,19 @@ export default function HeroSection() {
         <div className="medx-motion-panel medx-motion-panel-supply" />
         <div className="medx-motion-panel medx-motion-panel-map" />
         <div className="medx-scan-line" />
+      </div>
+      <div className="medx-live-intel-stack" aria-hidden="true">
+        <div className="medx-live-intel-head">
+          <Activity size={17} />
+          <span>Live access intelligence</span>
+        </div>
+        {liveSignals.map((signal) => (
+          <div key={signal.label} className="medx-live-intel-card">
+            <p>{signal.label}</p>
+            <strong>{signal.value}</strong>
+            <span>{signal.metric}</span>
+          </div>
+        ))}
       </div>
 
       <div className="container-medx relative flex min-h-[calc(92svh-76px)] flex-col justify-center py-14 md:py-16">

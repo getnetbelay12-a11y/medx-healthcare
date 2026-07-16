@@ -19,7 +19,7 @@ const companyLinks = [
   { label: "About MedX", href: "/about" },
   { label: "Leadership and governance", href: "/about#governance" },
   { label: "Strategy", href: "/strategy" },
-  { label: "Relationships", href: "/partners" },
+  { label: "Relationships", href: "/relationships" },
   { label: "Public Health", href: "/public-health" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
