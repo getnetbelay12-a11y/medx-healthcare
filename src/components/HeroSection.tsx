@@ -55,7 +55,7 @@ export default function HeroSection() {
           </p>
 
           <h1 className="mt-6 max-w-5xl text-[2.5rem] font-black leading-[0.98] tracking-normal sm:text-5xl xl:text-[5.2rem]">
-            Healthcare access built for impact.
+            Healthcare supply and diagnostics built for impact.
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-xl">
