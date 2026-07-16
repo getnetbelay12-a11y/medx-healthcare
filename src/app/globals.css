@@ -1615,7 +1615,8 @@ button:focus-visible {
   justify-content: flex-end;
 }
 
-.medx-frame-indicator span {
+.medx-frame-indicator button {
+  appearance: none;
   position: relative;
   overflow: hidden;
   border-radius: 999px;
@@ -1623,11 +1624,29 @@ button:focus-visible {
   background: rgba(255, 255, 255, 0.075);
   padding: 0.55rem 0.8rem 0.55rem 1.15rem;
   color: #dbe8ef;
+  cursor: pointer;
   font-size: 0.72rem;
   font-weight: 950;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   backdrop-filter: blur(16px);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.medx-frame-indicator button:hover {
+  border-color: rgba(110, 231, 183, 0.38);
+  background: rgba(255, 255, 255, 0.11);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.medx-frame-indicator button:focus-visible {
+  outline: 3px solid rgba(110, 231, 183, 0.34);
+  outline-offset: 3px;
 }
 
 .medx-frame-indicator i {
@@ -1646,6 +1665,17 @@ button:focus-visible {
 
 .medx-frame-indicator-active i {
   opacity: 1;
+}
+
+.medx-frame-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-left: 0.8rem !important;
+}
+
+.medx-frame-toggle svg {
+  color: #6ee7b7;
 }
 
 .medx-product-band {
