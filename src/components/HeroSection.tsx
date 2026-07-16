@@ -16,17 +16,29 @@ const heroFacts = [
   { label: "03", value: "Digital visibility and supply discipline" },
 ];
 
+const heroFrames = [
+  medxImages.aiPlatformHero,
+  medxImages.aiDiagnosticsFrame,
+  medxImages.aiSupplyFrame,
+];
+
 export default function HeroSection() {
   return (
     <section className="medx-lab-hero relative overflow-hidden text-white">
-      <Image
-        src={medxImages.aiPlatformHero.src}
-        alt={medxImages.aiPlatformHero.alt}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center"
-      />
+      <div className="medx-hero-slideshow" aria-hidden="true">
+        {heroFrames.map((frame, index) => (
+          <Image
+            key={frame.src}
+            src={frame.src}
+            alt=""
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className="medx-hero-frame object-cover object-center"
+            style={{ animationDelay: `${index * 2}s` }}
+          />
+        ))}
+      </div>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,19,36,0.96)_0%,rgba(4,19,36,0.82)_34%,rgba(4,19,36,0.32)_68%,rgba(4,19,36,0.12)_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,19,36,0.44)_0%,rgba(4,19,36,0.12)_48%,rgba(4,19,36,0.88)_100%)]" />
       <div className="medx-hero-motion" aria-hidden="true">

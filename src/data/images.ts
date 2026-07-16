@@ -3,6 +3,14 @@ export const medxImages = {
     src: "/images/medx/medx-ai-platform-hero.png",
     alt: "Conceptual MedX healthcare operations center connecting diagnostics, supply, digital visibility, and regional healthcare access.",
   },
+  aiDiagnosticsFrame: {
+    src: "/images/medx/medx-ai-diagnostics-frame.png",
+    alt: "Conceptual diagnostics laboratory readiness scene with healthcare professionals and operating dashboards.",
+  },
+  aiSupplyFrame: {
+    src: "/images/medx/medx-ai-supply-frame.png",
+    alt: "Conceptual healthcare supply and medical device readiness scene with clinical staff and operations dashboards.",
+  },
   hero: {
     src: "/images/medx/medx-hero-healthcare-africa.jpg",
     alt: "Conceptual image of African healthcare professionals reviewing diagnostics and operations.",
