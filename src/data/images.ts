@@ -1,4 +1,8 @@
 export const medxImages = {
+  aiPlatformHero: {
+    src: "/images/medx/medx-ai-platform-hero.png",
+    alt: "Conceptual MedX healthcare operations center connecting diagnostics, supply, digital visibility, and regional healthcare access.",
+  },
   hero: {
     src: "/images/medx/medx-hero-healthcare-africa.jpg",
     alt: "Conceptual image of African healthcare professionals reviewing diagnostics and operations.",

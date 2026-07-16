@@ -1432,10 +1432,80 @@ button:focus-visible {
     auto;
 }
 
+.medx-hero-proof,
+.medx-hero-rail,
+.medx-hero-signal {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.075);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.medx-hero-proof {
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.medx-hero-rail {
+  display: grid;
+  overflow: hidden;
+  border-radius: 1.15rem;
+}
+
+.medx-hero-signal {
+  display: grid;
+  gap: 0.55rem;
+  border-radius: 1.15rem;
+  padding: 1rem;
+}
+
 .medx-product-band {
   background:
     linear-gradient(180deg, #f7fbfc 0%, #ffffff 100%),
     radial-gradient(circle at 12% 0%, rgba(16, 166, 110, 0.08), transparent 28%);
+}
+
+.medx-access-stage {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(135deg, #061a31 0%, #0a2e49 56%, #06493f 100%);
+  background-size:
+    68px 68px,
+    68px 68px,
+    auto;
+  padding: clamp(1.35rem, 4vw, 2.4rem);
+  box-shadow: 0 24px 70px rgba(8, 27, 51, 0.14);
+}
+
+.medx-path-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.07);
+  padding: 0.9rem 1rem;
+}
+
+.medx-path-step span {
+  color: #6ee7b7;
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+}
+
+.medx-path-step p {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 850;
+  line-height: 1.45;
 }
 
 .medx-product-card,
@@ -1498,7 +1568,8 @@ button:focus-visible {
   padding: 1.5rem;
 }
 
-.medx-dashboard-panel {
+.medx-dashboard-panel,
+.medx-ai-console {
   overflow: hidden;
   border-radius: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -1514,12 +1585,93 @@ button:focus-visible {
   box-shadow: 0 28px 80px rgba(8, 27, 51, 0.18);
 }
 
+.medx-console-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.07);
+  padding: 1rem;
+}
+
+.medx-console-topline span {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  border: 1px solid rgba(110, 231, 183, 0.3);
+  background: rgba(16, 166, 110, 0.12);
+  padding: 0.5rem 0.75rem;
+  color: #a7f3d0;
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
 .medx-dashboard-metric {
   min-height: 10rem;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.07);
   padding: 1rem;
+}
+
+.medx-console-chart {
+  display: flex;
+  min-height: 15rem;
+  align-items: end;
+  gap: 0.7rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.055);
+  background-size: 42px 42px;
+  padding: 1rem;
+}
+
+.medx-console-chart span {
+  flex: 1;
+  min-width: 0.7rem;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(180deg, #6ee7b7, rgba(16, 166, 110, 0.28));
+  animation: medx-chart-rise 3.8s ease-in-out infinite;
+}
+
+.medx-console-chart span:nth-child(2n) {
+  animation-delay: -1.4s;
+}
+
+.medx-console-chart span:nth-child(3n) {
+  animation-delay: -2.2s;
+}
+
+.medx-ai-signal {
+  display: flex;
+  min-height: 3.35rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.065);
+  padding: 0.8rem 0.9rem;
+}
+
+.medx-ai-signal p {
+  color: #dbe8ef;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.medx-ai-signal span {
+  color: #6ee7b7;
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
 .medx-link-panel {
@@ -1529,11 +1681,44 @@ button:focus-visible {
   padding: 1.5rem;
 }
 
+@keyframes medx-chart-rise {
+  0%,
+  100% {
+    transform: scaleY(0.9);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scaleY(1.06);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .medx-hero-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .medx-access-stage {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
 @media (max-width: 767px) {
   .medx-product-card,
   .medx-benefit-card,
   .medx-tech-card,
   .medx-link-panel {
     min-height: auto;
+  }
+
+  .medx-console-topline {
+    display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medx-console-chart span {
+    animation: none;
   }
 }

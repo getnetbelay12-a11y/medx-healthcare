@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     siteName: "MedX Healthcare Solutions",
     images: [
       {
-        url: medxImages.hero.src,
+        url: "/og.png",
         width: 1200,
         height: 630,
-        alt: medxImages.hero.alt,
+        alt: medxImages.aiPlatformHero.alt,
       },
     ],
   },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "MedX Healthcare Solutions",
     description:
       "Healthcare solutions for supply, diagnostics, medical devices, cervical-screening support, and health-system capacity in Ethiopia.",
-    images: [medxImages.hero.src],
+    images: ["/og.png"],
   },
 };
 

@@ -26,7 +26,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "MedX supports healthcare access through pharmaceutical supply, medical devices, diagnostics, cervical-screening support, and strategic health-system capacity.",
   path: "/",
-  image: medxImages.hero.src,
+  image: "/og.png",
 });
 
 const currentServices = getPublishedServices("current");
@@ -60,6 +60,13 @@ const benefitTiles = [
   },
 ];
 
+const platformPath = [
+  "Identify healthcare access gaps",
+  "Source products and diagnostic support",
+  "Coordinate facility delivery",
+  "Track visibility and program readiness",
+];
+
 const technologyCards = [
   {
     icon: Microscope,
@@ -78,6 +85,13 @@ const technologyCards = [
   },
 ];
 
+const aiSignals = [
+  { label: "Demand risk", value: "Forecast" },
+  { label: "Stock visibility", value: "Track" },
+  { label: "Program readiness", value: "Coordinate" },
+  { label: "Leadership reporting", value: "Report" },
+];
+
 export default function Home() {
   return (
     <>
@@ -87,12 +101,37 @@ export default function Home() {
         <div className="container-medx">
           <SectionHeader
             eyebrow="Healthcare products and services"
-            title="Practical healthcare solutions, organized for execution."
-            description="MedX focuses on the high-friction points that determine whether healthcare programs actually work: diagnostics, supply, devices, screening support, and operational visibility."
+            title="One access platform. Four execution lanes."
+            description="MedX is strongest when the story is not just what it can provide, but how it moves healthcare needs from identification to delivery, visibility, and program readiness."
             centered
           />
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="medx-access-stage mt-10">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-300">
+                MedX access platform
+              </p>
+              <h2 className="mt-4 max-w-2xl text-3xl font-black leading-tight text-white md:text-5xl">
+                Diagnostics, products, relationships, and data moving together.
+              </h2>
+              <p className="mt-5 max-w-2xl leading-8 text-slate-300">
+                The work is practical: understand the need, secure the right
+                product or program support, coordinate delivery, and build the
+                visibility required to scale responsibly.
+              </p>
+            </div>
+
+            <div className="grid gap-3">
+              {platformPath.map((item, index) => (
+                <div key={item} className="medx-path-step">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {currentServices.map((service, index) => (
               <article key={service.id} className="medx-product-card">
                 <div className="flex items-center justify-between gap-4">
@@ -226,9 +265,9 @@ export default function Home() {
         <div className="container-medx grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
           <div>
             <SectionHeader
-              eyebrow="Digital operations preview"
+              eyebrow="AI-assisted operations preview"
               title="Visibility is the difference between effort and execution."
-              description="MedX is developing workflows for supply visibility, forecasting, reporting, and program coordination so leaders can see what is available, what is needed, and where the system is under pressure."
+              description="MedX’s next operating layer should help leaders forecast demand, see supply risk, coordinate programs, and report clearly without waiting for fragmented spreadsheets to catch up."
             />
             <Link href="/strategy" className="btn-primary mt-8">
               Review strategy
@@ -236,8 +275,20 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="medx-dashboard-panel">
-            <div className="grid gap-4 sm:grid-cols-3">
+          <div className="medx-ai-console">
+            <div className="medx-console-topline">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-300">
+                  MedX operating intelligence
+                </p>
+                <p className="mt-2 text-2xl font-black text-white">
+                  Access readiness view
+                </p>
+              </div>
+              <span>In development</span>
+            </div>
+
+            <div className="mt-5 grid gap-4 sm:grid-cols-3">
               {[
                 { icon: Activity, label: "Program demand", value: "Forecast" },
                 { icon: Network, label: "Facility network", value: "Coordinate" },
@@ -258,14 +309,25 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.06] p-5">
-              <div className="h-3 w-3/4 rounded-full bg-emerald-300/80" />
-              <div className="mt-4 h-3 w-11/12 rounded-full bg-white/20" />
-              <div className="mt-4 h-3 w-2/3 rounded-full bg-white/15" />
-              <p className="mt-6 text-sm font-bold leading-7 text-slate-300">
-                Conceptual operating layer for supply, diagnostics, reporting,
-                and program coordination.
-              </p>
+
+            <div className="mt-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="medx-console-chart" aria-hidden="true">
+                <span style={{ height: "46%" }} />
+                <span style={{ height: "62%" }} />
+                <span style={{ height: "54%" }} />
+                <span style={{ height: "78%" }} />
+                <span style={{ height: "68%" }} />
+                <span style={{ height: "88%" }} />
+                <span style={{ height: "72%" }} />
+              </div>
+              <div className="grid gap-3">
+                {aiSignals.map((signal) => (
+                  <div key={signal.label} className="medx-ai-signal">
+                    <p>{signal.label}</p>
+                    <span>{signal.value}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
