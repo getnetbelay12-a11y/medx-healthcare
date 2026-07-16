@@ -17,9 +17,21 @@ const heroFacts = [
 ];
 
 const heroFrames = [
-  medxImages.aiPlatformHero,
-  medxImages.aiDiagnosticsFrame,
-  medxImages.aiSupplyFrame,
+  {
+    ...medxImages.aiPlatformHero,
+    className: "medx-hero-frame-operations",
+    label: "Operations intelligence",
+  },
+  {
+    ...medxImages.aiDiagnosticsFrame,
+    className: "medx-hero-frame-diagnostics",
+    label: "Diagnostics readiness",
+  },
+  {
+    ...medxImages.aiSupplyFrame,
+    className: "medx-hero-frame-supply",
+    label: "Supply coordination",
+  },
 ];
 
 export default function HeroSection() {
@@ -34,8 +46,7 @@ export default function HeroSection() {
             fill
             priority={index === 0}
             sizes="100vw"
-            className="medx-hero-frame object-cover object-center"
-            style={{ animationDelay: `${index * 2}s` }}
+            className={`medx-hero-frame ${frame.className} object-cover object-center`}
           />
         ))}
       </div>
@@ -92,13 +103,22 @@ export default function HeroSection() {
             <span>Program readiness view</span>
           </div>
 
+          <div className="medx-frame-indicator mt-4" aria-hidden="true">
+            {heroFrames.map((frame, index) => (
+              <span key={frame.label}>
+                <i style={{ animationDelay: `${index * 2}s` }} />
+                {frame.label}
+              </span>
+            ))}
+          </div>
+
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/services" className="btn-primary">
               Explore solutions
               <ArrowRight size={17} />
             </Link>
             <Link href="/contact" className="btn-outline">
-              Request products or partnership
+              Request products or relationship
               <ArrowRight size={17} />
             </Link>
           </div>

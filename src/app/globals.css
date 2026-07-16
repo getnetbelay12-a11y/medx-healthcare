@@ -1439,7 +1439,21 @@ button:focus-visible {
 
 .medx-hero-frame {
   opacity: 0;
-  animation: medx-hero-frame-cycle 6s linear infinite;
+  transform: scale(1.035);
+  animation: medx-hero-frame-cycle 6s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.medx-hero-frame-operations {
+  animation-delay: 0s;
+}
+
+.medx-hero-frame-diagnostics {
+  animation-delay: 2s;
+}
+
+.medx-hero-frame-supply {
+  animation-delay: 4s;
 }
 
 .medx-hero-motion {
@@ -1589,6 +1603,37 @@ button:focus-visible {
 .medx-ai-ticker span + span {
   border-left: 1px solid rgba(255, 255, 255, 0.16);
   padding-left: 0.65rem;
+}
+
+.medx-frame-indicator {
+  display: flex;
+  max-width: min(100%, 44rem);
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.medx-frame-indicator span {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.075);
+  padding: 0.55rem 0.8rem 0.55rem 1.15rem;
+  color: #dbe8ef;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  backdrop-filter: blur(16px);
+}
+
+.medx-frame-indicator i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: #6ee7b7;
+  opacity: 0;
+  animation: medx-frame-dot 6s linear infinite;
 }
 
 .medx-product-band {
@@ -1936,25 +1981,37 @@ button:focus-visible {
 @keyframes medx-hero-frame-cycle {
   0% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.01) translate3d(0, 0, 0);
   }
 
-  28% {
+  27% {
     opacity: 1;
   }
 
   33.333% {
     opacity: 0;
-    transform: scale(1.018);
+    transform: scale(1.055) translate3d(-10px, -6px, 0);
   }
 
-  94% {
+  92% {
     opacity: 0;
   }
 
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.01) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes medx-frame-dot {
+  0%,
+  31% {
+    opacity: 1;
+  }
+
+  35%,
+  100% {
+    opacity: 0;
   }
 }
 
@@ -2055,6 +2112,10 @@ button:focus-visible {
 
   .medx-hero-frame:first-child {
     opacity: 1;
+  }
+
+  .medx-frame-indicator i {
+    animation: none;
   }
 
   .medx-motion-panel,
