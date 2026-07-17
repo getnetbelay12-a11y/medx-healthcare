@@ -3039,3 +3039,245 @@ button,
   }
 }
 
+
+/* MEDX TARGETED MOBILE HERO FIX V2 */
+
+@media (max-width: 767px) {
+  /* Keep the page inside the phone screen */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .container-medx {
+    width: calc(100% - 2rem) !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
+
+  /* Mobile header */
+  header {
+    min-height: 72px;
+    position: relative;
+    z-index: 100;
+  }
+
+  header .container-medx {
+    min-height: 72px;
+  }
+
+  header nav {
+    max-width: 100%;
+  }
+
+  /* Hide desktop navigation links when the mobile menu is available */
+  header nav > div[class*="hidden"][class*="lg:flex"],
+  header nav > ul,
+  header .desktop-nav {
+    display: none !important;
+  }
+
+  header button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Simplify the homepage hero */
+  .corporate-shell,
+  .gradient-hero {
+    min-height: auto !important;
+    background-position: center !important;
+  }
+
+  .corporate-shell > .container-medx,
+  .gradient-hero > .container-medx {
+    padding-top: 3.25rem !important;
+    padding-bottom: 3.25rem !important;
+  }
+
+  /* Force hero layouts into one column */
+  .corporate-shell .grid,
+  .gradient-hero .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Mobile headline */
+  .corporate-shell h1,
+  .gradient-hero h1 {
+    max-width: 100% !important;
+    font-size: clamp(2.5rem, 12vw, 3.4rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.055em !important;
+    text-wrap: balance;
+  }
+
+  .corporate-shell h1 br,
+  .gradient-hero h1 br {
+    display: none;
+  }
+
+  /* Hero paragraph */
+  .corporate-shell h1 + p,
+  .gradient-hero h1 + p {
+    max-width: 100% !important;
+    margin-top: 1.35rem !important;
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Hide complex desktop intelligence visuals */
+  .medx-motion-panel,
+  .medx-live-intel-stack,
+  .medx-live-intel-card,
+  .medx-live-intel-head,
+  .medx-console-panel,
+  .medx-console-chart,
+  .medx-dashboard-panel,
+  .medx-map-panel,
+  .medx-floating-panel,
+  .medx-frame-indicator-floating,
+  .medx-scan-line {
+    display: none !important;
+  }
+
+  /* Hide decorative image overlays that make mobile crowded */
+  .corporate-shell .absolute[class*="right-"],
+  .corporate-shell .absolute[class*="left-"],
+  .gradient-hero .absolute[class*="right-"],
+  .gradient-hero .absolute[class*="left-"] {
+    max-width: 100%;
+  }
+
+  /* Hero benefit cards */
+  .medx-hero-rail {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.75rem !important;
+    margin-top: 1.75rem !important;
+  }
+
+  .medx-hero-rail > * {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 1rem !important;
+  }
+
+  /* Simplify the AI ticker */
+  .medx-ai-ticker {
+    display: grid !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 1rem !important;
+  }
+
+  .medx-ai-ticker span {
+    width: 100% !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font-size: 0.72rem !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+  }
+
+  /* Stack hero buttons */
+  .corporate-shell .btn-primary,
+  .corporate-shell .btn-outline,
+  .corporate-shell .btn-secondary,
+  .gradient-hero .btn-primary,
+  .gradient-hero .btn-outline,
+  .gradient-hero .btn-secondary {
+    width: 100% !important;
+    min-height: 50px !important;
+    padding: 0.9rem 1rem !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  .corporate-shell .flex:has(.btn-primary),
+  .gradient-hero .flex:has(.btn-primary) {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Bottom hero statistics */
+  .corporate-shell [class*="grid-cols-3"],
+  .gradient-hero [class*="grid-cols-3"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Remove large fixed hero heights */
+  .min-h-screen,
+  .h-screen {
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* General mobile cards */
+  .card-premium,
+  .executive-card,
+  .metric-tile,
+  .medx-product-card,
+  .medx-benefit-card,
+  .medx-tech-card,
+  .medx-context-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    padding: 1.15rem !important;
+  }
+
+  /* Sections */
+  section {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  section h2 {
+    font-size: clamp(1.85rem, 8vw, 2.35rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  /* Mobile images */
+  section img {
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  /* Contact form */
+  form .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100% !important;
+    min-height: 48px;
+    font-size: 16px !important;
+  }
+
+  /* Footer */
+  footer .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 374px) {
+  .container-medx {
+    width: calc(100% - 1.5rem) !important;
+  }
+
+  .corporate-shell h1,
+  .gradient-hero h1 {
+    font-size: 2.35rem !important;
+  }
+}
+
