@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type BrandMarkProps = {
   size?: "sm" | "md" | "lg";
   variant?: "dark" | "light";
@@ -17,14 +19,23 @@ export default function BrandMark({
 
   return (
     <div
-      className={`medx-brand-mark ${sizeClasses[size]} ${
-        isLight ? "medx-brand-mark-light" : "medx-brand-mark-dark"
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden border shadow-sm ${
+        sizeClasses[size]
+      } ${
+        isLight
+          ? "border-white/15 bg-white"
+          : "border-slate-200 bg-white"
       }`}
-      aria-hidden="true"
+      aria-label="MedX Healthcare Solutions logo"
     >
-      <span className="medx-brand-mark-cross" />
-      <span className="medx-brand-mark-wave" />
-      <strong>MX</strong>
+      <Image
+        src="/images/medx/MedxLogo.png"
+        alt=""
+        width={96}
+        height={96}
+        className="h-full w-full object-contain p-1"
+        priority={size !== "sm"}
+      />
     </div>
   );
 }
