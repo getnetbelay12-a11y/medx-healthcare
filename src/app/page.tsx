@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   ClipboardList,
   Globe2,
+  HeartPulse,
   Network,
   PackageCheck,
 } from "lucide-react";
@@ -120,6 +121,13 @@ const requestChecklist = [
   "Estimated quantity, destination, and timeline",
   "Current bottleneck: availability, procurement, training, reporting, or referral",
   "Decision owner and preferred follow-up path",
+];
+
+const cervicalContext = [
+  { value: "36.9M", label: "women age 15+ at risk in Ethiopia" },
+  { value: "7,445", label: "estimated new cases per year" },
+  { value: "5,338", label: "estimated deaths per year" },
+  { value: "#2", label: "most frequent cancer among women" },
 ];
 
 export default function Home() {
@@ -355,20 +363,35 @@ export default function Home() {
             <SectionHeader
               eyebrow="Cervical-health origin"
               title="A focused origin in cervical screening and cancer-care access."
-              description="MedX’s original platform was rooted in diagnostics and cervical-screening access. That origin still matters because women’s health programs need tools, supply, training coordination, and dependable follow-through."
+              description="MedX’s original platform was rooted in diagnostics and cervical-screening access. Ethiopia-specific burden data makes the need clear: women’s health programs need tools, supply, training coordination, and dependable follow-through."
             />
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-3">
-              {["Screening access", "Program supply", "Care continuity"].map(
-                (item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-white/10 bg-white/[0.07] p-4 text-sm font-black"
-                  >
-                    {item}
-                  </div>
-                ),
-              )}
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {cervicalContext.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-white/10 bg-white/[0.07] p-4"
+                >
+                  <p className="flex items-center gap-2 text-3xl font-black">
+                    <HeartPulse size={22} className="text-emerald-200" />
+                    {item.value}
+                  </p>
+                  <p className="mt-2 text-sm font-bold leading-6 text-slate-300">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
+              Source: ICO/IARC HPV Information Centre, Ethiopia Fact Sheet 2023.
+            </p>
+
+            <div className="mt-7">
+              <Link href="/public-health" className="btn-outline">
+                See public-health focus
+                <ArrowRight size={17} />
+              </Link>
             </div>
           </div>
           <div>

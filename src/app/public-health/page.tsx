@@ -5,7 +5,18 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { medxImages } from "@/data/images";
 import { pageMetadata } from "@/lib/seo";
-import { Building2, FlaskConical, Hospital, Pill, Store, Warehouse } from "lucide-react";
+import {
+  Building2,
+  ClipboardCheck,
+  FileText,
+  FlaskConical,
+  Hospital,
+  Pill,
+  ShieldCheck,
+  Store,
+  Users,
+  Warehouse,
+} from "lucide-react";
 
 export const metadata: Metadata = pageMetadata({
   title: "Public Health Focus",
@@ -42,6 +53,64 @@ const cervicalPriorities = [
   "Early detection pathways",
   "Referral readiness",
   "Future cancer-care capacity",
+];
+
+const ethiopiaBurdenStats = [
+  {
+    value: "36.9M",
+    label: "women age 15+ at risk",
+    source: "ICO/IARC HPV Information Centre, Ethiopia Fact Sheet 2023",
+  },
+  {
+    value: "7,445",
+    label: "estimated new cervical cancer cases per year",
+    source: "ICO/IARC HPV Information Centre, Ethiopia Fact Sheet 2023",
+  },
+  {
+    value: "5,338",
+    label: "estimated cervical cancer deaths per year",
+    source: "ICO/IARC HPV Information Centre, Ethiopia Fact Sheet 2023",
+  },
+  {
+    value: "#2",
+    label: "most frequent cancer among women in Ethiopia",
+    source: "ICO/IARC HPV Information Centre, Ethiopia Fact Sheet 2023",
+  },
+];
+
+const screeningWorkflow = [
+  "Community or facility screening need",
+  "Sample collection and patient education",
+  "HPV or OncoE6-supported diagnostic workflow",
+  "Result reporting and referral coordination",
+  "Follow-up, training, and program visibility",
+];
+
+const evidenceReferences = [
+  {
+    title: "Ethiopia cervical cancer guideline",
+    detail:
+      "Supports alignment with national cervical cancer prevention and control priorities for 2025-2029.",
+    icon: FileText,
+  },
+  {
+    title: "ICO/IARC Ethiopia HPV report",
+    detail:
+      "Provides Ethiopia-specific burden statistics for cervical cancer, HPV-related disease, screening, and vaccination context.",
+    icon: Users,
+  },
+  {
+    title: "PAHO HPV screening manual",
+    detail:
+      "Useful for program design topics such as health-worker training, sample handling, laboratory operations, and result communication.",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "Published OncoE6 research",
+    detail:
+      "Provides peer-reviewed background on HPV E6 oncoprotein detection, triage, self-sampling, and low-resource screening studies.",
+    icon: ShieldCheck,
+  },
 ];
 
 const amharaNetwork = [
@@ -143,7 +212,7 @@ export default function PublicHealthFocusPage() {
             <SectionHeader
               eyebrow="Cervical Cancer Burden"
               title="Screening access and early detection need expansion."
-              description="Cervical cancer remains a major public health concern. MedX can support preventive screening, diagnostic pathways, referral readiness, and future cancer care infrastructure without fear-based messaging."
+              description="Cervical cancer remains a major public health concern in Ethiopia. MedX can support preventive screening, diagnostic pathways, referral readiness, and future cancer care infrastructure without fear-based messaging."
             />
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {cervicalPriorities.map((item) => (
@@ -156,6 +225,90 @@ export default function PublicHealthFocusPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Ethiopia-Specific Context"
+            title="The screening case is stronger when it starts with local burden."
+            description="The attached ICO/IARC Ethiopia materials provide credible public-health context. These statistics should be used as sourced background, not as MedX-owned clinical results."
+            centered
+          />
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {ethiopiaBurdenStats.map((stat) => (
+              <article key={stat.label} className="metric-tile p-6 pl-8">
+                <p className="text-4xl font-black tracking-tight text-[#071b33]">
+                  {stat.value}
+                </p>
+                <p className="mt-3 text-sm font-black leading-6 text-slate-700">
+                  {stat.label}
+                </p>
+                <p className="mt-4 text-xs leading-5 text-slate-500">{stat.source}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="medical-pattern py-20">
+        <div className="container-medx grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <SectionHeader
+              eyebrow="Screening Program Model"
+              title="A public-health program needs workflow, not only a test."
+              description="The strongest website message is that MedX can help connect education, sample collection, diagnostic workflows, referral readiness, and follow-up visibility."
+            />
+            <p className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-bold leading-7 text-[#6b4a05]">
+              Patient photos, clinical images, partner logos, and relationship claims
+              should be published only after written approval. This protects MedX and
+              keeps the website professionally defensible.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {screeningWorkflow.map((step, index) => (
+              <article key={step} className="executive-card flex gap-5 p-5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-sm font-black text-[#10a66e]">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <div>
+                  <h3 className="font-black text-[#071b33]">{step}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Use this as the plain-English explanation of how screening support
+                    moves from demand to action.
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Evidence Base"
+            title="Reference materials that can improve the site."
+            description="These materials should support short summaries, sourced statistics, and professional program language. They should not be copied directly into the website."
+            centered
+          />
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {evidenceReferences.map(({ title, detail, icon: Icon }) => (
+              <article key={title} className="card-premium p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-[#10a66e]">
+                  <Icon size={22} />
+                </div>
+                <h3 className="mt-5 text-lg font-black leading-tight text-[#071b33]">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{detail}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

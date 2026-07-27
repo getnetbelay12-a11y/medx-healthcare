@@ -1,6 +1,6 @@
 const fallbackSiteUrl =
   process.env.NODE_ENV === "production"
-    ? "https://medx-healthcare-solutions.getnetgc.chatgpt.site"
+    ? "https://medx.shegahomes.com"
     : "http://localhost:3000";
 
 export const siteUrl =
