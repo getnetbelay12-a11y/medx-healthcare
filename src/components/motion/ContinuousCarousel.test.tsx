@@ -489,17 +489,18 @@ describe("AutoCarousel motion contract", () => {
 
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
     expect(originalTrack.children).toHaveLength(getPublishedRelationships().length);
-    expect(screen.getAllByText("2020 reference").length).toBeGreaterThan(0);
     expect(screen.getByText("TIRET Corporate")).toBeTruthy();
+    expect(screen.queryByText("Cancer-care institution context")).toBeNull();
+    expect(screen.queryByText(/2020 materials/)).toBeNull();
   });
 
-  it("filters relationship status without a page reload", () => {
+  it("shows all relationships together without status filters", () => {
     render(<RelationshipsCarousel />);
 
     expect(screen.getByText("Arbor Vita Corporation")).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "Current" }));
-    expect(screen.queryByText("Arbor Vita Corporation")).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "Historical" }));
-    expect(screen.getByText("Arbor Vita Corporation")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "All" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Current" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Historical" })).toBeNull();
+    expect(screen.queryByText("Status being updated")).toBeNull();
   });
 });

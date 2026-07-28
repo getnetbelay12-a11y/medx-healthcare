@@ -34,8 +34,9 @@ describe("relationships data", () => {
   });
 
   it("stores relationship status labels centrally", () => {
-    expect(relationshipStatusLabels.current).toBe("Current relationship");
-    expect(relationshipStatusLabels.historical).toBe("2020 reference");
+    expect(relationshipStatusLabels.current).toBe("Partner context");
+    expect(relationshipStatusLabels.historical).toBe("Partner context");
+    expect(relationshipStatusLabels.unconfirmed).toBe("Partner context");
   });
 
   it("keeps relationship display order editable", () => {

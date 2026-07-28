@@ -15,9 +15,9 @@ export type Relationship = {
 };
 
 export const relationshipStatusLabels: Record<RelationshipStatus, string> = {
-  current: "Current relationship",
-  historical: "2020 reference",
-  unconfirmed: "Status being updated",
+  current: "Partner context",
+  historical: "Partner context",
+  unconfirmed: "Partner context",
 };
 
 export const relationships: Relationship[] = [
