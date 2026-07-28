@@ -71,12 +71,12 @@ export default function LeadershipCarousel() {
           centered
         />
 
-        <div className="mt-9">
+        <div className="mt-8">
           <AutoCarousel
             ariaLabel="Leadership and governance carousel"
             direction="left"
             duration={64}
-            itemGap={18}
+            itemGap={12}
             className="leadership-carousel"
             showControls={false}
           >
