@@ -25,8 +25,11 @@ export const metadata: Metadata = {
     "healthcare forecasting",
   ],
   icons: {
-    icon: "/images/medx/MedxLogo1.png",
-    apple: "/images/medx/MedxLogo1.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-icon.png",
   },
   manifest: "/manifest.webmanifest",
   alternates: {
