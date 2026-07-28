@@ -62,12 +62,12 @@ export default function RelationshipsCarousel() {
           centered
         />
 
-        <div className="mt-10">
+        <div className="mt-8">
           <AutoCarousel
             ariaLabel="Relationships and historical context carousel"
             direction="right"
-            duration={58}
-            itemGap={18}
+            duration={64}
+            itemGap={12}
             className="relationships-carousel"
             showControls={false}
           >
@@ -80,7 +80,7 @@ export default function RelationshipsCarousel() {
           </AutoCarousel>
         </div>
 
-        <p className="mx-auto mt-6 max-w-4xl rounded-2xl border border-amber-200/80 bg-amber-50/80 px-5 py-4 text-center text-sm font-bold leading-7 text-amber-950">
+        <p className="mx-auto mt-5 max-w-4xl rounded-xl border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-center text-xs font-bold leading-6 text-amber-950">
           Partner names and logos should be published only when MedX has the
           right to show them publicly. Source references provide context and
           should not be read as a current endorsement unless separately
