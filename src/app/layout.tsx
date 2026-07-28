@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     "healthcare forecasting",
   ],
   icons: {
-    icon: "/images/medx/MedxLogo.png",
-    apple: "/images/medx/MedxLogo.png",
+    icon: "/images/medx/MedxLogo1.png",
+    apple: "/images/medx/MedxLogo1.png",
   },
   manifest: "/manifest.webmanifest",
   alternates: {
