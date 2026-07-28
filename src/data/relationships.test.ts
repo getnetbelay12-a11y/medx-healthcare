@@ -19,9 +19,11 @@ describe("relationships data", () => {
       (relationship) => relationship.organization,
     );
     expect(names).toContain("Arbor Vita Corporation");
-    expect(names).toContain("TIRET Corporate");
     expect(names).toContain("Black Lion Hospital, Addis Ababa");
     expect(getPublishedRelationships().length).toBeGreaterThanOrEqual(3);
+    expect(getPublishedRelationships().map((item) => item.organization)).not.toContain(
+      "TIRET Corporate",
+    );
   });
 
   it("separates current relationships from historical references", () => {

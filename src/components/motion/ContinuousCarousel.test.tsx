@@ -472,7 +472,8 @@ describe("AutoCarousel motion contract", () => {
 
     expect(document.querySelector('[data-leadership-id="initials-leader"] img')).toBeNull();
     expect(screen.getByText("SL")).toBeTruthy();
-    expect(screen.getByText("Historical 2020 reference")).toBeTruthy();
+    expect(screen.queryByText("Historical 2020 reference")).toBeNull();
+    expect(screen.queryByText(/Source year:/)).toBeNull();
   });
 
   it("renders all published directors from centralized data", () => {
@@ -480,8 +481,9 @@ describe("AutoCarousel motion contract", () => {
 
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
     expect(originalTrack.children).toHaveLength(getPublishedLeadership().length);
-    expect(screen.getAllByText("Historical 2020 reference").length).toBeGreaterThan(0);
-    expect(screen.getByText("CEO of Arbor Vita Corporation")).toBeTruthy();
+    expect(screen.queryByText("Historical 2020 reference")).toBeNull();
+    expect(screen.queryByText(/Source year:/)).toBeNull();
+    expect(screen.getByText("Healthcare diagnostics and technology leadership")).toBeTruthy();
   });
 
   it("renders all published relationships from centralized data", () => {
@@ -489,7 +491,7 @@ describe("AutoCarousel motion contract", () => {
 
     const originalTrack = screen.getByTestId("auto-carousel-original-track");
     expect(originalTrack.children).toHaveLength(getPublishedRelationships().length);
-    expect(screen.getByText("TIRET Corporate")).toBeTruthy();
+    expect(screen.queryByText("TIRET Corporate")).toBeNull();
     expect(screen.queryByText("Cancer-care institution context")).toBeNull();
     expect(screen.queryByText(/2020 materials/)).toBeNull();
   });

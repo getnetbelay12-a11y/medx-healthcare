@@ -17,9 +17,9 @@ export type LeadershipMember = {
 };
 
 export const leadershipStatusLabels: Record<LeadershipStatus, string> = {
-  current: "Current",
-  historical: "Historical 2020 reference",
-  unconfirmed: "Status being updated",
+  current: "Leadership",
+  historical: "Leadership",
+  unconfirmed: "Leadership",
 };
 
 export const leadershipMembers: LeadershipMember[] = [
@@ -27,10 +27,10 @@ export const leadershipMembers: LeadershipMember[] = [
     id: "peter-lu",
     name: "Dr. Peter S. Lu",
     credentials: "M.D.",
-    role: "CEO of Arbor Vita Corporation",
+    role: "Healthcare diagnostics and technology leadership",
     organization: "Arbor Vita Corporation",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials as CEO of Arbor Vita Corporation and a member of MedX’s historical board.",
+      "Healthcare diagnostics and technology leadership profile.",
     portrait: "/images/medx/board/peter-lu.jpg",
     portraitAlt: "Dr. Peter S. Lu, historical 2020 board reference.",
     sourceYear: 2020,
@@ -42,9 +42,9 @@ export const leadershipMembers: LeadershipMember[] = [
     id: "ahmed-abtew",
     name: "Ahmed Abtew",
     credentials: "M.S. Economics",
-    role: "Former Minister of Industry; former chairman of Commercial Bank of Ethiopia and TIRET",
+    role: "Public-sector, banking, and industrial leadership",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials with senior public, banking, industrial, and institutional leadership experience.",
+      "Senior public, banking, industrial, and institutional leadership profile.",
     portrait: "/images/medx/board/ahmed-abtew.jpg",
     portraitAlt: "Ahmed Abtew, historical 2020 board reference.",
     sourceYear: 2020,
@@ -55,10 +55,10 @@ export const leadershipMembers: LeadershipMember[] = [
   {
     id: "hicham-jorio",
     name: "Hicham Jorio",
-    role: "Spire Bioventures; Arbor Vita Corporation",
+    role: "Bioventures and healthcare investment leadership",
     organization: "Spire Bioventures / Arbor Vita Corporation",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials in connection with Spire Bioventures and Arbor Vita Corporation.",
+      "Bioventures and healthcare investment leadership profile.",
     portrait: "/images/medx/board/hicham-jorio.jpg",
     portraitAlt: "Hicham Jorio, historical 2020 board reference.",
     sourceYear: 2020,
@@ -70,10 +70,9 @@ export const leadershipMembers: LeadershipMember[] = [
     id: "amlaku-asres",
     name: "Dr. Amlaku Asres",
     credentials: "Ph.D.",
-    role: "CEO of TIRET",
-    organization: "TIRET",
+    role: "Executive and institutional leadership",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials as CEO of TIRET and a member of MedX’s historical board.",
+      "Executive and institutional leadership profile.",
     portrait: "/images/medx/board/amlaku-asres.jpg",
     portraitAlt: "Dr. Amlaku Asres, historical 2020 board reference.",
     sourceYear: 2020,
@@ -88,7 +87,7 @@ export const leadershipMembers: LeadershipMember[] = [
     role: "Pediatrician; Director General of the Pharmacy Supply Agency",
     organization: "Pharmacy Supply Agency",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials with pediatric and national pharmacy-supply leadership experience.",
+      "Pediatric and national pharmacy-supply leadership profile.",
     portrait: "/images/medx/board/loko-abraham.jpg",
     portraitAlt: "Dr. Loko Abraham, historical 2020 board reference.",
     sourceYear: 2020,
@@ -99,10 +98,10 @@ export const leadershipMembers: LeadershipMember[] = [
   {
     id: "yamral-ayele",
     name: "Yamral Ayele",
-    role: "Consultant for Arbor Vita Corporation",
+    role: "Healthcare technology and implementation advisory",
     organization: "Arbor Vita Corporation",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials as a consultant for Arbor Vita Corporation and part of MedX’s historical board context.",
+      "Healthcare technology and implementation advisory profile.",
     portrait: "/images/medx/board/yamral-ayele.jpg",
     portraitAlt: "Yamral Ayele, historical 2020 board reference.",
     sourceYear: 2020,
@@ -117,7 +116,7 @@ export const leadershipMembers: LeadershipMember[] = [
     role: "Surgeon; Addis Ababa Regional Health Bureau Head",
     organization: "Addis Ababa Regional Health Bureau",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials with surgical and regional health bureau leadership experience.",
+      "Surgical and regional health bureau leadership profile.",
     portrait: "/images/medx/board/yohannes-challa.jpg",
     portraitAlt: "Dr. Yohannes Challa, historical 2020 board reference.",
     sourceYear: 2020,
@@ -131,7 +130,7 @@ export const leadershipMembers: LeadershipMember[] = [
     credentials: "Ph.D.",
     role: "Public Health Specialist; Senior Public Health Consultant",
     shortBio:
-      "Referenced in MedX’s 2020 investor materials with public-health specialist and senior consulting experience.",
+      "Public-health specialist and senior consulting leadership profile.",
     portrait: "/images/medx/board/abebaw-gebeyehu.jpg",
     portraitAlt: "Dr. Abebaw Gebeyehu, historical 2020 board reference.",
     objectPosition: "center 38%",

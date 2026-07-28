@@ -33,19 +33,6 @@ export const relationships: Relationship[] = [
     displayOrder: 10,
   },
   {
-    id: "tiret-corporate",
-    organization: "TIRET Corporate",
-    relationshipType: "Investor and joint-venture context",
-    publicDescription:
-      "Referenced in MedX’s 2020 investor materials as an Ethiopian investor and joint-venture participant.",
-    logo: "/images/medx/partners/tiret-corporate.png",
-    logoAlt: "TIRET Corporate historical logo reference.",
-    sourceYear: 2020,
-    status: "historical",
-    isPublished: true,
-    displayOrder: 20,
-  },
-  {
     id: "black-lion-hospital",
     organization: "Black Lion Hospital, Addis Ababa",
     relationshipType: "Healthcare-institution context",

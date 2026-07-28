@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   CheckCircle2,
-  CircleDot,
   Handshake,
   Lightbulb,
   Scale,
@@ -128,7 +127,7 @@ export default function AboutPage() {
           <SectionHeader
             eyebrow="Origin and evolution"
             title="From diagnostic and screening roots to broader healthcare access work."
-            description={`${company.description} Historical materials reference initial capital of ${company.historicalInitialCapital}.`}
+            description={company.description}
           />
           <div className="space-y-4">
             {company.aboutTimeline.slice(0, 4).map((item) => (
@@ -211,29 +210,6 @@ export default function AboutPage() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section-band py-14 md:py-16">
-        <div className="container-medx grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-          <SectionHeader
-            eyebrow="Governance overview"
-            title="Governance history with source context."
-            description="MedX’s governance and ownership structure has evolved since formation. The references below preserve historical context while current records can be updated in one central data file."
-          />
-          <details className="group bg-white p-6 shadow-[0_12px_34px_rgba(8,27,51,0.06)]">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-black text-[#071b33] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">
-              View historical governance context
-              <CircleDot className="shrink-0 text-[#10a66e] transition-transform group-open:rotate-90" size={22} />
-            </summary>
-            <div className="mt-5 space-y-3 border-t border-slate-200 pt-5">
-              {company.historicalGovernanceContext.map((item) => (
-                <p key={item} className="text-sm font-bold leading-7 text-slate-600">
-                  {item}
-                </p>
-              ))}
-            </div>
-          </details>
         </div>
       </section>
 

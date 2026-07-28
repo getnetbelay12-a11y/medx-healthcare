@@ -21,7 +21,6 @@ export const company = {
   ],
   historicalFacts: [
     "Historical materials describe a joint venture involving Arbor Vita Corporation and an Ethiopian endowment organization.",
-    "Historical materials reference TIRET Corporate.",
     "Original activity included manufacturing and distribution of in-vitro diagnostic devices.",
     "The 2020 presentation described an approximately 6,000-square-foot furnished manufacturing facility.",
     "The original flagship focus was the OncoE6 cervical screening test.",
@@ -114,7 +113,6 @@ export const company = {
     "Goshe Meda Pipe and Plastic Manufacturing Industry is referenced in historical administration context.",
     "Amhara Regional Health Bureau and Amhara Public Health Institute are referenced in historical support context.",
     "Nigat Corporate is referenced in historical governance transition materials.",
-    "TIRET Corporate is referenced in historical investor and joint-venture materials.",
     "Arbor Vita Corporation is referenced in historical investor and technology context.",
   ],
 } as const;

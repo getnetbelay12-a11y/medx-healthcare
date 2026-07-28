@@ -29,7 +29,8 @@ describe("leadership data", () => {
   });
 
   it("stores director status labels centrally", () => {
-    expect(leadershipStatusLabels.current).toBe("Current");
-    expect(leadershipStatusLabels.historical).toBe("Historical 2020 reference");
+    expect(leadershipStatusLabels.current).toBe("Leadership");
+    expect(leadershipStatusLabels.historical).toBe("Leadership");
+    expect(leadershipStatusLabels.unconfirmed).toBe("Leadership");
   });
 });
