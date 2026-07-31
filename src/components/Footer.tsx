@@ -2,11 +2,12 @@ import Link from "next/link";
 import {
   Mail,
   MapPin,
+  Phone,
   ShieldCheck,
 } from "lucide-react";
 import BrandMark from "@/components/BrandMark";
 import { company } from "@/data/company";
-import { isValidPublicEmail, publicEnv } from "@/lib/env";
+import { isValidPublicEmail, normalizePhoneHref, publicEnv } from "@/lib/env";
 
 const serviceLinks = [
   { label: "Product catalog", href: "/products" },
@@ -129,6 +130,19 @@ export default function Footer() {
                     className="text-sm font-bold text-slate-300 transition hover:text-white"
                   >
                     {publicEnv.companyEmail}
+                  </a>
+                </div>
+              )}
+
+              {publicEnv.companyPhone && (
+                <div className="flex items-center gap-3">
+                  <Phone className="shrink-0 text-emerald-300" size={18} />
+
+                  <a
+                    href={normalizePhoneHref(publicEnv.companyPhone)}
+                    className="text-sm font-bold text-slate-300 transition hover:text-white"
+                  >
+                    {publicEnv.companyPhone}
                   </a>
                 </div>
               )}

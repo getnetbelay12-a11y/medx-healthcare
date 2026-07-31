@@ -7,11 +7,11 @@ import { medxImages } from "@/data/images";
 
 const frames = [
   {
-    ...medxImages.diagnostics,
+    ...medxImages.generatedDiagnosticsHero,
     label: "Diagnostics readiness",
   },
   {
-    ...medxImages.pharmaceuticalSupply,
+    ...medxImages.generatedSupplyCatalog,
     label: "Pharmaceutical supply",
   },
   {

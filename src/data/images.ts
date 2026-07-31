@@ -19,6 +19,14 @@ export const medxImages = {
     src: "/images/medx/medx-ai-regional-frame.png",
     alt: "Conceptual regional healthcare access and medical logistics command center with supply routes and facility readiness dashboards.",
   },
+  generatedDiagnosticsHero: {
+    src: "/images/medx/medx-generated-diagnostics-hero.png",
+    alt: "Bright clinical diagnostics laboratory scene representing MedX diagnostic and laboratory support.",
+  },
+  generatedSupplyCatalog: {
+    src: "/images/medx/medx-generated-supply-catalog.png",
+    alt: "Bright medical supply and diagnostic equipment scene representing MedX product catalog and institutional supply requests.",
+  },
   hero: {
     src: "/images/medx/medx-hero-healthcare-africa.jpg",
     alt: "Conceptual image of African healthcare professionals reviewing diagnostics and operations.",

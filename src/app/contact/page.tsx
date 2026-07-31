@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Contact MedX Healthcare Solutions for partnerships, product supply requests, diagnostics, public-health programs, and investment inquiries.",
   path: "/contact",
-  image: medxImages.diagnostics.src,
+  image: medxImages.generatedDiagnosticsHero.src,
 });
 
 const contactDetails = [
@@ -73,7 +73,7 @@ export default function ContactPage() {
         title="Start a clear healthcare request or relationship discussion."
         description="Connect with MedX for quotation requests, supply requests, diagnostics, devices, screening programs, investment discussion, and healthcare collaboration."
         highlights={["Quotation requests", "Product supply", "Relationship inquiry"]}
-        image={medxImages.diagnostics}
+        image={medxImages.generatedDiagnosticsHero}
         imageLabel="Request intake"
         imageCaption="Scope • urgency • follow-up"
       />
