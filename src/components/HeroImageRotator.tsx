@@ -15,8 +15,20 @@ const frames = [
     label: "Pharmaceutical supply",
   },
   {
+    ...medxImages.hospitalPartnership,
+    label: "Healthcare partnerships",
+  },
+  {
     ...medxImages.historicalMeetingDiscussion,
     label: "Institutional relationships",
+  },
+  {
+    ...medxImages.historicalMeetingGroup,
+    label: "MedX relationship history",
+  },
+  {
+    ...medxImages.bahirDar,
+    label: "Bahir Dar context",
   },
   {
     ...medxImages.cervicalScreening,
@@ -46,7 +58,7 @@ export default function HeroImageRotator() {
 
     const timer = window.setInterval(() => {
       setActiveFrame((current) => (current + 1) % frames.length);
-    }, 2000);
+    }, 2600);
 
     return () => window.clearInterval(timer);
   }, [isPaused, prefersReducedMotion]);
