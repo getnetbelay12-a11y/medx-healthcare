@@ -9,6 +9,7 @@ import { company } from "@/data/company";
 import { isValidPublicEmail, publicEnv } from "@/lib/env";
 
 const serviceLinks = [
+  { label: "Product catalog", href: "/products" },
   { label: "Pharmaceutical supply", href: "/services" },
   { label: "Medical devices", href: "/services" },
   { label: "Diagnostics", href: "/services" },

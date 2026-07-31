@@ -8,6 +8,7 @@ import {
   PackageCheck,
   ShieldCheck,
 } from "lucide-react";
+import HeroImageRotator from "@/components/HeroImageRotator";
 
 const heroFacts = [
   { label: "Origin", value: "Diagnostics and cervical screening" },
@@ -18,7 +19,14 @@ const heroFacts = [
 export default function HeroSection() {
   return (
     <section className="medx-lab-hero relative overflow-hidden text-white">
+      <HeroImageRotator />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,19,36,0.98)_0%,rgba(4,19,36,0.92)_44%,rgba(4,19,36,0.66)_100%)]" />
+      <div className="medx-hero-motion" aria-hidden="true">
+        <div className="medx-motion-panel medx-motion-panel-lab" />
+        <div className="medx-motion-panel medx-motion-panel-supply" />
+        <div className="medx-motion-panel medx-motion-panel-map" />
+        <div className="medx-scan-line" />
+      </div>
 
       <div className="container-medx relative grid min-h-[calc(88svh-76px)] gap-10 py-14 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="max-w-4xl">

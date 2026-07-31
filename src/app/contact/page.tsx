@@ -41,7 +41,7 @@ const contactDetails = [
 ].filter(Boolean);
 
 const inquiryGuidance = [
-  "Product or service needed",
+  "Product name, category, or service needed",
   "Facility or program location",
   "Estimated quantity and urgency",
   "Preferred response timeline",
@@ -71,8 +71,8 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact MedX"
         title="Start a clear healthcare request or relationship discussion."
-        description="Connect with MedX for supply requests, diagnostics, devices, screening programs, investment discussion, and healthcare collaboration."
-        highlights={["Product requests", "Program support", "Relationship inquiry"]}
+        description="Connect with MedX for quotation requests, supply requests, diagnostics, devices, screening programs, investment discussion, and healthcare collaboration."
+        highlights={["Quotation requests", "Product supply", "Relationship inquiry"]}
         image={medxImages.aiDiagnosticsFrame}
         imageLabel="Request intake"
         imageCaption="Scope • urgency • follow-up"
@@ -85,7 +85,7 @@ export default function ContactPage() {
               Let’s strengthen healthcare access together.
             </h2>
             <p className="mt-4 leading-8 text-slate-600">
-              Use the form for supply requests, diagnostics, medical devices,
+              Use the form for quotations, supply requests, diagnostics, medical devices,
               screening programs, investment discussions, and research
               collaboration.
             </p>

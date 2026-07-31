@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const inquiryTypes = [
+  "Quotation request",
   "Product and supply request",
   "Pharmaceutical request",
   "Medical-device request",
