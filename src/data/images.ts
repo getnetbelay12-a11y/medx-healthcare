@@ -1,22 +1,22 @@
 export const medxImages = {
-  aiPlatformHero: {
-    src: "/images/medx/medx-ai-platform-hero.png",
+  digitalPlatformHero: {
+    src: "/images/medx/medx-digital-platform-hero.png",
     alt: "Conceptual MedX healthcare operations center connecting diagnostics, supply, digital visibility, and regional healthcare access.",
   },
-  aiDiagnosticsFrame: {
-    src: "/images/medx/medx-ai-diagnostics-frame.png",
+  diagnosticsFrame: {
+    src: "/images/medx/medx-diagnostics-frame.png",
     alt: "Conceptual diagnostics laboratory readiness scene with healthcare professionals and operating dashboards.",
   },
-  aiSupplyFrame: {
-    src: "/images/medx/medx-ai-supply-frame.png",
+  supplyFrame: {
+    src: "/images/medx/medx-supply-frame.png",
     alt: "Conceptual healthcare supply and medical device readiness scene with clinical staff and operations dashboards.",
   },
-  aiScreeningFrame: {
-    src: "/images/medx/medx-ai-screening-frame.png",
+  screeningFrame: {
+    src: "/images/medx/medx-screening-frame.png",
     alt: "Conceptual public health and cervical-screening coordination scene with healthcare professionals and readiness dashboards.",
   },
-  aiRegionalFrame: {
-    src: "/images/medx/medx-ai-regional-frame.png",
+  regionalFrame: {
+    src: "/images/medx/medx-regional-frame.png",
     alt: "Conceptual regional healthcare access and medical logistics command center with supply routes and facility readiness dashboards.",
   },
   labDiagnosticsHero: {

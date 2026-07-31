@@ -276,7 +276,7 @@ body {
   box-shadow: 0 0 0 4px rgba(16, 166, 110, 0.13);
 }
 
-.ai-motion-field {
+.medx-motion-field {
   pointer-events: none;
   position: absolute;
   inset: 0;
@@ -289,7 +289,7 @@ body {
   background-size: auto, auto, 72px 72px, 72px 72px;
 }
 
-.ai-motion-node {
+.medx-motion-node {
   position: absolute;
   width: 9rem;
   height: 9rem;
@@ -299,18 +299,18 @@ body {
   animation: medx-drift 12s ease-in-out infinite;
 }
 
-.ai-motion-node-a {
+.medx-motion-node-a {
   left: 8%;
   top: 18%;
 }
 
-.ai-motion-node-b {
+.medx-motion-node-b {
   right: 12%;
   top: 34%;
   animation-delay: -4s;
 }
 
-.ai-motion-node-c {
+.medx-motion-node-c {
   bottom: 10%;
   left: 42%;
   animation-delay: -7s;
@@ -868,7 +868,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ai-motion-node {
+  .medx-motion-node {
     transform: none;
   }
 
@@ -1317,94 +1317,94 @@ button:focus-visible {
 
 /* MEDX MOTION VISUALS */
 
-.ai-grid {
+.medx-grid {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 36px 36px;
-  animation: ai-grid-move 18s linear infinite;
+  animation: medx-grid-move 18s linear infinite;
 }
 
-.ai-orb {
+.medx-orb {
   position: absolute;
   border-radius: 9999px;
   filter: blur(60px);
   pointer-events: none;
 }
 
-.ai-orb-one {
+.medx-orb-one {
   width: 240px;
   height: 240px;
   right: -70px;
   top: -80px;
   background: rgba(16, 166, 110, 0.2);
-  animation: ai-orb-float 10s ease-in-out infinite;
+  animation: medx-orb-float 10s ease-in-out infinite;
 }
 
-.ai-orb-two {
+.medx-orb-two {
   width: 260px;
   height: 260px;
   left: -90px;
   bottom: -100px;
   background: rgba(34, 211, 238, 0.13);
-  animation: ai-orb-float 13s ease-in-out infinite reverse;
+  animation: medx-orb-float 13s ease-in-out infinite reverse;
 }
 
-.ai-network-line {
+.medx-network-line {
   stroke: rgba(110, 231, 183, 0.6);
   stroke-width: 1.5;
   stroke-dasharray: 8 12;
-  animation: ai-line-flow 5s linear infinite;
+  animation: medx-line-flow 5s linear infinite;
 }
 
-.ai-delay-one {
+.medx-delay-one {
   animation-delay: 0.7s;
 }
 
-.ai-delay-two {
+.medx-delay-two {
   animation-delay: 1.4s;
 }
 
-.ai-delay-three {
+.medx-delay-three {
   animation-delay: 2.1s;
 }
 
-.ai-ring {
+.medx-ring {
   stroke: rgba(110, 231, 183, 0.25);
   stroke-width: 1;
   transform-origin: center;
-  animation: ai-ring-pulse 4s ease-in-out infinite;
+  animation: medx-ring-pulse 4s ease-in-out infinite;
 }
 
-.ai-ring-two {
+.medx-ring-two {
   stroke: rgba(34, 211, 238, 0.13);
   animation-delay: 1.5s;
 }
 
-.ai-floating-node {
+.medx-floating-node {
   z-index: 10;
-  animation: ai-node-float 5.5s ease-in-out infinite;
+  animation: medx-node-float 5.5s ease-in-out infinite;
 }
 
-.ai-particle {
+.medx-particle {
   position: absolute;
   width: 7px;
   height: 7px;
   border-radius: 9999px;
   background: #6ee7b7;
   box-shadow: 0 0 16px rgba(110, 231, 183, 0.9);
-  animation: ai-particle-move 6s ease-in-out infinite;
+  animation: medx-particle-move 6s ease-in-out infinite;
 }
 
-.ai-particle-two {
+.medx-particle-two {
   animation-delay: 1.4s;
 }
 
-.ai-particle-three {
+.medx-particle-three {
   animation-delay: 2.8s;
 }
 
-@keyframes ai-grid-move {
+@keyframes medx-grid-move {
   from {
     background-position: 0 0;
   }
@@ -1414,7 +1414,7 @@ button:focus-visible {
   }
 }
 
-@keyframes ai-line-flow {
+@keyframes medx-line-flow {
   from {
     stroke-dashoffset: 0;
   }
@@ -1424,7 +1424,7 @@ button:focus-visible {
   }
 }
 
-@keyframes ai-ring-pulse {
+@keyframes medx-ring-pulse {
   0%,
   100% {
     opacity: 0.35;
@@ -1437,7 +1437,7 @@ button:focus-visible {
   }
 }
 
-@keyframes ai-node-float {
+@keyframes medx-node-float {
   0%,
   100% {
     transform: translateY(0);
@@ -1448,7 +1448,7 @@ button:focus-visible {
   }
 }
 
-@keyframes ai-particle-move {
+@keyframes medx-particle-move {
   0%,
   100% {
     opacity: 0.25;
@@ -1461,7 +1461,7 @@ button:focus-visible {
   }
 }
 
-@keyframes ai-orb-float {
+@keyframes medx-orb-float {
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -1473,12 +1473,12 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ai-grid,
-  .ai-orb,
-  .ai-network-line,
-  .ai-ring,
-  .ai-floating-node,
-  .ai-particle {
+  .medx-grid,
+  .medx-orb,
+  .medx-network-line,
+  .medx-ring,
+  .medx-floating-node,
+  .medx-particle {
     animation: none !important;
   }
 }
@@ -1862,7 +1862,7 @@ button:focus-visible {
   border-radius: 1.25rem;
   background-image:
     linear-gradient(180deg, rgba(4, 19, 36, 0), rgba(4, 19, 36, 0.22)),
-    url("/images/medx/medx-ai-platform-hero.png");
+    url("/images/medx/medx-digital-platform-hero.png");
   background-size: 1800px auto;
   box-shadow:
     0 24px 70px rgba(0, 0, 0, 0.22),
@@ -2829,7 +2829,7 @@ button:focus-visible {
 }
 
 .medx-dashboard-panel,
-.medx-ai-console,
+.medx-data-console,
 .medx-evidence-panel {
   overflow: hidden;
   border-radius: 1.25rem;
@@ -2990,7 +2990,7 @@ button:focus-visible {
   animation-delay: -2.2s;
 }
 
-.medx-ai-signal {
+.medx-source-signal {
   min-height: 7rem;
   border-radius: 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2998,13 +2998,13 @@ button:focus-visible {
   padding: 0.9rem;
 }
 
-.medx-ai-signal p {
+.medx-source-signal p {
   color: #dbe8ef;
   font-size: 0.84rem;
   font-weight: 850;
 }
 
-.medx-ai-signal span {
+.medx-source-signal span {
   color: #6ee7b7;
   font-size: 0.76rem;
   font-weight: 950;
@@ -3012,7 +3012,7 @@ button:focus-visible {
   letter-spacing: 0.14em;
 }
 
-.medx-ai-signal strong {
+.medx-source-signal strong {
   margin-top: 0.55rem;
   display: block;
   color: #ffffff;
@@ -3759,13 +3759,13 @@ button,
   /*
     Hero effects can be heavy and crowded on small phones.
   */
-  .ai-motion-node {
+  .medx-motion-node {
     width: 5rem;
     height: 5rem;
     opacity: 0.45;
   }
 
-  .ai-motion-field {
+  .medx-motion-field {
     opacity: 0.4;
     background-size: auto, auto, 44px 44px, 44px 44px;
   }

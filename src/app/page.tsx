@@ -333,7 +333,7 @@ export default function Home() {
 
               <div className="grid gap-3">
                 {evidenceSignals.map((signal) => (
-                  <div key={signal.label} className="medx-ai-signal">
+                  <div key={signal.label} className="medx-source-signal">
                     <div>
                       <div className="flex items-center justify-between gap-3">
                         <p>{signal.label}</p>
