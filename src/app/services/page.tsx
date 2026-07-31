@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "MedX service areas across pharmaceutical supply, medical devices, laboratory equipment, medical consumables, diagnostics, cervical-screening support, and strategic health-system capabilities.",
   path: "/services",
-  image: medxImages.aiSupplyFrame.src,
+  image: medxImages.pharmaceuticalSupply.src,
 });
 
 const currentServices = getPublishedServices("current");
@@ -35,7 +35,7 @@ export default function ServicesPage() {
         title="Products, diagnostics, and program support for healthcare institutions."
         description="MedX organizes pharmaceutical supply, medical devices, laboratory equipment, medical consumables, diagnostics, and cervical-screening support into practical service lanes built for institutional healthcare needs."
         highlights={["Supply requests", "Laboratory equipment", "Diagnostic support"]}
-        image={medxImages.aiSupplyFrame}
+        image={medxImages.pharmaceuticalSupply}
         imageLabel="Service platform"
         imageCaption="Products • diagnostics • facility readiness"
       />

@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "MedX strategy across near-term supply, diagnostics, and screening support; medium-term digital and supply-chain capacity; and long-term local manufacturing and regional expansion.",
   path: "/strategy",
-  image: medxImages.aiRegionalFrame.src,
+  image: medxImages.supplyChain.src,
 });
 
 const model = [
@@ -93,7 +93,7 @@ export default function StrategyPage() {
         title="A phased healthcare platform strategy for Ethiopia and regional scale."
         description="MedX’s strategy connects immediate supply and diagnostic needs with digital visibility, local capacity, manufacturing readiness, and regional healthcare access."
         highlights={["Near-term execution", "Digital visibility", "Regional scale"]}
-        image={medxImages.aiRegionalFrame}
+        image={medxImages.supplyChain}
         imageLabel="Strategic roadmap"
         imageCaption="Supply • data • regional access"
       />

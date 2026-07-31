@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "MedX focuses on healthcare access, medicine availability, diagnostic capacity, screening access, supply-chain strengthening, and local capacity.",
   path: "/public-health",
-  image: medxImages.aiScreeningFrame.src,
+  image: medxImages.cervicalScreening.src,
 });
 
 const shortages = [
@@ -130,7 +130,7 @@ export default function PublicHealthFocusPage() {
         title="Healthcare access work built around supply, diagnostics, and screening."
         description="MedX focuses on practical public-health execution: medicine availability, diagnostic capacity, screening access, supply-chain strengthening, and local capability."
         highlights={["Medicine availability", "Screening access", "Local capacity"]}
-        image={medxImages.aiScreeningFrame}
+        image={medxImages.cervicalScreening}
         imageLabel="Public-health readiness"
         imageCaption="Screening • referral • follow-up"
       />

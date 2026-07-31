@@ -2,7 +2,6 @@ import SiteHeader from "@/components/SiteHeader";
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import { medxImages } from "@/data/images";
 import { siteUrl } from "@/lib/env";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -47,7 +46,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: medxImages.aiPlatformHero.alt,
+        alt: "MedX Healthcare Solutions healthcare supply and diagnostics profile.",
       },
     ],
   },

@@ -22,7 +22,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "A concise overview of MedX Healthcare Solutions, its Bahir Dar base, diagnostics and screening origin, current healthcare focus, governance context, and relationship status.",
   path: "/about",
-  image: medxImages.aiPlatformHero.src,
+  image: medxImages.historicalMeetingDiscussion.src,
 });
 
 const missionVision = [
@@ -109,14 +109,14 @@ export default function AboutPage() {
 
           <div>
             <MedxImage
-              src={medxImages.aiPlatformHero.src}
-              alt={medxImages.aiPlatformHero.alt}
+              src={medxImages.historicalMeetingDiscussion.src}
+              alt={medxImages.historicalMeetingDiscussion.alt}
               priority
               className="image-frame aspect-[16/9] rounded-[1.5rem] md:rounded-[2rem]"
               sizes="(min-width: 1024px) 52vw, 100vw"
             />
             <p className="mt-3 text-xs font-bold text-slate-300">
-              Conceptual MedX healthcare operations image
+              Historical MedX relationship image from supplied attachments
             </p>
           </div>
         </div>
@@ -170,8 +170,8 @@ export default function AboutPage() {
             </div>
           </div>
           <MedxImage
-            src={medxImages.aiDiagnosticsFrame.src}
-            alt={medxImages.aiDiagnosticsFrame.alt}
+            src={medxImages.diagnostics.src}
+            alt={medxImages.diagnostics.alt}
             className="aspect-[16/10] rounded-[1.5rem] shadow-[0_18px_44px_rgba(8,27,51,0.1)]"
           />
         </div>
