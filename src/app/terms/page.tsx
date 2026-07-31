@@ -12,7 +12,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Terms of Use | MedX Healthcare Solutions",
   description:
-    "Review the terms governing use of the MedX Healthcare Solutions website, inquiry forms, AI-assisted tools, and public-facing services.",
+    "Review the terms governing use of the MedX Healthcare Solutions website, inquiry forms, digital tools, and public-facing services.",
   path: "/terms",
 });
 
@@ -203,7 +203,7 @@ export default function TermsPage() {
                   quotation or contract documents.
                 </p>
                 <p>
-                  Strategic roadmap items, future capabilities, AI features, digital
+                  Strategic roadmap items, future capabilities, digital
                   systems, manufacturing readiness, or cancer-care expansion concepts
                   may not be currently available.
                 </p>
@@ -221,22 +221,22 @@ export default function TermsPage() {
                 </p>
               </LegalSection>
 
-              <LegalSection id="ai-assisted-tools" title="AI-Assisted Tools">
+              <LegalSection id="digital-tools" title="Digital Tools">
                 <p>
-                  MedX may use AI-assisted tools for inquiry preparation, routing,
-                  operational planning, and general information. AI output may be
-                  incomplete, inaccurate, outdated, or unsuitable for a specific
-                  context, and users must review generated content before relying on
-                  it or submitting it.
+                  MedX may use digital tools for inquiry preparation, routing,
+                  operational planning, and general information. Information
+                  prepared through website tools may be incomplete, inaccurate,
+                  outdated, or unsuitable for a specific context, and users must
+                  review content before relying on it or submitting it.
                 </p>
                 <BulletList
                   items={[
-                    "AI tools do not provide medical diagnosis or treatment advice.",
-                    "AI tools must not be used for emergency requests.",
-                    "AI tools do not provide autonomous procurement approval.",
-                    "AI tools do not make autonomous clinical decisions.",
+                    "Website tools do not provide medical diagnosis or treatment advice.",
+                    "Website tools must not be used for emergency requests.",
+                    "Website tools do not provide autonomous procurement approval.",
+                    "Website tools do not make autonomous clinical decisions.",
                     "MedX staff must confirm availability, pricing, regulatory considerations, and implementation requirements.",
-                    "AI-assisted features may be suspended, changed, limited, or removed.",
+                    "Digital features may be suspended, changed, limited, or removed.",
                   ]}
                 />
               </LegalSection>
@@ -272,7 +272,7 @@ export default function TermsPage() {
               >
                 <p>
                   The website may rely on third-party services such as hosting,
-                  email providers, CAPTCHA, analytics, AI providers, databases, and
+                  email providers, CAPTCHA, analytics, data providers, databases, and
                   external websites. Third-party services may have separate terms,
                   privacy policies, security practices, and availability constraints.
                   MedX is not responsible for external websites that are not controlled

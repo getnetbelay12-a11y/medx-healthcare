@@ -25,7 +25,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "MedX product catalog for diagnostics, laboratory supplies, medicines, clinical supplies, and Phase 2 quotation and commerce planning.",
   path: "/products",
-  image: medxImages.generatedSupplyCatalog.src,
+  image: medxImages.supplyCatalogHero.src,
 });
 
 const categoryOrder = [
@@ -90,7 +90,7 @@ export default function ProductsPage() {
         title="Diagnostic products and medical supplies for institutional requests."
         description="MedX supports healthcare facilities with diagnostic solutions, laboratory equipment, pharmaceutical products, and medical consumables tailored to regional clinic and hospital needs."
         highlights={["Catalog view", "Quotation requests", "Phase 2 commerce"]}
-        image={medxImages.generatedSupplyCatalog}
+        image={medxImages.supplyCatalogHero}
         imageLabel="Product access"
         imageCaption="Catalog • quote • Phase 2 commerce"
       />

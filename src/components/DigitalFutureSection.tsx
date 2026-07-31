@@ -1,13 +1,13 @@
 import {
   BarChart3,
-  BrainCircuit,
   ClipboardCheck,
   DatabaseZap,
   Eye,
+  LineChart,
   ShieldCheck,
 } from "lucide-react";
 
-const aiCapabilities = [
+const analyticsCapabilities = [
   {
     title: "Demand forecasting",
     description:
@@ -15,10 +15,10 @@ const aiCapabilities = [
     icon: BarChart3,
   },
   {
-    title: "Diagnostic decision support",
+    title: "Diagnostic workflow support",
     description:
       "Support laboratory quality, result triage, referral pathways, and clinical coordination without replacing professional judgment.",
-    icon: BrainCircuit,
+    icon: LineChart,
   },
   {
     title: "Screening program intelligence",
@@ -41,14 +41,14 @@ const governance = [
   "Transparent reporting for partners",
 ];
 
-export default function AIFutureSection() {
+export default function DigitalFutureSection() {
   return (
     <section className="corporate-shell py-24 text-white">
       <div className="container-medx">
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
             <p className="inline-flex rounded-full border border-emerald-300/25 bg-emerald-300/[0.08] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">
-              Digital and AI readiness
+              Digital readiness
             </p>
             <h2 className="mt-5 max-w-3xl text-4xl font-black leading-[1.07] tracking-normal md:text-5xl">
               Responsible analytics for forecasting, screening, and smarter healthcare operations.
@@ -56,15 +56,15 @@ export default function AIFutureSection() {
           </div>
 
           <p className="max-w-3xl text-lg leading-8 text-slate-300">
-            MedX can prepare for practical AI by first building reliable data,
-            clear human oversight, public-health value, and measurable service
-            quality across supply, diagnostics, and screening workflows.
+            MedX can strengthen operations by building reliable data, clear
+            human oversight, public-health value, and measurable service quality
+            across supply, diagnostics, and screening workflows.
           </p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
           <div className="grid gap-5 md:grid-cols-2">
-            {aiCapabilities.map(({ title, description, icon: Icon }) => (
+            {analyticsCapabilities.map(({ title, description, icon: Icon }) => (
               <article
                 key={title}
                 className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.18)]"
@@ -85,13 +85,13 @@ export default function AIFutureSection() {
               <ShieldCheck size={27} />
             </div>
             <h3 className="mt-6 text-2xl font-black">
-              Responsible AI governance
+              Responsible data governance
             </h3>
             <p className="mt-4 leading-7 text-slate-600">
               Advanced analytics must strengthen operational discipline and
-              public trust. Any future AI-assisted workflow should be governed
-              through clear controls, auditable outputs, and accountable clinical
-              and executive review.
+              public trust. Any future decision-support workflow should be
+              governed through clear controls, auditable outputs, and
+              accountable clinical and executive review.
             </p>
             <div className="mt-6 space-y-3">
               {governance.map((item) => (

@@ -31,7 +31,7 @@ export default function ImageBanner({ label }: ImageBannerProps) {
                 Diagnostics Lab
               </p>
               <h3 className="mt-2 text-2xl font-black text-white">
-                AI-ready screening and laboratory intelligence
+                Screening and laboratory intelligence
               </h3>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function ImageBanner({ label }: ImageBannerProps) {
 
           <div className="mt-7 rounded-3xl border border-white/10 bg-white/95 p-5 text-[#0b1f3a] shadow-xl">
             <p className="text-sm font-black uppercase tracking-[0.26em] text-[#0f9f6e]">
-              {label || "AI-Ready Healthcare Platform"}
+              {label || "Healthcare Operations Platform"}
             </p>
             <p className="mt-2 text-lg font-black leading-7">
               Integrated diagnostics, supply intelligence, and public health
@@ -77,7 +77,7 @@ export default function ImageBanner({ label }: ImageBannerProps) {
           <div className="rounded-[1.5rem] border border-white/10 bg-[#07192f]/80 p-5 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white">
-                AI Health Intelligence
+                Health Operations Intelligence
               </p>
               <BarChart3 className="text-emerald-300" size={20} />
             </div>

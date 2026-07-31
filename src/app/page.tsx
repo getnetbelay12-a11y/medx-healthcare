@@ -37,7 +37,7 @@ const serviceActions: Record<string, string> = {
 
 const platformPath = [
   "Identify regional facility needs",
-  "Source medicines, devices, lab equipment, or consumables",
+  "Source medicines, devices, lab equipment, or medical consumables",
   "Coordinate diagnostic and screening-program support",
   "Track request clarity and follow-through",
 ];
@@ -68,58 +68,58 @@ const operatingModel = [
 
 const evidenceSignals = [
   {
-    label: "Email materials",
-    value: "Website source thread",
+    label: "Institutional need",
+    value: "Healthcare access",
     detail:
-      "Peter Lu requested Ethiopia and Amhara-specific photos and content, and supplied OncoE6 reference materials for context.",
+      "Facilities need clearer pathways for products, diagnostic support, and program follow-through.",
   },
   {
-    label: "Historical deck",
-    value: "2020 MedX presentation",
+    label: "MedX origin",
+    value: "Diagnostics foundation",
     detail:
-      "The deck identifies MedX Diagnostic PLC as a 2017 Bahir Dar joint venture rooted in medical-device manufacturing and IVD distribution.",
+      "MedX’s history is rooted in diagnostics, cervical-health access, and institutional healthcare relationships.",
   },
   {
-    label: "Public research",
-    value: "OncoE6 Ethiopia context",
+    label: "Public-health focus",
+    value: "Women’s health",
     detail:
-      "A 2025 PLOS One article references Medx Diagnostics PLC in Bahir Dar in connection with the OncoE6 cervical test.",
+      "Cervical-health support remains part of the broader platform for screening, referral, and supply coordination.",
   },
   {
-    label: "Downloaded mockup",
-    value: "medxpage.html",
+    label: "Product pathway",
+    value: "Quote-first catalog",
     detail:
-      "The standalone page reinforces diagnostic solutions, laboratory equipment, medical consumables, and Amhara-region facility needs; its ecommerce prices and placeholder contacts are not published.",
+      "The catalog helps institutions start with a clear quotation or supply request before procurement decisions.",
   },
 ];
 
 const credibilityRules = [
   {
     label: "Current",
-    value: "Published service lines",
-    status: "Show",
+    value: "Supply, diagnostics, devices, and programs",
+    status: "Active",
   },
   {
     label: "Historical",
-    value: "2017-2020 MedX/OncoE6 material",
-    status: "Label",
+    value: "Diagnostics and cervical-health foundation",
+    status: "Context",
   },
   {
     label: "Roadmap",
-    value: "Future digital and manufacturing ambitions",
-    status: "Separate",
+    value: "Digital visibility and local capacity",
+    status: "Planned",
   },
   {
-    label: "Missing",
-    value: "Photos, contacts, licenses, current leadership, product catalog",
-    status: "Hold",
+    label: "Requests",
+    value: "Institutional quotation and supply review",
+    status: "Open",
   },
 ];
 
 const evidenceStats = [
-  { label: "MedX source material", value: "Reviewed" },
-  { label: "Unverified claims", value: "Excluded" },
-  { label: "Future capabilities", value: "Separated" },
+  { label: "Service focus", value: "Clear" },
+  { label: "Request pathway", value: "Defined" },
+  { label: "Future roadmap", value: "Separated" },
 ];
 
 const requestChecklist = [
@@ -161,8 +161,8 @@ export default function Home() {
               </h2>
               <p className="mt-5 max-w-2xl leading-8 text-slate-300">
                 The work is practical: understand the need, secure the right
-                medicine, device, laboratory equipment, consumable, or program
-                support, then coordinate follow-through with the discipline
+                medicine, device, laboratory equipment, medical consumable, or
+                program support, then coordinate follow-through with the discipline
                 required for institutional healthcare.
               </p>
             </div>
@@ -258,9 +258,9 @@ export default function Home() {
         <div className="container-medx grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
             <SectionHeader
-              eyebrow="Evidence-led communication"
-              title="A legitimate healthcare site starts with disciplined claims."
-              description="The strongest version of MedX is not louder. It is clearer: current services are presented as current, historical OncoE6 and joint-venture material is labeled, and future capabilities are kept out of the headline until they are proven."
+              eyebrow="Operating clarity"
+              title="A serious healthcare partner starts with disciplined communication."
+              description="MedX presents current services, historical context, and future plans clearly so institutions can understand what to request, how to engage, and what happens next."
             />
             <div className="mt-7 grid gap-3">
               {evidenceStats.map((item) => (
@@ -281,20 +281,20 @@ export default function Home() {
             <div className="medx-console-topline">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-300">
-                  Website source discipline
+                  Credibility discipline
                 </p>
                 <p className="mt-2 text-2xl font-black text-white">
-                  What the public site can safely say
+                  Clear information for institutional decisions
                 </p>
               </div>
-              <span>Credibility first</span>
+              <span>Ready for review</span>
             </div>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               {[
-                { icon: SearchCheck, label: "Source review", value: "Done" },
-                { icon: Landmark, label: "Historical facts", value: "Labeled" },
-                { icon: ShieldCheck, label: "Overclaims", value: "Removed" },
+                { icon: SearchCheck, label: "Request path", value: "Clear" },
+                { icon: Landmark, label: "Institutional context", value: "Focused" },
+                { icon: ShieldCheck, label: "Claims", value: "Disciplined" },
               ].map((item) => {
                 const Icon = item.icon;
 
@@ -316,7 +316,7 @@ export default function Home() {
               <div className="medx-console-queue">
                 <div className="flex items-center justify-between gap-4">
                   <p className="text-sm font-black text-white">Public-copy rule</p>
-                  <span>Launch standard</span>
+                  <span>Operating standard</span>
                 </div>
                 <div className="mt-4 grid gap-3">
                   {credibilityRules.map((item) => (

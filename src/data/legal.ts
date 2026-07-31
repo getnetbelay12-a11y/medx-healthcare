@@ -36,7 +36,7 @@ export const termsSections = [
   "Inquiry Submissions",
   "Product and Service Availability",
   "Quotations, Orders, and Commercial Agreements",
-  "AI-Assisted Tools",
+  "Digital Tools",
   "Intellectual Property",
   "Historical Materials and Relationships",
   "Third-Party Services and Links",

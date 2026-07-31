@@ -34,8 +34,10 @@ describe("terms page legal content", () => {
     expect(termsPageSource).not.toContain("Healthcare access • supply • innovation");
   });
 
-  it("includes required AI, medical, and historical-reference disclaimers", () => {
-    expect(termsPageSource).toContain("AI output may be");
+  it("includes required digital-tool, medical, and historical-reference disclaimers", () => {
+    expect(termsPageSource).toMatch(
+      /Information\s+prepared through website tools may be/,
+    );
     expect(termsPageSource).toContain("does not provide medical diagnosis");
     expect(termsPageSource).toContain("Historical names, boards, partners");
   });
@@ -53,7 +55,7 @@ describe("terms page legal content", () => {
   it("sets production metadata for the Terms page", () => {
     expect(metadata.title).toBe("Terms of Use | MedX Healthcare Solutions");
     expect(metadata.description).toBe(
-      "Review the terms governing use of the MedX Healthcare Solutions website, inquiry forms, AI-assisted tools, and public-facing services.",
+      "Review the terms governing use of the MedX Healthcare Solutions website, inquiry forms, digital tools, and public-facing services.",
     );
     expect(metadata.alternates?.canonical).toBeTruthy();
   });

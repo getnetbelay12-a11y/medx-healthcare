@@ -13,30 +13,30 @@ export const medxImages = {
   },
   aiScreeningFrame: {
     src: "/images/medx/medx-ai-screening-frame.png",
-    alt: "Conceptual public health and cervical-screening coordination scene with healthcare professionals and AI readiness dashboards.",
+    alt: "Conceptual public health and cervical-screening coordination scene with healthcare professionals and readiness dashboards.",
   },
   aiRegionalFrame: {
     src: "/images/medx/medx-ai-regional-frame.png",
     alt: "Conceptual regional healthcare access and medical logistics command center with supply routes and facility readiness dashboards.",
   },
-  generatedDiagnosticsHero: {
-    src: "/images/medx/medx-generated-diagnostics-hero.png",
+  labDiagnosticsHero: {
+    src: "/images/medx/medx-lab-diagnostics-hero.png",
     alt: "Bright clinical diagnostics laboratory scene representing MedX diagnostic and laboratory support.",
   },
-  generatedSupplyCatalog: {
-    src: "/images/medx/medx-generated-supply-catalog.png",
+  supplyCatalogHero: {
+    src: "/images/medx/medx-supply-catalog-hero.png",
     alt: "Bright medical supply and diagnostic equipment scene representing MedX product catalog and institutional supply requests.",
   },
-  generatedLabOperations: {
-    src: "/images/medx/medx-generated-lab-operations.png",
+  labOperationsHero: {
+    src: "/images/medx/medx-lab-operations-hero.png",
     alt: "Bright clinical laboratory operations scene representing MedX diagnostics and laboratory support.",
   },
-  generatedSupplyLogistics: {
-    src: "/images/medx/medx-generated-supply-logistics.png",
+  supplyLogisticsHero: {
+    src: "/images/medx/medx-supply-logistics-hero.png",
     alt: "Bright healthcare supply logistics scene representing MedX institutional product requests.",
   },
-  generatedPublicHealthScreening: {
-    src: "/images/medx/medx-generated-public-health-screening.png",
+  publicHealthScreeningHero: {
+    src: "/images/medx/medx-public-health-screening-hero.png",
     alt: "Bright public-health screening consultation scene representing MedX cervical-health program support.",
   },
   hero: {

@@ -22,7 +22,7 @@ describe("homepage public copy contract", () => {
     expect(homepageSource).toContain("One access platform. Four execution lanes.");
     expect(homepageSource).toContain("Operating detail");
     expect(homepageSource).toContain('eyebrow="Cervical-health origin"');
-    expect(homepageSource).toContain('eyebrow="Evidence-led communication"');
+    expect(homepageSource).toContain('eyebrow="Operating clarity"');
     expect(homepageSource).toContain("Before contacting MedX");
     expect(homepageSource).toContain("<CTASection");
 
@@ -61,20 +61,24 @@ describe("homepage public copy contract", () => {
     expect(combined).not.toContain("are presented as roadmap capabilities");
   });
 
-  it("adds service CTAs and source-discipline labels", () => {
+  it("adds service CTAs and operating-clarity labels", () => {
     expect(homepageSource).toContain("Request pharmaceutical supply");
     expect(homepageSource).toContain("Discuss medical-device needs");
     expect(homepageSource).toContain("Request diagnostic support");
     expect(homepageSource).toContain("Discuss a screening program");
-    expect(homepageSource).toContain("Credibility first");
-    expect(homepageSource).toContain("What the public site can safely say");
-    expect(homepageSource).toContain("Email materials");
-    expect(homepageSource).toContain("Historical deck");
-    expect(homepageSource).toContain("Public research");
-    expect(homepageSource).toContain("medxpage.html");
+    expect(homepageSource).toContain("Credibility discipline");
+    expect(homepageSource).toContain("Clear information for institutional decisions");
+    expect(homepageSource).toContain("Institutional need");
+    expect(homepageSource).toContain("MedX origin");
+    expect(homepageSource).toContain("Public-health focus");
+    expect(homepageSource).toContain("Product pathway");
     expect(homepageSource).toContain("laboratory equipment");
     expect(homepageSource).toContain("medical consumables");
     expect(homepageSource).not.toContain("AI-ready roadmap");
+    expect(homepageSource).not.toContain("Website source thread");
+    expect(homepageSource).not.toContain("Downloaded mockup");
+    expect(homepageSource).not.toContain("Unverified claims");
+    expect(homepageSource).not.toContain("medxpage.html");
     expect(homepageSource).not.toContain("Access command cockpit");
     expect(homepageSource).not.toContain("Demand pressure");
     expect(homepageSource).not.toContain("450 ETB");

@@ -7,23 +7,23 @@ import { medxImages } from "@/data/images";
 
 const frames = [
   {
-    ...medxImages.generatedDiagnosticsHero,
+    ...medxImages.labDiagnosticsHero,
     label: "Diagnostics readiness",
   },
   {
-    ...medxImages.generatedSupplyCatalog,
+    ...medxImages.supplyCatalogHero,
     label: "Pharmaceutical supply",
   },
   {
-    ...medxImages.generatedLabOperations,
+    ...medxImages.labOperationsHero,
     label: "Lab operations",
   },
   {
-    ...medxImages.generatedSupplyLogistics,
+    ...medxImages.supplyLogisticsHero,
     label: "Supply logistics",
   },
   {
-    ...medxImages.generatedPublicHealthScreening,
+    ...medxImages.publicHealthScreeningHero,
     label: "Screening support",
   },
 ];
