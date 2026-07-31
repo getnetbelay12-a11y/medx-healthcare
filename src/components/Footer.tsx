@@ -170,6 +170,18 @@ export default function Footer() {
               Supplier inquiries
             </Link>
             <Link
+              href="/strategy"
+              className="text-xs font-bold text-slate-400 transition hover:text-white"
+            >
+              Strategy
+            </Link>
+            <Link
+              href="/relationships"
+              className="text-xs font-bold text-slate-400 transition hover:text-white"
+            >
+              Relationships
+            </Link>
+            <Link
               href="/privacy"
               className="text-xs font-bold text-slate-400 transition hover:text-white"
             >

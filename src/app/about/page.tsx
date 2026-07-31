@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
+  ArrowRight,
   CheckCircle2,
   Handshake,
   Lightbulb,
@@ -72,6 +74,25 @@ const aboutMetrics = [
   { label: "Base", value: "Bahir Dar" },
   { label: "Original focus", value: "Diagnostics and screening" },
   { label: "Current focus", value: "Supply, diagnostics, devices, programs" },
+];
+
+const strategicPathways = [
+  {
+    title: "Strategy and long-term direction",
+    description:
+      "MedX’s phased roadmap connects near-term supply and diagnostic execution with future digital visibility, local capacity, manufacturing readiness, and regional healthcare access.",
+    href: "/strategy",
+    label: "View strategy",
+    icon: Target,
+  },
+  {
+    title: "Relationships and collaboration",
+    description:
+      "MedX keeps supplier, institutional, technology, investment, and public-health collaboration pathways organized around clear scope, practical review, and accountable follow-through.",
+    href: "/relationships",
+    label: "View relationships",
+    icon: Handshake,
+  },
 ];
 
 export default function AboutPage() {
@@ -189,6 +210,39 @@ export default function AboutPage() {
               </h2>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-white py-14 md:py-16">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Strategic context"
+            title="The deeper MedX story stays available without crowding navigation."
+            description="Strategy and relationship material remains part of the site, but it belongs as supporting context for users who want the full business and collaboration picture."
+            centered
+          />
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            {strategicPathways.map(({ title, description, href, label, icon: Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                className="group rounded-[1.25rem] border border-slate-200 bg-slate-50 p-6 shadow-[0_16px_42px_rgba(8,27,51,0.055)] transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-[0_24px_60px_rgba(8,27,51,0.1)]"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#071b33] text-white">
+                  <Icon size={23} />
+                </div>
+                <h2 className="mt-6 text-2xl font-black leading-tight text-[#071b33]">
+                  {title}
+                </h2>
+                <p className="mt-3 leading-8 text-slate-600">{description}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#0a7c5b] transition group-hover:text-[#071b33]">
+                  {label}
+                  <ArrowRight size={16} />
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
