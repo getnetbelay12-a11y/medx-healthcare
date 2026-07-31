@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  Activity,
   ArrowRight,
   CheckCircle2,
   ClipboardList,
-  Globe2,
   HeartPulse,
+  Landmark,
   Network,
   PackageCheck,
+  SearchCheck,
+  ShieldCheck,
 } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import HeroSection from "@/components/HeroSection";
@@ -65,54 +66,54 @@ const operatingModel = [
   },
 ];
 
-const aiSignals = [
+const evidenceSignals = [
   {
-    label: "Diagnostics",
-    value: "Readiness rising",
-    detail: "Lab consumables, referral flow, and screening follow-up aligned.",
-    level: "78%",
+    label: "Email materials",
+    value: "Website source thread",
+    detail:
+      "Peter Lu requested Ethiopia and Amhara-specific photos and content, and supplied OncoE6 reference materials for context.",
   },
   {
-    label: "Medicine supply",
-    value: "Watch list",
-    detail: "Two high-priority categories need earlier sourcing review.",
-    level: "62%",
+    label: "Historical deck",
+    value: "2020 MedX presentation",
+    detail:
+      "The deck identifies MedX Diagnostic PLC as a 2017 Bahir Dar joint venture rooted in medical-device manufacturing and IVD distribution.",
   },
   {
-    label: "Device access",
-    value: "Coordinating",
-    detail: "Facility requirements and product documentation under review.",
-    level: "71%",
-  },
-];
-
-const intelligenceQueue = [
-  {
-    label: "Institutional request",
-    value: "Diagnostic and consumable bundle",
-    status: "Scope",
-  },
-  {
-    label: "Risk signal",
-    value: "Procurement lead time pressure",
-    status: "Review",
-  },
-  {
-    label: "Action owner",
-    value: "Supply and program coordination",
-    status: "Assign",
-  },
-  {
-    label: "Reporting need",
-    value: "Weekly readiness summary",
-    status: "Prepare",
+    label: "Public research",
+    value: "OncoE6 Ethiopia context",
+    detail:
+      "A 2025 PLOS One article references Medx Diagnostics PLC in Bahir Dar in connection with the OncoE6 cervical test.",
   },
 ];
 
-const intelligenceStats = [
-  { label: "Request intake", value: "Structured" },
-  { label: "Supply signal", value: "Prioritized" },
-  { label: "Follow-up", value: "Tracked" },
+const credibilityRules = [
+  {
+    label: "Current",
+    value: "Published service lines",
+    status: "Show",
+  },
+  {
+    label: "Historical",
+    value: "2017-2020 MedX/OncoE6 material",
+    status: "Label",
+  },
+  {
+    label: "Roadmap",
+    value: "Future digital and manufacturing ambitions",
+    status: "Separate",
+  },
+  {
+    label: "Missing",
+    value: "Photos, contacts, licenses, current leadership",
+    status: "Hold",
+  },
+];
+
+const evidenceStats = [
+  { label: "MedX source material", value: "Reviewed" },
+  { label: "Unverified claims", value: "Excluded" },
+  { label: "Future capabilities", value: "Separated" },
 ];
 
 const requestChecklist = [
@@ -250,12 +251,12 @@ export default function Home() {
         <div className="container-medx grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
             <SectionHeader
-              eyebrow="AI-assisted operations preview"
-              title="A smarter command layer for healthcare access work."
-              description="MedX should not present AI as decoration. The practical opportunity is an operating cockpit that turns requests, supply signals, diagnostic readiness, and program follow-up into visible next actions."
+              eyebrow="Evidence-led communication"
+              title="A legitimate healthcare site starts with disciplined claims."
+              description="The strongest version of MedX is not louder. It is clearer: current services are presented as current, historical OncoE6 and joint-venture material is labeled, and future capabilities are kept out of the headline until they are proven."
             />
             <div className="mt-7 grid gap-3">
-              {intelligenceStats.map((item) => (
+              {evidenceStats.map((item) => (
                 <div key={item.label} className="medx-intel-proof">
                   <CheckCircle2 size={18} />
                   <span>{item.label}</span>
@@ -269,24 +270,24 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="medx-ai-console">
+          <div className="medx-evidence-panel">
             <div className="medx-console-topline">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-300">
-                  MedX operating intelligence
+                  Website source discipline
                 </p>
                 <p className="mt-2 text-2xl font-black text-white">
-                  Access command cockpit
+                  What the public site can safely say
                 </p>
               </div>
-              <span>AI-ready roadmap</span>
+              <span>Credibility first</span>
             </div>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               {[
-                { icon: Activity, label: "Demand pressure", value: "Forecast" },
-                { icon: Network, label: "Facility actions", value: "Coordinate" },
-                { icon: Globe2, label: "Regional scale", value: "Plan" },
+                { icon: SearchCheck, label: "Source review", value: "Done" },
+                { icon: Landmark, label: "Historical facts", value: "Labeled" },
+                { icon: ShieldCheck, label: "Overclaims", value: "Removed" },
               ].map((item) => {
                 const Icon = item.icon;
 
@@ -307,11 +308,11 @@ export default function Home() {
             <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
               <div className="medx-console-queue">
                 <div className="flex items-center justify-between gap-4">
-                  <p className="text-sm font-black text-white">Operating queue</p>
-                  <span>Live model</span>
+                  <p className="text-sm font-black text-white">Public-copy rule</p>
+                  <span>Launch standard</span>
                 </div>
                 <div className="mt-4 grid gap-3">
-                  {intelligenceQueue.map((item) => (
+                  {credibilityRules.map((item) => (
                     <div key={item.label} className="medx-queue-row">
                       <div>
                         <p>{item.label}</p>
@@ -324,7 +325,7 @@ export default function Home() {
               </div>
 
               <div className="grid gap-3">
-                {aiSignals.map((signal) => (
+                {evidenceSignals.map((signal) => (
                   <div key={signal.label} className="medx-ai-signal">
                     <div>
                       <div className="flex items-center justify-between gap-3">
@@ -332,23 +333,10 @@ export default function Home() {
                         <span>{signal.value}</span>
                       </div>
                       <strong>{signal.detail}</strong>
-                      <div className="medx-signal-bar" aria-hidden="true">
-                        <i style={{ width: signal.level }} />
-                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="medx-console-chart mt-5" aria-label="Readiness trend visualization">
-              <span style={{ height: "46%" }} />
-              <span style={{ height: "62%" }} />
-              <span style={{ height: "54%" }} />
-              <span style={{ height: "78%" }} />
-              <span style={{ height: "68%" }} />
-              <span style={{ height: "88%" }} />
-              <span style={{ height: "72%" }} />
             </div>
           </div>
         </div>

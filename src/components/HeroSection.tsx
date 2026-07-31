@@ -1,67 +1,39 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Activity,
   ArrowRight,
+  Building2,
+  ClipboardCheck,
   Microscope,
-  Network,
   PackageCheck,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
-import HeroImageRotator from "@/components/HeroImageRotator";
 
 const heroFacts = [
-  { label: "01", value: "Diagnostics and screening access" },
-  { label: "02", value: "Pharmaceuticals and medical devices" },
-  { label: "03", value: "Digital visibility and supply discipline" },
-];
-
-const liveSignals = [
-  { label: "Demand", value: "Forecasting", metric: "AI" },
-  { label: "Supply", value: "Risk watch", metric: "62%" },
-  { label: "Program", value: "Readiness", metric: "78%" },
+  { label: "Origin", value: "Diagnostics and cervical screening" },
+  { label: "Base", value: "Bahir Dar, Amhara, Ethiopia" },
+  { label: "Focus", value: "Institutional healthcare access" },
 ];
 
 export default function HeroSection() {
   return (
     <section className="medx-lab-hero relative overflow-hidden text-white">
-      <HeroImageRotator />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,19,36,0.96)_0%,rgba(4,19,36,0.82)_34%,rgba(4,19,36,0.32)_68%,rgba(4,19,36,0.12)_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,19,36,0.44)_0%,rgba(4,19,36,0.12)_48%,rgba(4,19,36,0.88)_100%)]" />
-      <div className="medx-hero-motion" aria-hidden="true">
-        <div className="medx-motion-panel medx-motion-panel-lab" />
-        <div className="medx-motion-panel medx-motion-panel-supply" />
-        <div className="medx-motion-panel medx-motion-panel-map" />
-        <div className="medx-scan-line" />
-      </div>
-      <div className="medx-live-intel-stack" aria-hidden="true">
-        <div className="medx-live-intel-head">
-          <Activity size={17} />
-          <span>Live access intelligence</span>
-        </div>
-        {liveSignals.map((signal) => (
-          <div key={signal.label} className="medx-live-intel-card">
-            <p>{signal.label}</p>
-            <strong>{signal.value}</strong>
-            <span>{signal.metric}</span>
-          </div>
-        ))}
-      </div>
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,19,36,0.98)_0%,rgba(4,19,36,0.92)_44%,rgba(4,19,36,0.66)_100%)]" />
 
-      <div className="container-medx relative flex min-h-[calc(92svh-76px)] flex-col justify-center py-14 md:py-16">
+      <div className="container-medx relative grid min-h-[calc(88svh-76px)] gap-10 py-14 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="max-w-4xl">
           <p className="inline-flex rounded-full border border-emerald-300/30 bg-emerald-300/[0.1] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200 backdrop-blur-md">
             MedX Healthcare Solutions
           </p>
 
           <h1 className="mt-6 max-w-5xl text-[2.5rem] font-black leading-[0.98] tracking-normal sm:text-5xl xl:text-[5.2rem]">
-            Healthcare supply and diagnostics built for impact.
+            Diagnostics-rooted healthcare access for Ethiopia.
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-xl">
-            MedX supports institutions with pharmaceutical supply, medical
-            devices, diagnostics, cervical-health programs, and AI-assisted
-            operating visibility.
+            MedX supports healthcare institutions with pharmaceutical supply,
+            medical devices, diagnostic solutions, and cervical-health program
+            support, grounded in its Bahir Dar diagnostics history.
           </p>
 
           <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
@@ -80,16 +52,9 @@ export default function HeroSection() {
             <div className="medx-hero-proof">
               <ShieldCheck className="text-emerald-300" size={22} />
               <p className="mt-3 text-sm font-black leading-6">
-                Credibility-first public health posture.
+                Conservative public-health communication.
               </p>
             </div>
-          </div>
-
-          <div className="medx-ai-ticker mt-5" aria-label="AI operating signals">
-            <Sparkles size={16} />
-            <span>AI-assisted forecasting</span>
-            <span>Supply risk signals</span>
-            <span>Program readiness view</span>
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -104,11 +69,58 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div
-          aria-label="At a glance"
-          className="mt-10 grid max-w-5xl gap-3 text-sm font-bold text-slate-100 md:grid-cols-3"
-        >
-          <div className="medx-hero-rail md:col-span-2">
+        <div className="medx-hero-visual">
+          <div className="medx-hero-document">
+            <div className="medx-document-brand">
+              <Image
+                src="/images/medx/MedxLogo1.png"
+                alt="MedX Healthcare Solutions"
+                width={280}
+                height={224}
+                priority
+              />
+              <div>
+                <p>MedX Diagnostic, PLC</p>
+                <span>Bahir Dar, Amhara, Ethiopia</span>
+              </div>
+            </div>
+
+            <div className="medx-document-lines" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </div>
+
+            <div className="medx-document-grid">
+              <div>
+                <span>Created</span>
+                <strong>2017</strong>
+              </div>
+              <div>
+                <span>Historical origin</span>
+                <strong>Diagnostics and IVD distribution</strong>
+              </div>
+              <div>
+                <span>Current site focus</span>
+                <strong>Healthcare supply, diagnostics, screening support</strong>
+              </div>
+            </div>
+          </div>
+          <div className="medx-hero-source-note">
+            <div>
+              <ClipboardCheck size={20} />
+              <p>Source-grounded profile</p>
+            </div>
+            <span>
+              Built from MedX presentation materials, website-source emails,
+              and public OncoE6 research context. Claims stay conservative until
+              current company details are confirmed.
+            </span>
+          </div>
+        </div>
+
+        <div aria-label="At a glance" className="grid gap-3 text-sm font-bold text-slate-100 lg:col-span-2 lg:grid-cols-[1fr_18rem]">
+          <div className="medx-hero-rail">
             {heroFacts.map((fact) => (
               <div
                 key={fact.label}
@@ -122,12 +134,13 @@ export default function HeroSection() {
             ))}
           </div>
           <div className="medx-hero-signal">
-            <Network className="text-emerald-300" size={22} />
+            <Building2 className="text-emerald-300" size={22} />
             <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-300">
-              AI-assisted visibility
+              Current public posture
             </p>
             <p className="mt-2 text-sm leading-6 text-white">
-              Forecasting, coordination, and reporting layer in development.
+              Present current services clearly and label historical or roadmap
+              items without overclaiming.
             </p>
           </div>
         </div>
