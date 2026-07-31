@@ -21,7 +21,7 @@ export default function HeroSection() {
     <section className="medx-home-hero relative overflow-hidden text-[#071b33]">
       <div className="medx-home-hero-bg" aria-hidden="true" />
 
-      <div className="container-medx relative grid min-h-[calc(82svh-76px)] gap-10 py-14 md:py-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+      <div className="container-medx relative grid min-h-[calc(86svh-76px)] gap-10 py-14 md:py-16 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
         <div className="min-w-0 max-w-[calc(100vw-4rem)] sm:max-w-4xl">
           <p className="inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#0a7c5b] shadow-sm">
             MedX Healthcare Solutions

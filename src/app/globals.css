@@ -1587,6 +1587,30 @@ button:focus-visible {
   border-radius: inherit;
 }
 
+@media (min-width: 1024px) {
+  .medx-home-hero > .container-medx {
+    width: min(100% - 48px, 1700px);
+  }
+
+  .medx-hero-showcase {
+    margin-right: calc(50% - 50vw);
+  }
+
+  .medx-hero-image-stage {
+    width: calc(100% + max(24px, (100vw - 1700px) / 2));
+    min-height: clamp(26rem, 44vw, 41rem);
+    border-right: 0;
+    border-radius: 1.35rem 0 0 1.35rem;
+    box-shadow: 0 34px 90px rgba(8, 27, 51, 0.16);
+  }
+
+  .medx-hero-image-stage::after {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(4, 19, 36, 0.12)),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.14), transparent 38%);
+  }
+}
+
 .medx-hero-image-stage .medx-frame-indicator-floating {
   left: 1rem;
   right: 1rem;
