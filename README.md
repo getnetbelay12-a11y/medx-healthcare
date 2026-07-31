@@ -44,7 +44,7 @@ Open `http://localhost:3000`.
 npm run build
 ```
 
-The current build exports static assets to `dist/` and then prepares the Sites worker bundle for `/api/health` and `/api/contact`.
+The production build runs as a standard Next.js app so `/api/health` and `/api/contact` are deployed as server routes.
 
 ## Verify
 
@@ -67,7 +67,7 @@ npm run verify
 2. In Vercel, create a new project and select the repository.
 3. Configure the environment variables from `.env.example`.
 4. Build command: `npm run build`
-5. Output directory: `dist`
+5. Output directory: leave blank so Vercel uses the default Next.js output.
 6. Deploy.
 
 ## Image Assets
@@ -107,7 +107,7 @@ Leadership and relationship records are managed through centralized data files w
 
 ## Contact Form
 
-The contact form validates on the frontend and server layer. In the current static export/Sites deployment flow, the generated worker handles:
+The contact form validates on the frontend and server layer. The Next.js API routes handle:
 
 - `GET /api/health`
 - `POST /api/contact`

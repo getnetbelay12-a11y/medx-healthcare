@@ -71,7 +71,7 @@ export default function ContactForm() {
 
   async function onSubmit(values: ContactFormValues) {
     setApiState({ status: "idle" });
-    const response = await fetch("/api/contact", {
+    const response = await fetch("/api/contact/", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(values),
