@@ -7,6 +7,7 @@ Copy `.env.example` and configure production values:
 - `NEXT_PUBLIC_SITE_URL`: final public URL.
 - `NEXT_PUBLIC_COMPANY_EMAIL`: approved public email, if available.
 - `NEXT_PUBLIC_COMPANY_PHONE`: approved public phone, if available.
+- `NEXT_PUBLIC_WHATSAPP_PHONE`: approved WhatsApp number for quick service requests. Defaults to `+1 720 278 1729` when omitted.
 - `NEXT_PUBLIC_COMPANY_LOCATION`: approved public location.
 - `NEXT_PUBLIC_OFFICE_HOURS`: approved office hours.
 - Leadership and relationship records are controlled through `src/data/leadership.ts` and `src/data/relationships.ts`.
@@ -22,6 +23,13 @@ Copy `.env.example` and configure production values:
 2. Set `RESEND_FROM_EMAIL` to an address on the verified domain.
 3. Set `CONTACT_TO_EMAIL` to the approved MedX receiving inbox.
 4. Submit a test inquiry and confirm the internal notification and submitter confirmation.
+
+## WhatsApp Quick Request
+
+1. Set `NEXT_PUBLIC_WHATSAPP_PHONE` to the approved WhatsApp-enabled MedX number.
+2. Open the floating chat widget on desktop and mobile.
+3. Select each major service category and confirm the WhatsApp message is prefilled with service, name, organization, email, phone, and message.
+4. Confirm the same request is posted to `/api/contact/` and that email delivery works when Resend variables are configured.
 
 ## Domain And DNS
 
@@ -69,6 +77,7 @@ npm run build
 - Confirm `/partners` shows relationship records from the centralized data file with clear status labels.
 - Submit invalid and valid contact-form test payloads.
 - Confirm `/api/health` returns status, version, environment, and timestamp.
+- Confirm the floating chat widget opens, fits on mobile, and sends requests to WhatsApp plus `/api/contact/`.
 - Confirm no unapproved phone or email is displayed.
 - Confirm sitemap, robots, metadata, and social preview data.
 
