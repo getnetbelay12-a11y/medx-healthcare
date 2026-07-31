@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
+import MedxImage from "@/components/MedxImage";
 import PageHero from "@/components/PageHero";
 import RelationshipsCarousel from "@/components/partners/RelationshipsCarousel";
 import SectionHeader from "@/components/SectionHeader";
@@ -22,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Explore MedX relationship context, institutional references, historical records, and collaboration pathways.",
   path: "/relationships",
-  image: medxImages.hospitalPartnership.src,
+  image: medxImages.historicalMeetingGroup.src,
 });
 
 const categories = [
@@ -36,6 +37,27 @@ const categories = [
   { title: "Implementation organizations", icon: Handshake },
 ];
 
+const historicalRelationshipImages = [
+  {
+    image: medxImages.historicalMeetingGroup,
+    title: "Institutional relationship meeting",
+    caption:
+      "Historical MedX attachment showing a formal institutional relationship photo.",
+  },
+  {
+    image: medxImages.historicalMeetingDiscussion,
+    title: "Government and public-health discussion context",
+    caption:
+      "Historical MedX attachment showing a formal meeting context with Ethiopian institutional setting.",
+  },
+  {
+    image: medxImages.historicalMeetingRoom,
+    title: "Relationship discussion materials",
+    caption:
+      "Historical MedX attachment showing a meeting room discussion connected to relationship development.",
+  },
+];
+
 export default function RelationshipsPage() {
   return (
     <>
@@ -44,12 +66,43 @@ export default function RelationshipsPage() {
         title="Collaboration pathways for suppliers, institutions, technology, and public health."
         description="MedX keeps relationship information organized with clear context for current records, historical references, and future collaboration opportunities."
         highlights={["Suppliers", "Institutions", "Technology"]}
-        image={medxImages.hospitalPartnership}
+        image={medxImages.historicalMeetingGroup}
         imageLabel="Relationship context"
-        imageCaption="Institutions • suppliers • implementation"
+        imageCaption="Historical attachments • institutions • implementation"
       />
 
       <RelationshipsCarousel />
+
+      <section className="bg-white py-14 md:py-16">
+        <div className="container-medx">
+          <SectionHeader
+            eyebrow="Historical attachments"
+            title="Relationship materials from the supplied MedX image archive."
+            description="These photos are used as historical relationship context from the attachment archive. They do not imply a current endorsement, active contract, or current government approval."
+            centered
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {historicalRelationshipImages.map((item) => (
+              <article key={item.title} className="card-premium overflow-hidden">
+                <MedxImage
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  className="aspect-[4/3]"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+                <div className="p-5">
+                  <h2 className="text-lg font-black leading-tight text-[#071b33]">
+                    {item.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {item.caption}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="medical-pattern py-14 md:py-16">
         <div className="container-medx">

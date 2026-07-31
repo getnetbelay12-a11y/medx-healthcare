@@ -67,4 +67,16 @@ export const medxImages = {
     src: "/images/medx/medx-hospital-partnership.jpg",
     alt: "Conceptual healthcare partnership meeting with hospital and public health stakeholders.",
   },
+  historicalMeetingRoom: {
+    src: "/images/medx/medx-historical-meeting-room.png",
+    alt: "Historical MedX relationship meeting in a formal institutional setting.",
+  },
+  historicalMeetingGroup: {
+    src: "/images/medx/medx-historical-meeting-group.png",
+    alt: "Historical MedX group photo from institutional relationship materials.",
+  },
+  historicalMeetingDiscussion: {
+    src: "/images/medx/medx-historical-meeting-discussion.png",
+    alt: "Historical MedX institutional discussion meeting photo.",
+  },
 } as const;

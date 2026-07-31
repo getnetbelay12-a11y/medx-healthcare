@@ -24,6 +24,7 @@ export const company = {
     "Original activity included manufacturing and distribution of in-vitro diagnostic devices.",
     "The 2020 presentation described an approximately 6,000-square-foot furnished manufacturing facility.",
     "The original flagship focus was the OncoE6 cervical screening test.",
+    "Attachment materials include historical patent-introduction documentation connected to Arbor Vita Corporation diagnostic methods for cervical cancer.",
   ],
   currentServices: [
     "Pharmaceutical supply and distribution",
