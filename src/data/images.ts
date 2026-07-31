@@ -27,6 +27,18 @@ export const medxImages = {
     src: "/images/medx/medx-generated-supply-catalog.png",
     alt: "Bright medical supply and diagnostic equipment scene representing MedX product catalog and institutional supply requests.",
   },
+  generatedLabOperations: {
+    src: "/images/medx/medx-generated-lab-operations.png",
+    alt: "Bright clinical laboratory operations scene representing MedX diagnostics and laboratory support.",
+  },
+  generatedSupplyLogistics: {
+    src: "/images/medx/medx-generated-supply-logistics.png",
+    alt: "Bright healthcare supply logistics scene representing MedX institutional product requests.",
+  },
+  generatedPublicHealthScreening: {
+    src: "/images/medx/medx-generated-public-health-screening.png",
+    alt: "Bright public-health screening consultation scene representing MedX cervical-health program support.",
+  },
   hero: {
     src: "/images/medx/medx-hero-healthcare-africa.jpg",
     alt: "Conceptual image of African healthcare professionals reviewing diagnostics and operations.",

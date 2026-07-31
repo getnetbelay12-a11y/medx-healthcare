@@ -4124,11 +4124,39 @@ button,
   .medx-home-hero .btn-primary,
   .medx-home-hero .btn-outline,
   .medx-home-hero .medx-hero-proof {
-    max-width: calc(100vw - 5rem) !important;
+    max-width: calc(100vw - 2rem) !important;
   }
 
   .medx-home-hero .btn-primary,
   .medx-home-hero .btn-outline {
-    width: calc(100vw - 5rem) !important;
+    width: 100% !important;
+  }
+
+  .medx-home-hero-full {
+    min-height: calc(100svh - 76px);
+  }
+
+  .medx-home-hero-full > .container-medx {
+    min-height: calc(100svh - 76px);
+    padding-top: 2.25rem !important;
+    padding-bottom: 6.5rem !important;
+  }
+
+  .medx-home-hero-full .medx-home-hero-bg {
+    background:
+      linear-gradient(90deg, rgba(4, 16, 31, 0.9) 0%, rgba(4, 16, 31, 0.72) 58%, rgba(4, 16, 31, 0.48) 100%),
+      linear-gradient(180deg, rgba(4, 16, 31, 0.1) 0%, rgba(4, 16, 31, 0.58) 100%);
+  }
+
+  .medx-home-hero-full .medx-hero-proof {
+    padding: 0.9rem;
+  }
+
+  .medx-home-hero-full .medx-frame-indicator-floating {
+    bottom: 0.8rem;
+  }
+
+  .medx-home-hero-full .medx-frame-toggle {
+    min-width: 4.8rem;
   }
 }

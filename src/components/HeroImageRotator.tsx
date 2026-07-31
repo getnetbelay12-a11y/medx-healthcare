@@ -15,24 +15,16 @@ const frames = [
     label: "Pharmaceutical supply",
   },
   {
-    ...medxImages.hospitalPartnership,
-    label: "Healthcare partnerships",
+    ...medxImages.generatedLabOperations,
+    label: "Lab operations",
   },
   {
-    ...medxImages.historicalMeetingDiscussion,
-    label: "Institutional relationships",
+    ...medxImages.generatedSupplyLogistics,
+    label: "Supply logistics",
   },
   {
-    ...medxImages.historicalMeetingGroup,
-    label: "MedX relationship history",
-  },
-  {
-    ...medxImages.bahirDar,
-    label: "Bahir Dar context",
-  },
-  {
-    ...medxImages.cervicalScreening,
-    label: "Screening follow-up",
+    ...medxImages.generatedPublicHealthScreening,
+    label: "Screening support",
   },
 ];
 

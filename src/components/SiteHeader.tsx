@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Menu, PackageCheck, X } from "lucide-react";
+import { ArrowRight, Menu, PackageCheck, Phone, X } from "lucide-react";
 import { useState } from "react";
 import BrandMark from "@/components/BrandMark";
 import { navLinks } from "@/data/site";
+import { normalizePhoneHref, publicEnv } from "@/lib/env";
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -123,6 +124,17 @@ export default function SiteHeader() {
             </nav>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {publicEnv.companyPhone && (
+                <a
+                  href={normalizePhoneHref(publicEnv.companyPhone)}
+                  onClick={() => setMobileOpen(false)}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#071b33] text-sm font-black text-white sm:col-span-2"
+                >
+                  <Phone size={17} />
+                  Call {publicEnv.companyPhone}
+                </a>
+              )}
+
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
