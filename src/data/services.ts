@@ -44,9 +44,9 @@ export const services: MedxService[] = [
     id: "medical-devices",
     title: "Medical devices and equipment",
     summary:
-      "Medical equipment, clinical devices, and support materials for health facilities and programs.",
+      "Medical equipment, clinical devices, and essential support materials for regional health facilities and programs.",
     status: "current",
-    features: ["Device sourcing", "Equipment distribution", "Facility readiness"],
+    features: ["Device sourcing", "Laboratory equipment", "Facility readiness"],
     image: image("medical-devices"),
     alt: image("medical-devices").alt,
     isVerified: true,
@@ -56,9 +56,9 @@ export const services: MedxService[] = [
     id: "diagnostics",
     title: "Diagnostic and laboratory solutions",
     summary:
-      "Laboratory tools, in-vitro diagnostic support, and workflows for earlier detection and better decisions.",
+      "Diagnostic solutions, laboratory tools, and in-vitro diagnostic support for clinics, hospitals, and public-health programs.",
     status: "current",
-    features: ["In-vitro diagnostics", "Laboratory systems", "Testing support"],
+    features: ["In-vitro diagnostics", "Laboratory systems", "Medical consumables"],
     image: image("diagnostics-lab"),
     alt: image("diagnostics-lab").alt,
     isVerified: true,

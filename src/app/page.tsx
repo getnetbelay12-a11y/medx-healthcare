@@ -36,10 +36,10 @@ const serviceActions: Record<string, string> = {
 };
 
 const platformPath = [
-  "Identify healthcare access gaps",
-  "Source products and diagnostic support",
-  "Coordinate facility delivery",
-  "Track visibility and program readiness",
+  "Identify regional facility needs",
+  "Source medicines, devices, lab equipment, or consumables",
+  "Coordinate diagnostic and screening-program support",
+  "Track request clarity and follow-through",
 ];
 
 const operatingModel = [
@@ -85,6 +85,12 @@ const evidenceSignals = [
     detail:
       "A 2025 PLOS One article references Medx Diagnostics PLC in Bahir Dar in connection with the OncoE6 cervical test.",
   },
+  {
+    label: "Downloaded mockup",
+    value: "medxpage.html",
+    detail:
+      "The standalone page reinforces diagnostic solutions, laboratory equipment, medical consumables, and Amhara-region facility needs; its ecommerce prices and placeholder contacts are not published.",
+  },
 ];
 
 const credibilityRules = [
@@ -105,7 +111,7 @@ const credibilityRules = [
   },
   {
     label: "Missing",
-    value: "Photos, contacts, licenses, current leadership",
+    value: "Photos, contacts, licenses, current leadership, product catalog",
     status: "Hold",
   },
 ];
@@ -141,7 +147,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Healthcare products and services"
             title="One access platform. Four execution lanes."
-            description="MedX is strongest when the story is not just what it can provide, but how it moves healthcare needs from identification to delivery, visibility, and program readiness."
+            description="MedX is strongest when the story is not just what it can provide, but how it moves healthcare needs from identification to supply coordination, diagnostic support, and program readiness."
             centered
           />
 
@@ -151,12 +157,13 @@ export default function Home() {
                 MedX access platform
               </p>
               <h2 className="mt-4 max-w-2xl text-3xl font-black leading-tight text-white md:text-5xl">
-                Diagnostics, products, relationships, and data moving together.
+                Diagnostics, products, consumables, and relationships moving together.
               </h2>
               <p className="mt-5 max-w-2xl leading-8 text-slate-300">
                 The work is practical: understand the need, secure the right
-                product or program support, coordinate delivery, and build the
-                visibility required to scale responsibly.
+                medicine, device, laboratory equipment, consumable, or program
+                support, then coordinate follow-through with the discipline
+                required for institutional healthcare.
               </p>
             </div>
 

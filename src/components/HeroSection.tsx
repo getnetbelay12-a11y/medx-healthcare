@@ -32,8 +32,9 @@ export default function HeroSection() {
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-xl">
             MedX supports healthcare institutions with pharmaceutical supply,
-            medical devices, diagnostic solutions, and cervical-health program
-            support, grounded in its Bahir Dar diagnostics history.
+            medical devices, laboratory equipment, diagnostic solutions, medical
+            consumables, and cervical-health program support, grounded in its
+            Bahir Dar diagnostics history.
           </p>
 
           <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">

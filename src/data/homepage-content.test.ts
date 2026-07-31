@@ -71,9 +71,14 @@ describe("homepage public copy contract", () => {
     expect(homepageSource).toContain("Email materials");
     expect(homepageSource).toContain("Historical deck");
     expect(homepageSource).toContain("Public research");
+    expect(homepageSource).toContain("medxpage.html");
+    expect(homepageSource).toContain("laboratory equipment");
+    expect(homepageSource).toContain("medical consumables");
     expect(homepageSource).not.toContain("AI-ready roadmap");
     expect(homepageSource).not.toContain("Access command cockpit");
     expect(homepageSource).not.toContain("Demand pressure");
+    expect(homepageSource).not.toContain("450 ETB");
+    expect(homepageSource).not.toContain("supply@medxdiagnostic.com.et");
   });
 
   it("keeps one compact hero facts row", () => {

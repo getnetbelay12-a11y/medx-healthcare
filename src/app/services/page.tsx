@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Our Services",
   description:
-    "MedX service areas across pharmaceutical supply, medical devices, diagnostics, cervical-screening support, and strategic health-system capabilities.",
+    "MedX service areas across pharmaceutical supply, medical devices, laboratory equipment, medical consumables, diagnostics, cervical-screening support, and strategic health-system capabilities.",
   path: "/services",
   image: medxImages.aiSupplyFrame.src,
 });
@@ -33,8 +33,8 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Our Services"
         title="Products, diagnostics, and program support for healthcare institutions."
-        description="MedX organizes pharmaceutical supply, medical devices, diagnostics, and cervical-screening support into practical service lanes built for institutional healthcare needs."
-        highlights={["Supply requests", "Diagnostic support", "Screening programs"]}
+        description="MedX organizes pharmaceutical supply, medical devices, laboratory equipment, medical consumables, diagnostics, and cervical-screening support into practical service lanes built for institutional healthcare needs."
+        highlights={["Supply requests", "Laboratory equipment", "Diagnostic support"]}
         image={medxImages.aiSupplyFrame}
         imageLabel="Service platform"
         imageCaption="Products • diagnostics • facility readiness"
@@ -45,7 +45,7 @@ export default function ServicesPage() {
           <SectionHeader
             eyebrow="Current services"
             title="Institutional healthcare support across core supply and diagnostic needs."
-            description="MedX’s current public service areas focus on practical facility requirements: medicines, devices, diagnostic support, and cervical-screening program capacity."
+            description="MedX’s current public service areas focus on practical facility requirements: medicines, devices, laboratory equipment, medical consumables, diagnostic support, and cervical-screening program capacity."
             centered
           />
           <div className="mt-12 grid gap-8">
