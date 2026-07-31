@@ -18,74 +18,75 @@ const heroFacts = [
 
 export default function HeroSection() {
   return (
-    <section className="medx-lab-hero relative overflow-hidden text-white">
-      <HeroImageRotator />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,19,36,0.98)_0%,rgba(4,19,36,0.92)_44%,rgba(4,19,36,0.66)_100%)]" />
-      <div className="medx-hero-motion" aria-hidden="true">
-        <div className="medx-motion-panel medx-motion-panel-lab" />
-        <div className="medx-motion-panel medx-motion-panel-supply" />
-        <div className="medx-motion-panel medx-motion-panel-map" />
-        <div className="medx-scan-line" />
-      </div>
+    <section className="medx-home-hero relative overflow-hidden text-[#071b33]">
+      <div className="medx-home-hero-bg" aria-hidden="true" />
 
-      <div className="container-medx relative grid min-h-[calc(88svh-76px)] gap-10 py-14 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div className="max-w-4xl">
-          <p className="inline-flex rounded-full border border-emerald-300/30 bg-emerald-300/[0.1] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200 backdrop-blur-md">
+      <div className="container-medx relative grid min-h-[calc(82svh-76px)] gap-10 py-14 md:py-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="min-w-0 max-w-[calc(100vw-4rem)] sm:max-w-4xl">
+          <p className="inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#0a7c5b] shadow-sm">
             MedX Healthcare Solutions
           </p>
 
-          <h1 className="mt-6 max-w-5xl text-[2.5rem] font-black leading-[0.98] tracking-normal sm:text-5xl xl:text-[5.2rem]">
-            Diagnostics-rooted healthcare access for Ethiopia.
+          <h1 className="mt-6 max-w-5xl text-[2.45rem] font-black leading-[1.03] tracking-normal sm:text-5xl xl:text-[4.65rem]">
+            Healthcare diagnostics and supply access for Ethiopian institutions.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-xl">
+          <p className="mt-6 max-w-[calc(100vw-4rem)] text-base leading-8 text-slate-600 sm:max-w-2xl md:text-xl">
             MedX supports healthcare institutions with pharmaceutical supply,
             medical devices, laboratory equipment, diagnostic solutions, medical
             consumables, and cervical-health program support, grounded in its
             Bahir Dar diagnostics history.
           </p>
 
-          <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
+          <div className="mt-7 flex max-w-[calc(100vw-4rem)] flex-col gap-3 sm:max-w-none sm:flex-row">
+            <Link href="/products" className="btn-primary w-full sm:w-auto">
+              View product catalog
+              <ArrowRight size={17} />
+            </Link>
+            <Link href="/contact" className="btn-outline medx-light-outline w-full sm:w-auto">
+              Request quotation
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+
+          <div className="mt-7 grid max-w-[calc(100vw-4rem)] gap-3 sm:max-w-3xl sm:grid-cols-3">
             <div className="medx-hero-proof">
               <Microscope className="text-emerald-300" size={22} />
               <p className="mt-3 text-sm font-black leading-6">
-                Diagnostics-first program support.
+                Diagnostics and laboratory support.
               </p>
             </div>
             <div className="medx-hero-proof">
               <PackageCheck className="text-emerald-300" size={22} />
               <p className="mt-3 text-sm font-black leading-6">
-                Product supply with operating discipline.
+                Catalog-led supply requests.
               </p>
             </div>
             <div className="medx-hero-proof">
               <ShieldCheck className="text-emerald-300" size={22} />
               <p className="mt-3 text-sm font-black leading-6">
-                Conservative public-health communication.
+                Clear institutional follow-up.
               </p>
             </div>
           </div>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/services" className="btn-primary">
-              Explore solutions
-              <ArrowRight size={17} />
-            </Link>
-            <Link href="/contact" className="btn-outline">
-              Request products or relationship
-              <ArrowRight size={17} />
-            </Link>
-          </div>
         </div>
 
-        <div className="medx-hero-visual">
-          <div className="medx-hero-document">
-            <div className="medx-document-brand">
+        <div className="medx-hero-showcase">
+          <div className="medx-hero-image-stage">
+            <HeroImageRotator />
+            <div className="medx-hero-image-caption">
+              <span>MedX operating focus</span>
+              <strong>Diagnostics • supply • public-health support</strong>
+            </div>
+          </div>
+
+          <div className="medx-home-proof-panel">
+            <div>
               <Image
                 src="/images/medx/MedxLogo1.png"
                 alt="MedX Healthcare Solutions"
-                width={280}
-                height={224}
+                width={140}
+                height={112}
                 priority
               />
               <div>
@@ -93,63 +94,41 @@ export default function HeroSection() {
                 <span>Bahir Dar, Amhara, Ethiopia</span>
               </div>
             </div>
-
-            <div className="medx-document-lines" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-            </div>
-
-            <div className="medx-document-grid">
-              <div>
-                <span>Created</span>
-                <strong>2017</strong>
-              </div>
-              <div>
-                <span>Historical origin</span>
-                <strong>Diagnostics and IVD distribution</strong>
-              </div>
-              <div>
-                <span>Current site focus</span>
-                <strong>Healthcare supply, diagnostics, screening support</strong>
-              </div>
-            </div>
-          </div>
-          <div className="medx-hero-source-note">
-            <div>
-              <ClipboardCheck size={20} />
-              <p>Source-grounded profile</p>
-            </div>
-            <span>
-              Built from MedX presentation materials, website-source emails,
-              and public OncoE6 research context. Claims stay conservative until
-              current company details are confirmed.
-            </span>
+            <ul>
+              <li>
+                <ClipboardCheck size={17} />
+                Quote-first intake for serious supply needs
+              </li>
+              <li>
+                <ClipboardCheck size={17} />
+                Product catalog and Phase 2 commerce roadmap
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div aria-label="At a glance" className="grid gap-3 text-sm font-bold text-slate-100 lg:col-span-2 lg:grid-cols-[1fr_18rem]">
+        <div aria-label="At a glance" className="grid gap-3 text-sm font-bold text-slate-700 lg:col-span-2 lg:grid-cols-[1fr_18rem]">
           <div className="medx-hero-rail">
             {heroFacts.map((fact) => (
               <div
                 key={fact.label}
-                className="border-white/10 px-4 py-3 md:border-l first:md:border-l-0"
+                className="border-slate-200 px-4 py-3 md:border-l first:md:border-l-0"
               >
-                <p className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">
+                <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[#0a7c5b]">
                   {fact.label}
                 </p>
-                <p className="mt-1 leading-6 text-white">{fact.value}</p>
+                <p className="mt-1 leading-6 text-[#071b33]">{fact.value}</p>
               </div>
             ))}
           </div>
           <div className="medx-hero-signal">
             <Building2 className="text-emerald-300" size={22} />
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-300">
-              Current public posture
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0a7c5b]">
+              Professional public profile
             </p>
-            <p className="mt-2 text-sm leading-6 text-white">
-              Present current services clearly and label historical or roadmap
-              items without overclaiming.
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Current services, historical context, and Phase 2 commerce plans
+              are separated clearly.
             </p>
           </div>
         </div>

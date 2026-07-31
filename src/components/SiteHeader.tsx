@@ -5,16 +5,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, PackageCheck, X } from "lucide-react";
 import { useState } from "react";
 import BrandMark from "@/components/BrandMark";
-
-const navigation = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Public Health", href: "/public-health" },
-  { label: "Strategy", href: "/strategy" },
-  { label: "Relationships", href: "/relationships" },
-  { label: "Contact", href: "/contact" },
-];
+import { navLinks } from "@/data/site";
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -31,7 +22,7 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 shadow-[0_10px_30px_rgba(8,27,51,0.04)] backdrop-blur-xl">
       <div className="container-medx">
-        <div className="flex min-h-[76px] items-center justify-between gap-6">
+        <div className="flex min-h-[76px] w-full items-center justify-between gap-6">
           <Link
             href="/"
             className="flex shrink-0 items-center gap-3"
@@ -51,14 +42,14 @@ export default function SiteHeader() {
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
-            {navigation.map((item) => {
+            {navLinks.map((item) => {
               const active = isActive(item.href);
 
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative rounded-lg px-3.5 py-3 text-xs font-black transition ${
+                  className={`relative rounded-lg px-2.5 py-3 text-xs font-black transition xl:px-3 ${
                     active
                       ? "text-[#071b33]"
                       : "text-slate-600 hover:bg-slate-50 hover:text-[#071b33]"
@@ -107,7 +98,7 @@ export default function SiteHeader() {
         {mobileOpen && (
           <div id="mobile-navigation" className="border-t border-slate-100 pb-5 pt-4 lg:hidden">
             <nav className="grid gap-1">
-              {navigation.map((item) => {
+              {navLinks.map((item) => {
                 const active = isActive(item.href);
 
                 return (

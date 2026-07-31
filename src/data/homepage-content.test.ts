@@ -86,8 +86,11 @@ describe("homepage public copy contract", () => {
     expect(heroSource).toContain("Diagnostics and cervical screening");
     expect(heroSource).toContain("Bahir Dar, Amhara, Ethiopia");
     expect(heroSource).toContain("Institutional healthcare access");
-    expect(heroSource).toContain("Source-grounded profile");
-    expect(heroSource).toContain("Current public posture");
+    expect(heroSource).toContain("Professional public profile");
+    expect(heroSource).toContain("View product catalog");
+    expect(heroSource).toContain("Request quotation");
+    expect(heroSource).not.toContain("Source-grounded profile");
+    expect(heroSource).not.toContain("Current public posture");
     expect(heroSource).not.toContain("AI-assisted visibility");
     expect(heroSource).not.toContain("Live access intelligence");
     expect(heroSource).not.toContain("62%");
