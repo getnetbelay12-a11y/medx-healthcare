@@ -15,16 +15,12 @@ const frames = [
     label: "Pharmaceutical supply",
   },
   {
-    ...medxImages.medicalDevices,
-    label: "Medical devices",
+    ...medxImages.historicalMeetingDiscussion,
+    label: "Institutional relationships",
   },
   {
     ...medxImages.cervicalScreening,
     label: "Screening follow-up",
-  },
-  {
-    ...medxImages.supplyChain,
-    label: "Supply coordination",
   },
 ];
 

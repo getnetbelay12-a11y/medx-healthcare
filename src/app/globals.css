@@ -1557,6 +1557,35 @@ button:focus-visible {
     radial-gradient(circle at 70% 52%, rgba(255, 255, 255, 0.64), transparent 34%);
 }
 
+.medx-home-hero-full {
+  min-height: calc(100svh - 76px);
+  border-bottom: 0;
+  background: #071b33;
+}
+
+.medx-hero-full-motion {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.medx-home-hero-full .medx-home-hero-bg {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(4, 16, 31, 0.86) 0%, rgba(4, 16, 31, 0.74) 34%, rgba(4, 16, 31, 0.34) 66%, rgba(4, 16, 31, 0.18) 100%),
+    linear-gradient(180deg, rgba(4, 16, 31, 0.22) 0%, rgba(4, 16, 31, 0.1) 48%, rgba(4, 16, 31, 0.52) 100%),
+    radial-gradient(circle at 18% 18%, rgba(20, 184, 166, 0.22), transparent 32%);
+}
+
+.medx-home-hero-full > .container-medx {
+  z-index: 2;
+  padding-bottom: clamp(7rem, 12vw, 9rem);
+}
+
+.medx-home-hero-full .medx-hero-copy {
+  padding-top: clamp(1rem, 4vw, 3rem);
+}
+
 .medx-hero-showcase {
   display: grid;
   gap: 1rem;
@@ -1626,6 +1655,24 @@ button:focus-visible {
 }
 
 .medx-hero-image-stage .medx-frame-indicator button:hover {
+  background: rgba(4, 19, 36, 0.66);
+}
+
+.medx-home-hero-full .medx-frame-indicator-floating {
+  left: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 4;
+  justify-content: center;
+}
+
+.medx-home-hero-full .medx-frame-indicator button {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(4, 19, 36, 0.48);
+  color: #ffffff;
+}
+
+.medx-home-hero-full .medx-frame-indicator button:hover {
   background: rgba(4, 19, 36, 0.66);
 }
 
@@ -1731,6 +1778,18 @@ button:focus-visible {
 
 .medx-home-hero .medx-hero-proof {
   color: #071b33;
+}
+
+.medx-home-hero-full .medx-hero-proof,
+.medx-home-hero-full .medx-hero-rail,
+.medx-home-hero-full .medx-hero-signal {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(4, 19, 36, 0.42);
+  box-shadow: 0 18px 50px rgba(4, 19, 36, 0.2);
+}
+
+.medx-home-hero-full .medx-hero-proof {
+  color: #ffffff;
 }
 
 .medx-home-hero .medx-hero-proof svg,

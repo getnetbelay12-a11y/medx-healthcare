@@ -1,9 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   Building2,
-  ClipboardCheck,
   Microscope,
   PackageCheck,
   ShieldCheck,
@@ -18,20 +16,23 @@ const heroFacts = [
 
 export default function HeroSection() {
   return (
-    <section className="medx-home-hero relative overflow-hidden text-[#071b33]">
+    <section className="medx-home-hero medx-home-hero-full relative overflow-hidden text-white">
+      <div className="medx-hero-full-motion">
+        <HeroImageRotator />
+      </div>
       <div className="medx-home-hero-bg" aria-hidden="true" />
 
-      <div className="container-medx relative grid min-h-[calc(86svh-76px)] gap-10 py-14 md:py-16 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-        <div className="min-w-0 max-w-[calc(100vw-4rem)] sm:max-w-4xl">
-          <p className="inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#0a7c5b] shadow-sm">
+      <div className="container-medx relative grid min-h-[calc(100svh-76px)] gap-10 py-14 md:py-16 lg:items-center">
+        <div className="medx-hero-copy min-w-0 max-w-[calc(100vw-4rem)] sm:max-w-5xl">
+          <p className="inline-flex rounded-full border border-white/25 bg-white/12 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-emerald-100 shadow-sm backdrop-blur-md">
             MedX Healthcare Solutions
           </p>
 
-          <h1 className="mt-6 max-w-5xl text-[2.45rem] font-black leading-[1.03] tracking-normal sm:text-5xl xl:text-[4.65rem]">
+          <h1 className="mt-6 max-w-5xl text-[2.45rem] font-black leading-[1.03] tracking-normal text-white sm:text-5xl xl:text-[4.85rem]">
             Healthcare diagnostics and supply access for Ethiopian institutions.
           </h1>
 
-          <p className="mt-6 max-w-[calc(100vw-4rem)] text-base leading-8 text-slate-600 sm:max-w-2xl md:text-xl">
+          <p className="mt-6 max-w-[calc(100vw-4rem)] text-base leading-8 text-slate-100 sm:max-w-2xl md:text-xl">
             MedX supports healthcare institutions with pharmaceutical supply,
             medical devices, laboratory equipment, diagnostic solutions, medical
             consumables, and cervical-health program support, grounded in its
@@ -71,62 +72,26 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="medx-hero-showcase">
-          <div className="medx-hero-image-stage">
-            <HeroImageRotator />
-            <div className="medx-hero-image-caption">
-              <span>MedX operating focus</span>
-              <strong>Diagnostics • supply • public-health support</strong>
-            </div>
-          </div>
-
-          <div className="medx-home-proof-panel">
-            <div>
-              <Image
-                src="/images/medx/MedxLogo1.png"
-                alt="MedX Healthcare Solutions"
-                width={140}
-                height={112}
-                priority
-              />
-              <div>
-                <p>MedX Diagnostic, PLC</p>
-                <span>Bahir Dar, Amhara, Ethiopia</span>
-              </div>
-            </div>
-            <ul>
-              <li>
-                <ClipboardCheck size={17} />
-                Quote-first intake for serious supply needs
-              </li>
-              <li>
-                <ClipboardCheck size={17} />
-                Product catalog and Phase 2 commerce roadmap
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div aria-label="At a glance" className="grid gap-3 text-sm font-bold text-slate-700 lg:col-span-2 lg:grid-cols-[1fr_18rem]">
+        <div aria-label="At a glance" className="grid gap-3 text-sm font-bold text-slate-100 lg:grid-cols-[1fr_18rem]">
           <div className="medx-hero-rail">
             {heroFacts.map((fact) => (
               <div
                 key={fact.label}
-                className="border-slate-200 px-4 py-3 md:border-l first:md:border-l-0"
+                className="border-white/15 px-4 py-3 md:border-l first:md:border-l-0"
               >
-                <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[#0a7c5b]">
+                <p className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">
                   {fact.label}
                 </p>
-                <p className="mt-1 leading-6 text-[#071b33]">{fact.value}</p>
+                <p className="mt-1 leading-6 text-white">{fact.value}</p>
               </div>
             ))}
           </div>
           <div className="medx-hero-signal">
             <Building2 className="text-emerald-300" size={22} />
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0a7c5b]">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">
               Professional public profile
             </p>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <p className="mt-2 text-sm leading-6 text-slate-200">
               Current services, historical context, and Phase 2 commerce plans
               are separated clearly.
             </p>
