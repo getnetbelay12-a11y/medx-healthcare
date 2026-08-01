@@ -3664,7 +3664,7 @@ button,
   .text-5xl {
     font-size: clamp(2.15rem, 10vw, 2.85rem) !important;
     line-height: 1.06 !important;
-    letter-spacing: -0.035em !important;
+    letter-spacing: 0 !important;
     text-wrap: balance;
   }
 
@@ -3672,7 +3672,7 @@ button,
   .text-4xl {
     font-size: clamp(1.75rem, 7.8vw, 2.2rem) !important;
     line-height: 1.13 !important;
-    letter-spacing: -0.025em !important;
+    letter-spacing: 0 !important;
     text-wrap: balance;
   }
 
@@ -4103,8 +4103,8 @@ button,
   .gradient-hero h1 {
     max-width: 100% !important;
     font-size: clamp(2.5rem, 12vw, 3.4rem) !important;
-    line-height: 0.98 !important;
-    letter-spacing: -0.055em !important;
+    line-height: 1.04 !important;
+    letter-spacing: 0 !important;
     text-wrap: balance;
   }
 
@@ -4610,5 +4610,182 @@ button,
 
   .medx-home-hero-full .medx-frame-toggle {
     min-width: 4.8rem;
+  }
+}
+
+/* MEDX PHONE POLISH */
+
+@media (max-width: 767px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .container-medx {
+    width: calc(100% - 1.5rem) !important;
+    max-width: calc(100% - 1.5rem) !important;
+  }
+
+  .corporate-shell > .container-medx,
+  .gradient-hero > .container-medx {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .corporate-shell h1,
+  .gradient-hero h1,
+  .medx-home-hero h1 {
+    max-width: 100% !important;
+    font-size: clamp(2.15rem, 10vw, 2.8rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .corporate-shell h1 + p,
+  .gradient-hero h1 + p,
+  .medx-home-hero h1 + p {
+    max-width: 100% !important;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .corporate-shell .image-frame,
+  .gradient-hero .image-frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 1.15rem !important;
+  }
+
+  .corporate-shell .image-frame + div,
+  .gradient-hero .image-frame + div {
+    position: static !important;
+    max-width: 100% !important;
+    margin-top: 0.75rem;
+    border-radius: 0.95rem !important;
+    background: rgba(6, 26, 49, 0.94) !important;
+  }
+
+  .medx-home-hero-full {
+    min-height: auto !important;
+  }
+
+  .medx-home-hero-full > .container-medx {
+    min-height: auto !important;
+    padding-top: 2.25rem !important;
+    padding-bottom: 5.75rem !important;
+  }
+
+  .medx-home-hero-full .medx-frame-indicator-floating {
+    display: flex !important;
+    bottom: 0.85rem !important;
+    padding: 0.55rem !important;
+  }
+
+  .medx-home-hero-full .medx-frame-toggle {
+    min-width: 4.2rem;
+  }
+
+  .medx-hero-proof,
+  .medx-hero-fact,
+  .medx-hero-signal,
+  .medx-path-step,
+  .medx-request-list div,
+  .medx-service-standards article,
+  .medx-dashboard-metric,
+  .medx-console-queue,
+  .medx-source-signal {
+    border-radius: 0.95rem !important;
+  }
+
+  .medx-access-stage,
+  .medx-operating-model,
+  .medx-evidence-panel,
+  .medx-request-brief,
+  .medx-catalog-command {
+    border-radius: 1.05rem !important;
+    padding: 1rem !important;
+  }
+
+  .medx-product-card,
+  .medx-operating-card,
+  .medx-category-tile,
+  .medx-product-category,
+  .medx-commerce-card,
+  .medx-quote-panel,
+  .medx-product-final-cta {
+    min-height: auto !important;
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+  }
+
+  .medx-category-tile h3,
+  .medx-product-row h3,
+  .medx-commerce-card h3,
+  .medx-quote-panel h2 {
+    font-size: 1.05rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .medx-product-row {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 0.95rem !important;
+  }
+
+  .medx-product-row-index {
+    height: 2.25rem;
+    width: 2.25rem;
+  }
+
+  .medx-product-row-action,
+  .medx-category-action {
+    width: 100%;
+    min-height: 2.85rem;
+    padding-inline: 0.9rem;
+  }
+
+  .medx-product-tags span,
+  .medx-feature-list span {
+    min-height: 2.15rem;
+    white-space: normal;
+  }
+
+  .quick-chat {
+    padding: 0 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+  }
+
+  .quick-chat-panel {
+    max-height: min(78svh, 42rem);
+    overflow-y: auto;
+  }
+
+  .quick-chat-button {
+    border-radius: 999px;
+    box-shadow: 0 14px 34px rgba(8, 27, 51, 0.22);
+  }
+}
+
+@media (max-width: 380px) {
+  .container-medx {
+    width: calc(100% - 1rem) !important;
+    max-width: calc(100% - 1rem) !important;
+  }
+
+  .corporate-shell h1,
+  .gradient-hero h1,
+  .medx-home-hero h1 {
+    font-size: 2rem !important;
+  }
+
+  .btn-primary,
+  .btn-outline,
+  .btn-secondary {
+    font-size: 0.74rem !important;
+    padding-inline: 0.85rem !important;
   }
 }
