@@ -285,7 +285,7 @@ async function sendResendEmail(env, payload, id) {
 
 function leadNotificationText(payload, id) {
   return [
-    \`MedX quick chat inquiry \${id}\`,
+    \`MedX website inquiry \${id}\`,
     "",
     \`Service: \${payload.productService}\`,
     \`Name: \${payload.fullName}\`,
@@ -298,22 +298,28 @@ function leadNotificationText(payload, id) {
   ].join("\\n");
 }
 
-async function sendQuickChatSms(env, payload, id) {
-  if (
-    !env.TWILIO_ACCOUNT_SID ||
-    !env.TWILIO_AUTH_TOKEN ||
-    !env.TWILIO_FROM_PHONE ||
-    !env.QUICK_CHAT_NOTIFY_PHONE
-  ) {
+function normalizeE164Phone(value = "") {
+  const trimmed = String(value).trim();
+  if (!trimmed) return "";
+  if (trimmed.startsWith("+")) return \`+\${trimmed.replace(/\\D/g, "")}\`;
+  const digits = trimmed.replace(/\\D/g, "");
+  if (digits.length === 10) return \`+1\${digits}\`;
+  return digits ? \`+\${digits}\` : "";
+}
+
+function whatsappAddress(value = "") {
+  if (String(value).startsWith("whatsapp:")) return String(value);
+  const phone = normalizeE164Phone(value);
+  return phone ? \`whatsapp:\${phone}\` : "";
+}
+
+async function sendTwilioMessage(env, { from, to, body }) {
+  if (!env.TWILIO_ACCOUNT_SID || !env.TWILIO_AUTH_TOKEN || !from || !to) {
     return false;
   }
 
   const credentials = btoa(\`\${env.TWILIO_ACCOUNT_SID}:\${env.TWILIO_AUTH_TOKEN}\`);
-  const form = new URLSearchParams({
-    From: env.TWILIO_FROM_PHONE,
-    To: env.QUICK_CHAT_NOTIFY_PHONE,
-    Body: leadNotificationText(payload, id).slice(0, 1500),
-  });
+  const form = new URLSearchParams({ From: from, To: to, Body: body });
 
   try {
     const response = await fetch(
@@ -334,7 +340,23 @@ async function sendQuickChatSms(env, payload, id) {
   }
 }
 
-async function forwardQuickChat(env, payload, id) {
+async function sendLeadWhatsApp(env, payload, id) {
+  return sendTwilioMessage(env, {
+    from: whatsappAddress(env.TWILIO_WHATSAPP_FROM || ""),
+    to: whatsappAddress(env.WHATSAPP_NOTIFY_PHONE || env.QUICK_CHAT_NOTIFY_PHONE || "+17202781729"),
+    body: leadNotificationText(payload, id).slice(0, 1500),
+  });
+}
+
+async function sendLeadSms(env, payload, id) {
+  return sendTwilioMessage(env, {
+    from: env.TWILIO_FROM_PHONE || "",
+    to: normalizeE164Phone(env.QUICK_CHAT_NOTIFY_PHONE || "+17202781729"),
+    body: leadNotificationText(payload, id).slice(0, 1500),
+  });
+}
+
+async function forwardLead(env, payload, id) {
   if (!env.QUICK_CHAT_FALLBACK_ENDPOINT) {
     return {
       ok: false,
@@ -345,7 +367,8 @@ async function forwardQuickChat(env, payload, id) {
   const details = [
     leadNotificationText(payload, id),
     "",
-    \`Notify phone: \${env.QUICK_CHAT_NOTIFY_PHONE || "Not configured"}\`,
+    \`Notify WhatsApp: \${env.WHATSAPP_NOTIFY_PHONE || env.QUICK_CHAT_NOTIFY_PHONE || "+17202781729"}\`,
+    \`Notify phone: \${env.QUICK_CHAT_NOTIFY_PHONE || "+17202781729"}\`,
     \`Notify email: \${env.QUICK_CHAT_NOTIFY_EMAIL || "Not configured"}\`,
   ].join("\\n");
 
@@ -379,6 +402,12 @@ async function forwardQuickChat(env, payload, id) {
   }
 }
 
+async function sendLeadNotification(env, payload, id) {
+  if (await sendLeadWhatsApp(env, payload, id)) return { ok: true };
+  if (await sendLeadSms(env, payload, id)) return { ok: true };
+  return forwardLead(env, payload, id);
+}
+
 async function handleContact(request, env) {
   const id = requestId();
   if (request.method !== "POST") return json({ ok: false, message: "Method not allowed", requestId: id }, 405);
@@ -397,12 +426,11 @@ async function handleContact(request, env) {
     if (validationError) return json({ ok: false, message: validationError, requestId: id }, 400);
 
     const payload = normalizeQuickChat(body);
+    const leadDelivery = await sendLeadNotification(env, payload, id);
     const delivery =
-      env.RESEND_API_KEY && env.CONTACT_TO_EMAIL && env.RESEND_FROM_EMAIL
-        ? await sendResendEmail(env, payload, id)
-        : (await sendQuickChatSms(env, payload, id))
-          ? { ok: true }
-          : await forwardQuickChat(env, payload, id);
+      leadDelivery.ok || !(env.RESEND_API_KEY && env.CONTACT_TO_EMAIL && env.RESEND_FROM_EMAIL)
+        ? leadDelivery
+        : await sendResendEmail(env, payload, id);
 
     if (!delivery.ok) {
       return json({ ok: false, message: delivery.message, requestId: id }, 503);
@@ -416,9 +444,14 @@ async function handleContact(request, env) {
   if (!(await verifyTurnstile(body.turnstileToken, request, env))) {
     return json({ ok: false, message: "Human verification failed.", requestId: id }, 400);
   }
-  const emailResult = await sendResendEmail(env, body, id);
-  if (!emailResult.ok) {
-    return json({ ok: false, message: emailResult.message, requestId: id }, 503);
+  const leadDelivery = await sendLeadNotification(env, body, id);
+  const emailDelivery =
+    env.RESEND_API_KEY && env.CONTACT_TO_EMAIL && env.RESEND_FROM_EMAIL
+      ? await sendResendEmail(env, body, id)
+      : null;
+  const delivery = leadDelivery.ok ? leadDelivery : emailDelivery || leadDelivery;
+  if (!delivery.ok) {
+    return json({ ok: false, message: delivery.message, requestId: id }, 503);
   }
   return json({ ok: true, requestId: id, timestamp: new Date().toISOString() });
 }

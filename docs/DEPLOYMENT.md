@@ -7,17 +7,19 @@ Copy `.env.example` and configure production values:
 - `NEXT_PUBLIC_SITE_URL`: final public URL.
 - `NEXT_PUBLIC_COMPANY_EMAIL`: approved public email, if available.
 - `NEXT_PUBLIC_COMPANY_PHONE`: approved public phone, if available.
-- `NEXT_PUBLIC_WHATSAPP_PHONE`: legacy WhatsApp number. The current quick chat submits through `/api/contact/` and does not redirect customers to WhatsApp.
+- `NEXT_PUBLIC_WHATSAPP_PHONE`: public WhatsApp link number. Current default is `+17202781729`.
 - `NEXT_PUBLIC_COMPANY_LOCATION`: approved public location.
 - `NEXT_PUBLIC_OFFICE_HOURS`: approved office hours.
 - Leadership and relationship records are controlled through `src/data/leadership.ts` and `src/data/relationships.ts`.
 - `CONTACT_TO_EMAIL`: inbox receiving website inquiries.
 - `RESEND_API_KEY`: Resend API key.
 - `RESEND_FROM_EMAIL`: verified Resend sender.
-- `QUICK_CHAT_FALLBACK_ENDPOINT`: fallback endpoint for quick-chat leads when MedX email is not configured. Defaults to `https://www.kelelitsolution.com/api/contact`.
-- `QUICK_CHAT_NOTIFY_PHONE`: internal quick-chat notification phone. Defaults to `7202781729`.
+- `QUICK_CHAT_FALLBACK_ENDPOINT`: fallback endpoint for website leads when WhatsApp/SMS delivery and MedX email are not configured. Defaults to `https://www.kelelitsolution.com/api/contact`.
+- `QUICK_CHAT_NOTIFY_PHONE`: internal SMS fallback notification phone. Defaults to `+17202781729`.
+- `WHATSAPP_NOTIFY_PHONE`: internal WhatsApp notification phone. Defaults to `+17202781729`.
 - `QUICK_CHAT_NOTIFY_EMAIL`: internal quick-chat notification email. Defaults to `info@kelelitsolution.com`.
-- `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_FROM_PHONE`: optional SMS notification settings. When configured, quick-chat leads can be sent directly by SMS before using the fallback endpoint.
+- `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_FROM_PHONE`: optional SMS notification settings.
+- `TWILIO_WHATSAPP_FROM`: Twilio WhatsApp sender, for example `whatsapp:+14155238886` for a sandbox or an approved WhatsApp Business sender. When configured with Twilio credentials, website leads are sent to `WHATSAPP_NOTIFY_PHONE` before SMS, email, or fallback delivery.
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`: optional Cloudflare Turnstile keys.
 - `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`: optional persistence settings.
 
@@ -28,15 +30,16 @@ Copy `.env.example` and configure production values:
 3. Set `CONTACT_TO_EMAIL` to the approved MedX receiving inbox.
 4. Submit a test inquiry and confirm the internal notification and submitter confirmation.
 
-## Quick Chat Delivery
+## Website Lead Delivery
 
 1. Open the floating chat widget on desktop and mobile.
 2. Submit a short message with and without contact details.
-3. Confirm the button label is `Send`.
-4. Confirm the customer sees “Thank you for sending. We will get back to you as soon as possible.”
-5. Configure MedX-owned Resend variables for primary email delivery.
-6. Configure Twilio variables if `QUICK_CHAT_NOTIFY_PHONE` should receive direct SMS alerts.
-7. Confirm the fallback endpoint accepts leads when MedX email and Twilio are not configured.
+3. Submit the full contact form.
+4. Confirm both submissions reach WhatsApp number `+17202781729` when Twilio WhatsApp is configured.
+5. Confirm the button label is `Send`.
+6. Confirm the customer sees “Thank you for sending. We will get back to you as soon as possible.”
+7. Configure MedX-owned Resend variables if email copies are also required.
+8. Confirm the fallback endpoint accepts leads when WhatsApp/SMS, MedX email, and Twilio are not configured.
 
 ## Domain And DNS
 

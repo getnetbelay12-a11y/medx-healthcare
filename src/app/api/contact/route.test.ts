@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { POST } from "@/app/api/contact/route";
 
 function request(body: unknown) {
@@ -30,6 +30,10 @@ const validContactPayload = {
 };
 
 describe("contact API route", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
   it("requires privacy consent for quick-chat submissions", async () => {
     const response = await POST(
       request({
@@ -45,6 +49,11 @@ describe("contact API route", () => {
   });
 
   it("does not emit fake contact details when email delivery is unconfigured", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response(null, { status: 503 })),
+    );
+
     const response = await POST(request(validContactPayload));
     const body = (await response.json()) as { message?: string; requestId?: string };
 
@@ -54,5 +63,24 @@ describe("contact API route", () => {
     expect(body.message).not.toContain("undefined");
     expect(body.message).not.toContain("+251 11 123 4567");
     expect(body.message).not.toContain("supply@medxdiagnostic.com.et");
+  });
+
+  it("routes full contact submissions through the lead notification fallback", async () => {
+    const fetchMock = vi.fn(async () => new Response(null, { status: 200 }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const response = await POST(request(validContactPayload));
+    const body = (await response.json()) as { ok?: boolean; requestId?: string };
+    const fetchCalls = fetchMock.mock.calls as unknown as [string, RequestInit][];
+    const fallbackRequest = JSON.parse(String(fetchCalls[0]?.[1]?.body)) as {
+      details?: string;
+      phone?: string;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.ok).toBe(true);
+    expect(fallbackRequest.phone).toBe(validContactPayload.phone);
+    expect(fallbackRequest.details).toContain("Notify WhatsApp: +17202781729");
+    expect(fallbackRequest.details).toContain("MedX website inquiry");
   });
 });

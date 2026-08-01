@@ -10,7 +10,7 @@ export const publicEnv = {
   siteUrl,
   companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "",
   companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "",
-  whatsappPhone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "+1 720 271 729",
+  whatsappPhone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "+1 720 278 1729",
   companyLocation:
     process.env.NEXT_PUBLIC_COMPANY_LOCATION || "Bahir Dar, Amhara, Ethiopia",
   officeHours: process.env.NEXT_PUBLIC_OFFICE_HOURS || "",
@@ -24,12 +24,17 @@ export const serverEnv = {
   quickChatFallbackEndpoint:
     process.env.QUICK_CHAT_FALLBACK_ENDPOINT ||
     "https://www.kelelitsolution.com/api/contact",
-  quickChatNotifyPhone: process.env.QUICK_CHAT_NOTIFY_PHONE || "7202781729",
+  quickChatNotifyPhone: process.env.QUICK_CHAT_NOTIFY_PHONE || "+17202781729",
+  whatsappNotifyPhone:
+    process.env.WHATSAPP_NOTIFY_PHONE ||
+    process.env.QUICK_CHAT_NOTIFY_PHONE ||
+    "+17202781729",
   quickChatNotifyEmail:
     process.env.QUICK_CHAT_NOTIFY_EMAIL || "info@kelelitsolution.com",
   twilioAccountSid: process.env.TWILIO_ACCOUNT_SID || "",
   twilioAuthToken: process.env.TWILIO_AUTH_TOKEN || "",
   twilioFromPhone: process.env.TWILIO_FROM_PHONE || "",
+  twilioWhatsappFrom: process.env.TWILIO_WHATSAPP_FROM || "",
   turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY || "",
   supabaseUrl: process.env.SUPABASE_URL || "",
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || "",

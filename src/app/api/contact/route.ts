@@ -163,7 +163,7 @@ async function sendInquiryEmail(payload: ContactPayload, requestId: string) {
 
 function leadNotificationText(payload: ContactPayload, requestId: string) {
   return [
-    `MedX quick chat inquiry ${requestId}`,
+    `MedX website inquiry ${requestId}`,
     "",
     `Service: ${payload.productService}`,
     `Name: ${payload.fullName}`,
@@ -176,25 +176,39 @@ function leadNotificationText(payload: ContactPayload, requestId: string) {
   ].join("\n");
 }
 
-async function sendQuickChatSms(payload: ContactPayload, requestId: string) {
-  if (
-    !serverEnv.twilioAccountSid ||
-    !serverEnv.twilioAuthToken ||
-    !serverEnv.twilioFromPhone ||
-    !serverEnv.quickChatNotifyPhone
-  ) {
+function normalizeE164Phone(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  if (trimmed.startsWith("+")) return `+${trimmed.replace(/\D/g, "")}`;
+
+  const digits = trimmed.replace(/\D/g, "");
+  if (digits.length === 10) return `+1${digits}`;
+  return digits ? `+${digits}` : "";
+}
+
+function whatsappAddress(value: string) {
+  if (value.startsWith("whatsapp:")) return value;
+  const phone = normalizeE164Phone(value);
+  return phone ? `whatsapp:${phone}` : "";
+}
+
+async function sendTwilioMessage({
+  from,
+  to,
+  body,
+}: {
+  from: string;
+  to: string;
+  body: string;
+}) {
+  if (!serverEnv.twilioAccountSid || !serverEnv.twilioAuthToken || !from || !to) {
     return false;
   }
 
-  const text = leadNotificationText(payload, requestId).slice(0, 1500);
   const credentials = Buffer.from(
     `${serverEnv.twilioAccountSid}:${serverEnv.twilioAuthToken}`,
   ).toString("base64");
-  const form = new URLSearchParams({
-    From: serverEnv.twilioFromPhone,
-    To: serverEnv.quickChatNotifyPhone,
-    Body: text,
-  });
+  const form = new URLSearchParams({ From: from, To: to, Body: body });
 
   try {
     const response = await fetch(
@@ -216,10 +230,33 @@ async function sendQuickChatSms(payload: ContactPayload, requestId: string) {
   }
 }
 
-async function forwardQuickChatToKelel(payload: ContactPayload, requestId: string) {
+async function sendLeadWhatsApp(payload: ContactPayload, requestId: string) {
+  const text = leadNotificationText(payload, requestId).slice(0, 1500);
+  return sendTwilioMessage({
+    from: whatsappAddress(serverEnv.twilioWhatsappFrom),
+    to: whatsappAddress(serverEnv.whatsappNotifyPhone),
+    body: text,
+  });
+}
+
+async function sendLeadSms(payload: ContactPayload, requestId: string) {
+  if (!serverEnv.twilioFromPhone || !serverEnv.quickChatNotifyPhone) {
+    return false;
+  }
+
+  const text = leadNotificationText(payload, requestId).slice(0, 1500);
+  return sendTwilioMessage({
+    from: serverEnv.twilioFromPhone,
+    to: normalizeE164Phone(serverEnv.quickChatNotifyPhone),
+    body: text,
+  });
+}
+
+async function forwardLeadToKelel(payload: ContactPayload, requestId: string) {
   const details = [
     leadNotificationText(payload, requestId),
     "",
+    `Notify WhatsApp: ${serverEnv.whatsappNotifyPhone}`,
     `Notify phone: ${serverEnv.quickChatNotifyPhone}`,
     `Notify email: ${serverEnv.quickChatNotifyEmail}`,
   ].join("\n");
@@ -242,7 +279,7 @@ async function forwardQuickChatToKelel(payload: ContactPayload, requestId: strin
     if (!response.ok) {
       return {
         ok: false,
-        message: "The message could not be delivered right now. Please try again.",
+        message: `The message could not be delivered right now. Please try again. Reference ID: ${requestId}.`,
       };
     }
 
@@ -250,9 +287,21 @@ async function forwardQuickChatToKelel(payload: ContactPayload, requestId: strin
   } catch {
     return {
       ok: false,
-      message: "The message could not be delivered right now. Please try again.",
+      message: `The message could not be delivered right now. Please try again. Reference ID: ${requestId}.`,
     };
   }
+}
+
+async function sendLeadNotification(payload: ContactPayload, requestId: string) {
+  if (await sendLeadWhatsApp(payload, requestId)) {
+    return { ok: true, message: "Inquiry submitted." };
+  }
+
+  if (await sendLeadSms(payload, requestId)) {
+    return { ok: true, message: "Inquiry submitted." };
+  }
+
+  return forwardLeadToKelel(payload, requestId);
 }
 
 function normalizeQuickChatPayload(body: QuickChatPayload) {
@@ -338,12 +387,12 @@ export async function POST(request: NextRequest) {
       return json({ ok: false, requestId, message: quickChat.message }, 400);
     }
 
+    const leadDelivery = await sendLeadNotification(quickChat.payload, requestId);
     const delivery =
-      serverEnv.resendApiKey && serverEnv.contactToEmail && serverEnv.resendFromEmail
-        ? await sendInquiryEmail(quickChat.payload, requestId)
-        : (await sendQuickChatSms(quickChat.payload, requestId))
-          ? { ok: true, message: "Inquiry submitted." }
-          : await forwardQuickChatToKelel(quickChat.payload, requestId);
+      leadDelivery.ok ||
+      !(serverEnv.resendApiKey && serverEnv.contactToEmail && serverEnv.resendFromEmail)
+        ? leadDelivery
+        : await sendInquiryEmail(quickChat.payload, requestId);
     if (!delivery.ok) {
       return json({ ok: false, requestId, message: delivery.message }, 503);
     }
@@ -375,7 +424,13 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const delivery = await sendInquiryEmail(validation.data, requestId);
+  const leadDelivery = await sendLeadNotification(validation.data, requestId);
+  const emailDelivery =
+    serverEnv.resendApiKey && serverEnv.contactToEmail && serverEnv.resendFromEmail
+      ? await sendInquiryEmail(validation.data, requestId)
+      : null;
+
+  const delivery = leadDelivery.ok ? leadDelivery : emailDelivery || leadDelivery;
   if (!delivery.ok) {
     return json({ ok: false, requestId, message: delivery.message }, 503);
   }
