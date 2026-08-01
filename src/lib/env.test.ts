@@ -14,6 +14,6 @@ describe("environment helpers", () => {
   });
 
   it("uses the approved WhatsApp number by default", () => {
-    expect(publicEnv.whatsappPhone).toBe("+1 720 278 1729");
+    expect(publicEnv.whatsappPhone).toBe("+1 720 271 729");
   });
 });

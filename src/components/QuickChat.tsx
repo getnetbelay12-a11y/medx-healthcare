@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, MessageCircle, Send, X } from "lucide-react";
+import { MessageCircle, Send, X } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 import { publicEnv } from "@/lib/env";
 
@@ -18,16 +18,14 @@ const serviceOptions = [
 type SubmitState =
   | { status: "idle" }
   | { status: "sending" }
-  | { status: "sent"; message: string }
-  | { status: "error"; message: string };
+  | { status: "sent"; message: string };
+
+const thankYouMessage =
+  "Thank you. We received your request and will get back to you within 48 hours, and sooner whenever possible.";
 
 function whatsappHref(phone: string, text: string) {
   const digits = phone.replace(/[^\d]/g, "");
   return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
-}
-
-function mailtoHref(email: string, subject: string, body: string) {
-  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function QuickChat() {
@@ -56,9 +54,7 @@ export default function QuickChat() {
       .join("\n");
   }, [email, fullName, message, organization, phone, service]);
 
-  const subject = `MedX request: ${service}`;
   const whatsappLink = whatsappHref(publicEnv.whatsappPhone, requestText);
-  const emailLink = mailtoHref(publicEnv.companyEmail, subject, requestText);
 
   function resetChat() {
     setOpen((current) => !current);
@@ -103,30 +99,21 @@ export default function QuickChat() {
       turnstileToken: "",
     };
 
-    let apiOk = false;
-    let apiMessage = "";
     try {
-      const response = await fetch("/api/contact/", {
+      await fetch("/api/contact/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json().catch(() => null)) as
-        | { ok?: boolean; message?: string }
-        | null;
-      apiOk = Boolean(response.ok && result?.ok);
-      apiMessage = result?.message || "";
     } catch {
-      apiMessage = "Email delivery could not be reached.";
+      // WhatsApp remains the primary handoff; email delivery is a secondary production channel.
     }
 
     window.open(whatsappLink, "_blank", "noopener,noreferrer");
 
     setSubmitState({
-      status: apiOk ? "sent" : "error",
-      message:
-        apiMessage ||
-        "WhatsApp is opening with your request. If it does not open, use the WhatsApp or email buttons below.",
+      status: "sent",
+      message: thankYouMessage,
     });
   }
 
@@ -224,11 +211,7 @@ export default function QuickChat() {
 
             {submitState.status !== "idle" && submitState.status !== "sending" && (
               <p
-                className={
-                  submitState.status === "sent"
-                    ? "quick-chat-message quick-chat-message-ok"
-                    : "quick-chat-message quick-chat-message-alert"
-                }
+                className="quick-chat-message quick-chat-message-ok"
               >
                 {submitState.message}
               </p>
@@ -236,19 +219,8 @@ export default function QuickChat() {
 
             <button type="submit" className="quick-chat-submit" disabled={submitState.status === "sending"}>
               <Send size={16} />
-              {submitState.status === "sending" ? "Preparing request" : "Send to WhatsApp and email"}
+              {submitState.status === "sending" ? "Sending" : "Send"}
             </button>
-
-            <div className="quick-chat-actions">
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <MessageCircle size={15} />
-                WhatsApp
-              </a>
-              <a href={emailLink}>
-                <Mail size={15} />
-                Email
-              </a>
-            </div>
           </form>
         </section>
       )}

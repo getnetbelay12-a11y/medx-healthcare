@@ -4257,8 +4257,7 @@ button,
   width: 1rem !important;
 }
 
-.quick-chat-submit,
-.quick-chat-actions a {
+.quick-chat-submit {
   display: inline-flex;
   min-height: 2.85rem;
   align-items: center;
@@ -4279,17 +4278,6 @@ button,
   opacity: 0.72;
 }
 
-.quick-chat-actions {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.7rem;
-}
-
-.quick-chat-actions a {
-  border: 1px solid #dbe3ed;
-  color: #071b33;
-}
-
 .quick-chat-message {
   border-radius: 0.95rem;
   padding: 0.75rem 0.85rem;
@@ -4302,12 +4290,6 @@ button,
   border: 1px solid #bbf7d0;
   background: #f0fdf4;
   color: #166534;
-}
-
-.quick-chat-message-alert {
-  border: 1px solid #fed7aa;
-  background: #fff7ed;
-  color: #9a3412;
 }
 
 @media (max-width: 767px) {
@@ -4328,8 +4310,7 @@ button,
     justify-self: end;
   }
 
-  .quick-chat-grid,
-  .quick-chat-actions {
+  .quick-chat-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
