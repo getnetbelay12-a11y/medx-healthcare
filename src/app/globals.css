@@ -2055,7 +2055,27 @@ button:focus-visible {
 .medx-hero-rail {
   display: grid;
   overflow: hidden;
-  border-radius: 1.15rem;
+  border-radius: 0.85rem;
+}
+
+.medx-hero-fact {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.75rem 0.95rem;
+}
+
+.medx-hero-fact-label {
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.medx-hero-fact-value {
+  font-size: 0.84rem;
+  font-weight: 850;
+  line-height: 1.35;
 }
 
 .medx-hero-signal {
@@ -4001,7 +4021,7 @@ button,
   .medx-hero-rail > * {
     width: 100% !important;
     min-height: auto !important;
-    padding: 1rem !important;
+    padding: 0.72rem 0.85rem !important;
   }
 
   /* Stack hero buttons */

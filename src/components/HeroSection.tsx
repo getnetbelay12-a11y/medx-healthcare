@@ -72,17 +72,17 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div aria-label="At a glance" className="grid gap-3 text-sm font-bold text-slate-100 lg:grid-cols-[1fr_18rem]">
+        <div aria-label="At a glance" className="grid gap-2.5 text-sm font-bold text-slate-100 lg:grid-cols-[1fr_16rem]">
           <div className="medx-hero-rail">
             {heroFacts.map((fact) => (
               <div
                 key={fact.label}
-                className="border-white/15 px-4 py-3 md:border-l first:md:border-l-0"
+                className="medx-hero-fact border-white/15 md:border-l first:md:border-l-0"
               >
-                <p className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">
+                <p className="medx-hero-fact-label text-emerald-200">
                   {fact.label}
                 </p>
-                <p className="mt-1 leading-6 text-white">{fact.value}</p>
+                <p className="medx-hero-fact-value text-white">{fact.value}</p>
               </div>
             ))}
           </div>
