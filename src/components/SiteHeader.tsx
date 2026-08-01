@@ -50,6 +50,7 @@ export default function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={active ? "page" : undefined}
                   className={`relative rounded-lg px-2.5 py-3 text-xs font-black transition xl:px-3 ${
                     active
                       ? "text-[#071b33]"
@@ -107,6 +108,7 @@ export default function SiteHeader() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
+                    aria-current={active ? "page" : undefined}
                     className={`flex min-h-12 items-center justify-between rounded-xl px-4 text-sm font-black transition ${
                       active
                         ? "bg-emerald-50 text-[#0a8d63]"

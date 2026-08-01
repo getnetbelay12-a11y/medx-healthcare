@@ -1,5 +1,6 @@
 import SiteHeader from "@/components/SiteHeader";
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import MobileActionBar from "@/components/MobileActionBar";
@@ -61,6 +62,11 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#0B4F9F",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -69,6 +75,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -82,7 +91,7 @@ export default function RootLayout({
           }}
         />
         <SiteHeader />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
         <MobileActionBar />
         <QuickChat />

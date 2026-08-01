@@ -28,7 +28,11 @@ export default function MobileActionBar() {
       style={gridStyle}
     >
       {phoneHref && (
-        <a href={phoneHref} className="mobile-action-button">
+        <a
+          href={phoneHref}
+          className="mobile-action-button"
+          aria-label="Call MedX Healthcare Solutions"
+        >
           <Phone size={17} aria-hidden="true" />
           <span>Call</span>
         </a>
@@ -40,13 +44,18 @@ export default function MobileActionBar() {
           className="mobile-action-button mobile-action-button-primary"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Contact MedX Healthcare Solutions on WhatsApp"
         >
           <MessageCircle size={17} aria-hidden="true" />
           <span>WhatsApp</span>
         </a>
       )}
 
-      <Link href="/contact" className="mobile-action-button">
+      <Link
+        href="/contact"
+        className="mobile-action-button"
+        aria-label="Open MedX request form"
+      >
         <PackageCheck size={17} aria-hidden="true" />
         <span>Request</span>
       </Link>
