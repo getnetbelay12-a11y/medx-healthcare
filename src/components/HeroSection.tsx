@@ -77,7 +77,7 @@ export default function HeroSection() {
             {heroFacts.map((fact) => (
               <div
                 key={fact.label}
-                className="medx-hero-fact border-white/15 md:border-l first:md:border-l-0"
+                className="medx-hero-fact"
               >
                 <p className="medx-hero-fact-label text-emerald-200">
                   {fact.label}
