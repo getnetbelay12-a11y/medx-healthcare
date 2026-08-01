@@ -253,6 +253,11 @@ async function sendLeadSms(payload: ContactPayload, requestId: string) {
 }
 
 async function forwardLeadToKelel(payload: ContactPayload, requestId: string) {
+  const failureMessage =
+    publicEnv.companyEmail || publicEnv.companyPhone
+      ? `The message could not be delivered right now. Please use the contact details listed on this page. Reference ID: ${requestId}.`
+      : `The message could not be delivered right now. Please try again. Reference ID: ${requestId}.`;
+
   const details = [
     leadNotificationText(payload, requestId),
     "",
@@ -279,7 +284,7 @@ async function forwardLeadToKelel(payload: ContactPayload, requestId: string) {
     if (!response.ok) {
       return {
         ok: false,
-        message: `The message could not be delivered right now. Please try again. Reference ID: ${requestId}.`,
+        message: failureMessage,
       };
     }
 
@@ -287,7 +292,7 @@ async function forwardLeadToKelel(payload: ContactPayload, requestId: string) {
   } catch {
     return {
       ok: false,
-      message: `The message could not be delivered right now. Please try again. Reference ID: ${requestId}.`,
+      message: failureMessage,
     };
   }
 }

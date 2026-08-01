@@ -48,7 +48,7 @@ describe("contact API route", () => {
     expect(body.message).toBe("Privacy consent is required.");
   });
 
-  it("does not emit fake contact details when email delivery is unconfigured", async () => {
+  it("uses approved public contact details when delivery is unconfigured", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async () => new Response(null, { status: 503 })),
@@ -61,8 +61,7 @@ describe("contact API route", () => {
     expect(body.requestId).toMatch(/^MEDX-/);
     expect(body.message).toContain("Reference ID:");
     expect(body.message).not.toContain("undefined");
-    expect(body.message).not.toContain("+251 11 123 4567");
-    expect(body.message).not.toContain("supply@medxdiagnostic.com.et");
+    expect(body.message).toContain("Please use the contact details listed on this page.");
   });
 
   it("routes full contact submissions through the lead notification fallback", async () => {
