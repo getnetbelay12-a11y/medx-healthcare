@@ -17,11 +17,40 @@ const serviceOptions = [
 type SubmitState =
   | { status: "idle" }
   | { status: "sending" }
-  | { status: "sent"; message: string }
+  | { status: "sent"; message: string; whatsappUrl: string }
   | { status: "error"; message: string };
 
 const successMessage =
-  "Thank you for sending. We will get back to you as soon as possible.";
+  "Thank you. Your request was received by the website.";
+const publicWhatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "+1 720 278 1729";
+
+function normalizeWhatsAppHref(value: string, text: string) {
+  const digits = value.replace(/\D/g, "");
+  const query = new URLSearchParams({ text });
+  return digits ? `https://wa.me/${digits}?${query.toString()}` : "";
+}
+
+function whatsappMessage(payload: {
+  fullName: string;
+  organization: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+}) {
+  return [
+    "MedX website request",
+    "",
+    `Service: ${payload.service}`,
+    `Name: ${payload.fullName || "Website visitor"}`,
+    `Organization: ${payload.organization || "Not provided"}`,
+    `Email: ${payload.email || "Not provided"}`,
+    `Phone: ${payload.phone || "Not provided"}`,
+    "",
+    "Message:",
+    payload.message,
+  ].join("\n");
+}
 
 export default function QuickChat() {
   const [open, setOpen] = useState(false);
@@ -74,7 +103,11 @@ export default function QuickChat() {
         throw new Error(result?.message || "Your message could not be sent. Please try again.");
       }
 
-      setSubmitState({ status: "sent", message: successMessage });
+      setSubmitState({
+        status: "sent",
+        message: successMessage,
+        whatsappUrl: normalizeWhatsAppHref(publicWhatsappPhone, whatsappMessage(payload)),
+      });
       setMessage("");
       setStartedAt(Date.now());
     } catch (error) {
@@ -109,6 +142,16 @@ export default function QuickChat() {
                 <CheckCircle2 size={28} />
                 <h3>Message sent</h3>
                 <p>{submitState.message}</p>
+                {submitState.whatsappUrl && (
+                  <a
+                    href={submitState.whatsappUrl}
+                    className="quick-chat-whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Send to WhatsApp
+                  </a>
+                )}
                 <button
                   type="button"
                   className="quick-chat-secondary"
