@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   Building2,
+  CheckCircle2,
   Microscope,
   PackageCheck,
   ShieldCheck,
@@ -12,6 +13,13 @@ const heroFacts = [
   { label: "Origin", value: "Diagnostics and cervical screening" },
   { label: "Base", value: "Bahir Dar, Amhara, Ethiopia" },
   { label: "Focus", value: "Institutional healthcare access" },
+];
+
+const heroSignals = [
+  "Pharmaceutical supply",
+  "Medical devices",
+  "Diagnostics and lab support",
+  "Cervical-health programs",
 ];
 
 export default function HeroSection() {
@@ -29,14 +37,13 @@ export default function HeroSection() {
           </p>
 
           <h1 className="mt-6 max-w-5xl text-[2.45rem] font-black leading-[1.03] tracking-normal text-white sm:text-5xl xl:text-[4.85rem]">
-            Healthcare diagnostics and supply access for Ethiopian institutions.
+            Healthcare supply, diagnostics, and program support for Ethiopian institutions.
           </h1>
 
           <p className="mt-6 max-w-[calc(100vw-4rem)] text-base leading-8 text-slate-100 sm:max-w-2xl md:text-xl">
-            MedX supports healthcare institutions with pharmaceutical supply,
-            medical devices, laboratory equipment, diagnostic solutions, medical
-            consumables, and cervical-health program support, grounded in its
-            Bahir Dar diagnostics history.
+            MedX Healthcare Solutions helps facilities and public-health teams
+            turn product, diagnostic, equipment, and screening-program needs into
+            clear requests that can be reviewed and coordinated responsibly.
           </p>
 
           <div className="mt-7 flex max-w-[calc(100vw-4rem)] flex-col gap-3 sm:max-w-none sm:flex-row">
@@ -48,6 +55,15 @@ export default function HeroSection() {
               Request quotation
               <ArrowRight size={17} />
             </Link>
+          </div>
+
+          <div className="medx-hero-scope mt-6" aria-label="Current MedX service scope">
+            {heroSignals.map((signal) => (
+              <span key={signal}>
+                <CheckCircle2 size={15} />
+                {signal}
+              </span>
+            ))}
           </div>
 
           <div className="mt-7 grid max-w-[calc(100vw-4rem)] gap-3 sm:max-w-3xl sm:grid-cols-3">

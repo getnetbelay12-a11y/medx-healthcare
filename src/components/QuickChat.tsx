@@ -55,6 +55,7 @@ export default function QuickChat() {
       phone,
       service,
       message,
+      privacyConsent,
       startedAt,
     };
 
@@ -204,7 +205,8 @@ export default function QuickChat() {
             <button
               type="submit"
               className="quick-chat-submit"
-              disabled={submitState.status === "sending"}
+              disabled={submitState.status === "sending" || !privacyConsent}
+              aria-disabled={submitState.status === "sending" || !privacyConsent}
             >
               <Send size={16} />
               {submitState.status === "sending" ? "Sending" : "Send"}

@@ -36,10 +36,10 @@ const serviceActions: Record<string, string> = {
 };
 
 const platformPath = [
-  "Identify regional facility needs",
-  "Source medicines, devices, lab equipment, or medical consumables",
-  "Coordinate diagnostic and screening-program support",
-  "Track request clarity and follow-through",
+  "Capture institution, facility, destination, and decision-owner context",
+  "Clarify product, diagnostic, device, medical consumables, or program requirements",
+  "Coordinate sourcing, readiness gaps, documentation, and handoffs",
+  "Keep status, risk notes, and follow-up actions visible",
 ];
 
 const operatingModel = [
@@ -120,6 +120,24 @@ const evidenceStats = [
   { label: "Service focus", value: "Clear" },
   { label: "Request pathway", value: "Defined" },
   { label: "Future roadmap", value: "Separated" },
+];
+
+const serviceStandards = [
+  {
+    title: "Quote-ready information",
+    detail:
+      "Requests are framed around product category, quantity, delivery context, and urgency before procurement discussions begin.",
+  },
+  {
+    title: "Responsible health communication",
+    detail:
+      "Public content separates current services, historical context, and future plans without overstating clinical or commercial claims.",
+  },
+  {
+    title: "Institutional follow-through",
+    detail:
+      "Visitors get a clearer path from need identification to contact, review, coordination, and next action.",
+  },
 ];
 
 const requestChecklist = [
@@ -250,6 +268,18 @@ export default function Home() {
                 );
               })}
             </div>
+          </div>
+
+          <div className="medx-service-standards mt-8">
+            {serviceStandards.map((standard) => (
+              <article key={standard.title}>
+                <CheckCircle2 size={20} />
+                <div>
+                  <h3>{standard.title}</h3>
+                  <p>{standard.detail}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>

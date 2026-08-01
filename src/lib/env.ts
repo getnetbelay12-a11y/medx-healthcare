@@ -8,11 +8,9 @@ export const siteUrl =
 
 export const publicEnv = {
   siteUrl,
-  companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "supply@medxdiagnostic.com.et",
-  companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "+251 11 123 4567",
-  whatsappPhone:
-    process.env.NEXT_PUBLIC_WHATSAPP_PHONE ||
-    "+1 720 271 729",
+  companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "",
+  companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "",
+  whatsappPhone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "+1 720 271 729",
   companyLocation:
     process.env.NEXT_PUBLIC_COMPANY_LOCATION || "Bahir Dar, Amhara, Ethiopia",
   officeHours: process.env.NEXT_PUBLIC_OFFICE_HOURS || "",

@@ -2,7 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { cloneElement, isValidElement, useEffect, useId, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import {
   contactSchema,
@@ -133,17 +134,17 @@ export default function ContactForm() {
       />
 
       <div className="grid gap-5 md:grid-cols-2">
-        <Field label="Full name" error={errors.fullName?.message}>
+        <Field name="fullName" label="Full name" error={errors.fullName?.message}>
           <input className="input-medx" autoComplete="name" {...register("fullName")} />
         </Field>
-        <Field label="Organization" error={errors.organization?.message}>
+        <Field name="organization" label="Organization" error={errors.organization?.message}>
           <input
             className="input-medx"
             autoComplete="organization"
             {...register("organization")}
           />
         </Field>
-        <Field label="Email" error={errors.email?.message}>
+        <Field name="email" label="Email" error={errors.email?.message}>
           <input
             className="input-medx"
             type="email"
@@ -151,13 +152,13 @@ export default function ContactForm() {
             {...register("email")}
           />
         </Field>
-        <Field label="Phone, optional" error={errors.phone?.message}>
+        <Field name="phone" label="Phone, optional" error={errors.phone?.message}>
           <input className="input-medx" type="tel" autoComplete="tel" {...register("phone")} />
         </Field>
-        <Field label="Country" error={errors.country?.message}>
+        <Field name="country" label="Country" error={errors.country?.message}>
           <input className="input-medx" autoComplete="country-name" {...register("country")} />
         </Field>
-        <Field label="City or region" error={errors.cityRegion?.message}>
+        <Field name="cityRegion" label="City or region" error={errors.cityRegion?.message}>
           <input
             className="input-medx"
             autoComplete="address-level2"
@@ -167,27 +168,39 @@ export default function ContactForm() {
       </div>
 
       <div className="mt-5 grid gap-5 md:grid-cols-2">
-        <Field label="Inquiry type" error={errors.inquiryType?.message}>
+        <Field name="inquiryType" label="Inquiry type" error={errors.inquiryType?.message}>
           <select className="input-medx" {...register("inquiryType")}>
             {inquiryTypes.map((type) => (
               <option key={type}>{type}</option>
             ))}
           </select>
         </Field>
-        <Field label="Product or service requested" error={errors.productService?.message}>
+        <Field
+          name="productService"
+          label="Product or service requested"
+          error={errors.productService?.message}
+        >
           <input className="input-medx" {...register("productService")} />
         </Field>
-        <Field label="Estimated quantity, optional" error={errors.estimatedQuantity?.message}>
+        <Field
+          name="estimatedQuantity"
+          label="Estimated quantity, optional"
+          error={errors.estimatedQuantity?.message}
+        >
           <input className="input-medx" {...register("estimatedQuantity")} />
         </Field>
-        <Field label="Urgency" error={errors.urgency?.message}>
+        <Field name="urgency" label="Urgency" error={errors.urgency?.message}>
           <select className="input-medx" {...register("urgency")}>
             {urgencyOptions.map((option) => (
               <option key={option}>{option}</option>
             ))}
           </select>
         </Field>
-        <Field label="Preferred timeline" error={errors.preferredTimeline?.message}>
+        <Field
+          name="preferredTimeline"
+          label="Preferred timeline"
+          error={errors.preferredTimeline?.message}
+        >
           <select className="input-medx" {...register("preferredTimeline")}>
             {timelineOptions.map((option) => (
               <option key={option}>{option}</option>
@@ -197,7 +210,7 @@ export default function ContactForm() {
       </div>
 
       <div className="mt-5">
-        <Field label="Message" error={errors.message?.message}>
+        <Field name="message" label="Message" error={errors.message?.message}>
           <textarea className="input-medx min-h-40" {...register("message")} />
         </Field>
       </div>
@@ -214,6 +227,10 @@ export default function ContactForm() {
         <input
           type="checkbox"
           className="mt-1 h-4 w-4 rounded border-slate-300 accent-[#10a66e]"
+          aria-invalid={Boolean(errors.privacyConsent)}
+          aria-describedby={
+            errors.privacyConsent?.message ? "privacyConsent-error" : undefined
+          }
           {...register("privacyConsent")}
         />
         <span>
@@ -222,7 +239,7 @@ export default function ContactForm() {
         </span>
       </label>
       {errors.privacyConsent?.message && (
-        <p className="mt-2 text-sm font-bold text-red-700">
+        <p id="privacyConsent-error" className="mt-2 text-sm font-bold text-red-700">
           {errors.privacyConsent.message}
         </p>
       )}
@@ -249,19 +266,36 @@ export default function ContactForm() {
 }
 
 function Field({
+  name,
   label,
   error,
   children,
 }: {
+  name: string;
   label: string;
   error?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
+  const reactId = useId();
+  const id = `${name}-${reactId}`;
+  const errorId = `${id}-error`;
+  const control = isValidElement(children)
+    ? cloneElement(children as ReactElement<Record<string, unknown>>, {
+        id,
+        "aria-invalid": Boolean(error),
+        "aria-describedby": error ? errorId : undefined,
+      })
+    : children;
+
   return (
-    <label className="block">
+    <label className="block" htmlFor={id}>
       <span className="mb-2 block text-sm font-bold text-slate-700">{label}</span>
-      {children}
-      {error && <span className="mt-2 block text-sm font-bold text-red-700">{error}</span>}
+      {control}
+      {error && (
+        <span id={errorId} className="mt-2 block text-sm font-bold text-red-700">
+          {error}
+        </span>
+      )}
     </label>
   );
 }

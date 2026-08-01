@@ -28,6 +28,7 @@ type QuickChatPayload = {
   phone?: string;
   service?: string;
   message?: string;
+  privacyConsent?: boolean;
   startedAt?: number;
 };
 
@@ -96,7 +97,10 @@ async function sendInquiryEmail(payload: ContactPayload, requestId: string) {
   if (!serverEnv.resendApiKey || !serverEnv.contactToEmail || !serverEnv.resendFromEmail) {
     return {
       ok: false,
-      message: `Online inquiry delivery is not configured yet. Please email ${publicEnv.companyEmail} or call ${publicEnv.companyPhone}.`,
+      message:
+        publicEnv.companyEmail || publicEnv.companyPhone
+          ? `Online inquiry delivery is not configured yet. Please use the contact details listed on this page. Reference ID: ${requestId}.`
+          : `Online inquiry delivery is not configured yet. Please try again later. Reference ID: ${requestId}.`,
     };
   }
 
@@ -131,7 +135,10 @@ async function sendInquiryEmail(payload: ContactPayload, requestId: string) {
   if (!notification.ok) {
     return {
       ok: false,
-      message: `Email delivery failed. Please email ${publicEnv.companyEmail} or call ${publicEnv.companyPhone}.`,
+      message:
+        publicEnv.companyEmail || publicEnv.companyPhone
+          ? `Email delivery failed. Please use the contact details listed on this page. Reference ID: ${requestId}.`
+          : `Email delivery failed. Please try again later. Reference ID: ${requestId}.`,
     };
   }
 
@@ -258,6 +265,10 @@ function normalizeQuickChatPayload(body: QuickChatPayload) {
 
   if (!message) {
     return { ok: false as const, message: "Message is required." };
+  }
+
+  if (body.privacyConsent !== true) {
+    return { ok: false as const, message: "Privacy consent is required." };
   }
 
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
