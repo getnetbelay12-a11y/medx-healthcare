@@ -23,6 +23,15 @@ export const serverEnv = {
   contactToEmail: process.env.CONTACT_TO_EMAIL || "",
   resendApiKey: process.env.RESEND_API_KEY || "",
   resendFromEmail: process.env.RESEND_FROM_EMAIL || "",
+  quickChatFallbackEndpoint:
+    process.env.QUICK_CHAT_FALLBACK_ENDPOINT ||
+    "https://www.kelelitsolution.com/api/contact",
+  quickChatNotifyPhone: process.env.QUICK_CHAT_NOTIFY_PHONE || "7202781729",
+  quickChatNotifyEmail:
+    process.env.QUICK_CHAT_NOTIFY_EMAIL || "info@kelelitsolution.com",
+  twilioAccountSid: process.env.TWILIO_ACCOUNT_SID || "",
+  twilioAuthToken: process.env.TWILIO_AUTH_TOKEN || "",
+  twilioFromPhone: process.env.TWILIO_FROM_PHONE || "",
   turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY || "",
   supabaseUrl: process.env.SUPABASE_URL || "",
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || "",

@@ -31,10 +31,6 @@ type QuickChatPayload = {
   startedAt?: number;
 };
 
-const kelelLeadEndpoint = "https://www.kelelitsolution.com/api/contact";
-const kelelOwnerPhone = "7202781729";
-const kelelOwnerEmail = "info@kelelitsolution.com";
-
 const submissions = new Map<string, number[]>();
 
 function json(body: unknown, status = 200) {
@@ -158,12 +154,9 @@ async function sendInquiryEmail(payload: ContactPayload, requestId: string) {
   return { ok: true, message: "Inquiry submitted." };
 }
 
-async function forwardQuickChatToKelel(payload: ContactPayload, requestId: string) {
-  const details = [
+function leadNotificationText(payload: ContactPayload, requestId: string) {
+  return [
     `MedX quick chat inquiry ${requestId}`,
-    "",
-    `Notify phone: ${kelelOwnerPhone}`,
-    `Notify email: ${kelelOwnerEmail}`,
     "",
     `Service: ${payload.productService}`,
     `Name: ${payload.fullName}`,
@@ -174,16 +167,65 @@ async function forwardQuickChatToKelel(payload: ContactPayload, requestId: strin
     "Message:",
     payload.message,
   ].join("\n");
+}
+
+async function sendQuickChatSms(payload: ContactPayload, requestId: string) {
+  if (
+    !serverEnv.twilioAccountSid ||
+    !serverEnv.twilioAuthToken ||
+    !serverEnv.twilioFromPhone ||
+    !serverEnv.quickChatNotifyPhone
+  ) {
+    return false;
+  }
+
+  const text = leadNotificationText(payload, requestId).slice(0, 1500);
+  const credentials = Buffer.from(
+    `${serverEnv.twilioAccountSid}:${serverEnv.twilioAuthToken}`,
+  ).toString("base64");
+  const form = new URLSearchParams({
+    From: serverEnv.twilioFromPhone,
+    To: serverEnv.quickChatNotifyPhone,
+    Body: text,
+  });
 
   try {
-    const response = await fetch(kelelLeadEndpoint, {
+    const response = await fetch(
+      `https://api.twilio.com/2010-04-01/Accounts/${serverEnv.twilioAccountSid}/Messages.json`,
+      {
+        method: "POST",
+        headers: {
+          authorization: `Basic ${credentials}`,
+          "content-type": "application/x-www-form-urlencoded",
+        },
+        body: form,
+        cache: "no-store",
+      },
+    );
+
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function forwardQuickChatToKelel(payload: ContactPayload, requestId: string) {
+  const details = [
+    leadNotificationText(payload, requestId),
+    "",
+    `Notify phone: ${serverEnv.quickChatNotifyPhone}`,
+    `Notify email: ${serverEnv.quickChatNotifyEmail}`,
+  ].join("\n");
+
+  try {
+    const response = await fetch(serverEnv.quickChatFallbackEndpoint, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         name: payload.fullName || "MedX website visitor",
         business: payload.organization || "MedX quick chat",
-        email: payload.email || kelelOwnerEmail,
-        phone: payload.phone || kelelOwnerPhone,
+        email: payload.email || serverEnv.quickChatNotifyEmail,
+        phone: payload.phone || serverEnv.quickChatNotifyPhone,
         service: `MedX: ${payload.productService}`,
         details,
       }),
@@ -288,7 +330,9 @@ export async function POST(request: NextRequest) {
     const delivery =
       serverEnv.resendApiKey && serverEnv.contactToEmail && serverEnv.resendFromEmail
         ? await sendInquiryEmail(quickChat.payload, requestId)
-        : await forwardQuickChatToKelel(quickChat.payload, requestId);
+        : (await sendQuickChatSms(quickChat.payload, requestId))
+          ? { ok: true, message: "Inquiry submitted." }
+          : await forwardQuickChatToKelel(quickChat.payload, requestId);
     if (!delivery.ok) {
       return json({ ok: false, requestId, message: delivery.message }, 503);
     }
