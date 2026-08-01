@@ -21,7 +21,7 @@ type SubmitState =
   | { status: "error"; message: string };
 
 const successMessage =
-  "Thank you. Your request was received by the website.";
+  "WhatsApp has opened with your request. Press Send in WhatsApp to complete it.";
 const publicWhatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "+1 720 278 1729";
 
 function normalizeWhatsAppHref(value: string, text: string) {
@@ -87,6 +87,11 @@ export default function QuickChat() {
       privacyConsent,
       startedAt,
     };
+    const whatsappUrl = normalizeWhatsAppHref(publicWhatsappPhone, whatsappMessage(payload));
+    const whatsappWindow =
+      typeof window !== "undefined" && whatsappUrl
+        ? window.open(whatsappUrl, "_blank", "noopener,noreferrer")
+        : null;
 
     try {
       const response = await fetch("/api/contact/", {
@@ -106,7 +111,7 @@ export default function QuickChat() {
       setSubmitState({
         status: "sent",
         message: successMessage,
-        whatsappUrl: normalizeWhatsAppHref(publicWhatsappPhone, whatsappMessage(payload)),
+        whatsappUrl: whatsappWindow ? "" : whatsappUrl,
       });
       setMessage("");
       setStartedAt(Date.now());
@@ -163,8 +168,8 @@ export default function QuickChat() {
             ) : (
               <>
             <p className="quick-chat-intro">
-              Write what you need. Add your contact details if you want MedX
-              to follow up by email or phone.
+              Write what you need. Sending opens WhatsApp with your request
+              prefilled so you can send it directly to MedX.
             </p>
 
             <label>
@@ -252,7 +257,7 @@ export default function QuickChat() {
               aria-disabled={submitState.status === "sending" || !privacyConsent}
             >
               <Send size={16} />
-              {submitState.status === "sending" ? "Sending" : "Send"}
+              {submitState.status === "sending" ? "Opening WhatsApp" : "Open WhatsApp"}
             </button>
               </>
             )}
