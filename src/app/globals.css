@@ -4355,6 +4355,17 @@ button,
   font-weight: 950;
 }
 
+.quick-chat-error {
+  border: 1px solid #fecaca;
+  border-radius: 0.8rem;
+  background: #fef2f2;
+  padding: 0.75rem 0.85rem;
+  color: #991b1b;
+  font-size: 0.8rem;
+  font-weight: 850;
+  line-height: 1.45;
+}
+
 @media (max-width: 767px) {
   .quick-chat {
     right: 0;

@@ -1,8 +1,7 @@
 "use client";
 
-import { MessageCircle, Send, X } from "lucide-react";
-import { FormEvent, useMemo, useState } from "react";
-import { publicEnv } from "@/lib/env";
+import { CheckCircle2, MessageCircle, Send, X } from "lucide-react";
+import { FormEvent, useState } from "react";
 
 const serviceOptions = [
   "Product and supply request",
@@ -17,12 +16,12 @@ const serviceOptions = [
 
 type SubmitState =
   | { status: "idle" }
-  | { status: "sending" };
+  | { status: "sending" }
+  | { status: "sent"; message: string }
+  | { status: "error"; message: string };
 
-function whatsappHref(phone: string, text: string) {
-  const digits = phone.replace(/[^\d]/g, "");
-  return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
-}
+const successMessage =
+  "Thank you for sending. We will get back to you as soon as possible.";
 
 export default function QuickChat() {
   const [open, setOpen] = useState(false);
@@ -35,22 +34,6 @@ export default function QuickChat() {
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle" });
-
-  const requestText = useMemo(() => {
-    return [
-      "MedX service request",
-      `Service: ${service}`,
-      fullName ? `Name: ${fullName}` : "",
-      organization ? `Organization: ${organization}` : "",
-      email ? `Email: ${email}` : "",
-      phone ? `Phone: ${phone}` : "",
-      message ? `Message: ${message}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
-  }, [email, fullName, message, organization, phone, service]);
-
-  const whatsappLink = whatsappHref(publicEnv.whatsappPhone, requestText);
 
   function resetChat() {
     setOpen((current) => !current);
@@ -65,48 +48,43 @@ export default function QuickChat() {
     setSubmitState({ status: "sending" });
 
     const payload = {
+      quickChat: true,
       fullName,
       organization,
       email,
       phone,
-      country: "Not specified",
-      cityRegion: "Not specified",
-      inquiryType: service.includes("Partnership")
-        ? "Partnership inquiry"
-        : service.includes("Pharmaceutical")
-          ? "Pharmaceutical request"
-          : service.includes("Medical devices")
-            ? "Medical-device request"
-            : service.includes("Diagnostic")
-              ? "Diagnostic inquiry"
-              : service.includes("Cervical")
-                ? "Cervical-screening program"
-                : service.includes("Public-health")
-                  ? "Public-health program"
-                  : "Product and supply request",
-      productService: service,
-      estimatedQuantity: "",
-      urgency: "Routine",
-      preferredTimeline: "Exploratory",
+      service,
       message,
-      privacyConsent,
-      website: "",
       startedAt,
-      turnstileToken: "",
     };
 
-    if (fullName.trim() && organization.trim() && email.trim() && privacyConsent) {
-      void fetch("/api/contact/", {
+    try {
+      const response = await fetch("/api/contact/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
-        keepalive: true,
-      }).catch(() => {
-        // The WhatsApp handoff still opens even when the optional email channel is unavailable.
+      });
+
+      const result = (await response.json().catch(() => null)) as
+        | { ok?: boolean; message?: string }
+        | null;
+
+      if (!response.ok || !result?.ok) {
+        throw new Error(result?.message || "Your message could not be sent. Please try again.");
+      }
+
+      setSubmitState({ status: "sent", message: successMessage });
+      setMessage("");
+      setStartedAt(Date.now());
+    } catch (error) {
+      setSubmitState({
+        status: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Your message could not be sent. Please try again.",
       });
     }
-
-    window.location.assign(whatsappLink);
   }
 
   return (
@@ -125,6 +103,21 @@ export default function QuickChat() {
           </div>
 
           <form onSubmit={handleSubmit} className="quick-chat-form">
+            {submitState.status === "sent" ? (
+              <div className="quick-chat-success" role="status">
+                <CheckCircle2 size={28} />
+                <h3>Message sent</h3>
+                <p>{submitState.message}</p>
+                <button
+                  type="button"
+                  className="quick-chat-secondary"
+                  onClick={() => setSubmitState({ status: "idle" })}
+                >
+                  Send another message
+                </button>
+              </div>
+            ) : (
+              <>
             <p className="quick-chat-intro">
               Write what you need. Add your contact details if you want MedX
               to follow up by email or phone.
@@ -202,6 +195,12 @@ export default function QuickChat() {
               I agree MedX may use this information to respond to my request.
             </label>
 
+            {submitState.status === "error" ? (
+              <p className="quick-chat-error" role="alert">
+                {submitState.message}
+              </p>
+            ) : null}
+
             <button
               type="submit"
               className="quick-chat-submit"
@@ -210,6 +209,8 @@ export default function QuickChat() {
               <Send size={16} />
               {submitState.status === "sending" ? "Sending" : "Send"}
             </button>
+              </>
+            )}
           </form>
         </section>
       )}

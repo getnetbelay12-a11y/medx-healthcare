@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 type ContactPayload = {
   fullName: string;
   organization: string;
-  email: string;
+  email?: string;
   phone?: string;
   country: string;
   cityRegion: string;
@@ -18,6 +18,17 @@ type ContactPayload = {
   preferredTimeline: string;
   message: string;
   turnstileToken?: string;
+};
+
+type QuickChatPayload = {
+  quickChat?: boolean;
+  fullName?: string;
+  organization?: string;
+  email?: string;
+  phone?: string;
+  service?: string;
+  message?: string;
+  startedAt?: number;
 };
 
 const submissions = new Map<string, number[]>();
@@ -68,7 +79,7 @@ function contactRows(payload: ContactPayload, requestId: string) {
     ["Reference", requestId],
     ["Name", payload.fullName],
     ["Organization", payload.organization],
-    ["Email", payload.email],
+    ["Email", payload.email || "Not provided"],
     ["Phone", payload.phone || "Not provided"],
     ["Country", payload.country],
     ["City/Region", payload.cityRegion],
@@ -97,19 +108,24 @@ async function sendInquiryEmail(payload: ContactPayload, requestId: string) {
     .join("");
   const html = `<h1>MedX inquiry ${escapeHtml(requestId)}</h1><table cellpadding="8" cellspacing="0">${htmlRows}</table>`;
 
+  const notificationBody: Record<string, unknown> = {
+    from: serverEnv.resendFromEmail,
+    to: [serverEnv.contactToEmail],
+    subject: `MedX inquiry: ${requestId}`,
+    html,
+  };
+
+  if (payload.email) {
+    notificationBody.reply_to = payload.email;
+  }
+
   const notification = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       authorization: `Bearer ${serverEnv.resendApiKey}`,
       "content-type": "application/json",
     },
-    body: JSON.stringify({
-      from: serverEnv.resendFromEmail,
-      to: [serverEnv.contactToEmail],
-      reply_to: payload.email,
-      subject: `MedX inquiry: ${requestId}`,
-      html,
-    }),
+    body: JSON.stringify(notificationBody),
   });
 
   if (!notification.ok) {
@@ -119,21 +135,79 @@ async function sendInquiryEmail(payload: ContactPayload, requestId: string) {
     };
   }
 
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${serverEnv.resendApiKey}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      from: serverEnv.resendFromEmail,
-      to: [payload.email],
-      subject: `MedX inquiry received: ${requestId}`,
-      html: `<p>Thank you for contacting MedX Healthcare Solutions.</p><p>Your inquiry reference is <strong>${escapeHtml(requestId)}</strong>.</p>`,
-    }),
-  });
+  if (payload.email) {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${serverEnv.resendApiKey}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        from: serverEnv.resendFromEmail,
+        to: [payload.email],
+        subject: `MedX inquiry received: ${requestId}`,
+        html: `<p>Thank you for contacting MedX Healthcare Solutions.</p><p>Your inquiry reference is <strong>${escapeHtml(requestId)}</strong>.</p>`,
+      }),
+    });
+  }
 
   return { ok: true, message: "Inquiry submitted." };
+}
+
+function normalizeQuickChatPayload(body: QuickChatPayload) {
+  const message = typeof body.message === "string" ? body.message.trim() : "";
+  const email = typeof body.email === "string" ? body.email.trim() : "";
+  const phone = typeof body.phone === "string" ? body.phone.trim() : "";
+  const fullName = typeof body.fullName === "string" ? body.fullName.trim() : "";
+  const organization = typeof body.organization === "string" ? body.organization.trim() : "";
+  const service = typeof body.service === "string" ? body.service.trim() : "";
+
+  if (!message) {
+    return { ok: false as const, message: "Message is required." };
+  }
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { ok: false as const, message: "Enter a valid email address." };
+  }
+
+  if (phone && !/^[+\d\s().-]{7,40}$/.test(phone)) {
+    return { ok: false as const, message: "Enter a valid phone number." };
+  }
+
+  if ((message.match(/https?:\/\/|www\./gi)?.length || 0) > 2) {
+    return { ok: false as const, message: "Please limit links in the message." };
+  }
+
+  return {
+    ok: true as const,
+    payload: {
+      fullName: fullName || "Website visitor",
+      organization: organization || "Not provided",
+      email: email || undefined,
+      phone,
+      country: "Not specified",
+      cityRegion: "Not specified",
+      inquiryType: service.includes("Partnership")
+        ? "Partnership inquiry"
+        : service.includes("Pharmaceutical")
+          ? "Pharmaceutical request"
+          : service.includes("Medical devices")
+            ? "Medical-device request"
+            : service.includes("Diagnostic")
+              ? "Diagnostic inquiry"
+              : service.includes("Cervical")
+                ? "Cervical-screening program"
+                : service.includes("Public-health")
+                  ? "Public-health program"
+                  : "Product and supply request",
+      productService: service || "Quick chat request",
+      estimatedQuantity: "",
+      urgency: "Routine",
+      preferredTimeline: "Exploratory",
+      message,
+      turnstileToken: "",
+    } satisfies ContactPayload,
+  };
 }
 
 export async function POST(request: NextRequest) {
@@ -151,6 +225,22 @@ export async function POST(request: NextRequest) {
   }
 
   const body = (await request.json().catch(() => null)) as unknown;
+
+  if (body && typeof body === "object" && (body as QuickChatPayload).quickChat === true) {
+    const quickChat = normalizeQuickChatPayload(body as QuickChatPayload);
+
+    if (!quickChat.ok) {
+      return json({ ok: false, requestId, message: quickChat.message }, 400);
+    }
+
+    const delivery = await sendInquiryEmail(quickChat.payload, requestId);
+    if (!delivery.ok) {
+      return json({ ok: false, requestId, message: delivery.message }, 503);
+    }
+
+    return json({ ok: true, requestId, timestamp: new Date().toISOString() });
+  }
+
   const validation = validateContactPayload(body);
 
   if (!validation.success) {
