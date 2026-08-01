@@ -261,17 +261,6 @@ export default function ProductsPage() {
                 title="Commerce roadmap: catalog, quotations, cart, and payment."
                 description="Phase 2 should support both institutional quotation requests and direct online sales, but checkout must only go live after the operating controls behind it are ready."
               />
-              <div className="mt-8 rounded-[1.5rem] border border-amber-200 bg-amber-50 p-6">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-700">
-                  Implementation discipline
-                </p>
-                <p className="mt-3 leading-8 text-slate-700">
-                  A medical product store is not just a cart. Before direct
-                  online payment is enabled, MedX needs approved product data,
-                  inventory rules, delivery coverage, payment provider setup,
-                  return and refund terms, tax handling, and compliance review.
-                </p>
-              </div>
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
