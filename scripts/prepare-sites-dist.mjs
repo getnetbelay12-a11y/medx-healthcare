@@ -152,6 +152,7 @@ function validateQuickChat(body) {
 
   if (!message) return "Message is required.";
   if (!body.privacyConsent) return "Privacy consent is required.";
+  if (!email && !phone) return "Enter an email address or phone number.";
   if (email && !validateEmail(email)) return "Enter a valid email address.";
   if (phone && !/^[+\\d\\s().-]{7,40}$/.test(phone)) return "Enter a valid phone number.";
   if (tooManyLinks(message)) return "Please limit links in the message.";
@@ -347,8 +348,19 @@ async function sendTwilioMessage(env, { from, to, body }) {
       },
     );
 
-    return response.ok;
+    if (!response.ok) {
+      const result = await response.json().catch(() => ({}));
+      console.error("Twilio lead notification failed.", {
+        status: response.status,
+        code: result.code,
+        message: result.message,
+      });
+      return false;
+    }
+
+    return true;
   } catch {
+    console.error("Twilio lead notification failed before receiving a response.");
     return false;
   }
 }

@@ -34,6 +34,12 @@ export default function QuickChat() {
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle" });
+  const hasContactMethod = email.trim().length > 0 || phone.trim().length > 0;
+  const canSubmit =
+    submitState.status !== "sending" &&
+    privacyConsent &&
+    hasContactMethod &&
+    message.trim().length > 0;
 
   function resetChat() {
     setOpen((current) => !current);
@@ -67,7 +73,7 @@ export default function QuickChat() {
       });
 
       const result = (await response.json().catch(() => null)) as
-        | { ok?: boolean; message?: string }
+        | { ok?: boolean; message?: string; requestId?: string }
         | null;
 
       if (!response.ok || !result?.ok) {
@@ -76,9 +82,12 @@ export default function QuickChat() {
 
       setSubmitState({
         status: "sent",
-        message: successMessage,
+        message: result?.requestId
+          ? `${successMessage} Reference: ${result.requestId}.`
+          : successMessage,
       });
       setMessage("");
+      setPrivacyConsent(false);
       setStartedAt(Date.now());
     } catch (error) {
       setSubmitState({
@@ -123,8 +132,8 @@ export default function QuickChat() {
             ) : (
               <>
             <p className="quick-chat-intro">
-              Write what you need. Add your contact details if you want MedX
-              to follow up by email or phone.
+              Write what you need and include an email or phone number so MedX
+              can follow up.
             </p>
 
             <label>
@@ -168,7 +177,7 @@ export default function QuickChat() {
                 />
               </label>
               <label>
-                Phone, optional
+                Phone
                 <input
                   value={phone}
                   onChange={(event) => setPhone(event.target.value)}
@@ -190,6 +199,12 @@ export default function QuickChat() {
               />
             </label>
 
+            {!hasContactMethod ? (
+              <p className="quick-chat-hint" id="quick-chat-contact-hint">
+                Add at least one contact method: email or phone.
+              </p>
+            ) : null}
+
             <label className="quick-chat-consent">
               <input
                 type="checkbox"
@@ -208,8 +223,8 @@ export default function QuickChat() {
             <button
               type="submit"
               className="quick-chat-submit"
-              disabled={submitState.status === "sending" || !privacyConsent}
-              aria-disabled={submitState.status === "sending" || !privacyConsent}
+              disabled={!canSubmit}
+              aria-disabled={!canSubmit}
             >
               <Send size={16} />
               {submitState.status === "sending" ? "Sending" : "Send"}

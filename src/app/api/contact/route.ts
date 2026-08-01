@@ -237,8 +237,22 @@ async function sendTwilioMessage({
       },
     );
 
-    return response.ok;
+    if (!response.ok) {
+      const result = (await response.json().catch(() => ({}))) as {
+        code?: number;
+        message?: string;
+      };
+      console.error("Twilio lead notification failed.", {
+        status: response.status,
+        code: result.code,
+        message: result.message,
+      });
+      return false;
+    }
+
+    return true;
   } catch {
+    console.error("Twilio lead notification failed before receiving a response.");
     return false;
   }
 }
@@ -336,6 +350,10 @@ function normalizeQuickChatPayload(body: QuickChatPayload) {
 
   if (body.privacyConsent !== true) {
     return { ok: false as const, message: "Privacy consent is required." };
+  }
+
+  if (!email && !phone) {
+    return { ok: false as const, message: "Enter an email address or phone number." };
   }
 
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {

@@ -38,6 +38,7 @@ describe("contact API route", () => {
     const response = await POST(
       request({
         quickChat: true,
+        email: "aster@medx.test",
         service: "Diagnostic and laboratory solutions",
         message: "Please contact us about diagnostic supply needs.",
       }),
@@ -46,6 +47,21 @@ describe("contact API route", () => {
 
     expect(response.status).toBe(400);
     expect(body.message).toBe("Privacy consent is required.");
+  });
+
+  it("requires a contact method for quick-chat submissions", async () => {
+    const response = await POST(
+      request({
+        quickChat: true,
+        service: "Diagnostic and laboratory solutions",
+        message: "Please contact us about diagnostic supply needs.",
+        privacyConsent: true,
+      }),
+    );
+    const body = (await response.json()) as { message?: string };
+
+    expect(response.status).toBe(400);
+    expect(body.message).toBe("Enter an email address or phone number.");
   });
 
   it("uses approved public contact details when delivery is unconfigured", async () => {
