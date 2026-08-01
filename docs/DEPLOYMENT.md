@@ -84,7 +84,7 @@ npm run build
 - Confirm `/partners` shows relationship records from the centralized data file with clear status labels.
 - Submit invalid and valid contact-form test payloads.
 - Confirm `/api/health` returns status, version, environment, and timestamp.
-- Confirm the floating chat widget opens, fits on mobile, uses a `Send` button, opens WhatsApp, and posts requests to `/api/contact/`.
+- Confirm the floating chat widget opens, fits on mobile, keeps `Send` disabled until consent is checked, and posts requests to `/api/contact/`.
 - Confirm no unapproved phone or email is displayed.
 - Confirm sitemap, robots, metadata, and social preview data.
 

@@ -145,6 +145,55 @@ function validateContact(body) {
   return "";
 }
 
+function validateQuickChat(body) {
+  const message = String(body.message || "").trim();
+  const email = String(body.email || "").trim();
+  const phone = String(body.phone || "").trim();
+
+  if (!message) return "Message is required.";
+  if (!body.privacyConsent) return "Privacy consent is required.";
+  if (email && !validateEmail(email)) return "Enter a valid email address.";
+  if (phone && !/^[+\\d\\s().-]{7,40}$/.test(phone)) return "Enter a valid phone number.";
+  if (tooManyLinks(message)) return "Please limit links in the message.";
+  return "";
+}
+
+function normalizeQuickChat(body) {
+  const fullName = String(body.fullName || "").trim();
+  const organization = String(body.organization || "").trim();
+  const email = String(body.email || "").trim();
+  const phone = String(body.phone || "").trim();
+  const service = String(body.service || "").trim();
+
+  return {
+    fullName: fullName || "Website visitor",
+    organization: organization || "Not provided",
+    email: email || undefined,
+    phone,
+    country: "Not specified",
+    cityRegion: "Not specified",
+    inquiryType: service.includes("Partnership")
+      ? "Partnership inquiry"
+      : service.includes("Pharmaceutical")
+        ? "Pharmaceutical request"
+        : service.includes("Medical devices")
+          ? "Medical-device request"
+          : service.includes("Diagnostic")
+            ? "Diagnostic inquiry"
+            : service.includes("Cervical")
+              ? "Cervical-screening program"
+              : service.includes("Public-health")
+                ? "Public-health program"
+                : "Product and supply request",
+    productService: service || "Quick chat request",
+    estimatedQuantity: "",
+    urgency: "Routine",
+    preferredTimeline: "Exploratory",
+    message: String(body.message || "").trim(),
+    turnstileToken: "",
+  };
+}
+
 async function verifyTurnstile(token, request, env) {
   if (!env.TURNSTILE_SECRET_KEY) return true;
   if (!token) return false;
@@ -160,12 +209,19 @@ async function verifyTurnstile(token, request, env) {
   return Boolean(result.success);
 }
 
+function deliveryFailureMessage(env, id, prefix) {
+  if (env.NEXT_PUBLIC_COMPANY_EMAIL || env.NEXT_PUBLIC_COMPANY_PHONE) {
+    return \`\${prefix}. Please use the contact details listed on this page. Reference ID: \${id}.\`;
+  }
+
+  return \`\${prefix}. Please try again later. Reference ID: \${id}.\`;
+}
+
 async function sendResendEmail(env, payload, id) {
   if (!env.RESEND_API_KEY || !env.CONTACT_TO_EMAIL || !env.RESEND_FROM_EMAIL) {
     return {
       ok: false,
-      message:
-        "Contact email delivery is not configured. Required server variables: CONTACT_TO_EMAIL, RESEND_API_KEY, RESEND_FROM_EMAIL.",
+      message: deliveryFailureMessage(env, id, "Online inquiry delivery is not configured yet"),
     };
   }
 
@@ -205,24 +261,122 @@ async function sendResendEmail(env, payload, id) {
   });
 
   if (!notification.ok) {
-    return { ok: false, message: "Email delivery failed. Please try again later." };
+    return { ok: false, message: deliveryFailureMessage(env, id, "Email delivery failed") };
   }
 
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      authorization: \`Bearer \${env.RESEND_API_KEY}\`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      from: env.RESEND_FROM_EMAIL,
-      to: [payload.email],
-      subject: \`MedX inquiry received: \${id}\`,
-      html: \`<p>Thank you for contacting MedX Healthcare Solutions.</p><p>Your inquiry reference is <strong>\${escapeHtml(id)}</strong>.</p>\`,
-    }),
-  });
+  if (payload.email) {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        authorization: \`Bearer \${env.RESEND_API_KEY}\`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        from: env.RESEND_FROM_EMAIL,
+        to: [payload.email],
+        subject: \`MedX inquiry received: \${id}\`,
+        html: \`<p>Thank you for contacting MedX Healthcare Solutions.</p><p>Your inquiry reference is <strong>\${escapeHtml(id)}</strong>.</p>\`,
+      }),
+    });
+  }
 
   return { ok: true };
+}
+
+function leadNotificationText(payload, id) {
+  return [
+    \`MedX quick chat inquiry \${id}\`,
+    "",
+    \`Service: \${payload.productService}\`,
+    \`Name: \${payload.fullName}\`,
+    \`Organization: \${payload.organization}\`,
+    \`Customer email: \${payload.email || "Not provided"}\`,
+    \`Customer phone: \${payload.phone || "Not provided"}\`,
+    "",
+    "Message:",
+    payload.message,
+  ].join("\\n");
+}
+
+async function sendQuickChatSms(env, payload, id) {
+  if (
+    !env.TWILIO_ACCOUNT_SID ||
+    !env.TWILIO_AUTH_TOKEN ||
+    !env.TWILIO_FROM_PHONE ||
+    !env.QUICK_CHAT_NOTIFY_PHONE
+  ) {
+    return false;
+  }
+
+  const credentials = btoa(\`\${env.TWILIO_ACCOUNT_SID}:\${env.TWILIO_AUTH_TOKEN}\`);
+  const form = new URLSearchParams({
+    From: env.TWILIO_FROM_PHONE,
+    To: env.QUICK_CHAT_NOTIFY_PHONE,
+    Body: leadNotificationText(payload, id).slice(0, 1500),
+  });
+
+  try {
+    const response = await fetch(
+      \`https://api.twilio.com/2010-04-01/Accounts/\${env.TWILIO_ACCOUNT_SID}/Messages.json\`,
+      {
+        method: "POST",
+        headers: {
+          authorization: \`Basic \${credentials}\`,
+          "content-type": "application/x-www-form-urlencoded",
+        },
+        body: form,
+      },
+    );
+
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function forwardQuickChat(env, payload, id) {
+  if (!env.QUICK_CHAT_FALLBACK_ENDPOINT) {
+    return {
+      ok: false,
+      message: deliveryFailureMessage(env, id, "The message could not be delivered right now"),
+    };
+  }
+
+  const details = [
+    leadNotificationText(payload, id),
+    "",
+    \`Notify phone: \${env.QUICK_CHAT_NOTIFY_PHONE || "Not configured"}\`,
+    \`Notify email: \${env.QUICK_CHAT_NOTIFY_EMAIL || "Not configured"}\`,
+  ].join("\\n");
+
+  try {
+    const response = await fetch(env.QUICK_CHAT_FALLBACK_ENDPOINT, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: payload.fullName || "MedX website visitor",
+        business: payload.organization || "MedX quick chat",
+        email: payload.email || env.QUICK_CHAT_NOTIFY_EMAIL || "",
+        phone: payload.phone || env.QUICK_CHAT_NOTIFY_PHONE || "",
+        service: \`MedX: \${payload.productService}\`,
+        details,
+      }),
+    });
+
+    if (!response.ok) {
+      return {
+        ok: false,
+        message: deliveryFailureMessage(env, id, "The message could not be delivered right now"),
+      };
+    }
+
+    return { ok: true };
+  } catch {
+    return {
+      ok: false,
+      message: deliveryFailureMessage(env, id, "The message could not be delivered right now"),
+    };
+  }
 }
 
 async function handleContact(request, env) {
@@ -237,6 +391,26 @@ async function handleContact(request, env) {
   } catch {
     return json({ ok: false, message: "Invalid request body.", requestId: id }, 400);
   }
+
+  if (body && body.quickChat === true) {
+    const validationError = validateQuickChat(body);
+    if (validationError) return json({ ok: false, message: validationError, requestId: id }, 400);
+
+    const payload = normalizeQuickChat(body);
+    const delivery =
+      env.RESEND_API_KEY && env.CONTACT_TO_EMAIL && env.RESEND_FROM_EMAIL
+        ? await sendResendEmail(env, payload, id)
+        : (await sendQuickChatSms(env, payload, id))
+          ? { ok: true }
+          : await forwardQuickChat(env, payload, id);
+
+    if (!delivery.ok) {
+      return json({ ok: false, message: delivery.message, requestId: id }, 503);
+    }
+
+    return json({ ok: true, requestId: id, timestamp: new Date().toISOString() });
+  }
+
   const validationError = validateContact(body);
   if (validationError) return json({ ok: false, message: validationError, requestId: id }, 400);
   if (!(await verifyTurnstile(body.turnstileToken, request, env))) {
