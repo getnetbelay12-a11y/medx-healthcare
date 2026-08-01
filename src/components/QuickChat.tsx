@@ -17,40 +17,11 @@ const serviceOptions = [
 type SubmitState =
   | { status: "idle" }
   | { status: "sending" }
-  | { status: "sent"; message: string; whatsappUrl: string }
+  | { status: "sent"; message: string }
   | { status: "error"; message: string };
 
 const successMessage =
-  "WhatsApp has opened with your request. Press Send in WhatsApp to complete it.";
-const publicWhatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "+1 720 278 1729";
-
-function normalizeWhatsAppHref(value: string, text: string) {
-  const digits = value.replace(/\D/g, "");
-  const query = new URLSearchParams({ text });
-  return digits ? `https://wa.me/${digits}?${query.toString()}` : "";
-}
-
-function whatsappMessage(payload: {
-  fullName: string;
-  organization: string;
-  email: string;
-  phone: string;
-  service: string;
-  message: string;
-}) {
-  return [
-    "MedX website request",
-    "",
-    `Service: ${payload.service}`,
-    `Name: ${payload.fullName || "Website visitor"}`,
-    `Organization: ${payload.organization || "Not provided"}`,
-    `Email: ${payload.email || "Not provided"}`,
-    `Phone: ${payload.phone || "Not provided"}`,
-    "",
-    "Message:",
-    payload.message,
-  ].join("\n");
-}
+  "Thank you for sending. We will get back to you as soon as possible.";
 
 export default function QuickChat() {
   const [open, setOpen] = useState(false);
@@ -87,11 +58,6 @@ export default function QuickChat() {
       privacyConsent,
       startedAt,
     };
-    const whatsappUrl = normalizeWhatsAppHref(publicWhatsappPhone, whatsappMessage(payload));
-    const whatsappWindow =
-      typeof window !== "undefined" && whatsappUrl
-        ? window.open(whatsappUrl, "_blank", "noopener,noreferrer")
-        : null;
 
     try {
       const response = await fetch("/api/contact/", {
@@ -111,7 +77,6 @@ export default function QuickChat() {
       setSubmitState({
         status: "sent",
         message: successMessage,
-        whatsappUrl: whatsappWindow ? "" : whatsappUrl,
       });
       setMessage("");
       setStartedAt(Date.now());
@@ -147,16 +112,6 @@ export default function QuickChat() {
                 <CheckCircle2 size={28} />
                 <h3>Message sent</h3>
                 <p>{submitState.message}</p>
-                {submitState.whatsappUrl && (
-                  <a
-                    href={submitState.whatsappUrl}
-                    className="quick-chat-whatsapp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Send to WhatsApp
-                  </a>
-                )}
                 <button
                   type="button"
                   className="quick-chat-secondary"
@@ -168,8 +123,8 @@ export default function QuickChat() {
             ) : (
               <>
             <p className="quick-chat-intro">
-              Write what you need. Sending opens WhatsApp with your request
-              prefilled so you can send it directly to MedX.
+              Write what you need. Add your contact details if you want MedX
+              to follow up by email or phone.
             </p>
 
             <label>
@@ -257,7 +212,7 @@ export default function QuickChat() {
               aria-disabled={submitState.status === "sending" || !privacyConsent}
             >
               <Send size={16} />
-              {submitState.status === "sending" ? "Opening WhatsApp" : "Open WhatsApp"}
+              {submitState.status === "sending" ? "Sending" : "Send"}
             </button>
               </>
             )}
