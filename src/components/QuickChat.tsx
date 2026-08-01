@@ -252,7 +252,6 @@ export default function QuickChat() {
                   <textarea
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
-                    minLength={20}
                     maxLength={1200}
                     required
                     rows={4}

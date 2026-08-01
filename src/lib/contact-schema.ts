@@ -55,7 +55,7 @@ export const contactSchema = z.object({
   preferredTimeline: z.enum(timelineOptions, {
     message: "Select a preferred timeline.",
   }),
-  message: z.string().trim().min(20, "Message must be at least 20 characters.").max(2000),
+  message: z.string().trim().min(1, "Message is required.").max(2000),
   privacyConsent: z.boolean().refine((value) => value === true, {
     message: "Privacy consent is required.",
   }),
