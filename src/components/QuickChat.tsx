@@ -95,14 +95,16 @@ export default function QuickChat() {
       turnstileToken: "",
     };
 
-    void fetch("/api/contact/", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(payload),
-      keepalive: true,
-    }).catch(() => {
-      // The WhatsApp handoff still opens even when the optional email channel is unavailable.
-    });
+    if (fullName.trim() && organization.trim() && email.trim() && privacyConsent) {
+      void fetch("/api/contact/", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => {
+        // The WhatsApp handoff still opens even when the optional email channel is unavailable.
+      });
+    }
 
     window.location.assign(whatsappLink);
   }
@@ -124,8 +126,8 @@ export default function QuickChat() {
 
           <form onSubmit={handleSubmit} className="quick-chat-form">
             <p className="quick-chat-intro">
-              Share the service you need and the MedX team will follow up
-              with the right product, supply, or partnership support.
+              Write what you need. Add your contact details if you want MedX
+              to follow up by email or phone.
             </p>
 
             <label>
@@ -144,7 +146,6 @@ export default function QuickChat() {
                   value={fullName}
                   onChange={(event) => setFullName(event.target.value)}
                   minLength={2}
-                  required
                   autoComplete="name"
                 />
               </label>
@@ -154,7 +155,6 @@ export default function QuickChat() {
                   value={organization}
                   onChange={(event) => setOrganization(event.target.value)}
                   minLength={2}
-                  required
                   autoComplete="organization"
                 />
               </label>
@@ -167,7 +167,6 @@ export default function QuickChat() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   type="email"
-                  required
                   autoComplete="email"
                 />
               </label>
@@ -199,7 +198,6 @@ export default function QuickChat() {
                 type="checkbox"
                 checked={privacyConsent}
                 onChange={(event) => setPrivacyConsent(event.target.checked)}
-                required
               />
               I agree MedX may use this information to respond to my request.
             </label>
