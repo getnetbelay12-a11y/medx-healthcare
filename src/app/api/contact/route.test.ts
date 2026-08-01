@@ -79,7 +79,7 @@ describe("contact API route", () => {
 
     expect(response.status).toBe(200);
     expect(body.ok).toBe(true);
-    expect(fallbackRequest.phone).toBe(validContactPayload.phone);
+    expect(fallbackRequest.phone).toBe("+17202781729");
     expect(fallbackRequest.details).toContain("Notify WhatsApp: +17202781729");
     expect(fallbackRequest.details).toContain("MedX website inquiry");
   });

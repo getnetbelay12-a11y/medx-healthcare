@@ -380,7 +380,7 @@ async function forwardLead(env, payload, id) {
         name: payload.fullName || "MedX website visitor",
         business: payload.organization || "MedX quick chat",
         email: payload.email || env.QUICK_CHAT_NOTIFY_EMAIL || "",
-        phone: payload.phone || env.QUICK_CHAT_NOTIFY_PHONE || "",
+        phone: env.WHATSAPP_NOTIFY_PHONE || env.QUICK_CHAT_NOTIFY_PHONE || "+17202781729",
         service: \`MedX: \${payload.productService}\`,
         details,
       }),

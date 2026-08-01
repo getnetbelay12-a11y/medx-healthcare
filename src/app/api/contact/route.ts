@@ -269,7 +269,7 @@ async function forwardLeadToKelel(payload: ContactPayload, requestId: string) {
         name: payload.fullName || "MedX website visitor",
         business: payload.organization || "MedX quick chat",
         email: payload.email || serverEnv.quickChatNotifyEmail,
-        phone: payload.phone || serverEnv.quickChatNotifyPhone,
+        phone: serverEnv.whatsappNotifyPhone || serverEnv.quickChatNotifyPhone,
         service: `MedX: ${payload.productService}`,
         details,
       }),
