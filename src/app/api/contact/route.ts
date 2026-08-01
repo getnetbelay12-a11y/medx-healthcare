@@ -31,6 +31,10 @@ type QuickChatPayload = {
   startedAt?: number;
 };
 
+const kelelLeadEndpoint = "https://www.kelelitsolution.com/api/contact";
+const kelelOwnerPhone = "7202781729";
+const kelelOwnerEmail = "info@kelelitsolution.com";
+
 const submissions = new Map<string, number[]>();
 
 function json(body: unknown, status = 200) {
@@ -154,6 +158,54 @@ async function sendInquiryEmail(payload: ContactPayload, requestId: string) {
   return { ok: true, message: "Inquiry submitted." };
 }
 
+async function forwardQuickChatToKelel(payload: ContactPayload, requestId: string) {
+  const details = [
+    `MedX quick chat inquiry ${requestId}`,
+    "",
+    `Notify phone: ${kelelOwnerPhone}`,
+    `Notify email: ${kelelOwnerEmail}`,
+    "",
+    `Service: ${payload.productService}`,
+    `Name: ${payload.fullName}`,
+    `Organization: ${payload.organization}`,
+    `Customer email: ${payload.email || "Not provided"}`,
+    `Customer phone: ${payload.phone || "Not provided"}`,
+    "",
+    "Message:",
+    payload.message,
+  ].join("\n");
+
+  try {
+    const response = await fetch(kelelLeadEndpoint, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: payload.fullName || "MedX website visitor",
+        business: payload.organization || "MedX quick chat",
+        email: payload.email || kelelOwnerEmail,
+        phone: payload.phone || kelelOwnerPhone,
+        service: `MedX: ${payload.productService}`,
+        details,
+      }),
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      return {
+        ok: false,
+        message: "The message could not be delivered right now. Please try again.",
+      };
+    }
+
+    return { ok: true, message: "Inquiry submitted." };
+  } catch {
+    return {
+      ok: false,
+      message: "The message could not be delivered right now. Please try again.",
+    };
+  }
+}
+
 function normalizeQuickChatPayload(body: QuickChatPayload) {
   const message = typeof body.message === "string" ? body.message.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
@@ -233,7 +285,10 @@ export async function POST(request: NextRequest) {
       return json({ ok: false, requestId, message: quickChat.message }, 400);
     }
 
-    const delivery = await sendInquiryEmail(quickChat.payload, requestId);
+    const delivery =
+      serverEnv.resendApiKey && serverEnv.contactToEmail && serverEnv.resendFromEmail
+        ? await sendInquiryEmail(quickChat.payload, requestId)
+        : await forwardQuickChatToKelel(quickChat.payload, requestId);
     if (!delivery.ok) {
       return json({ ok: false, requestId, message: delivery.message }, 503);
     }
