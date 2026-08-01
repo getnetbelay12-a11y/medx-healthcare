@@ -5,13 +5,11 @@ import {
   Beaker,
   CheckCircle2,
   ClipboardList,
-  CreditCard,
   FileText,
   HeartPulse,
   Layers3,
   PackageCheck,
   PackageSearch,
-  ShoppingCart,
   Truck,
 } from "lucide-react";
 import PageHero from "@/components/PageHero";
@@ -23,7 +21,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Product Catalog",
   description:
-    "MedX product catalog for diagnostics, laboratory supplies, medicines, clinical supplies, and Phase 2 quotation and commerce planning.",
+    "MedX product catalog for diagnostics, laboratory supplies, medicines, clinical supplies, and quote-led institutional product requests.",
   path: "/products",
   image: medxImages.supplyCatalogHero.src,
 });
@@ -62,7 +60,7 @@ const categoryDetails = {
   },
 } as const;
 
-const phase2Icons = [PackageSearch, ClipboardList, ShoppingCart, CreditCard] as const;
+const phase2Icons = [PackageSearch, ClipboardList, FileText, Truck] as const;
 
 const requestSteps = [
   {
@@ -89,10 +87,10 @@ export default function ProductsPage() {
         eyebrow="Product Catalog"
         title="Diagnostic products and medical supplies for institutional requests."
         description="MedX supports healthcare facilities with diagnostic solutions, laboratory equipment, pharmaceutical products, and medical consumables tailored to regional clinic and hospital needs."
-        highlights={["Catalog view", "Quotation requests", "Phase 2 commerce"]}
+        highlights={["Catalog view", "Quotation requests", "Institutional review"]}
         image={medxImages.supplyCatalogHero}
         imageLabel="Product access"
-        imageCaption="Catalog • quote • Phase 2 commerce"
+        imageCaption="Catalog • quote • supply review"
       />
 
       <section className="bg-white py-20">
@@ -257,9 +255,9 @@ export default function ProductsPage() {
           <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
             <div>
               <SectionHeader
-                eyebrow="Phase 2"
-                title="Commerce roadmap: catalog, quotations, cart, and payment."
-                description="Phase 2 should support both institutional quotation requests and direct online sales, but checkout must only go live after the operating controls behind it are ready."
+                eyebrow="Catalog roadmap"
+                title="A clearer product pathway from catalog review to quotation."
+                description="The public catalog should help institutions understand what MedX can review, what information to submit, and how product requests move into sourcing, documentation, and follow-up."
               />
             </div>
 
@@ -273,7 +271,7 @@ export default function ProductsPage() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#071b33] text-white">
                         <Icon size={22} />
                       </div>
-                      <span>Phase 2</span>
+                      <span>Roadmap</span>
                     </div>
                     <h3>{capability.title}</h3>
                     <p>{capability.summary}</p>

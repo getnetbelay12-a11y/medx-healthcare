@@ -65,23 +65,23 @@ export const productCatalog = [
 
 export const phase2CommerceCapabilities = [
   {
-    title: "Display products only",
+    title: "Approved catalog content",
     summary:
-      "A product catalog can show approved categories, names, descriptions, and quote paths before direct checkout is enabled.",
+      "Keep product categories, names, descriptions, and quote paths reviewed before they appear publicly.",
   },
   {
-    title: "Quotation and supply requests",
+    title: "Quotation-ready requests",
     summary:
       "Customers can submit facility details, products needed, expected quantities, urgency, and delivery context.",
   },
   {
-    title: "Online sales with cart and payment",
+    title: "Availability and documentation review",
     summary:
-      "Direct online sales should launch only after inventory, payment, tax, fulfillment, refund, and compliance controls are ready.",
+      "Each request can be checked against availability, destination, documentation needs, and follow-up requirements.",
   },
   {
-    title: "Hybrid catalog and commerce",
+    title: "Institutional follow-through",
     summary:
-      "Phase 2 can support both direct product purchases and quotation-led institutional supply requests.",
+      "Quote-led product requests can move into sourcing, logistics, program support, or relationship discussion.",
   },
 ] as const;

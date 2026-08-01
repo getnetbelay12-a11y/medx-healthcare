@@ -24,14 +24,17 @@ describe("product catalog", () => {
     expect(publicCopy).not.toContain("850 ETB");
   });
 
-  it("keeps online checkout clearly assigned to Phase 2", () => {
+  it("keeps the public product roadmap quote-led instead of checkout-led", () => {
     const roadmapCopy = phase2CommerceCapabilities
       .map((capability) => `${capability.title} ${capability.summary}`)
       .join("\n");
 
-    expect(roadmapCopy).toContain("Display products only");
-    expect(roadmapCopy).toContain("Quotation and supply requests");
-    expect(roadmapCopy).toContain("Online sales with cart and payment");
-    expect(roadmapCopy).toContain("Hybrid catalog and commerce");
+    expect(roadmapCopy).toContain("Approved catalog content");
+    expect(roadmapCopy).toContain("Quotation-ready requests");
+    expect(roadmapCopy).toContain("Availability and documentation review");
+    expect(roadmapCopy).toContain("Institutional follow-through");
+    expect(roadmapCopy).not.toContain("cart");
+    expect(roadmapCopy).not.toContain("payment");
+    expect(roadmapCopy).not.toContain("checkout");
   });
 });

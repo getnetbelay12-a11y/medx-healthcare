@@ -111,7 +111,7 @@ export default function HeroSection() {
               Professional public profile
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-200">
-              Current services, historical context, and Phase 2 commerce plans
+              Current services, historical context, and product roadmap plans
               are separated clearly.
             </p>
           </div>
