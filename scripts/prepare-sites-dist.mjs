@@ -284,16 +284,29 @@ async function sendResendEmail(env, payload, id) {
 }
 
 function leadNotificationText(payload, id) {
+  const location = [payload.cityRegion, payload.country]
+    .filter((value) => value && value !== "Not specified")
+    .join(", ");
+  const quantity = payload.estimatedQuantity?.trim() || "Not provided";
+
   return [
-    \`MedX website inquiry \${id}\`,
+    "*New MedX website request*",
+    \`Reference: \${id}\`,
     "",
     \`Service: \${payload.productService}\`,
+    \`Inquiry type: \${payload.inquiryType}\`,
+    \`Urgency: \${payload.urgency}\`,
+    \`Timeline: \${payload.preferredTimeline}\`,
+    \`Estimated quantity: \${quantity}\`,
+    "",
+    "*Contact*",
     \`Name: \${payload.fullName}\`,
     \`Organization: \${payload.organization}\`,
-    \`Customer email: \${payload.email || "Not provided"}\`,
-    \`Customer phone: \${payload.phone || "Not provided"}\`,
+    \`Email: \${payload.email || "Not provided"}\`,
+    \`Phone: \${payload.phone || "Not provided"}\`,
+    \`Location: \${location || "Not provided"}\`,
     "",
-    "Message:",
+    "*Message*",
     payload.message,
   ].join("\\n");
 }
