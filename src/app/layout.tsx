@@ -2,6 +2,7 @@ import SiteHeader from "@/components/SiteHeader";
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import MobileActionBar from "@/components/MobileActionBar";
 import QuickChat from "@/components/QuickChat";
 import { siteUrl } from "@/lib/env";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -83,6 +84,7 @@ export default function RootLayout({
         <SiteHeader />
         <main>{children}</main>
         <Footer />
+        <MobileActionBar />
         <QuickChat />
       </body>
     </html>

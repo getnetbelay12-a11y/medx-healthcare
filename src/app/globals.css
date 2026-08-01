@@ -4532,6 +4532,10 @@ button,
   line-height: 1.45;
 }
 
+.mobile-action-bar {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .quick-chat {
     right: 0;
@@ -4757,16 +4761,60 @@ button,
 
   .quick-chat {
     padding: 0 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+    bottom: 4.65rem;
   }
 
   .quick-chat-panel {
-    max-height: min(78svh, 42rem);
+    max-height: min(68svh, 38rem);
     overflow-y: auto;
   }
 
   .quick-chat-button {
     border-radius: 999px;
     box-shadow: 0 14px 34px rgba(8, 27, 51, 0.22);
+  }
+
+  .mobile-action-bar {
+    position: fixed;
+    right: 0.75rem;
+    bottom: calc(0.7rem + env(safe-area-inset-bottom));
+    left: 0.75rem;
+    z-index: 65;
+    display: grid;
+    grid-template-columns: repeat(var(--mobile-action-count, 3), minmax(0, 1fr));
+    gap: 0.45rem;
+    border: 1px solid rgba(216, 231, 229, 0.96);
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 0.45rem;
+    box-shadow: 0 20px 54px rgba(8, 27, 51, 0.18);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobile-action-button {
+    display: inline-flex;
+    min-width: 0;
+    min-height: 2.85rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border-radius: 0.82rem;
+    color: #071b33;
+    font-size: 0.78rem;
+    font-weight: 950;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .mobile-action-button-primary {
+    background: #10a66e;
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(16, 166, 110, 0.24);
+  }
+
+  .mobile-action-button:focus-visible {
+    outline: 3px solid rgba(16, 166, 110, 0.35);
+    outline-offset: 3px;
   }
 }
 
@@ -4787,5 +4835,17 @@ button,
   .btn-secondary {
     font-size: 0.74rem !important;
     padding-inline: 0.85rem !important;
+  }
+
+  .mobile-action-bar {
+    right: 0.5rem;
+    left: 0.5rem;
+    gap: 0.3rem;
+    padding: 0.35rem;
+  }
+
+  .mobile-action-button {
+    gap: 0.3rem;
+    font-size: 0.7rem;
   }
 }
