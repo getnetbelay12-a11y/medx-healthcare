@@ -967,8 +967,8 @@ body {
     transform: none;
   }
 
-  .auto-carousel-strip {
-    animation: var(--carousel-direction) calc(var(--carousel-duration) * 1.3) linear infinite;
+  .auto-carousel[data-reduced-motion="false"] .auto-carousel-strip {
+    animation: var(--carousel-direction) calc(var(--carousel-duration) * 0.42) linear infinite;
   }
 
   .continuous-carousel-track[aria-hidden="true"] {
