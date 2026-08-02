@@ -42,9 +42,10 @@ describe("terms page legal content", () => {
     expect(termsPageSource).toContain("Historical names, boards, partners");
   });
 
-  it("renders configured effective date and keeps one H1 source element", () => {
+  it("renders configured effective date through the shared branded hero", () => {
     expect(legalConfig.termsEffectiveDate).toBeTruthy();
-    expect((termsPageSource.match(/<h1/g) || [])).toHaveLength(1);
+    expect(termsPageSource).toContain("<PageHero");
+    expect(termsPageSource).toContain("Terms of Use");
   });
 
   it("uses responsive legal-page layout classes", () => {

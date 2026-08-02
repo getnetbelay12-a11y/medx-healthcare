@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import PageHero from "@/components/PageHero";
+import { medxImages } from "@/data/images";
 import {
   governingLawText,
   legalConfig,
@@ -56,25 +58,19 @@ function BulletList({ items }: { items: string[] }) {
 export default function TermsPage() {
   return (
     <>
-      <section className="border-b border-slate-200 bg-slate-50 py-12 md:py-16">
-        <div className="container-medx max-w-5xl">
-          <p className="mb-4 inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[#10a66e]">
-            Last updated: {legalConfig.termsLastUpdated}
-          </p>
-          <h1 className="max-w-3xl text-4xl font-black leading-tight tracking-normal text-[#071b33] md:text-5xl">
-            Terms of Use
-          </h1>
-          <div className="mt-5 grid gap-2 text-sm font-bold text-slate-600 sm:grid-cols-3">
-            <p>Effective date: {legalConfig.termsEffectiveDate}</p>
-            <p>Last updated: {legalConfig.termsLastUpdated}</p>
-            <p>Version: {legalConfig.termsVersion}</p>
-          </div>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
-            These Terms govern access to and use of the MedX Healthcare Solutions
-            website, digital tools, inquiry forms, and related public-facing services.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Website terms"
+        title="Terms of Use"
+        description="These Terms govern access to and use of the MedX Healthcare Solutions website, digital tools, inquiry forms, and related public-facing services."
+        highlights={[
+          "Website use",
+          "Inquiry submissions",
+          "Public information",
+        ]}
+        image={medxImages.digitalHealth}
+        imageLabel="Website terms"
+        imageCaption="Use - inquiries - public information"
+      />
 
       <main className="bg-white py-12 md:py-16">
         <div className="container-medx grid gap-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-start">

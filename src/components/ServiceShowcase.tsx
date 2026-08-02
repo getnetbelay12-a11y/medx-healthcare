@@ -22,9 +22,9 @@ const services = [
       "Institutional supply",
     ],
     gradient:
-      "from-[#e7f0ff] via-[#f4f8ff] to-white",
-    iconBackground: "bg-[#dceaff]",
-    iconColor: "text-[#2467a8]",
+      "from-[#e8f7f4] via-[#f6fbfa] to-white",
+    iconBackground: "bg-[#d8f4ec]",
+    iconColor: "text-[#0a7c5b]",
   },
   {
     title: "Medical Devices & Equipment",
@@ -39,9 +39,9 @@ const services = [
       "Installation coordination",
     ],
     gradient:
-      "from-[#dff7fb] via-[#f2fcfd] to-white",
-    iconBackground: "bg-[#d5f3f7]",
-    iconColor: "text-[#078b9c]",
+      "from-[#e7f5f4] via-[#f6fbfa] to-white",
+    iconBackground: "bg-[#d9f2ef]",
+    iconColor: "text-[#0b6b62]",
   },
   {
     title: "Diagnostics & Laboratory Solutions",
