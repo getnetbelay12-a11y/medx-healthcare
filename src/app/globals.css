@@ -4568,17 +4568,21 @@ button,
 
 @media (max-width: 767px) {
   .quick-chat {
-    right: 0;
-    bottom: 0;
-    left: 0;
+    right: 0.9rem;
+    bottom: calc(0.9rem + env(safe-area-inset-bottom));
+    left: auto;
     gap: 0.65rem;
-    padding: 0 0.75rem 0.75rem;
+    padding: 0;
   }
 
   .quick-chat-panel {
-    width: 100%;
-    max-height: calc(100svh - 5.6rem);
-    border-radius: 1rem 1rem 0.9rem 0.9rem;
+    position: fixed;
+    right: 0.75rem;
+    bottom: calc(4.95rem + env(safe-area-inset-bottom));
+    left: 0.75rem;
+    width: auto;
+    max-height: min(78svh, 42rem);
+    border-radius: 1rem;
   }
 
   .quick-chat-button {
@@ -4789,16 +4793,6 @@ button,
     white-space: normal;
   }
 
-  .quick-chat {
-    padding: 0 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
-    bottom: 4.65rem;
-  }
-
-  .quick-chat-panel {
-    max-height: min(68svh, 38rem);
-    overflow-y: auto;
-  }
-
   .quick-chat-button {
     border-radius: 999px;
     box-shadow: 0 14px 34px rgba(8, 27, 51, 0.22);
@@ -4810,7 +4804,7 @@ button,
     bottom: calc(0.7rem + env(safe-area-inset-bottom));
     left: 0.75rem;
     z-index: 65;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(var(--mobile-action-count, 3), minmax(0, 1fr));
     gap: 0.45rem;
     border: 1px solid rgba(216, 231, 229, 0.96);
@@ -4961,9 +4955,12 @@ button,
     font-size: 0.82rem !important;
   }
 
+  .medx-mobile-secondary-cta {
+    display: none !important;
+  }
+
   .mobile-action-bar {
-    border-radius: 0.95rem;
-    padding: 0.38rem;
+    display: none !important;
   }
 
   .mobile-action-button {
@@ -4972,13 +4969,24 @@ button,
   }
 
   .quick-chat {
-    display: none;
+    display: grid;
   }
 
   .quick-chat-button {
-    min-height: 2.85rem;
-    padding-inline: 0.95rem;
-    font-size: 0.82rem;
+    width: 3.65rem;
+    min-height: 3.65rem;
+    justify-content: center;
+    padding-inline: 0;
+    background: #10a66e;
+  }
+
+  .quick-chat-button span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .text-xs[class*="uppercase"],

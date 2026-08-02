@@ -51,7 +51,10 @@ export default function HeroSection() {
               View product catalog
               <ArrowRight size={17} />
             </Link>
-            <Link href="/contact" className="btn-outline medx-light-outline w-full sm:w-auto">
+            <Link
+              href="/contact"
+              className="btn-outline medx-light-outline medx-mobile-secondary-cta w-full sm:w-auto"
+            >
               Request quotation
               <ArrowRight size={17} />
             </Link>
