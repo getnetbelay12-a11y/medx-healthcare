@@ -262,11 +262,6 @@ export default function PublicHealthFocusPage() {
               title="A public-health program needs workflow, not only a test."
               description="The strongest website message is that MedX can help connect education, sample collection, diagnostic workflows, referral readiness, and follow-up visibility."
             />
-            <p className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-bold leading-7 text-[#6b4a05]">
-              Patient photos, clinical images, partner logos, and relationship claims
-              should be published only after written approval. This protects MedX and
-              keeps the website professionally defensible.
-            </p>
           </div>
 
           <div className="grid gap-4">
