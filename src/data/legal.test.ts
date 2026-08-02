@@ -53,7 +53,7 @@ describe("terms page legal content", () => {
   });
 
   it("sets production metadata for the Terms page", () => {
-    expect(metadata.title).toBe("Terms of Use | MedX Healthcare Solutions");
+    expect(metadata.title).toBe("Terms of Use");
     expect(metadata.description).toBe(
       "Review the terms governing use of the MedX Healthcare Solutions website, inquiry forms, digital tools, and public-facing services.",
     );

@@ -10,7 +10,7 @@ import {
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Terms of Use | MedX Healthcare Solutions",
+  title: "Terms of Use",
   description:
     "Review the terms governing use of the MedX Healthcare Solutions website, inquiry forms, digital tools, and public-facing services.",
   path: "/terms",
