@@ -138,6 +138,7 @@ export default function ContactPage() {
             <MedxImage
               src={medxImages.bahirDar.src}
               alt={medxImages.bahirDar.alt}
+              priority
               className="mt-8 aspect-[16/10] rounded-[2rem] shadow-[0_24px_70px_rgba(8,27,51,0.12)]"
             />
             <p className="mt-3 text-xs font-bold text-slate-500">
