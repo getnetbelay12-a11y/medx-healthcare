@@ -26,20 +26,10 @@ export default function SiteHeader() {
         <div className="flex min-h-[76px] w-full items-center justify-between gap-6">
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-3"
+            className="flex min-w-0 shrink-0 items-center"
             onClick={() => setMobileOpen(false)}
           >
             <BrandMark />
-
-            <div>
-              <p className="text-lg font-black leading-none tracking-tight text-[#071b33]">
-                MedX
-              </p>
-
-              <p className="mt-1.5 text-[8px] font-black uppercase tracking-[0.27em] text-[#10a66e]">
-                Healthcare Solutions
-              </p>
-            </div>
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">

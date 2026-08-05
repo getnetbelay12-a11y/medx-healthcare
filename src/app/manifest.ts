@@ -14,8 +14,8 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#071b33",
     icons: [
       {
-        src: "/images/medx/MedxLogo1.png",
-        sizes: "1402x1122",
+        src: "/icon.png",
+        sizes: "512x512",
         type: "image/png",
       },
     ],

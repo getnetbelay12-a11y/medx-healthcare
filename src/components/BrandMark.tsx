@@ -6,9 +6,9 @@ type BrandMarkProps = {
 };
 
 const sizeClasses = {
-  sm: "h-10 w-12 rounded-[13px]",
-  md: "h-11 w-14 rounded-[14px]",
-  lg: "h-12 w-16 rounded-2xl",
+  sm: "h-10 w-[9.5rem] rounded-xl",
+  md: "h-12 w-[12.5rem] rounded-xl xl:h-16 xl:w-72",
+  lg: "h-14 w-56 rounded-xl sm:w-60 xl:h-16 xl:w-72",
 } as const;
 
 export default function BrandMark({
@@ -29,11 +29,15 @@ export default function BrandMark({
       aria-label="MedX Healthcare Solutions logo"
     >
       <Image
-        src="/images/medx/MedxLogo1.png"
+        src="/images/medx/medx-diagnostics-ethiopia-logo.png"
         alt=""
-        width={140}
-        height={112}
-        className="h-full w-full object-contain p-1"
+        fill
+        sizes={
+          size === "lg"
+            ? "(min-width: 1280px) 18rem, (min-width: 640px) 15rem, 14rem"
+            : "(min-width: 1280px) 18rem, 12.5rem"
+        }
+        className="object-contain px-2 py-1"
         priority={size !== "sm"}
       />
     </div>

@@ -37,15 +37,8 @@ export default function Footer() {
       <div className="container-medx py-16">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.7fr_0.7fr_1fr]">
           <div>
-            <Link href="/" className="inline-flex items-center gap-3">
+            <Link href="/" className="inline-flex items-center">
               <BrandMark size="lg" variant="light" />
-
-              <div>
-                <p className="text-xl font-black tracking-tight">MedX</p>
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-300">
-                  Healthcare Solutions
-                </p>
-              </div>
             </Link>
 
             <p className="mt-6 max-w-md text-sm leading-7 text-slate-300">
